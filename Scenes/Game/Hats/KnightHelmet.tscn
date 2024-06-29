@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/5.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/26.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Meshes/Hats/knight_helmet.obj" type="ArrayMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.576471, 0.533333, 0.490196, 1 )
+
+[node name="KnightHelmet" type="Spatial"]
+script = ExtResource( 4 )
+hat_type = 22
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 3 )
+material/2 = SubResource( 1 )
+material/3 = ExtResource( 1 )

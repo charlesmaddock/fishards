@@ -1,0 +1,176 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Assets/Meshes/VFX/heal_vfx_perimiter.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Meshes/VFX/heal_vfx_ground.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=4]
+[ext_resource path="res://Assets/Textures/Particle/circle.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Util/ParticleParent.gd" type="Script" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform vec4 color : hint_color;
+uniform sampler2D noise_tex;
+uniform sampler2D gradient_tex;
+uniform vec2 noise_scale = vec2(1.0, 1.0);
+
+uniform float cutout = 0.7;
+
+uniform float scroll_speed = 0.25;
+
+void fragment(){
+	
+	float noise = texture( noise_tex, vec2(UV.x*noise_scale.x , UV.y*noise_scale.y - TIME * scroll_speed)).r;
+	float gradient = texture( gradient_tex, vec2(UV.y, UV.x)).r;
+	
+	gradient = 1.0 - gradient;
+
+	float shape = step( gradient, cutout - noise);
+	
+	ALBEDO = color.rgb;
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.01;
+	
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.642857, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.88961, 0.88961, 0.88961, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.494118, 0.501961, 0.419608, 1 )
+shader_param/noise_scale = Vector2( 1, 0.25 )
+shader_param/cutout = 0.6
+shader_param/scroll_speed = -1.0
+shader_param/noise_tex = ExtResource( 3 )
+shader_param/gradient_tex = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0505618, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+gravity = Vector3( 0, 0, 0 )
+scale = 0.8
+scale_curve = SubResource( 6 )
+
+[sub_resource type="Shader" id=8]
+code = "shader_type spatial; render_mode unshaded;
+
+uniform float frequency = 10.0;
+uniform float speed = 8.0;
+uniform float cutout = 0.0;
+uniform sampler2D cutout_gradient;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(8.0,2.0);
+uniform float noise_strength = 1.0;
+uniform vec4 color: hint_color;
+
+
+
+
+void fragment(){
+	float noise = texture(noise_tex, vec2(UV.x * noise_scale.x, UV.y * noise_scale.y + TIME / speed)).r * noise_strength;
+	float sin_pattern = abs(sin(frequency * UV.y - TIME*speed));
+	float gradient = texture(cutout_gradient, vec2(UV.y, UV.x)).r;
+	
+	float shape = (sin_pattern + noise) / 2.0;
+	float cut_shape = step(gradient, shape - cutout);
+	
+	ALBEDO = vec3(cut_shape) * color.rgb;
+	ALPHA = cut_shape;
+	
+}"
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0.420401, 0.420401, 0.420401, 1, 0.643847, 0.643847, 0.643847, 1 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 8 )
+shader_param/frequency = 4.0
+shader_param/speed = 5.0
+shader_param/cutout = 0.0
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/noise_strength = 0.3
+shader_param/color = Color( 0.717647, 0.623529, 0.517647, 1 )
+shader_param/cutout_gradient = SubResource( 10 )
+shader_param/noise_tex = ExtResource( 3 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0393258, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.977528, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+gravity = Vector3( 0, 0, 0 )
+scale = 2.0
+scale_curve = SubResource( 13 )
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 4 )
+shader_param/light_color = Color( 0.501961, 0.67451, 0.482353, 1 )
+shader_param/dark_color = Color( 0.501961, 0.67451, 0.482353, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/alpha_texture = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.976923 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 1, 0, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.47191, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.752809, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+emission_shape = 2
+emission_box_extents = Vector3( 1.5, 0, 1.5 )
+gravity = Vector3( 0, 2, 0 )
+scale = 0.4
+scale_random = 0.73
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 17 )
+
+[sub_resource type="QuadMesh" id=21]
+
+[node name="HealAreaEffectCorrupted" type="Spatial"]
+script = ExtResource( 6 )
+
+[node name="Perimiter" type="Particles" parent="."]
+material_override = SubResource( 4 )
+amount = 1
+lifetime = 10.0
+process_material = SubResource( 7 )
+draw_pass_1 = ExtResource( 1 )
+
+[node name="Ground" type="Particles" parent="."]
+material_override = SubResource( 11 )
+amount = 1
+lifetime = 10.0
+process_material = SubResource( 14 )
+draw_pass_1 = ExtResource( 2 )
+
+[node name="Spikes" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127074, 0 )
+material_override = SubResource( 15 )
+amount = 3
+lifetime = 0.7
+process_material = SubResource( 20 )
+draw_pass_1 = SubResource( 21 )

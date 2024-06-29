@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lava slow.mp3-e22742d9d1658f421f824944941dae8d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/lava slow.mp3"
+dest_files=[ "res://.import/lava slow.mp3-e22742d9d1658f421f824944941dae8d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

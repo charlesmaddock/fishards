@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/ParticleEffects/hollow_cone_mesh.tres" type="ArrayMesh" id=1]
+
+[node name="hollow_cone" type="Spatial"]
+
+[node name="Cylinder" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null

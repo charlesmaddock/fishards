@@ -1,0 +1,269 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Images/UI/Game/spell_slot.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/empty.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Game/SpellHUDElement.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "CombineLeft"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElementTexture:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 0.659754, 1.8025, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -9, 0 ), Vector2( -9, 0 ), Vector2( 6, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElementTexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ElementTexture:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "CombineRight"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElementTexture:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 0.659754, 1.8025, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 9, 0 ), Vector2( 9, 0 ), Vector2( -6, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElementTexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ElementTexture:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Default"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElementTexture:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElementTexture:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ElementTexture:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ElementTexture:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElementTexture:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.6, 2.2, 2.8, 3.4, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1.10957, 1 ),
+"update": 0,
+"values": [ Vector2( 1.04158, -1.04159 ), Vector2( -0.743992, 1.26478 ), Vector2( 0.68638, 0 ), Vector2( -1.81658, -1.29372 ), Vector2( -0.217885, -1.32854 ), Vector2( 0.736018, 1.45551 ), Vector2( 1.90156, -0.63678 ), Vector2( 1.04158, -1.04159 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElementTexture:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.6, 2.2, 2.8, 3.4, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1.10957, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ElementTexture:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElementTexture:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1.68179, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElementTexture:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -9.53674e-07, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ElementTexture:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="SpellHUDElement" type="Control"]
+margin_right = 8.0
+margin_bottom = 8.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellHUDElementAnimator" type="AnimationPlayer" parent="."]
+anims/CombineLeft = SubResource( 1 )
+anims/CombineRight = SubResource( 2 )
+anims/Default = SubResource( 3 )
+anims/Hover = SubResource( 4 )
+anims/Select = SubResource( 5 )
+
+[node name="ElementTexture" type="Control" parent="."]
+anchor_left = 1.4577
+anchor_top = -0.375326
+anchor_right = 2.8557
+anchor_bottom = 1.02467
+margin_left = -11.6616
+margin_top = 3.00261
+margin_right = -14.8456
+margin_bottom = -0.197414
+rect_pivot_offset = Vector2( 4, 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ElementTextureRect1" type="TextureRect" parent="ElementTexture"]
+margin_right = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Holder" type="TextureRect" parent="ElementTexture"]
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 9.0
+margin_bottom = 9.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

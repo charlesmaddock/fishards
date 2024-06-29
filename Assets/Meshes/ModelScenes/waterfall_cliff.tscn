@@ -1,0 +1,117 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Assets/Meshes/waterfall_cliff.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Materials/CelShaded/highland_rock.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/14.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Materials/Fx/waterfall_impact_foam.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/Materials/Fx/waterfall_foam.tres" type="Material" id=5]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Materials/Fx/waterfall_splash.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Shaders/foam.shader" type="Shader" id=8]
+[ext_resource path="res://Scenes/Materials/Fx/waterfall_water.tres" type="Material" id=9]
+[ext_resource path="res://Scenes/Materials/CelShaded/grass.tres" type="Material" id=10]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.432806, 0.940711 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.359684, 0.887352, 0.924901 )
+colors = PoolColorArray( 0.64, 0.64, 0.64, 1, 0.71, 0.71, 0.71, 1, 0.9, 0.9, 0.9, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 8 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/x_tiling = 3.0
+shader_param/noise_scale = 0.75
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/cutout = 0.1
+shader_param/scroll_speed = 0.3
+shader_param/noise_tex = ExtResource( 6 )
+shader_param/foam_gradient = SubResource( 4 )
+shader_param/dark_color_gradient = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_unshaded = true
+albedo_color = Color( 0.72549, 0.709804, 0.698039, 1 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type spatial; render_mode unshaded, cull_disabled;
+
+uniform sampler2D noise_tex;
+
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+void fragment(){
+	float noise = texture(noise_tex, UV).r;
+	float shape = step(COLOR.r, noise);
+	ALBEDO = vec3(shape);
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.1;
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/noise_tex = ExtResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.269811, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.818868, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00706089 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+lifetime_randomness = 0.32
+emission_shape = 2
+emission_box_extents = Vector3( 3, 1, 1 )
+flag_rotate_y = true
+gravity = Vector3( 0, 2, 0 )
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
+
+[sub_resource type="SphereMesh" id=13]
+
+[node name="waterfall_cliff" instance=ExtResource( 1 )]
+
+[node name="waterfall_cliff" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90735e-06, 0 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 3 )
+material/2 = SubResource( 5 )
+material/3 = SubResource( 14 )
+
+[node name="grass" parent="waterfall_cliff" index="0"]
+material/0 = ExtResource( 10 )
+
+[node name="waterfall" parent="waterfall_cliff" index="1"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 9 )
+material/2 = ExtResource( 3 )
+material/3 = ExtResource( 7 )
+material/4 = ExtResource( 4 )
+
+[node name="Particles" type="Particles" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579664, 6.98236 )
+visible = false
+material_override = SubResource( 7 )
+amount = 16
+lifetime = 0.3
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 13 )

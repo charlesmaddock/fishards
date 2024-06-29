@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://old_icon.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CanvasLayer
+
+
+func _on_yes_pressed():
+	Util.create_singleplayer_lobby(true)
+	queue_free()
+
+
+func _on_nah_pressed():
+	queue_free()
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 3
+script = SubResource( 1 )
+
+[node name="InfoPopup" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0.301961, 0.372549, 0.482353, 0.568627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Control" parent="InfoPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.0
+margin_top = -37.0
+margin_right = 84.0
+margin_bottom = 37.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="InfoPopup/Sprite"]
+position = Vector2( 80.5, -19.5103 )
+scale = Vector2( 0.020688, 0.020688 )
+texture = ExtResource( 3 )
+
+[node name="Panel" type="PanelContainer" parent="InfoPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -85.5
+margin_top = -48.0
+margin_right = 85.5
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="InfoPopup/Panel"]
+margin_left = 3.0
+margin_right = 171.0
+margin_bottom = 74.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+
+[node name="VBox" type="VBoxContainer" parent="InfoPopup/Panel/Margin"]
+margin_top = 3.0
+margin_right = 165.0
+margin_bottom = 74.0
+
+[node name="Title" type="Label" parent="InfoPopup/Panel/Margin/VBox"]
+margin_right = 165.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
+text = "Welcome fish wizard!"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="InfoPopup/Panel/Margin/VBox"]
+margin_top = 17.0
+margin_right = 165.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 30 )
+custom_colors/font_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+custom_constants/line_spacing = -3
+text = "First time playing? If so, do you want to try the tutorial?"
+align = 1
+autowrap = true
+
+[node name="Control" type="Control" parent="InfoPopup/Panel/Margin/VBox"]
+margin_top = 51.0
+margin_right = 165.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 40, 20 )
+
+[node name="Button2" type="Button" parent="InfoPopup/Panel/Margin/VBox/Control"]
+self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
+margin_right = 79.0
+margin_bottom = 19.0
+text = "Yes!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="InfoPopup/Panel/Margin/VBox/Control"]
+self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
+margin_left = 83.0
+margin_right = 165.0
+margin_bottom = 19.0
+text = "Nah, skip it."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="InfoPopup/Panel/Margin/VBox/Control/Button2" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="InfoPopup/Panel/Margin/VBox/Control/Button" to="." method="_on_nah_pressed"]

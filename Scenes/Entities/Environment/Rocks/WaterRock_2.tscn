@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/ModelScenes/water_rock_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 1.01059
+
+[node name="WaterRock_2" type="Spatial"]
+script = ExtResource( 2 )
+manually_set_entity_type = 1
+subtype_name = "WATER_ROCK_2"
+can_move = false
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312969, 0.442023, 0.0122807 )
+shape = SubResource( 1 )
+
+[node name="StillSolid" parent="." instance=ExtResource( 3 )]
+
+[node name="water_rock_2" parent="." instance=ExtResource( 1 )]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/10.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/Hats/mohawk.obj" type="ArrayMesh" id=3]
+
+[node name="Mohawk" type="Spatial"]
+script = ExtResource( 2 )
+hat_type = 13
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )

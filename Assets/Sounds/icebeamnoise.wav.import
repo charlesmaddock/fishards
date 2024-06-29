@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/icebeamnoise.wav-3585e18e4a05163db92b039eca3878a4.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/icebeamnoise.wav"
+dest_files=[ "res://.import/icebeamnoise.wav-3585e18e4a05163db92b039eca3878a4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

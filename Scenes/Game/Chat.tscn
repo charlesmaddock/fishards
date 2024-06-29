@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/Game/Chat.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+
+[node name="Chat" type="Panel"]
+margin_left = 232.0
+margin_top = 56.0
+margin_right = 448.0
+margin_bottom = 256.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme = ExtResource( 3 )
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_top = 204.0
+margin_right = 184.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SendChatMsg" type="Button" parent="LineEdit"]
+margin_left = 189.0
+margin_right = 216.0
+margin_bottom = 20.0
+text = "SEND"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 2.0
+margin_right = -3.0
+margin_bottom = -2.0
+mouse_filter = 1
+size_flags_horizontal = 0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 208.0
+margin_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+custom_constants/separation = 0
+alignment = 2
+
+[node name="InGameMessages" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_pivot_offset = Vector2( -0.507233, 189.126 )
+rect_clip_content = true
+custom_constants/separation = 0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpamLimitTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="focus_entered" from="LineEdit" to="." method="_on_input_focus_entered"]
+[connection signal="pressed" from="LineEdit/SendChatMsg" to="." method="_on_send_chat_msg_pressed"]
+[connection signal="timeout" from="SpamLimitTimer" to="." method="_on_SpamLimitTimer_timeout"]

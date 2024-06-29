@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/Hats/sunglasses.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.215686, 0.2, 0.192157, 1 )
+
+[node name="Sunglasses" type="Spatial"]
+script = ExtResource( 2 )
+hat_type = 16
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 3 )
+material/0 = SubResource( 1 )

@@ -1,0 +1,136 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/ParticleEffects/fireblast_particle_mesh2.tres" type="ArrayMesh" id=6]
+[ext_resource path="res://Scenes/Materials/Fx/wildfire.tres" type="Material" id=7]
+[ext_resource path="res://Scenes/Components/ParentToCreator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/wildfire.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Game/Spells/Wildfire.gd" type="Script" id=12]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.985034 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.317534 ), 0.0, 2.52956, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+render_priority = -1
+emission_shape = 2
+emission_box_extents = Vector3( 0.16, 0.1, 0.05 )
+flag_rotate_y = true
+direction = Vector3( 0, 0, -1 )
+spread = 30.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angle_random = 0.12
+scale_random = 0.76
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 1 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.929412, 0.733333, 0.27451, 1 )
+shader_param/dark_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.612245, 0.968708 )
+colors = PoolColorArray( 0.0913706, 0.908629, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0.117497, 0 ), 0.0, 0.86025, 0, 0, Vector2( 0.934866, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 2
+emission_box_extents = Vector3( 0.9, 0.2, 0.3 )
+flag_rotate_y = true
+direction = Vector3( 0, 0, 1 )
+spread = 0.0
+gravity = Vector3( 0, 0.5, 1 )
+initial_velocity = -2.0
+angle = 345.6
+angle_random = 1.0
+scale = 0.8
+scale_random = 0.76
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=12]
+
+[node name="Wildfire" type="Spatial"]
+script = ExtResource( 3 )
+age_limit_seconds = 4.0
+
+[node name="WildfireEffect" type="Spatial" parent="."]
+transform = Transform( -1, 5.68813e-05, -0.00200575, 5.69983e-05, 1, -0.000714481, 0.000573059, -0.00020417, -3.5, 0, 0.0299544, 0.0820386 )
+script = ExtResource( 12 )
+
+[node name="Fire" type="Particles" parent="WildfireEffect"]
+transform = Transform( 1, -1.01565e-07, -0.00174083, -1.01572e-07, 1, 0.000620225, -0.000142109, 5.06306e-05, 1.86794, 0, 0, 0 )
+material_override = ExtResource( 7 )
+amount = 18
+lifetime = 1.41
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = ExtResource( 6 )
+
+[node name="Smoke" type="Particles" parent="WildfireEffect"]
+transform = Transform( 1, -7.82308e-12, 4.65661e-10, -4.26326e-13, 1, 0, 0, 0, 0.666667, 8.91721e-06, 0.0525848, -0.236888 )
+material_override = SubResource( 6 )
+amount = 14
+lifetime = 0.89
+local_coords = false
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="FlameSound1" parent="WildfireEffect" instance=ExtResource( 11 )]
+transform = Transform( -1, 5.69983e-05, 0.00057306, 5.68813e-05, 1, -0.00020417, -0.000163734, -5.8325e-05, -0.285714, -4.87204e-05, -0.0299376, 0.0234413 )
+stream = ExtResource( 10 )
+unit_db = -5.524
+
+[node name="FlameSound2" parent="WildfireEffect" instance=ExtResource( 11 )]
+transform = Transform( -1, 5.69983e-05, 0.00057306, 5.68813e-05, 1, -0.00020417, -0.000163734, -5.8325e-05, -0.285714, -4.87204e-05, -0.0299376, 0.0234413 )
+stream = ExtResource( 10 )
+unit_db = -5.524
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Area"]
+transform = Transform( 1.0208, 0, 0, 0, -1.66309e-07, -1.0208, 0, 1.0208, -1.66309e-07, 0, 0.391802, 0 )
+polygon = PoolVector2Array( 0.466925, -0.413155, 1.23303, 4.3766, 0.0721211, 4.82009, -1.16036, 4.44602, -0.483562, -0.381975 )
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 2 )]
+stop_particle_node_array = [ NodePath("../WildfireEffect/Fire"), NodePath("../WildfireEffect/Smoke") ]
+
+[node name="ParentToCreator" parent="." instance=ExtResource( 8 )]
+z_offset = 0.5
+y_offset = 1.0
+
+[node name="Damage" parent="." instance=ExtResource( 4 )]
+damage = 6
+repeat_damage = true
+repeat_time = 0.215

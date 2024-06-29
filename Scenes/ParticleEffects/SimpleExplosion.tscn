@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/dirt_particle_texture.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 14.0
+angle = 403.4
+angle_random = 1.0
+scale = 0.3
+scale_random = 0.66
+scale_curve = SubResource( 2 )
+color = Color( 0, 1, 0, 1 )
+hue_variation = 0.52
+hue_variation_random = 1.0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/light_color = Color( 0.576471, 0.533333, 0.490196, 1 )
+shader_param/dark_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 1.5, 1.5 )
+
+[node name="Explosion" type="Particles"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.2, 0.9, 0 )
+emitting = false
+amount = 26
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )

@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/spell_slot.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_4px_margin.tres" type="StyleBox" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Panel
+
+
+func set_class_values(name: String, elements: Array, score: int, suffix: String) -> void:
+	$ClassContainer/name.text = name
+	if elements == []:
+		$ClassContainer/Control.set_visible(false)
+	else:
+		$ClassContainer/Control/el1.texture = Globals.get_element_icon(elements[0])
+		$ClassContainer/Control/el2.texture = Globals.get_element_icon(elements[1])
+		$ClassContainer/Control/el3.texture = Globals.get_element_icon(elements[2])
+	$ClassContainer/score.text = \": \" + str(score) + \" \" + suffix
+"
+
+[node name="Panel" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.462745 )
+margin_right = 207.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 3 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClassContainer" type="HBoxContainer" parent="."]
+margin_top = -2.0
+margin_right = 197.0
+margin_bottom = 12.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacing" type="Control" parent="ClassContainer"]
+margin_right = 2.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 2, 0 )
+
+[node name="name" type="Label" parent="ClassContainer"]
+margin_left = 4.0
+margin_right = 109.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 90, 0 )
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "class name here"
+
+[node name="Control" type="Control" parent="ClassContainer"]
+margin_left = 111.0
+margin_right = 141.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="el1" type="TextureRect" parent="ClassContainer/Control"]
+margin_left = 1.05936
+margin_top = 5.28404
+margin_right = 9.05936
+margin_bottom = 13.284
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="greyCover" type="TextureRect" parent="ClassContainer/Control/el1"]
+visible = false
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 39.0
+margin_bottom = 39.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="el2" type="TextureRect" parent="ClassContainer/Control"]
+margin_left = 11.0594
+margin_top = 5.28404
+margin_right = 19.0594
+margin_bottom = 13.284
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="greyCover" type="TextureRect" parent="ClassContainer/Control/el2"]
+visible = false
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 39.0
+margin_bottom = 39.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="el3" type="TextureRect" parent="ClassContainer/Control"]
+margin_left = 21.0594
+margin_top = 5.28404
+margin_right = 29.0594
+margin_bottom = 13.284
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="greyCover" type="TextureRect" parent="ClassContainer/Control/el3"]
+visible = false
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 39.0
+margin_bottom = 39.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="ClassContainer"]
+margin_left = 143.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = ": 10 score"

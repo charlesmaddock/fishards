@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=4]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.557252
+height = 11.2982
+
+[sub_resource type="SphereMesh" id=2]
+material = ExtResource( 2 )
+radius = 0.8
+height = 1.6
+radial_segments = 6
+rings = 6
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/light_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/dark_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+shader_param/billboard = true
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.590406 )
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 100
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 21.5541, 0, 0, Vector2( 0.0250784, 1 ), 31.1336, -0.0319323, 0, 0, Vector2( 0.789969, 0.759171 ), -1.09883, -1.09883, 0, 0, Vector2( 0.987461, 0.018018 ), -7.29472, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3( 0, 0, 0 )
+angle = 334.2
+angle_random = 1.0
+scale = 1.5
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="QuadMesh" id=9]
+size = Vector2( 0.2, 0.2 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "flyUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.6, 0.184818 ), Vector3( 0, 45, 1.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.2, 0.2, 0.2 ), Vector3( 2, 2, 2 ) ]
+}
+
+[node name="MeteorUp" type="Spatial"]
+script = ExtResource( 3 )
+age_limit_seconds = 4.0
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.39143, 0 )
+shape = SubResource( 1 )
+
+[node name="Rock" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 45, 1.5 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Particles2" type="Particles" parent="Rock"]
+transform = Transform( 0.3, 0, 0, 0, -1.31134e-08, 0.4, 0, -0.3, -1.74846e-08, 0, -0.534565, 0 )
+material_override = SubResource( 3 )
+cast_shadow = 0
+amount = 30
+lifetime = 0.7
+randomness = 1.0
+visibility_aabb = AABB( -11.8951, -14.1529, -80.4581, 23.7901, 28.306, 160.916 )
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rock"]
+autoplay = "flyUp"
+anims/flyUp = SubResource( 10 )

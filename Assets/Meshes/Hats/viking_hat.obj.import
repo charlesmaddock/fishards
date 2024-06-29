@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh"
+
+[deps]
+
+files=[ "res://.import/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/viking_hat.obj"
+dest_files=[ "res://.import/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh", "res://.import/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

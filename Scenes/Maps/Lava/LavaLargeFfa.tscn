@@ -1,0 +1,240 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Meshes/ModelScenes/lava_large_ffa.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Textures/Sprites/paint_circle.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_5.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_6.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Meshes/ModelScenes/white_grass.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/Bones.tscn" type="PackedScene" id=12]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 5.0
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.482353, 0.635294, 0.901961, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_unshaded = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.92549, 0.376471, 0.376471, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="CylinderShape" id=4]
+radius = 8.0
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 4, 0.001, 14 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 9, 1, 3.5 )
+
+[node name="LavaLargeFfa" type="Spatial"]
+script = ExtResource( 1 )
+generate_environment = false
+spawn_area_container = NodePath("SpawnAreas")
+red_team_spawn_container_path = NodePath("TeamSpawnAreas/RedTeamContainer")
+blue_team_spawn_container_path = NodePath("TeamSpawnAreas/BlueTeamContainer")
+hand_placed_entity_container = NodePath("HandPlacedEntities")
+
+[node name="lava_large_ffa" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.84353, -1.55202, 5.92095 )
+
+[node name="TeamSpawnAreas" type="Spatial" parent="."]
+
+[node name="BlueTeamContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Blue spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/BlueTeamContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -31 )
+shape = SubResource( 1 )
+
+[node name="Blue Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/BlueTeamContainer/Blue spawn collision shape"]
+transform = Transform( 3.31002e-07, 1.7, 4.37114e-08, 0, -7.43094e-08, 1, 1.7, -3.31002e-07, -8.51092e-15, 0, 0.1, 0 )
+material_override = SubResource( 2 )
+modulate = Color( 0.988235, 0.988235, 0.992157, 1 )
+texture = ExtResource( 3 )
+
+[node name="RedTeamContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Red spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/RedTeamContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 18 )
+shape = SubResource( 1 )
+
+[node name="Red Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/RedTeamContainer/Red spawn collision shape"]
+transform = Transform( 3.31002e-07, 1.7, 4.37114e-08, 0, -7.43094e-08, 1, 1.7, -3.31002e-07, -8.51092e-15, 0, 0.1, 0 )
+material_override = SubResource( 3 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 3 )
+
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32783, 0, 0.323298 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8823, 0, 9.6455 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.8823, 0, 17.6455 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1781, -7.62939e-06, -29.3325 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1781, -7.62939e-06, -13.3325 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 12, 0, -23 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -23, 0, 19 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -1, 0, 31 )
+shape = SubResource( 5 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 4 )]
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon8" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( -31.4386, -12.878, -35.3772, -9.27704, -37.8019, -0.104466, -39.0601, 1.99137, -35.6826, 8.51311, -31.7707, 5.58019, -34.3568, 1.61876, -33.3777, -2.15352, -31.1425, -2.94515, -30.6837, 3.57081, -25.3067, 3.89664, -22.3737, 3.35359, -20.5266, -5.08704, -22.2633, -8.9704, -24.0011, -8.10196, -24.0187, -2.38636, -25.8349, -0.663319, -29.0937, -3.41079, -29.1398, -5.5992, -26.2272, -8.86185, -28.0187, -10.5444 )
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 9.33482, -8.03219, 7.6023, -7.0821, 5.47856, -7.0821, 5.25501, -9.65293, 3.63427, -11.609, -0.780863, -13.1739, -4.35768, -12.0561, -7.15206, -12.615, -11.176, -10.8266, -11.6231, -9.65293, -14.0263, -8.53518, -15.1999, -5.96434, -14.4734, -4.3436, -14.4734, -2.55519, -13.4115, -1.82865, -13.4115, 0.742185, -14.5292, 2.97769, -13.0203, 4.26311, -11.3995, 7.5046, -10.1141, 8.28703, -8.94047, 7.83993, -7.54328, 8.3988, -7.09617, 11.1373, -4.80478, 11.9756, -4.07823, 12.758, -1.78684, 12.4786, -0.780863, 10.802, 3.41072, 9.85188, 5.08735, 9.85188, 8.21707, 7.72815, 8.94361, 4.03956, 10.4526, 2.69826, 11.9615, 1.24517, 13.3029, -0.431457, 12.6881, -2.21986, 11.1791, -3.28173, 9.94958, -7.92041 )
+
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 15.9296, -13.4533, 18.4445, -12.2797, 20.0653, -10.1, 20.2329, -3.67294, 21.183, -2.0522, 23.1391, -1.43744, 25.3746, 0.965736, 28.3925, 1.52461, 32.0811, 1.35695, 34.4843, -0.152019, 36.9992, -2.21986, 39.0671, -5.01425, 40.2407, -8.19985, 43.1469, -9.42938, 45.8295, -10.8266, 47.7856, -13.7886, 47.2826, -17.5331, 45.2706, -20.4393, 41.3026, -22.6748, 37.6699, -23.1778, 33.9813, -25.7486, 32.5841, -29.6607, 26.987, -29.3683, 25.4667, -31.2131, 24.0017, -30.0195, 21.8537, -24.072, 19.0034, -23.9043, 14.0853, -26.7546, 14.4206, -30.2196, 18.4652, -32.0812, 18.5191, -34.4141, 14.2075, -35.9306, 11.7218, -37.3915, 7.03053, -38.361, 3.43235, -39.4164, 0.482907, -41.0911, -6.24141, -39.3637, -9.00653, -36.6837, -12.9736, -36.0356, -15.5665, -37.0461, -18.4284, -34.5206, -15.9488, -31.1409, -18.2427, -28.7516, -20.9827, -29.4339, -22.5553, -28.0878, -24.7886, -28.1339, -25.7069, -27.1956, -25.9065, -25.0861, -30.7728, -20.6276, -31.4738, -18.2979, -32.3348, -12.6265, -28.4888, -10.1738, -25.3366, -6.76117, -22.4034, -7.82164, -18.5975, -13.4449, -16.7251, -20.5198, -15.2926, -20.8833, -6.73559, -21.2852, -5.36272, -23.4173, -3.52649, -24.2503, -2.64008, -26.3044, 0.308137, -26.4956, 1.3173, -25.332, 4.97397, -25.82, 8.61847, -23.0224, 7.11252, -20.4717, 11.6078, -15.5987 )
+
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( -22.0002, 3.03692, -30.6273, 2.45284, -32.1572, 4.63866, -36.0847, 8.90556, -35.7482, 11.9002, -35.5518, 17.3736, -38.3654, 20.5166, -37.4615, 30.7746, -31.0658, 36.2251, -24.9396, 40.5977, -19.4836, 37.449, -14.1534, 40.734, -11.1085, 41.6573, -7.92114, 39.8071, -8.20432, 38.1725, -12.0977, 37.5346, -12.7326, 34.4103, -10.1846, 31.9258, -4.80901, 31.8526, -2.18922, 35.1868, -4.66505, 37.1763, -6.36388, 37.177, -6.22168, 39.7352, -3.17511, 42.223, -0.485175, 40.5149, 2.05767, 35.895, 5.80437, 33.7638, 10.4028, 33.6199, 15.2745, 30.6386, 20.4297, 28.8643, 29.7963, 22.1344, 27.9411, 9.72175, 26.1766, 9.08807, 19.3373, 8.66806, 16.943, 10.1494, 16.5247, 13.112, 11.7298, 15.0199, 9.18906, 14.0326, 4.81494, 15.0228, 3.89723, 17.2832, 3.82609, 20.0397, 1.49545, 20.96, 0.154914, 19.2636, -5.07251, 21.175, -9.02227, 18.7019, -12.9748, 18.3502, -11.8533, 21.6022, -11.7897, 24.5037, -15.9606, 25.2135, -19.4797, 21.2517, -16.7881, 18.7759, -15.0911, 17.8564, -15.3611, 13.69, -19.7141, 7.90927, -19.702, 4.52884 )
+
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( -12.3809, 9.55646, -13.9568, 8.08795, -15.6761, 8.84012, -15.6044, 10.4877, -14.5657, 11.9562, -12.5958, 12.2786, -11.5571, 11.5622, -11.7362, 10.1295 )
+
+[node name="CollisionPolygon5" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 8.37239, -14.1377, 7.7635, -12.3468, 10.0558, -10.3411, 11.5243, -11.0932, 11.6676, -12.705, 9.80509, -14.2452 )
+
+[node name="CollisionPolygon6" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 20.8432, -3.45431, 23.5044, -2.58566, 26.5864, 4.74565, 23.6165, 10.3935, 19.7053, 9.95897, 22.3021, 3.45059, 20.9513, 0.470159 )
+
+[node name="CollisionPolygon7" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 32.1944, -0.413908, 33.2938, 7.037, 32.038, 11.1365, 27.0939, 12.7838, 28.1831, 20.1733, 32.5998, 18.0331, 37.8611, 13.0002, 38.9302, 8.99349, 37.2528, 7.64257, 40.0927, 5.96567, 41.0226, 3.49717, 37.515, -3.56289 )
+
+[node name="CollisionPolygon9" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 17.5027, -35.9273, 17.9364, -31.1079, 22.4191, -28.6013, 25.8895, -29.8064, 26.8051, -31.3971, 28.3471, -33.0358, 28.8765, -36.1683, 30.8038, -37.8066, 30.9475, -41.0348, 28.7302, -43.6362, 22.6107, -43.1545, 20.7797, -40.6494, 20.1533, -39.0112, 18.2739, -37.903 )
+
+[node name="CollisionPolygon10" type="CollisionPolygon" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1812, -0.881439, -0.000692511 )
+polygon = PoolVector2Array( 5.65033, 37.9025, 3.39566, 40.2759, 3.83077, 43.6777, 6.16456, 44.3501, 11.1881, 41.6208, 10.0806, 38.2585, 6.56011, 37.3883 )
+
+[node name="CollisionPolygon11" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 7.81506, 14.8423, 8.75343, 13.6354, 7.28317, 8.79127, 5.09109, 7.56752, 3.88421, 7.97267, 3.17337, 10.3608, 4.8808, 15.1156, 6.62191, 15.1766 )
+
+[node name="CollisionPolygon12" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( -13.5166, -7.57773, -13.3759, -8.8638, -18.7365, -12.1781, -20.2776, -11.298, -20.8837, -10.3047, -21.2392, -8.42023, -17.6659, -7.17603, -17.5595, -6.6016, -15.5514, -5.45065, -14.0402, -6.46631 )
+
+[node name="HandPlacedEntities" type="Spatial" parent="."]
+
+[node name="Rock_8" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2708, 0, -29.2003 )
+
+[node name="Rock_2" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5801, 0, 3.08743 )
+
+[node name="Rock_7" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.58822, 0, 0.617517 )
+
+[node name="Rock_10" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95489, 3.8147e-06, -29.1274 )
+
+[node name="Rock_3" parent="HandPlacedEntities" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2863, 3.8147e-06, -21.459 )
+
+[node name="Rock_4" parent="HandPlacedEntities" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8417, 0, 4.24616 )
+
+[node name="Rock_5" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.8289, 0, 36.2387 )
+
+[node name="Rock_6" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8963, 0, 25.9351 )
+
+[node name="Rock_9" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7722, 0, -24.4438 )
+
+[node name="HandPlacedRiffRaff" type="Spatial" parent="."]
+
+[node name="grass" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55414, 0.0208392, -5.38769 )
+
+[node name="grass2" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86423, 0.0208392, -5.21058 )
+
+[node name="grass3" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5067, 0.0208373, -15.863 )
+
+[node name="grass4" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.8736, 0.0208373, -20.5572 )
+
+[node name="grass5" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.47504, 0.0208373, -25.4288 )
+
+[node name="grass6" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53606, 0.0208373, -22.8767 )
+
+[node name="grass7" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0294, 0.0208373, -27.4419 )
+
+[node name="grass8" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5016, 0.0208373, 4.48884 )
+
+[node name="grass9" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9892, 0.0208373, 9.02727 )
+
+[node name="grass10" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.3106, 0.0208373, 9.4284 )
+
+[node name="grass11" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3998, 0.0208373, 11.6996 )
+
+[node name="grass12" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5124, 0.0208373, 34.2806 )
+
+[node name="grass13" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0294, 0.0208373, 32.0192 )
+
+[node name="grass14" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5665, 0.0208373, 32.2252 )
+
+[node name="grass15" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92095, 0.0208373, 34.2366 )
+
+[node name="grass16" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.32761, 0.0208373, 29.4404 )
+
+[node name="grass17" parent="HandPlacedRiffRaff" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3276, 0.0208373, 27.4404 )
+
+[node name="Spatial" parent="HandPlacedRiffRaff" instance=ExtResource( 12 )]
+transform = Transform( 0.188749, 0, -1.14823, 0, 1.16364, 0, 1.14823, 0, 0.188749, 3.845, 0, 32.4567 )

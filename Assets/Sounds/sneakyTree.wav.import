@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/sneakyTree.wav"
+dest_files=[ "res://.import/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Materials/Map/lava_rocks.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Map/lava_ground.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Maps/Lava/LavaPlane.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Meshes/Maps/lava_small_2_ffa.glb" type="PackedScene" id=4]
+
+[node name="lava_small_2_ffa" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.48842, 0 )
+
+[node name="Curve011" parent="." index="0"]
+transform = Transform( 697.884, 0, 0, 0, 697.884, 0, 0, 0, 697.884, 0, -0.412744, 0 )
+material/0 = ExtResource( 1 )
+
+[node name="Curve012" parent="." index="1"]
+transform = Transform( 697.884, 0, 0, 0, 697.884, 0, 0, 0, 697.884, 0, -0.412744, 0 )
+material/0 = ExtResource( 2 )
+
+[node name="Lava" parent="." index="2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.294978, 0 )

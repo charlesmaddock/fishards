@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ParticleEffects/SmallSplash.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Util/EmitOnStartParticles.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="SmallSplash" type="Spatial"]
+script = ExtResource( 1 )
+can_move = false
+age_limit_seconds = 2.0
+
+[node name="SmallSplash" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )

@@ -1,0 +1,213 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scenes/Components/EntityInfoPanel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/ModelScenes/totem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Health.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/SpellCaster.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sounds/splash1.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Components/Totem.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sounds/turret land.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=15]
+[ext_resource path="res://Scripts/Util/EmitOnStartParticles.gd" type="Script" id=16]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.687967
+height = 0.002
+
+[sub_resource type="Animation" id=2]
+resource_name = "diveDown"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Totem:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.18, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, -1.5, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "diveUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Totem:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.18, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1.5, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Totem:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.366909, 0 ), Vector3( 0, 0.419325, 0 ), Vector3( 0, -3.85256, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Totem:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -3.85256, 0 ), Vector3( 0, 0.419, 0 ), Vector3( 0, 0.74542, 0 ), Vector3( 0, -0.0913919, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Totem:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.6, 0.6, 0.6 ), Vector3( 0.4, 0.864, 0.4 ), Vector3( 0.6, 0.6, 0.6 ), Vector3( 0.4, 0.7, 0.4 ), Vector3( 1.2, 0.3, 1.2 ), Vector3( 0.55, 0.7, 0.5 ), Vector3( 0.6, 0.6, 0.6 ) ]
+}
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 1.0
+spread = 90.0
+gravity = Vector3( 0, -10, 0 )
+initial_velocity = 3.0
+angle = 403.4
+angle_random = 1.0
+scale = 0.5
+scale_random = 0.33
+scale_curve = SubResource( 7 )
+color = Color( 0, 1, 0, 1 )
+hue_variation = 0.52
+hue_variation_random = 1.0
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 15 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.807843, 0.909804, 0.639216, 1 )
+shader_param/dark_color = Color( 0.411765, 0.643137, 0.415686, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 13 )
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
+
+[node name="Totem" type="Spatial"]
+script = ExtResource( 2 )
+age_limit_seconds = 10.0
+
+[node name="EntityInfoPanel" parent="." instance=ExtResource( 1 )]
+show_panel_above_path = NodePath("../Totem")
+
+[node name="Totem" type="Spatial" parent="."]
+transform = Transform( -0.6, 0, 9.05975e-08, 0, 0.6, 0, -9.05975e-08, 0, -0.6, 0, -1.5, 0 )
+script = ExtResource( 11 )
+transform_animator = NodePath("../AnimationPlayer")
+
+[node name="totem" parent="Totem" instance=ExtResource( 4 )]
+
+[node name="Plane" parent="Totem/totem/Armature/Skeleton" index="0"]
+visible = false
+
+[node name="Sphere001" parent="Totem/totem/Armature/Skeleton" index="2"]
+visible = false
+
+[node name="CastDelayTimer" type="Timer" parent="Totem"]
+wait_time = 0.001
+
+[node name="Die" parent="Totem" instance=ExtResource( 14 )]
+transform = Transform( -1.66667, 0, -2.5166e-07, 0, 1.66667, 0, 2.5166e-07, 0, -1.66667, 0, 4.16667, 0 )
+stream = ExtResource( 12 )
+unit_db = -7.0
+pitch_scale = 0.8
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
+max_health = 24
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.831632, 0.0671391 )
+shape = SubResource( 1 )
+
+[node name="SpellCaster" parent="." instance=ExtResource( 7 )]
+default_entity_model_path = NodePath("../Totem/totem")
+transform_container_path = NodePath("../TransformContainer")
+
+[node name="TransformContainer" type="Spatial" parent="."]
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 6 )]
+time_until_destroy = 0.5
+destroy_node_array = [ NodePath("../EntityInfoPanel/Control") ]
+on_destroy_animator = NodePath("../AnimationPlayer")
+on_destroy_animation_name = "hide"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/diveDown = SubResource( 2 )
+anims/diveUp = SubResource( 3 )
+anims/hide = SubResource( 4 )
+anims/show = SubResource( 5 )
+
+[node name="Sounds" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+on_create_stream = ExtResource( 12 )
+stop_create_stream_on_landed = true
+
+[node name="SmallSplash" type="Particles" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
+emitting = false
+amount = 30
+lifetime = 0.82
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )
+script = ExtResource( 16 )
+
+[node name="Sound" parent="SmallSplash" instance=ExtResource( 14 )]
+stream = ExtResource( 8 )
+unit_db = -5.0
+autoplay = true
+
+[editable path="EntityInfoPanel"]
+[editable path="EntityInfoPanel/Control/Elements/ElementsDisplay"]
+[editable path="EntityInfoPanel/Control/Elements/ElementsDisplay/ElementButton"]
+[editable path="Totem/totem"]

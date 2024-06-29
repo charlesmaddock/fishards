@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Game/DisplayPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/UI/Game/kick_icon_hover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/Game/kick_icon.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MainMenu/RankContainer.tscn" type="PackedScene" id=6]
+
+[node name="DisplayPlayer" type="ColorRect"]
+margin_right = 194.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 16 )
+color = Color( 1, 1, 1, 0.34902 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Control" parent="vbox"]
+margin_right = 89.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="vbox/Name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_bottom = 13.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RankContainer" parent="vbox/Name/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 0.0
+margin_right = 15.0
+
+[node name="Label" type="Label" parent="vbox/Name/HBoxContainer"]
+margin_left = 19.0
+margin_right = 85.0
+margin_bottom = 13.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "name of player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="vbox" instance=ExtResource( 3 )]
+margin_left = 93.0
+margin_right = 142.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+display_only = true
+show_keys = false
+use_clients_elements = false
+
+[node name="Score" type="Control" parent="vbox"]
+margin_left = 146.0
+margin_right = 156.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="vbox/Score"]
+margin_right = 10.0
+margin_bottom = 13.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoundsWon" type="Control" parent="vbox"]
+margin_left = 160.0
+margin_right = 171.0
+rect_pivot_offset = Vector2( -36.3287, 15.4055 )
+size_flags_horizontal = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="vbox/RoundsWon"]
+modulate = Color( 1, 1, 1, 0.647059 )
+margin_left = -0.527069
+margin_top = 0.175692
+margin_right = 9.47293
+margin_bottom = 13.1757
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KickButtonContainer" type="Control" parent="vbox"]
+margin_left = 175.0
+margin_right = 193.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 18, 0 )
+
+[node name="KickButton" type="TextureButton" parent="vbox/KickButtonContainer"]
+margin_left = -3.0
+margin_right = 16.0
+margin_bottom = 25.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="vbox/KickButtonContainer/KickButton" to="." method="_on_KickButton_pressed"]

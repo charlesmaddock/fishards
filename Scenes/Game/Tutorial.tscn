@@ -1,0 +1,2230 @@
+[gd_scene load_steps=128 format=2]
+
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/LargeTropicalBridgeWhole.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Textures/Particle/star_particle.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Materials/CelShaded/dojo_dark_wood.tres" type="Material" id=6]
+[ext_resource path="res://Scenes/Entities/Spells/FireExplosion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_6.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Game/SinglePlayer.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_6.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Entities/Environment/PalmTree.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Textures/Sprites/paint_circle.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_5.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Meshes/ModelScenes/grass.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Sounds/rockCrunch.wav" type="AudioStream" id=22]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture" id=23]
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=24]
+[ext_resource path="res://Assets/Meshes/ModelScenes/TropicalIslandSmall_1.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Materials/Palette/2.tres" type="Material" id=26]
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=27]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=28]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/LargeTropicalBridge.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Assets/Sounds/death.wav" type="AudioStream" id=30]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=31]
+[ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Scenes/Components/EntityInfoPanel.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=34]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_4.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_3.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_2.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_1.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Assets/Textures/Sprites/paint_arrow.png" type="Texture" id=41]
+[ext_resource path="res://Scenes/Game/Paricles/Poof.tscn" type="PackedScene" id=42]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=45]
+[ext_resource path="res://Assets/Textures/Sprites/Element Icons/fire_element.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dash_beam_small.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Images/UI/tutorial/nospell.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Images/UI/tutorial/spell.png" type="Texture" id=51]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2Medium.tscn" type="PackedScene" id=52]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/dojo.obj" type="ArrayMesh" id=53]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=54]
+[ext_resource path="res://Scripts/Game/FreezeIndicator.gd" type="Script" id=55]
+[ext_resource path="res://Scenes/Materials/Palette/1.tres" type="Material" id=56]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=57]
+[ext_resource path="res://Assets/Sounds/footsteps.wav" type="AudioStream" id=58]
+[ext_resource path="res://Scripts/Components/Player.gd" type="Script" id=59]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=60]
+[ext_resource path="res://Assets/Fonts/pixel_small.tres" type="DynamicFont" id=61]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=62]
+[ext_resource path="res://Scenes/Materials/Palette/25.tres" type="Material" id=63]
+[ext_resource path="res://Scenes/Entities/Creatures/FishWizardModel.tscn" type="PackedScene" id=64]
+[ext_resource path="res://Assets/Sounds/hurt.wav" type="AudioStream" id=65]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture" id=66]
+[ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=67]
+[ext_resource path="res://Assets/Meshes/ModelScenes/ice_cube.tscn" type="PackedScene" id=68]
+[ext_resource path="res://Assets/Sounds/ice break.wav" type="AudioStream" id=69]
+[ext_resource path="res://Assets/Resources/player_animation_tree.tres" type="AnimationNodeBlendTree" id=70]
+
+[sub_resource type="Curve" id=1]
+min_value = 1.0
+max_value = 4.0
+_data = [ Vector2( 0, 0.931035 ), 0.0, 7.22563, 0, 0, Vector2( 1, 4 ), -1.19704, -1.19704, 0, 0, Vector2( 1, 6 ), -0.0625751, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:margin_left")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -101.5, -101.5, 10.8235 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:margin_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -40.0, -40.0, 9.62088 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:margin_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 101.5, 101.5, 213.823 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:margin_bottom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 40.0, 40.0, 45.6209 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath(".:rect_scale")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node
+
+
+var player: Entity
+
+
+func _process(delta):
+	if player == null && Util.get_current_game_state() == GamemodeValues.GameStates.GAME:
+		var players_node = Util.get_players_node()
+		if players_node != null:
+			var player_e = players_node.get_player_entity(SteamValues.STEAM_ID)
+			if Util.safe_to_use(player_e):
+				player = player_e
+		
+	elif Util.safe_to_use(player):
+		var cast_direction: Vector3 = get_parent().global_transform.origin.direction_to(player.global_transform.origin)
+		var cast_direction2d = Vector2(cast_direction.x, cast_direction.z)
+		get_parent().set_target_rotation(cast_direction2d.angle_to(Vector2.DOWN), 5)
+"
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.500263
+height = 0.754722
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_unshaded = true
+albedo_color = Color( 0.960784, 0.956863, 0.745098, 1 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+albedo_color = Color( 0.709804, 0.658824, 0.615686, 1 )
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("fish_wizard:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -1.5, 0 ), Vector3( 0, -0.8, 0 ), Vector3( 0, -1.1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("fish_wizard:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1.1, 0 ), Vector3( 0, 0.2, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 28 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 34 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.967391, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale = 1.2
+scale_curve = SubResource( 16 )
+
+[sub_resource type="QuadMesh" id=18]
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.92549, 0.376471, 0.376471, 1 )
+albedo_texture = ExtResource( 41 )
+
+[sub_resource type="Animation" id=20]
+length = 11.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sensei:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.92553, 4.2, 7.48369, 9.81774, 11 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.064, -0.003, -5.141 ), Vector3( 6.28283, 6.01533, 3.22201 ), Vector3( 12.572, 6.576, -5.437 ), Vector3( -1.29852, 6.62421, -16.9663 ), Vector3( 2.74982, 6.04556, -38.5255 ), Vector3( -0.264023, 0, -43.7551 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sensei:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6, 3.9, 6.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.264023, 0, -43.7551 ), Vector3( -21.3216, 6.38467, -44.8154 ), Vector3( -11.3057, 6.89544, -57.6641 ), Vector3( -10.1632, 6.3847, -65.2654 ), Vector3( -9.44388, 0, -68.6592 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 6.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sensei:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -9.44388, -0.25, 0, 0.25, 0, -17, -0.553271, 4.37014, 0.597914, -9.62986, -48, -0.527897, 0, 0.481016, -1.39754, -49.4251, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.1, 4.6, 6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sensei:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.180423, -1, 5, -0.329907, -3, 0.553965, 2, 5, -0.945079, 2, 0.412289, -5, 2.10548, -0.467438, -2.10548, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 5, 6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Sensei:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -68.6592, -0.25, 0, 0.25, 0, -75.5802, -0.25, 0, 0.25, 0, -147.132, -0.25, 0, 0.25, 0, -158.844, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 5, 6 )
+}
+
+[sub_resource type="Animation" id=23]
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 1.1, 1.2, 1.3, 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -9.0, 9.0, 0.0, 0.0, -9.0, 9.0, 0.0, 0.0 ]
+}
+
+[sub_resource type="CylinderShape" id=24]
+radius = 1.47714
+height = 4.39172
+
+[sub_resource type="ShaderMaterial" id=25]
+shader = ExtResource( 57 )
+shader_param/base_color = Color( 0.717647, 0.623529, 0.517647, 1 )
+shader_param/shade_color = Color( 0.501961, 0.431373, 0.352941, 1 )
+shader_param/shade_threshold = -0.642
+shader_param/use_attenuation = false
+
+[sub_resource type="ShaderMaterial" id=26]
+shader = ExtResource( 57 )
+shader_param/base_color = Color( 0.87451, 0.87451, 0.87451, 1 )
+shader_param/shade_color = Color( 0.780392, 0.780392, 0.780392, 1 )
+shader_param/shade_threshold = -0.115
+shader_param/use_attenuation = false
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = ExtResource( 57 )
+shader_param/base_color = Color( 0.870588, 0.815686, 0.701961, 1 )
+shader_param/shade_color = Color( 0.717647, 0.623529, 0.517647, 1 )
+shader_param/shade_threshold = -0.642
+shader_param/use_attenuation = false
+
+[sub_resource type="SpatialMaterial" id=28]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.051
+albedo_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+next_pass = SubResource( 28 )
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.87451, 0.635294, 0.345098, 0.619608 )
+
+[sub_resource type="SpatialMaterial" id=30]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.051
+albedo_color = Color( 0.368627, 0.47451, 0.6, 1 )
+
+[sub_resource type="SpatialMaterial" id=31]
+next_pass = SubResource( 30 )
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.368627, 0.47451, 0.6, 0.47451 )
+
+[sub_resource type="SpatialMaterial" id=32]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.051
+albedo_color = Color( 0.219608, 0.545098, 0.309804, 1 )
+
+[sub_resource type="SpatialMaterial" id=33]
+next_pass = SubResource( 32 )
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.466667, 0.65098, 0.447059, 0.6 )
+
+[sub_resource type="SpatialMaterial" id=34]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.051
+albedo_color = Color( 0.803922, 0.223529, 0.34902, 1 )
+
+[sub_resource type="SpatialMaterial" id=35]
+next_pass = SubResource( 34 )
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.886275, 0.639216, 0.909804, 0.411765 )
+
+[sub_resource type="SpatialMaterial" id=36]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.051
+albedo_color = Color( 0.203922, 0.2, 0.196078, 1 )
+
+[sub_resource type="SpatialMaterial" id=37]
+next_pass = SubResource( 36 )
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.717647, 0.717647, 0.717647, 0.403922 )
+
+[sub_resource type="ShaderMaterial" id=38]
+shader = ExtResource( 28 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 34 )
+
+[sub_resource type="Gradient" id=39]
+offsets = PoolRealArray( 0.366667, 0.681481, 0.97037, 1 )
+colors = PoolColorArray( 1, 0, 0.00784314, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0.269307, 0.289062, 0.0869446, 0 )
+
+[sub_resource type="GradientTexture" id=40]
+gradient = SubResource( 39 )
+width = 100
+
+[sub_resource type="Curve" id=41]
+_data = [ Vector2( 0, 0 ), 0.0, 2.77422, 0, 0, Vector2( 0.0350584, 0.258885 ), 0.269105, 0.269105, 0, 0, Vector2( 0.467249, 0.282955 ), -0.188478, -0.188478, 0, 0, Vector2( 1, 0 ), -0.529384, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=42]
+curve = SubResource( 41 )
+
+[sub_resource type="ParticlesMaterial" id=43]
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3( 0, 10.192, 0 )
+angle = 334.2
+angle_random = 1.0
+scale = 2.9
+scale_random = 0.74
+scale_curve = SubResource( 42 )
+color_ramp = SubResource( 40 )
+
+[sub_resource type="QuadMesh" id=44]
+
+[sub_resource type="ShaderMaterial" id=45]
+shader = ExtResource( 28 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=46]
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3( 0, 3.209, 0 )
+angle = 334.2
+angle_random = 1.0
+scale = 1.18
+scale_random = 0.74
+scale_curve = SubResource( 42 )
+color_ramp = SubResource( 40 )
+
+[sub_resource type="BoxShape" id=47]
+
+[sub_resource type="BoxShape" id=48]
+extents = Vector3( 1.35994, 1, 0.674554 )
+
+[sub_resource type="CylinderShape" id=49]
+radius = 1.2121
+height = 5.40201
+
+[sub_resource type="Animation" id=50]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.707, -30, -39.956 ), Vector3( -3.707, -8, -39.956 ), Vector3( -3.7067, -0.5, -39.9565 ) ]
+}
+
+[sub_resource type="BoxShape" id=51]
+extents = Vector3( 9.43116, 1, 10.174 )
+
+[sub_resource type="CylinderShape" id=52]
+radius = 5.0
+
+[sub_resource type="SpatialMaterial" id=53]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.92549, 0.376471, 0.376471, 1 )
+albedo_texture = ExtResource( 18 )
+
+[sub_resource type="Animation" id=54]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -21.939, -30, -76.046 ), Vector3( -21.009, -8, -72.216 ), Vector3( -21.0093, -0.500015, -72.2159 ) ]
+}
+
+[sub_resource type="BoxShape" id=55]
+extents = Vector3( 13.8068, 7.03339, 5.8956 )
+
+[sub_resource type="BoxShape" id=56]
+extents = Vector3( 11.4624, 46.2358, 1 )
+
+[sub_resource type="CylinderShape" id=57]
+radius = 13.2794
+height = 4.39172
+
+[node name="Tutorial" type="Spatial"]
+script = ExtResource( 24 )
+env_density = 10
+env_spawn_chance = 0.0
+spawn_area_container = NodePath("SpawnAreas")
+hand_placed_entity_container = NodePath("HandPlacedEntityContainer")
+
+[node name="SinglePlayer" type="Spatial" parent="."]
+script = ExtResource( 13 )
+difficulty_curve = SubResource( 1 )
+spawn_area = NodePath("../SpawnAreas")
+spawn_point_2 = NodePath("../Island 2/SpawnPoint2")
+spawn_point_3 = NodePath("../Island 3/SpawnArea3")
+dummy_pos_2 = NodePath("../Island 2/DummyPos2")
+dummy_pos_3 = NodePath("../Island 3/DummyPos3")
+training_dummy_pos = NodePath("../Island 4/TrainingDummyPos")
+island_2_animator = NodePath("../Island 2/IslandAnimator")
+island_3_animator = NodePath("../Island 3/IslandAnimator")
+island_4_player_pos = NodePath("../Island 4/PlayerStartPoint")
+island_4_spawn_shapes = [ NodePath("../Island 4/SpawnCircle") ]
+spawn_area_4_spatial = NodePath("../Island 4/spawnAreaPos")
+
+[node name="spellHUDTip" type="Control" parent="SinglePlayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+theme = ExtResource( 62 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="available" type="Label" parent="SinglePlayer/spellHUDTip"]
+margin_left = 50.5116
+margin_top = -39.4792
+margin_right = 168.512
+margin_bottom = -23.4792
+custom_colors/font_color = Color( 0.92549, 0.184314, 0.184314, 1 )
+text = "<-- Your available elements"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected" type="Label" parent="SinglePlayer/spellHUDTip"]
+margin_left = 30.0
+margin_top = 27.0
+margin_right = 148.0
+margin_bottom = 47.0
+custom_colors/font_color = Color( 0.92549, 0.184314, 0.184314, 1 )
+text = "<-- Your selected elements"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spell" type="Label" parent="SinglePlayer/spellHUDTip"]
+margin_left = 30.0
+margin_top = 48.0
+margin_right = 147.0
+margin_bottom = 66.0
+custom_colors/font_color = Color( 0.92549, 0.184314, 0.184314, 1 )
+text = "<-- Your selected spell"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objective" type="PanelContainer" parent="SinglePlayer"]
+margin_left = 10.8235
+margin_top = 9.62088
+margin_right = 213.823
+margin_bottom = 45.6209
+rect_pivot_offset = Vector2( 94.4253, 18.6979 )
+theme = ExtResource( 62 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="SinglePlayer/Objective"]
+margin_left = 3.0
+margin_right = 203.0
+margin_bottom = 43.0
+
+[node name="VBox" type="VBoxContainer" parent="SinglePlayer/Objective/Margin"]
+margin_right = 200.0
+margin_bottom = 43.0
+
+[node name="Header" type="Label" parent="SinglePlayer/Objective/Margin/VBox"]
+margin_right = 200.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
+text = "Objective:"
+
+[node name="Instructions" type="Label" parent="SinglePlayer/Objective/Margin/VBox"]
+margin_top = 17.0
+margin_right = 200.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
+text = "Objective"
+autowrap = true
+
+[node name="SpellTip" type="Control" parent="SinglePlayer/Objective/Margin/VBox"]
+margin_top = 34.0
+margin_right = 200.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SinglePlayer/Objective/Margin/VBox/SpellTip"]
+margin_top = -4.0
+margin_right = 46.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+text = "Try using..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComboTipContainer" type="GridContainer" parent="SinglePlayer/Objective/Margin/VBox"]
+margin_top = 43.0
+margin_right = 200.0
+margin_bottom = 43.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SinglePlayer/Objective"]
+anims/show = SubResource( 2 )
+
+[node name="LeaveTip" type="Panel" parent="SinglePlayer"]
+margin_left = 561.328
+margin_top = 322.54
+margin_right = 629.328
+margin_bottom = 350.54
+theme = ExtResource( 62 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeaveTip" type="Label" parent="SinglePlayer/LeaveTip"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -4.0
+custom_fonts/font = ExtResource( 61 )
+custom_colors/font_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Press ESC to leave"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dummy1Pos" type="Spatial" parent="SinglePlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99854, 0, -0.159642 )
+
+[node name="Timer" type="Timer" parent="SinglePlayer"]
+one_shot = true
+
+[node name="Sensei" type="Spatial" parent="SinglePlayer"]
+transform = Transform( 1.47036, 0, 0.296692, 0, 1.5, 0, -0.296692, 0, 1.47036, -3.064, -0.003, -5.141 )
+script = ExtResource( 31 )
+
+[node name="SenseiBehaviour" type="Node" parent="SinglePlayer/Sensei"]
+script = SubResource( 3 )
+
+[node name="SpellSpawnPos" type="Spatial" parent="SinglePlayer/Sensei"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547903, 1.25253 )
+
+[node name="TransformContainer" type="Spatial" parent="SinglePlayer/Sensei"]
+
+[node name="Area" type="Area" parent="SinglePlayer/Sensei"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3" type="CollisionShape" parent="SinglePlayer/Sensei/Area"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.872608, 0 )
+shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SinglePlayer/Sensei"]
+
+[node name="EntityComponentPanel" parent="SinglePlayer/Sensei" instance=ExtResource( 33 )]
+_margin_top = 3.0
+default_name = "Sensei"
+show_panel_above_path = NodePath("../Player/fish_wizard")
+
+[node name="Player" type="Spatial" parent="SinglePlayer/Sensei"]
+script = ExtResource( 59 )
+_renderers = [ NodePath("ParentedSpellContainer"), NodePath("fish_wizard"), NodePath("FreezeIndicator") ]
+_fish_model = NodePath("fish_wizard/Armature/Skeleton/Fish")
+_fish_wizard_path = NodePath("fish_wizard")
+
+[node name="AnimationTree" type="AnimationTree" parent="SinglePlayer/Sensei/Player"]
+pause_mode = 2
+tree_root = ExtResource( 70 )
+anim_player = NodePath("../fish_wizard/AnimationPlayer")
+parameters/full_body_override/active = false
+parameters/full_body_override_blend/backflip/active = false
+parameters/full_body_override_blend/dance/active = false
+parameters/full_body_override_blend/dash_beam/active = false
+parameters/full_body_override_blend/dive/active = false
+parameters/full_body_override_blend/dive_state_machine/playback = SubResource( 5 )
+parameters/full_body_override_blend/dive_state_machine/conditions/dive_again = false
+parameters/full_body_override_blend/dive_state_machine/conditions/up = false
+parameters/full_body_override_blend/flop/active = false
+parameters/full_body_override_blend/flop_once/active = false
+parameters/full_body_override_blend/flop_once_states/playback = SubResource( 6 )
+parameters/full_body_override_blend/frozen/active = false
+parameters/full_body_override_blend/frozen_state_machine/playback = SubResource( 7 )
+parameters/full_body_override_blend/frozen_state_machine/conditions/unfreeze = false
+parameters/full_body_override_blend/pushed/active = false
+parameters/full_body_override_blend/pushed_states/playback = SubResource( 8 )
+parameters/full_body_override_blend/pushed_states/conditions/recover = false
+parameters/full_body_override_blend/pushed_states/pushed_blend/blend_position = Vector2( 0, 0 )
+parameters/full_body_override_blend/rock_dash/active = false
+parameters/full_body_override_blend/rock_dash_state_machine/playback = SubResource( 9 )
+parameters/full_body_override_blend/rock_dash_state_machine/conditions/disengage = false
+parameters/full_body_override_blend/spin/active = false
+parameters/move_blend/blend_amount = 0
+parameters/run/blend_position = Vector2( 0, 0 )
+parameters/stance_tree/aim_shoot/active = false
+parameters/stance_tree/bombard_shoot/active = false
+parameters/stance_tree/stance_blend/blend_amount = 0
+parameters/upper_body_blend/blend_amount = 0
+parameters/upper_body_override/active = false
+parameters/upper_body_override_blend/hurt_blend/blend_position = Vector2( 0, 0 )
+parameters/upper_body_override_blend/push/active = false
+parameters/upper_body_override_blend/push_blend/blend_position = Vector2( 0, 0 )
+
+[node name="RespawnTimer" type="Timer" parent="SinglePlayer/Sensei/Player"]
+one_shot = true
+
+[node name="OpModeTimer" type="Timer" parent="SinglePlayer/Sensei/Player"]
+
+[node name="DamageSkinTimer" type="Timer" parent="SinglePlayer/Sensei/Player"]
+wait_time = 0.15
+one_shot = true
+
+[node name="GrabTimer" type="Timer" parent="SinglePlayer/Sensei/Player"]
+one_shot = true
+
+[node name="FireExplosion" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 7 )]
+
+[node name="fish_wizard" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 64 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0 )
+
+[node name="Fish" parent="SinglePlayer/Sensei/Player/fish_wizard/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 27 )
+material/1 = SubResource( 10 )
+material/2 = SubResource( 11 )
+material/4 = ExtResource( 26 )
+
+[node name="FreezeIndicator" type="Spatial" parent="SinglePlayer/Sensei/Player"]
+script = ExtResource( 55 )
+
+[node name="IceCube" parent="SinglePlayer/Sensei/Player/FreezeIndicator" instance=ExtResource( 68 )]
+visible = false
+
+[node name="Snowpile" type="Spatial" parent="SinglePlayer/Sensei/Player/FreezeIndicator"]
+transform = Transform( 0.841385, 0, 0, 0, 1, 0, 0, 0, 0.91378, 0, 0, 0 )
+
+[node name="plane" type="MeshInstance" parent="SinglePlayer/Sensei/Player/FreezeIndicator/Snowpile"]
+transform = Transform( 0.273177, 0, -0.0667268, 0, 1.44088, 0, 0.0972089, 0, 0.24983, -0.107439, 6.10352e-05, -0.0837525 )
+
+[node name="SnowFlakes" type="Particles" parent="SinglePlayer/Sensei/Player/FreezeIndicator"]
+transform = Transform( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, 0.980026, 0 )
+amount = 1
+
+[node name="Frozen" parent="SinglePlayer/Sensei/Player/FreezeIndicator" instance=ExtResource( 67 )]
+stream = ExtResource( 69 )
+unit_db = 1.0
+unit_size = 6.0
+
+[node name="ParentedSpellContainer" type="Spatial" parent="SinglePlayer/Sensei/Player"]
+
+[node name="SwimAnimator" type="AnimationPlayer" parent="SinglePlayer/Sensei/Player"]
+autoplay = "exit_water"
+anims/enter_water = SubResource( 12 )
+anims/exit_water = SubResource( 13 )
+
+[node name="Listener" type="Listener" parent="SinglePlayer/Sensei/Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.64621, 0 )
+
+[node name="DeathSound" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 67 )]
+stream = ExtResource( 30 )
+unit_db = 0.0
+
+[node name="DashSound" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 67 )]
+stream = ExtResource( 22 )
+
+[node name="FootstepSound" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 67 )]
+stream = ExtResource( 58 )
+unit_db = 0.833
+
+[node name="HurtSound" parent="SinglePlayer/Sensei/Player" instance=ExtResource( 67 )]
+stream = ExtResource( 65 )
+unit_db = 8.0
+max_db = 6.0
+
+[node name="MoveToPosIndicator" type="CSGCylinder" parent="SinglePlayer/Sensei/Player"]
+visible = false
+radius = 0.313572
+height = 0.249402
+sides = 12
+material = ExtResource( 63 )
+
+[node name="StillSolid" parent="SinglePlayer/Sensei" instance=ExtResource( 32 )]
+
+[node name="Trail" type="Particles" parent="SinglePlayer/Sensei"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.897, 0 )
+material_override = SubResource( 14 )
+amount = 12
+lifetime = 0.6
+explosiveness = 0.05
+randomness = 0.19
+local_coords = false
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 18 )
+
+[node name="Arrow" type="Sprite3D" parent="SinglePlayer"]
+transform = Transform( 1.59131, -0.598103, -1.53788e-08, 0, -7.43094e-08, 1, -0.598103, -1.59131, -4.09167e-08, 1.18362, 0.1, -4.68007 )
+material_override = SubResource( 19 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 41 )
+
+[node name="Poof" parent="SinglePlayer/Arrow" instance=ExtResource( 42 )]
+transform = Transform( 1, 5.96046e-08, 0, -5.96046e-08, 1, -3.55271e-15, -3.55271e-15, 0, 1, 0.0281672, -0.0195861, -7.45058e-08 )
+
+[node name="SenseiAnimator" type="AnimationPlayer" parent="SinglePlayer"]
+anims/first_travel = SubResource( 20 )
+anims/second_travel = SubResource( 21 )
+anims/third_travel = SubResource( 22 )
+
+[node name="LevelTimer" type="Timer" parent="SinglePlayer"]
+one_shot = true
+
+[node name="HowToPlayPopup" type="CanvasLayer" parent="SinglePlayer"]
+layer = 12
+
+[node name="Backdrop" type="ColorRect" parent="SinglePlayer/HowToPlayPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.188235, 0.188235, 0.188235, 0.219608 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop"]
+self_modulate = Color( 0.898039, 0.898039, 0.898039, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -126.0
+margin_top = -123.5
+margin_right = 126.0
+margin_bottom = 123.5
+theme = ExtResource( 62 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel"]
+anchor_right = 1.0
+margin_top = 5.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 45 )
+custom_colors/font_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+text = "HOW TO PLAY "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.964706, 0.415686, 0.415686, 1 )
+anchor_right = 0.0
+margin_left = 6.28043
+margin_top = 4.62088
+margin_right = 24.2804
+margin_bottom = 23.6209
+font_color = Color( 1, 1, 1, 1 )
+font_highlight_color = Color( 1, 0.47451, 0.47451, 1 )
+button_text = "X"
+
+[node name="FirstPart" type="Control" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel"]
+margin_left = 7.0
+margin_top = 31.0
+margin_right = 278.0
+margin_bottom = 113.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 67.1646
+margin_top = 12.6209
+margin_right = 167.164
+margin_bottom = 29.6209
+custom_colors/font_color = Color( 0.337255, 0.337255, 0.337255, 1 )
+custom_constants/line_spacing = -3
+text = "There are 5 elements."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fire" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 43.9587
+margin_top = 62.3034
+margin_right = 72.9587
+margin_bottom = 79.3034
+custom_colors/font_color = Color( 0.392157, 0.227451, 0.164706, 1 )
+custom_constants/line_spacing = -3
+text = "Fire"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Fire"]
+margin_left = 12.2021
+margin_top = -29.4774
+margin_right = 29.2021
+margin_bottom = -16.4774
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "1  "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Fire"]
+position = Vector2( 13.2875, -6.27446 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 66 )
+
+[node name="Water" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 73.2519
+margin_top = 61.5538
+margin_right = 102.252
+margin_bottom = 78.5538
+custom_colors/font_color = Color( 0.207843, 0.211765, 0.321569, 1 )
+custom_constants/line_spacing = -3
+text = "Water"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="water" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Water"]
+position = Vector2( 13.313, -6.26854 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 43 )
+
+[node name="2" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Water"]
+margin_left = 6.23352
+margin_top = -28.7899
+margin_right = 23.2335
+margin_bottom = 0.21006
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "2
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Earth" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 102.288
+margin_top = 62.3724
+margin_right = 131.288
+margin_bottom = 79.3724
+custom_colors/font_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+custom_constants/line_spacing = -3
+text = "Earth"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Earth"]
+margin_left = 6.95975
+margin_top = -28.8759
+margin_right = 23.9597
+margin_bottom = -15.8759
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="earth" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Earth"]
+position = Vector2( 13.8681, -6.12308 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 23 )
+
+[node name="Arcane" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 132.211
+margin_top = 61.8024
+margin_right = 161.211
+margin_bottom = 84.8024
+custom_colors/font_color = Color( 0.407843, 0.294118, 0.466667, 1 )
+custom_constants/line_spacing = -3
+text = "Arcane"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arcane" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Arcane"]
+position = Vector2( 12.0092, -6.07433 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 47 )
+
+[node name="4" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Arcane"]
+margin_left = 4.0
+margin_top = -29.0
+margin_right = 21.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "4
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Goo" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 158.38
+margin_top = 62.2622
+margin_right = 187.38
+margin_bottom = 79.2622
+custom_colors/font_color = Color( 0.168627, 0.321569, 0.172549, 1 )
+custom_constants/line_spacing = -3
+text = "Goo"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goo" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Goo"]
+position = Vector2( 13.7862, -6.19637 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 48 )
+
+[node name="5" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Goo"]
+margin_left = 6.92456
+margin_top = -29.1202
+margin_right = 23.9246
+margin_bottom = -0.120163
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+text = "5
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc2" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -81.0461
+margin_top = 49.106
+margin_right = 54.9539
+margin_bottom = 72.106
+custom_colors/font_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+custom_constants/line_spacing = -3
+text = "Elements can be combined into spells:"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ex1" type="Control" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 85.8983
+margin_top = 137.882
+margin_right = 125.898
+margin_bottom = 177.882
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire_element" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex1"]
+position = Vector2( -4.55905, -7.44421 )
+scale = Vector2( 0.667, 0.667 )
+texture = ExtResource( 46 )
+
+[node name="+" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex1"]
+margin_left = 3.44495
+margin_top = -19.0
+margin_right = 22.4449
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire_element2" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex1"]
+position = Vector2( 26.4025, -7.63141 )
+scale = Vector2( 0.667, 0.667 )
+texture = ExtResource( 46 )
+
+[node name="firebal_smalll" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex1"]
+position = Vector2( 58.3854, -7.66212 )
+texture = ExtResource( 44 )
+
+[node name="=" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex1"]
+margin_left = 34.4064
+margin_top = -19.0
+margin_right = 53.4064
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "="
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ex2" type="Control" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart"]
+margin_left = 85.8983
+margin_top = 158.251
+margin_right = 125.898
+margin_bottom = 198.251
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire_element" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex2"]
+position = Vector2( -4.55905, -7.44421 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 47 )
+
+[node name="+" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex2"]
+margin_left = 3.44495
+margin_top = -19.0
+margin_right = 22.4449
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire_element2" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex2"]
+position = Vector2( 26.4025, -7.63141 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 48 )
+
+[node name="firebal_smalll" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex2"]
+position = Vector2( 58.3854, -7.66212 )
+texture = ExtResource( 49 )
+
+[node name="=" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/ex2"]
+margin_left = 34.4064
+margin_top = -19.0
+margin_right = 53.4064
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "="
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.807843, 0.807843, 0.807843, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.5
+margin_top = 109.0
+margin_right = 98.5
+margin_bottom = 128.0
+button_text = "Next page "
+
+[node name="SecondPart" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel"]
+visible = false
+self_modulate = Color( 1.3, 1.3, 1.3, 1 )
+margin_left = 9.05156
+margin_top = 39.6209
+margin_right = 242.052
+margin_bottom = 205.621
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc3" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -101.5
+margin_top = 10.0
+margin_right = 103.5
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_constants/line_spacing = -1
+text = "Press 1,2,3,4,5 to select elements."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No title" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart"]
+margin_left = 20.6679
+margin_top = 48.5498
+margin_right = 104.668
+margin_bottom = 61.5498
+custom_colors/font_color = Color( 1, 0.215686, 0.215686, 1 )
+text = "No spell selected :("
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nospell" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart"]
+position = Vector2( 56.5752, 94.5498 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 50 )
+
+[node name="title" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart"]
+margin_left = 129.314
+margin_top = 48.5498
+margin_right = 212.314
+margin_bottom = 61.5498
+custom_colors/font_color = Color( 0.121569, 0.792157, 0.0823529, 1 )
+text = "Spell is selected :D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spell" type="Sprite" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart"]
+position = Vector2( 165.774, 99.5498 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 51 )
+
+[node name="Next2" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.807843, 0.807843, 0.807843, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -30.5002
+margin_top = 15.9999
+margin_right = 116.5
+margin_bottom = 34.9999
+button_text = "Next page"
+
+[node name="Back" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.807843, 0.807843, 0.807843, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -116.5
+margin_top = 15.9999
+margin_right = -35.5002
+margin_bottom = 34.9999
+button_text = "Back"
+
+[node name="ThirdPart" type="Control" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel"]
+visible = false
+margin_left = 9.05156
+margin_top = 222.0
+margin_right = 138.052
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 27.0
+margin_top = -142.0
+margin_right = 160.0
+margin_bottom = -91.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 31.0
+margin_top = -140.0
+margin_right = 137.0
+margin_bottom = -127.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.847059, 0.235294, 0.235294, 1 )
+custom_constants/line_spacing = -3
+text = "pro TIP:"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc2" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 28.0
+margin_top = -178.0
+margin_right = 152.0
+margin_bottom = -151.0
+custom_colors/font_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+custom_constants/line_spacing = -3
+text = "Shoot your selected spell with the left mouse button."
+autowrap = true
+
+[node name="Desc3" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 30.0
+margin_top = -130.0
+margin_right = 155.0
+margin_bottom = -85.0
+custom_colors/font_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+custom_constants/line_spacing = -3
+text = "Hold down the mouse button to shoot your selected spell several times."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mouse" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 165.627
+margin_top = -154.921
+margin_right = 195.627
+margin_bottom = -115.921
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse"]
+modulate = Color( 0.678431, 0.678431, 0.678431, 1 )
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 13.0
+margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse/button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "L
+"
+align = 1
+valign = 1
+
+[node name="Wheel" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse"]
+modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+margin_left = 13.0
+margin_top = 3.0
+margin_right = 17.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button2" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse"]
+modulate = Color( 0.956863, 0.956863, 0.956863, 1 )
+margin_left = 17.0
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse/button2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "R
+"
+align = 1
+valign = 1
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -14.8424
+margin_top = -4.80746
+margin_right = 25.1576
+margin_bottom = 8.19254
+rect_pivot_offset = Vector2( 12.4156, 9.1013 )
+custom_colors/font_color = Color( 0.894118, 0.156863, 0.156863, 1 )
+text = "(Hold)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Mouse/Label"]
+autoplay = "shake"
+anims/shake = SubResource( 23 )
+
+[node name="Movement" type="Control" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart"]
+margin_left = 30.8598
+margin_top = -75.5865
+margin_right = 144.86
+margin_bottom = 20.4135
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement"]
+margin_left = -3.0
+margin_top = 21.8492
+margin_right = 102.0
+margin_bottom = 64.8492
+custom_colors/font_color = Color( 0.290196, 0.290196, 0.290196, 1 )
+custom_constants/line_spacing = -3
+text = "Move with W, A, S, D."
+autowrap = true
+
+[node name="w" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement"]
+margin_left = 128.109
+margin_top = 14.0
+margin_right = 144.109
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement/w"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = -2.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "W"
+align = 1
+
+[node name="a" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement"]
+margin_left = 113.109
+margin_top = 33.0
+margin_right = 129.109
+margin_bottom = 51.0
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement/a"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "A"
+align = 1
+valign = 1
+
+[node name="s" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement"]
+margin_left = 131.017
+margin_top = 33.0
+margin_right = 147.017
+margin_bottom = 51.0
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement/s"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "S"
+align = 1
+valign = 1
+
+[node name="d" type="Panel" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement"]
+margin_left = 149.017
+margin_top = 33.0
+margin_right = 165.017
+margin_bottom = 51.0
+
+[node name="Label" type="Label" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Movement/d"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 60 )
+custom_colors/font_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+text = "D"
+align = 1
+valign = 1
+
+[node name="Button" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.807843, 0.807843, 0.807843, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 3.49978
+margin_top = -98.0
+margin_right = 167.5
+margin_bottom = -79.0
+button_text = "OK, I get it!"
+
+[node name="Back" parent="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart" instance=ExtResource( 52 )]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.807843, 0.807843, 0.807843, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -67.5002
+margin_top = -98.0
+margin_right = 1.49978
+margin_bottom = -79.0
+button_text = "Back"
+
+[node name="HandPlacedEntityContainer" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.427, -0.06, -5.486 )
+
+[node name="WaterRock_1" parent="HandPlacedEntityContainer" instance=ExtResource( 19 )]
+transform = Transform( 0.400972, 0, 0.916091, 0, 1, 0, -0.916091, 0, 0.400972, -15.1605, -0.44, -37.4767 )
+
+[node name="WaterRock_3" parent="HandPlacedEntityContainer" instance=ExtResource( 8 )]
+transform = Transform( 0.998827, 0, 0.0484319, 0, 1, 0, -0.0484319, 0, 0.998827, -14.927, -0.44, -33.5415 )
+
+[node name="WaterRock_5" parent="HandPlacedEntityContainer" instance=ExtResource( 20 )]
+transform = Transform( -0.962886, -0.000515343, 0.269911, -9.53676e-05, 0.999999, 0.00156909, -0.269911, 0.00148511, -0.962885, -13.9783, -0.44, -30.0395 )
+
+[node name="SpawnAreas" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="SpawnCircle" type="CollisionShape" parent="SpawnAreas"]
+shape = SubResource( 24 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, -0.0550024, 0.998486, 0, -0.998486, -0.0550024, 1.427, 8.73119, -17.5085 )
+
+[node name="Water Plane" parent="." instance=ExtResource( 5 )]
+transform = Transform( 2.54913, 0, 0, 0, 1, 0, 0, 0, 2.54914, -9.09691, -0.599998, -51.5353 )
+
+[node name="Water body" parent="Water Plane" index="0"]
+transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -4.96024, 0 )
+
+[node name="Island 1" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 0, -0.5, 0 )
+
+[node name="DojoHouse" type="Spatial" parent="Island 1"]
+transform = Transform( 0.0546888, 0, -0.998503, 0, 1, 0, 0.998503, 0, 0.0546888, 1.87126, 0.154655, -0.520512 )
+
+[node name="Dojo" type="MeshInstance" parent="Island 1/DojoHouse"]
+transform = Transform( 2.6673, 0, 0.209593, 0, 2.67552, 0, -0.209593, 0, 2.6673, 0.934956, 0.398183, 0.260689 )
+mesh = ExtResource( 53 )
+material/0 = SubResource( 25 )
+material/1 = ExtResource( 6 )
+material/2 = ExtResource( 6 )
+material/3 = ExtResource( 56 )
+material/4 = ExtResource( 6 )
+material/5 = SubResource( 26 )
+material/6 = SubResource( 27 )
+material/7 = SubResource( 25 )
+material/8 = SubResource( 25 )
+material/9 = SubResource( 29 )
+material/10 = SubResource( 31 )
+material/11 = SubResource( 33 )
+material/12 = SubResource( 35 )
+material/13 = SubResource( 37 )
+material/14 = SubResource( 26 )
+material/15 = ExtResource( 54 )
+material/16 = ExtResource( 56 )
+material/17 = ExtResource( 27 )
+material/18 = ExtResource( 26 )
+material/19 = ExtResource( 56 )
+material/20 = ExtResource( 56 )
+material/21 = SubResource( 27 )
+material/22 = SubResource( 25 )
+
+[node name="TorchFire" type="Particles" parent="Island 1/DojoHouse/Dojo"]
+transform = Transform( 0.999999, -4.47035e-08, -3.55271e-15, 0, -4.37114e-08, 1, -4.47035e-08, -0.999999, -4.37114e-08, -1.75685, 1.93536, -2.11378 )
+material_override = SubResource( 38 )
+cast_shadow = 0
+amount = 10
+lifetime = 0.47
+visibility_aabb = AABB( -1.20376, -12.8849, -0.318128, 2.40753, 25.7699, 0.636256 )
+local_coords = false
+process_material = SubResource( 43 )
+draw_pass_1 = SubResource( 44 )
+
+[node name="TorchFire2" type="Particles" parent="Island 1/DojoHouse/Dojo"]
+transform = Transform( 0.999999, -5.96046e-08, -4.44089e-15, 0, -4.37114e-08, 1, -5.96046e-08, -0.999999, -4.37113e-08, 0.634088, 1.93536, -2.11378 )
+material_override = SubResource( 38 )
+cast_shadow = 0
+amount = 10
+lifetime = 0.47
+visibility_aabb = AABB( -1.20376, -12.8849, -0.318128, 2.40753, 25.7699, 0.636256 )
+local_coords = false
+process_material = SubResource( 43 )
+draw_pass_1 = SubResource( 44 )
+
+[node name="TorchFire3" type="Particles" parent="Island 1/DojoHouse/Dojo"]
+transform = Transform( 0.999998, -8.9407e-08, -5.77316e-15, 0, -4.37114e-08, 1, -8.9407e-08, -0.999998, -4.37113e-08, -0.472246, 2.33419, -2.20557 )
+visible = false
+material_override = SubResource( 45 )
+cast_shadow = 0
+amount = 3
+lifetime = 0.47
+visibility_aabb = AABB( -1.20376, -12.8849, -0.318128, 2.40753, 25.7699, 0.636256 )
+local_coords = false
+process_material = SubResource( 46 )
+draw_pass_1 = SubResource( 44 )
+
+[node name="wallCollider" type="StaticBody" parent="Island 1/DojoHouse"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Island 1/DojoHouse/wallCollider"]
+transform = Transform( 1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.77636e-15, 0.0570566, 1.84318, -2.92103 )
+depth = 5.0
+polygon = PoolVector2Array( 4.32097, -5.13125, 8.56869, -5.44452, 9.66223, -4.26575, 10.5582, -0.153703, 10.7959, 5.17643, 10.6777, 7.395, 10.9661, 8.10598, 9.87403, 9.22028, 8.90764, 8.85145, 3.18421, 9.77453, -7.38189, 11.0061, -8.20037, 11.3605, -9.19975, 10.9379, -9.26463, 9.8677, -11.7687, 2.8947, -10.064, -2.88769, -9.89309, -4.17658, -8.72764, -4.44794, -8.04224, -4.05464, -6.13764, -3.96569, -5.96676, -5.25458, -4.89658, -5.31946, -4.30273, -4.35197, -5.58049, -3.41968, -8.19606, -3.22022, -9.44454, -2.6019, -9.94974, 2.00021, -9.59495, 6.07445, -8.41316, 9.56706, -7.09609, 10.3866, 4.05273, 9.01943, 8.86723, 8.06226, 9.84325, 7.24117, 10.0574, 0.597685, 9.06247, -3.6756, 8.26956, -4.00291, 7.7454, -4.49518, 2.52276, -4.3235, 1.59789, -4.86581, 1.72725, -5.98121, 2.59948, -6.36859, 3.2886, -5.60757, 3.37052, -4.99186 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Island 1/DojoHouse/wallCollider"]
+transform = Transform( 0.997428, 0, 0.0716715, 0, 1, 0, -0.0716715, 0, 0.997428, 2.30758, 0, -7.6692 )
+shape = SubResource( 47 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Island 1/DojoHouse/wallCollider"]
+transform = Transform( 0.997428, 0, 0.0716715, 0, 1, 0, -0.0716715, 0, 0.997428, -4.72024, 0.333315, -7.05459 )
+shape = SubResource( 47 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Island 1/DojoHouse/wallCollider"]
+transform = Transform( 0.895929, 0, 0.444198, 0, 1, 0, -0.444198, 0, 0.895929, -7.25767, 0, -5.39746 )
+shape = SubResource( 48 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Island 1/DojoHouse/wallCollider"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.91565, 0, -5.71832 )
+shape = SubResource( 49 )
+
+[node name="PalmTree" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4368, 0, 1.13111 )
+
+[node name="PalmTree2" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91427, 0, 11.8922 )
+
+[node name="PalmTree3" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 0.9291, 0, 0.369828, 0, 1, 0, -0.369828, 0, 0.9291, 6.41074, -1.90735e-06, 14.0245 )
+
+[node name="PalmTree6" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 0.9291, 0, 0.369828, 0, 1, 0, -0.369828, 0, 0.9291, -6.69285, 0, 6.91666 )
+
+[node name="PalmTree4" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 0.892783, 0, -0.450488, 0, 1, 0, 0.450488, 0, 0.892783, 7.50889, 0, -14.7644 )
+
+[node name="PalmTree5" parent="Island 1" instance=ExtResource( 16 )]
+transform = Transform( 0.996088, 0, -0.0883726, 0, 1, 0, 0.0883726, 0, 0.996088, 4.92075, 0, -13.9778 )
+
+[node name="grass" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0615, 0.437943, 5.11682 )
+
+[node name="grass2" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3782, 0.437943, 6.08255 )
+
+[node name="grass3" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.75305, 0.437943, 11.2474 )
+
+[node name="grass10" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13309, 0.437944, -2.52769 )
+
+[node name="grass11" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94249, 0.437943, -0.127502 )
+
+[node name="grass12" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91228, 0.500201, -2.78209 )
+
+[node name="grass4" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70774, 0.437943, 10.4509 )
+
+[node name="grass5" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.558, 0.437943, 9.57773 )
+
+[node name="grass9" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9488, 0.437943, -1.68631 )
+
+[node name="grass6" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95812, 0.437943, -13.0995 )
+
+[node name="grass7" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.71257, 0.437958, -11.9434 )
+
+[node name="grass8" parent="Island 1" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25913, 0.437943, -9.04371 )
+
+[node name="Rock_4" parent="Island 1" instance=ExtResource( 11 )]
+transform = Transform( 0.218501, 0, -0.975837, 0, 1, 0, 0.975837, 0, 0.218501, 4.65419, 0, 11.3075 )
+
+[node name="Rock_5" parent="Island 1" instance=ExtResource( 11 )]
+transform = Transform( -0.929326, 0, -0.36926, 0, 1, 0, 0.36926, 0, -0.929326, -5.58305, 0, 3.33744 )
+
+[node name="Rock_2" parent="Island 1" instance=ExtResource( 15 )]
+transform = Transform( 0.218501, 0, -0.975837, 0, 1, 0, 0.975837, 0, 0.218501, -10.8664, -1.52588e-05, -4.74642 )
+
+[node name="Island 2" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.0448922, 0, -0.998992, 0, 1, 0, 0.998992, 0, 0.0448922, -3.707, -30, -39.956 )
+
+[node name="Arrow2" type="Sprite3D" parent="Island 2"]
+transform = Transform( -1.69955, -0.0390718, -1.00462e-09, 0, -7.43094e-08, 1, -0.0390718, 1.69955, 4.36998e-08, -0.270172, 0.6, 2.28166 )
+material_override = SubResource( 19 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 41 )
+
+[node name="PalmTree4" parent="Island 2" instance=ExtResource( 16 )]
+transform = Transform( 0.490113, 0, 0.871659, 0, 1, 0, -0.871659, 0, 0.490113, -6.00765, 0.5, -2.26763 )
+
+[node name="PalmTree5" parent="Island 2" instance=ExtResource( 16 )]
+transform = Transform( 0.133, 0, 0.991116, 0, 1, 0, -0.991116, 0, 0.133, 4.54528, 0.5, -3.85925 )
+
+[node name="grass7" parent="Island 2" instance=ExtResource( 21 )]
+transform = Transform( 0.0448922, 0, 0.998992, 0, 1, 0, -0.998992, 0, 0.0448922, -3.10278, 0.937958, -3.92675 )
+
+[node name="grass9" parent="Island 2" instance=ExtResource( 21 )]
+transform = Transform( 0.0448922, 0, 0.998992, 0, 1, 0, -0.998992, 0, 0.0448922, 0.528526, 0.937958, 15.5201 )
+
+[node name="grass8" parent="Island 2" instance=ExtResource( 21 )]
+transform = Transform( 0.0448922, 0, 0.998992, 0, 1, 0, -0.998992, 0, 0.0448922, 4.30388, 0.937943, -1.23518 )
+
+[node name="LargeTropicalBridge2" parent="Island 2" instance=ExtResource( 1 )]
+transform = Transform( -0.0949149, 0, 0.542439, 0, 0.5, 0, -0.542439, 0, -0.0949149, 18.0928, -0.0273758, -1.12599 )
+
+[node name="LargeTropicalBridge" parent="Island 2" instance=ExtResource( 29 )]
+transform = Transform( 0.0876644, 0, -0.543658, 0, 0.5, 0, 0.543658, 0, 0.0876644, 11.8485, -0.0273758, 0.190976 )
+
+[node name="TropicPart_4" parent="Island 2" instance=ExtResource( 2 )]
+transform = Transform( 0.111435, 0, -0.691073, 0, 0.7, 0, 0.691073, 0, 0.111435, 0.790131, 0, 15.6968 )
+
+[node name="IslandAnimator" type="AnimationPlayer" parent="Island 2"]
+anims/rise = SubResource( 50 )
+
+[node name="ReachedIsland2Area" type="Area" parent="Island 2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Island 2/ReachedIsland2Area"]
+transform = Transform( 0.989769, 0, 0.142681, 0, 1, 0, -0.142681, 0, 0.989769, 0, 0, 0 )
+shape = SubResource( 51 )
+
+[node name="SpawnPoint2" type="Spatial" parent="Island 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75388, 0, 3.61 )
+
+[node name="DummyPos2" type="Spatial" parent="Island 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768, 0.5, 12.845 )
+
+[node name="Island 3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.939, -30, -76.046 )
+
+[node name="RedTeamSpawnContainer" type="Spatial" parent="Island 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6463, 0.460014, -2.70383 )
+
+[node name="DummyArea" type="Area" parent="Island 3/RedTeamSpawnContainer"]
+
+[node name="Red spawn collision shape" type="CollisionShape" parent="Island 3/RedTeamSpawnContainer/DummyArea"]
+shape = SubResource( 52 )
+
+[node name="Red Spawn Area Indicator" type="Sprite3D" parent="Island 3/RedTeamSpawnContainer/DummyArea/Red spawn collision shape"]
+transform = Transform( 3.31002e-07, 1.7, 4.37114e-08, 0, -7.43094e-08, 1, 1.7, -3.31002e-07, -8.51092e-15, 0, 0.1, 0 )
+material_override = SubResource( 53 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 18 )
+
+[node name="LargeTropicalBridge4" parent="Island 3" instance=ExtResource( 29 )]
+transform = Transform( 0.449236, -0.0287849, 0.217621, -0.0899709, 0.427992, 0.242338, -0.200231, -0.256893, 0.379359, 15.2038, -0.223894, 25.7719 )
+
+[node name="Map" parent="Island 3/LargeTropicalBridge4" index="0"]
+collision_layer = 0
+
+[node name="Solid" parent="Island 3/LargeTropicalBridge4" index="1"]
+collision_layer = 0
+
+[node name="tropical_bridge" parent="Island 3/LargeTropicalBridge4" index="2"]
+transform = Transform( 0.120216, 0.0140844, 0.992649, -0.030628, 0.999476, -0.0104721, -0.992276, -0.0291438, 0.120584, 2.53633, 2.37107, -3.84061 )
+
+[node name="LargeTropicalBridge5" parent="Island 3" instance=ExtResource( 1 )]
+transform = Transform( -0.453078, 0.0702275, -0.199469, -0.0212442, 0.454122, 0.208138, 0.210401, 0.197081, -0.408522, 12.653, -0.986017, 19.0108 )
+
+[node name="Map" parent="Island 3/LargeTropicalBridge5" index="0"]
+collision_layer = 0
+
+[node name="Solid" parent="Island 3/LargeTropicalBridge5" index="1"]
+collision_layer = 0
+
+[node name="tropical_bridge" parent="Island 3/LargeTropicalBridge5" index="2"]
+transform = Transform( 0.0220285, -0.0289943, 0.99934, -0.0471878, 0.998436, 0.0300082, -0.998645, -0.0478176, 0.020625, 1.28433, 0.548103, 1.82224 )
+
+[node name="SpawnArea3" type="Spatial" parent="Island 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87372, 1.52588e-05, -9.62163 )
+
+[node name="IslandAnimator" type="AnimationPlayer" parent="Island 3"]
+anims/rise = SubResource( 54 )
+
+[node name="ReachedIsland3Area" type="Area" parent="Island 3"]
+transform = Transform( 0.946554, 0, 0.322547, 0, 1, 0, -0.322547, 0, 0.946554, 11.4695, 0, 15.9823 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Island 3/ReachedIsland3Area"]
+transform = Transform( 1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.137804, 0, -1.85339 )
+shape = SubResource( 55 )
+
+[node name="PalmTree6" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 15.0974, 1.52588e-05, 7.69701 )
+
+[node name="PalmTree7" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 15.325, 1.52588e-05, 3.25383 )
+
+[node name="PalmTree8" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( -0.157883, 0, 0.987458, 0, 1, 0, -0.987458, 0, -0.157883, 12.3854, 1.52588e-05, -9.60883 )
+
+[node name="PalmTree10" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( 0.303883, 0, 0.95271, 0, 1, 0, -0.95271, 0, 0.303883, -9.33973, 1.52588e-05, 5.86212 )
+
+[node name="PalmTree11" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( 0.840009, 0, 0.542573, 0, 1, 0, -0.542573, 0, 0.840009, -8.01957, 1.52588e-05, 7.80674 )
+
+[node name="PalmTree12" parent="Island 3" instance=ExtResource( 16 )]
+transform = Transform( 0.579793, 0, 0.814764, 0, 1, 0, -0.814764, 0, 0.579793, 2.75506, 1.52588e-05, -11.1091 )
+
+[node name="grass10" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, -12.5226, 0.437958, 4.73888 )
+
+[node name="grass16" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 4.88636, 0.437958, 12.6554 )
+
+[node name="grass11" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 10.5621, 0.437958, -10.9022 )
+
+[node name="grass12" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 12.8258, 0.437958, 5.02798 )
+
+[node name="grass13" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 10.0837, 0.437958, 4.65681 )
+
+[node name="grass17" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, -5.53516, 0.437958, 9.23984 )
+
+[node name="grass18" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 2.28783, 0.437958, -6.55217 )
+
+[node name="grass20" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, 1.80949, 0.437958, 9.00687 )
+
+[node name="grass14" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, -2.45085, 0.437958, -8.09651 )
+
+[node name="grass15" parent="Island 3" instance=ExtResource( 21 )]
+transform = Transform( 0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, 0.218501, -7.72614, 0.437958, 1.29553 )
+
+[node name="Rock_3" parent="Island 3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79842, 0, 5.2477 )
+
+[node name="Rock_4" parent="Island 3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06013, 0, -9.63396 )
+
+[node name="DummyPos3" type="Spatial" parent="Island 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.41898, 0.5, -3.28098 )
+
+[node name="Island 4" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.555, 0, -148.703 )
+
+[node name="PlayerStartPoint" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42488, 0, -6.67345 )
+
+[node name="TrainingDummyPos" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7267, 0, -15.8158 )
+
+[node name="ReachedIsland4Area" type="Area" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2442, 0, 4.41635 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Island 4/ReachedIsland4Area"]
+transform = Transform( 0.978104, 0, 0.208117, 0, 1, 0, -0.208117, 0, 0.978104, -8.63062, 0, -0.868256 )
+shape = SubResource( 56 )
+
+[node name="spawnAreaPos" type="Spatial" parent="Island 4"]
+
+[node name="HandPlacedEntityContainer" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.202869, 0 )
+
+[node name="HandPlacedSmallEnvironments" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035326, 0 )
+
+[node name="small_pebbles_1" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 40 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.40571, 0, -14.0058 )
+
+[node name="small_pebbles_2" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 39 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.482, 0, -6.43867 )
+
+[node name="small_pebbles_5" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 39 )]
+transform = Transform( 0.766011, 0, -0.642828, 0, 1, 0, 0.642828, 0, 0.766011, 12.33, 0, -18.4969 )
+
+[node name="small_pebbles_4" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 39 )]
+transform = Transform( -0.504422, 0, 0.863457, 0, 1, 0, -0.863457, 0, -0.504422, 8.21622, 0, -26.5427 )
+
+[node name="small_pebbles_3" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 37 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.26334, -9.53674e-07, -13.8666 )
+
+[node name="grass" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53798, 0, -7.81595 )
+
+[node name="grass3" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.25699, 0, 0, 0, 1.25699, 0, 0, 0, 1.25699, 18.2321, 0, -14.5277 )
+
+[node name="grass2" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82738, 0, -10.0117 )
+
+[node name="grass4" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7211, 0, -27.1412 )
+
+[node name="grass5" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.25699, 0, 0, 0, 1.25699, 0, 0, 0, 1.25699, -16.6058, 0, -17.7212 )
+
+[node name="grass6" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.44045, 0, -24.899 )
+
+[node name="grass7" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 12.4443, 0.0353251, -21.8043 )
+
+[node name="grass8" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 26.8961, 0.0353251, -28.9276 )
+
+[node name="grass9" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 16.4908, 0.035326, -18.7165 )
+
+[node name="grass10" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 24.2314, 0.035326, 1.60677 )
+
+[node name="grass11" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 6.93512, 0.035326, -1.45033 )
+
+[node name="grass12" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 2.41529, 0.0353251, -2.24844 )
+
+[node name="grass13" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 0.343535, 0, -1.21752, 0, 1.26505, 0, 1.21752, 0, 0.343535, -4.21965, 0.0353251, -11.3718 )
+
+[node name="grass14" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 0.343535, 0, -1.21752, 0, 1.26505, 0, 1.21752, 0, 0.343535, -1.80502, 0.0353251, -19.7261 )
+
+[node name="grass15" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 0.343535, 0, -1.21752, 0, 1.26505, 0, 1.21752, 0, 0.343535, -16.3338, 0.0353251, -8.9534 )
+
+[node name="grass16" parent="Island 4/HandPlacedSmallEnvironments" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 20.4172, 0.035326, -18.4879 )
+
+[node name="HandPlacedEntityContainer2" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35669, 0, -13.3258 )
+
+[node name="PalmTree5" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 0.908107, 0, 0.418739, 0, 1, 0, -0.418739, 0, 0.908107, 16.4586, 0, 18.0335 )
+
+[node name="PalmTree6" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 0.908107, 0, 0.418739, 0, 1, 0, -0.418739, 0, 0.908107, 19.4411, -1.90735e-06, -18.4815 )
+
+[node name="PalmTree7" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 0.976304, 0, 0.216406, 0, 1, 0, -0.216406, 0, 0.976304, 22.638, -1.90735e-06, -13.3721 )
+
+[node name="PalmTree4" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7615, 0, -4.09602 )
+
+[node name="PalmTree2" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 0.809089, 0, 0.587686, 0, 1, 0, -0.587686, 0, 0.809089, -24.5482, 0, 6.01398 )
+
+[node name="WaterRock_1" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 19 )]
+transform = Transform( 0.0202967, 0, 0.999794, 0, 1, 0, -0.999794, 0, 0.0202967, -16.5665, -0.449364, -13.9652 )
+
+[node name="WaterRock_2" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( 0.778112, 0, -0.628126, 0, 1, 0, 0.628126, 0, 0.778112, 29.265, -0.449368, -7.8826 )
+
+[node name="WaterRock_3" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1204, -0.449364, 13.4026 )
+
+[node name="WaterRock_7" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 8 )]
+transform = Transform( 0.676233, 0, 0.736687, 0, 1, 0, -0.736687, 0, 0.676233, 0.0981045, -0.449364, -23.3566 )
+
+[node name="WaterRock_4" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7914, -0.449364, 7.50176 )
+
+[node name="WaterRock_8" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31079, -0.449364, -25.2212 )
+
+[node name="WaterRock_5" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 20 )]
+transform = Transform( 0.778112, 0, -0.628126, 0, 1, 0, 0.628126, 0, 0.778112, 29.5622, -0.449368, -3.89799 )
+
+[node name="WaterRock_10" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( 0.84153, 0, 0.540211, 0, 1, 0, -0.540211, 0, 0.84153, -2.11684, -0.449368, 22.8432 )
+
+[node name="WaterRock_11" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 20 )]
+transform = Transform( 0.84153, 0, 0.540211, 0, 1, 0, -0.540211, 0, 0.84153, 1.75804, -0.449368, 23.8182 )
+
+[node name="WaterRock_6" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 10 )]
+transform = Transform( 0.0202967, 0, 0.999794, 0, 1, 0, -0.999794, 0, 0.0202967, -14.118, -0.449364, -16.8923 )
+
+[node name="Rock_6" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 38 )]
+transform = Transform( -0.99963, 0, 0.0272061, 0, 1, 0, -0.0272061, 0, -0.99963, -21.4453, 0, 8.19472 )
+
+[node name="Rock_7" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9335, 0, -15.831 )
+
+[node name="WaterRock_9" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( -0.949683, 0, 0.313213, 0, 1, 0, -0.313213, 0, -0.949683, 17.9336, -0.202869, 61.0663 )
+
+[node name="WaterRock_12" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( 0.999478, 0, 0.0323178, 0, 1, 0, -0.0323178, 0, 0.999478, 11.8529, -0.202869, 28.7643 )
+
+[node name="WaterRock_13" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 8 )]
+transform = Transform( -0.347214, 0, -0.937786, 0, 1, 0, 0.937786, 0, -0.347214, 4.29741, -0.202867, 48.4728 )
+
+[node name="WaterRock_14" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.491, -0.202869, 30.8508 )
+
+[node name="WaterRock_15" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2566, -0.202871, 23.091 )
+
+[node name="WaterRock_16" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4031, -0.202871, 50.6418 )
+
+[node name="WaterRock_17" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( -0.949683, 0, 0.313213, 0, 1, 0, -0.313213, 0, -0.949683, -10.7873, -0.202869, 11.3369 )
+
+[node name="WaterRock_18" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 12 )]
+transform = Transform( 0.999478, 0, 0.0323178, 0, 1, 0, -0.0323178, 0, 0.999478, -22.9749, -0.202869, -23.9053 )
+
+[node name="WaterRock_19" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 8 )]
+transform = Transform( -0.347214, 0, -0.937786, 0, 1, 0, 0.937786, 0, -0.347214, -13.4891, -0.202867, 8.19266 )
+
+[node name="WaterRock_20" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017395, -0.202869, -14.2751 )
+
+[node name="WaterRock_21" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1.455, 0, 0, 0, 1, 2.75573, -0.369995, 2.83336 )
+
+[node name="CollisionShape" parent="Island 4/HandPlacedEntityContainer2/WaterRock_21/Area" index="0"]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0.0365772, 0.44862, -0.197426 )
+
+[node name="WaterRock_22" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5551, -0.202871, -32.3059 )
+
+[node name="WaterRock_23" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01498, -0.202871, -21.1642 )
+
+[node name="WaterRock_24" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.29861, -0.202869, -32.1419 )
+
+[node name="PalmTree" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5438, -0.202869, -2.06781 )
+
+[node name="PalmTree3" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.332, -0.202869, -9.1252 )
+
+[node name="PalmTree8" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6074, -0.202869, -12.5494 )
+
+[node name="Rock_2" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 36 )]
+transform = Transform( -0.639332, 0, 0.768931, 0, 1, 0, -0.768931, 0, -0.639332, -10.0968, -0.178432, -10.9036 )
+
+[node name="Rock_3" parent="Island 4/HandPlacedEntityContainer2" instance=ExtResource( 36 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4903, -0.178432, 1.46533 )
+
+[node name="SpawnCircle" type="CollisionShape" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35669, 0, -13.3258 )
+shape = SubResource( 57 )
+
+[node name="IslandSmall" type="Spatial" parent="Island 4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35669, 0, -13.3258 )
+
+[node name="Ground" type="StaticBody" parent="Island 4/IslandSmall"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Island 4/IslandSmall/Ground"]
+polygon = PoolVector2Array( -14.4032, -2.69438, -16.0025, 3.29488, -15.5871, 7.55303, -9.1479, 14.9788, -1.82595, 18.2498, 4.56129, 17.6272, 7.57316, 12.5901, 11.9282, 9.93589, 18.1758, 8.58895, 21.2915, 3.75958, 19.0067, -4.44516, 16.6309, -5.98534, 9.91368, -10.3215, 6.08225, -14.9506, 1.66831, -17.2355, -3.16107, -17.0278, -9.97876, -14.8283, -15.2755, -10.674, -15.1621, -7.3207 )
+
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="Island 4/IslandSmall/Ground"]
+polygon = PoolVector2Array( -24.0364, -10.2773, -26.2174, -8.14821, -26.5809, -4.20163, -25.5423, -1.76098, -20.9206, -0.306974, -18.48, -1.39748, -18.1165, -5.65563, -18.8435, -9.18679, -21.2322, -10.6927 )
+
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="Island 4/IslandSmall/Ground"]
+polygon = PoolVector2Array( -26.5289, 1.14703, -27.3598, 3.32804, -25.75, 6.44376, -23.1016, 7.79391, -19.934, 6.33991, -19.0512, 3.74347, -19.7782, 2.44525, -26.0616, 1.04317 )
+
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="Island 4/IslandSmall/Ground"]
+polygon = PoolVector2Array( 11.2671, -20.0036, 10.6187, -17.3454, 11.5264, -13.3257, 15.0923, -10.473, 19.2986, -9.55746, 22.0295, -10.6027, 23.1317, -14.1686, 21.5109, -16.9564, 19.5582, -20.0471, 16.5186, -22.208, 13.4066, -21.6893 )
+
+[node name="CollisionPolygon5" type="CollisionPolygon" parent="Island 4/IslandSmall/Ground"]
+polygon = PoolVector2Array( 12.6986, 16.2497, 12.9063, 19.9367, 16.022, 22.0657, 20.2802, 22.2215, 23.1363, 19.4174, 24.5383, 15.5227, 23.9671, 11.7319, 21.89, 10.5375, 18.6704, 11.4723, 14.3603, 13.7571 )
+
+[node name="island_shaped_1" parent="Island 4/IslandSmall" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.641829, 0 )
+
+[connection signal="timeout" from="SinglePlayer/Timer" to="SinglePlayer" method="_on_dialog_timer_timeout"]
+[connection signal="timeout" from="SinglePlayer/Sensei/Player/RespawnTimer" to="SinglePlayer/Sensei/Player" method="_on_RespawnTimer_timeout"]
+[connection signal="timeout" from="SinglePlayer/Sensei/Player/OpModeTimer" to="SinglePlayer/Sensei/Player" method="_on_op_mode_timer_timeout"]
+[connection signal="timeout" from="SinglePlayer/Sensei/Player/DamageSkinTimer" to="SinglePlayer/Sensei/Player" method="_on_DamageSkinTimer_timeout"]
+[connection signal="timeout" from="SinglePlayer/Sensei/Player/GrabTimer" to="SinglePlayer/Sensei/Player" method="_on_GrabTimer_timeout"]
+[connection signal="timeout" from="SinglePlayer/LevelTimer" to="SinglePlayer" method="_on_level_timer_timeout"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/Close" to="SinglePlayer" method="close_how_to_play_popup"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/FirstPart/Next" to="SinglePlayer" method="first_next_how_to_play"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart/Next2" to="SinglePlayer" method="second_next_how_to_play"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/SecondPart/Back" to="SinglePlayer" method="go_back_1"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Button" to="SinglePlayer" method="close_how_to_play_popup"]
+[connection signal="pressed" from="SinglePlayer/HowToPlayPopup/Backdrop/Panel/ThirdPart/Back" to="SinglePlayer" method="go_back_2"]
+[connection signal="area_entered" from="Island 2/ReachedIsland2Area" to="SinglePlayer" method="_on_ReachedIsland2Area_entered"]
+[connection signal="area_entered" from="Island 3/RedTeamSpawnContainer/DummyArea" to="SinglePlayer" method="_on_DummyArea_entered"]
+[connection signal="area_entered" from="Island 3/ReachedIsland3Area" to="SinglePlayer" method="_on_ReachedIsland3Area_area_entered"]
+[connection signal="area_entered" from="Island 4/ReachedIsland4Area" to="SinglePlayer" method="_on_ReachedIsland4Area_entered"]
+
+[editable path="SinglePlayer/Sensei/Player/fish_wizard"]
+[editable path="Water Plane"]
+[editable path="Island 3"]
+[editable path="Island 3/LargeTropicalBridge4"]
+[editable path="Island 3/LargeTropicalBridge5"]
+[editable path="Island 4/HandPlacedEntityContainer2/WaterRock_21"]

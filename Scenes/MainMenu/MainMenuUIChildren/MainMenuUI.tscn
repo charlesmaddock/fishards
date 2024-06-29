@@ -1,0 +1,208 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/MainMenuUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/UI/MainMenu/settings_button.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/UI/MainMenu/fishards_logo_more_readable.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/MainMenu/blank_button.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/UI/MainMenu/play_button.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/MainMenu/controls_button.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/UI/MainMenu/quit_button.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=10]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2Medium.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/MainMenu/NewNotice.tscn" type="PackedScene" id=13]
+
+[node name="MainMenuUI" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -319.517
+margin_top = -180.284
+margin_right = 320.483
+margin_bottom = 179.716
+theme = ExtResource( 10 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -111.0
+margin_top = -103.323
+margin_right = 111.0
+margin_bottom = -63.3233
+size_flags_vertical = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DemoPanel" type="Panel" parent="Logo"]
+self_modulate = Color( 100, 100, 100, 1 )
+margin_left = 200.0
+margin_top = 31.0
+margin_right = 239.0
+margin_bottom = 47.0
+theme = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Logo/DemoPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.345098, 0.345098, 0.345098, 1 )
+text = "DEMO"
+align = 1
+valign = 1
+
+[node name="InDevPanel" type="Panel" parent="Logo"]
+self_modulate = Color( 100, 100, 100, 1 )
+margin_left = 200.0
+margin_top = 31.0
+margin_right = 249.0
+margin_bottom = 47.0
+theme = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Logo/InDevPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.345098, 0.345098, 0.345098, 1 )
+text = "IN Dev."
+align = 1
+valign = 1
+
+[node name="Buttons" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -55.3233
+margin_right = 72.0
+margin_bottom = 95.6768
+size_flags_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+margin_right = 140.0
+margin_bottom = 181.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" parent="Buttons/VBoxContainer" instance=ExtResource( 3 )]
+image = ExtResource( 6 )
+
+[node name="MyFish" type="TextureRect" parent="Buttons/VBoxContainer"]
+margin_top = 31.0
+margin_right = 140.0
+margin_bottom = 58.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="Buttons/VBoxContainer/MyFish" instance=ExtResource( 12 )]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 137.0
+margin_bottom = 26.0
+button_text = "my fish"
+
+[node name="Label" parent="Buttons/VBoxContainer/MyFish/Button" index="0"]
+text = "my fish"
+
+[node name="NewNotice" parent="Buttons/VBoxContainer/MyFish" instance=ExtResource( 13 )]
+
+[node name="Settings" parent="Buttons/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 62.0
+margin_bottom = 89.0
+image = ExtResource( 2 )
+
+[node name="Controls" parent="Buttons/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 93.0
+margin_bottom = 120.0
+image = ExtResource( 7 )
+
+[node name="More" type="TextureRect" parent="Buttons/VBoxContainer"]
+margin_top = 124.0
+margin_right = 140.0
+margin_bottom = 151.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoreButton" parent="Buttons/VBoxContainer/More" instance=ExtResource( 12 )]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 137.0
+margin_bottom = 26.0
+button_text = "More"
+
+[node name="Divider" type="Control" parent="Buttons/VBoxContainer"]
+margin_top = 155.0
+margin_right = 140.0
+margin_bottom = 155.0
+
+[node name="Panel" type="Panel" parent="Buttons/VBoxContainer/Divider"]
+anchor_right = 1.029
+margin_top = -2.0
+margin_right = -4.06001
+rect_min_size = Vector2( 0, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitAndWishlistContainer" type="Control" parent="Buttons/VBoxContainer"]
+margin_top = 159.0
+margin_right = 140.0
+margin_bottom = 186.0
+rect_min_size = Vector2( 0, 27 )
+
+[node name="Button" parent="Buttons/VBoxContainer/QuitAndWishlistContainer" instance=ExtResource( 11 )]
+margin_right = -5.06001
+margin_bottom = 26.0
+
+[node name="Label2" type="Label" parent="Buttons/VBoxContainer/QuitAndWishlistContainer/Button"]
+margin_top = 9.86395
+margin_right = 141.0
+margin_bottom = 22.864
+custom_colors/font_color = Color( 0.486275, 0.486275, 0.486275, 1 )
+text = "(best way to help us out :D)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" parent="Buttons/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 190.0
+margin_bottom = 217.0
+image = ExtResource( 8 )
+
+[connection signal="pressed" from="Buttons/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/MyFish/Button" to="." method="_on_fishard_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Controls" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/More/MoreButton" to="." method="_on_MoreButton_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/QuitAndWishlistContainer/Button" to="." method="_on_wishlist_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+
+[editable path="Buttons/VBoxContainer/MyFish/Button"]

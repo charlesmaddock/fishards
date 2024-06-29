@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ice field shoot.wav-c00e4f38b94ea50092b3a900d94705aa.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/ice field shoot.wav"
+dest_files=[ "res://.import/ice field shoot.wav-c00e4f38b94ea50092b3a900d94705aa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

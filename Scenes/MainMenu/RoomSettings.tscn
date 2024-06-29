@@ -1,0 +1,516 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/MainMenu/Util/SliderWithValueDisplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Theme/Resources/simple_stone_no_shadow_styleboxflat.tres" type="StyleBox" id=3]
+[ext_resource path="res://Scripts/MainMenu/RoomSettingsControl.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Scenes/MainMenu/GamemodeToggle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Gamemode Icons/TDM.png" type="Texture" id=7]
+[ext_resource path="res://Gamemode Icons/FFA.png" type="Texture" id=8]
+[ext_resource path="res://Gamemode Icons/LFS.png" type="Texture" id=9]
+[ext_resource path="res://Gamemode Icons/Protect.png" type="Texture" id=10]
+[ext_resource path="res://Gamemode Icons/shuffle.png" type="Texture" id=11]
+[ext_resource path="res://Gamemode Icons/FishBall.png" type="Texture" id=12]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends HSlider
+
+onready var label: Label = $Panel/Label
+
+func _ready():
+	label.text = str(value)
+
+func _on_Slider_value_changed(value):
+	label.text = str(value)
+"
+
+[node name="RoomSettingsControl" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -208.0
+theme = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbySettingsContainer" type="HBoxContainer" parent="."]
+margin_right = 640.0
+margin_bottom = 22.0
+custom_constants/separation = 20
+
+[node name="Password" type="Label" parent="LobbySettingsContainer"]
+margin_right = 310.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Password"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineEdit" type="LineEdit" parent="LobbySettingsContainer/Password"]
+anchor_left = 0.999326
+anchor_top = 0.584806
+anchor_right = 0.999326
+anchor_bottom = 0.584807
+margin_left = -98.0995
+margin_top = -11.0681
+margin_right = -0.0995483
+margin_bottom = 8.93184
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxPlayers" type="Label" parent="LobbySettingsContainer"]
+margin_left = 330.0
+margin_right = 640.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "max players"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" parent="LobbySettingsContainer/MaxPlayers" instance=ExtResource( 2 )]
+min_value = 1.0
+max_value = 10.0
+value = 4.0
+script = SubResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 26.0
+margin_right = 640.0
+margin_bottom = 67.0
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 3.0
+margin_right = 640.0
+margin_bottom = 35.0
+
+[node name="TitleContainer" type="Control" parent="PanelContainer/VBox"]
+margin_right = 637.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="Gamemode" type="Label" parent="PanelContainer/VBox/TitleContainer"]
+margin_left = -3.0
+margin_top = -4.0
+margin_right = 634.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "gamemodes"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamemodeGrid" type="GridContainer" parent="PanelContainer/VBox"]
+margin_top = 16.0
+margin_right = 637.0
+margin_bottom = 35.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamemodeToggle" parent="PanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+gamemode = 1
+gamemode_texture = ExtResource( 8 )
+checked = true
+
+[node name="GamemodeToggle2" parent="PanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+margin_left = 99.0
+margin_right = 194.0
+gamemode = 2
+gamemode_texture = ExtResource( 9 )
+
+[node name="GamemodeToggle3" parent="PanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+margin_left = 198.0
+margin_right = 293.0
+gamemode = 5
+gamemode_texture = ExtResource( 7 )
+
+[node name="GamemodeToggle5" parent="PanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+margin_left = 297.0
+margin_right = 392.0
+gamemode_texture = ExtResource( 11 )
+
+[node name="MiniGamePanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 71.0
+margin_right = 640.0
+margin_bottom = 112.0
+
+[node name="VBox" type="VBoxContainer" parent="MiniGamePanelContainer"]
+margin_left = 3.0
+margin_right = 640.0
+margin_bottom = 35.0
+
+[node name="TitleContainer" type="Control" parent="MiniGamePanelContainer/VBox"]
+margin_right = 637.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="Gamemode" type="Label" parent="MiniGamePanelContainer/VBox/TitleContainer"]
+margin_left = -3.0
+margin_top = -4.0
+margin_right = 634.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "minigames"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamemodeGrid" type="GridContainer" parent="MiniGamePanelContainer/VBox"]
+margin_top = 16.0
+margin_right = 637.0
+margin_bottom = 35.0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamemodeToggle4" parent="MiniGamePanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+gamemode = 3
+gamemode_texture = ExtResource( 10 )
+
+[node name="GamemodeToggle5" parent="MiniGamePanelContainer/VBox/GamemodeGrid" instance=ExtResource( 6 )]
+margin_left = 99.0
+margin_right = 194.0
+gamemode = 8
+gamemode_texture = ExtResource( 12 )
+
+[node name="ElementInfoContainer" type="HBoxContainer" parent="."]
+margin_top = 116.0
+margin_right = 640.0
+margin_bottom = 138.0
+custom_constants/separation = 20
+
+[node name="ElementMode" type="Label" parent="ElementInfoContainer"]
+margin_right = 310.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "element mode"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="OptionButton" type="OptionButton" parent="ElementInfoContainer/ElementMode"]
+anchor_left = 0.999326
+anchor_top = 0.584806
+anchor_right = 0.999326
+anchor_bottom = 0.584807
+margin_left = -98.0995
+margin_top = -7.60249
+margin_right = -0.0995483
+margin_bottom = 11.3975
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+text = "Default"
+align = 2
+items = [ "Default", null, false, 0, null, "Random same", null, false, 1, null, "Random time based", null, false, 2, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementAmount" type="Label" parent="ElementInfoContainer"]
+margin_left = 330.0
+margin_right = 640.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Element amount"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Slider" parent="ElementInfoContainer/ElementAmount" instance=ExtResource( 2 )]
+margin_top = -8.56973
+margin_bottom = 11.4303
+min_value = 1.0
+max_value = 5.0
+value = 3.0
+script = SubResource( 1 )
+
+[node name="BotInfoContainer" type="HBoxContainer" parent="."]
+margin_top = 142.0
+margin_right = 640.0
+margin_bottom = 164.0
+custom_constants/separation = 20
+
+[node name="BotDifficulty" type="Label" parent="BotInfoContainer"]
+margin_right = 310.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Bot difficulty"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="OptionButton" type="OptionButton" parent="BotInfoContainer/BotDifficulty"]
+anchor_left = 0.999326
+anchor_top = 0.584806
+anchor_right = 0.999326
+anchor_bottom = 0.584807
+margin_left = -98.0995
+margin_top = -10.7189
+margin_right = -0.0995483
+margin_bottom = 8.28112
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+text = "Free For All"
+align = 2
+items = [ "Free For All", null, false, 0, null, "Last Man Standing", null, false, 1, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotAmount" type="Label" parent="BotInfoContainer"]
+margin_left = 330.0
+margin_right = 640.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Bot amount"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Slider" parent="BotInfoContainer/BotAmount" instance=ExtResource( 2 )]
+margin_top = -8.56973
+margin_bottom = 11.4303
+max_value = 10.0
+value = 2.0
+script = SubResource( 1 )
+
+[node name="RoundsContainer" type="HBoxContainer" parent="."]
+margin_top = 168.0
+margin_right = 640.0
+margin_bottom = 190.0
+custom_constants/separation = 20
+
+[node name="RoundAmount" type="Label" parent="RoundsContainer"]
+margin_right = 310.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Rounds"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Slider" parent="RoundsContainer/RoundAmount" instance=ExtResource( 2 )]
+margin_top = -8.56973
+margin_bottom = 11.4303
+min_value = 1.0
+max_value = 12.0
+value = 4.0
+script = SubResource( 1 )
+
+[node name="Filler" type="Control" parent="RoundsContainer"]
+margin_left = 330.0
+margin_right = 640.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="ButtonContainer" type="Control" parent="."]
+margin_top = 194.0
+margin_right = 640.0
+margin_bottom = 214.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="OpenAdvancedSettings" type="Button" parent="ButtonContainer"]
+margin_top = -2.0
+margin_right = 125.0
+margin_bottom = 17.0
+text = "Show Advanded Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HideAdvancedSettings" type="Button" parent="ButtonContainer"]
+visible = false
+margin_top = -2.0
+margin_right = 39.0
+margin_bottom = 17.0
+text = "Hide "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AdvancedSettings" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 218.0
+margin_right = 640.0
+margin_bottom = 246.0
+
+[node name="Vbox" type="VBoxContainer" parent="AdvancedSettings"]
+margin_left = 3.0
+margin_right = 640.0
+margin_bottom = 22.0
+
+[node name="AdvancedContainer1" type="HBoxContainer" parent="AdvancedSettings/Vbox"]
+margin_right = 637.0
+margin_bottom = 22.0
+custom_constants/separation = 20
+
+[node name="Map" type="Label" parent="AdvancedSettings/Vbox/AdvancedContainer1"]
+margin_right = 308.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "map"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="AdvancedSettings/Vbox/AdvancedContainer1/Map"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -98.3046
+margin_top = -6.5
+margin_right = -0.304626
+margin_bottom = 12.5
+size_flags_horizontal = 3
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+text = "Island"
+align = 2
+items = [ "Island", null, false, 0, null, "Town", null, true, 1, null, "Lava", null, true, 2, null, "Clouds", null, true, 3, null, "Cave", null, true, 4, null, "Plains", null, true, 5, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Powerups" type="Label" parent="AdvancedSettings/Vbox/AdvancedContainer1"]
+margin_left = 328.0
+margin_right = 637.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Enable power ups"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerupsCheckBox" type="CheckBox" parent="AdvancedSettings/Vbox/AdvancedContainer1/Powerups"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -14.0
+margin_top = -9.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cooldowns" type="Label" parent="AdvancedSettings/Vbox/AdvancedContainer1"]
+visible = false
+margin_left = 328.0
+margin_right = 637.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 0, 22 )
+rect_pivot_offset = Vector2( -336, -39 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "map size"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="OptionButton" type="OptionButton" parent="AdvancedSettings/Vbox/AdvancedContainer1/Cooldowns"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -98.3046
+margin_top = -6.7318
+margin_right = -0.304626
+margin_bottom = 12.2682
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+text = "Normal"
+align = 2
+items = [ "Normal", null, false, 0, null, "Faster", null, true, 1, null, "Insane", null, true, 2, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gamemodes_selected" from="PanelContainer/VBox/GamemodeGrid/GamemodeToggle" to="." method="_on_gamemode_selected"]
+[connection signal="gamemodes_selected" from="PanelContainer/VBox/GamemodeGrid/GamemodeToggle2" to="." method="_on_gamemode_selected"]
+[connection signal="gamemodes_selected" from="PanelContainer/VBox/GamemodeGrid/GamemodeToggle3" to="." method="_on_gamemode_selected"]
+[connection signal="gamemodes_selected" from="PanelContainer/VBox/GamemodeGrid/GamemodeToggle5" to="." method="_on_gamemode_selected"]
+[connection signal="gamemodes_selected" from="MiniGamePanelContainer/VBox/GamemodeGrid/GamemodeToggle4" to="." method="_on_gamemode_selected"]
+[connection signal="gamemodes_selected" from="MiniGamePanelContainer/VBox/GamemodeGrid/GamemodeToggle5" to="." method="_on_gamemode_selected"]
+[connection signal="pressed" from="ButtonContainer/OpenAdvancedSettings" to="." method="_on_OpenAdvancedSettings_pressed"]
+[connection signal="pressed" from="ButtonContainer/HideAdvancedSettings" to="." method="_on_HideAdvancedSettings_pressed"]

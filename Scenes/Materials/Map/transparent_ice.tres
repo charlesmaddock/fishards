@@ -1,0 +1,6 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.482353, 0.607843, 0.666667, 0.705882 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/disguise_mask.obj-842b5c84c095590eeb1ccf6f3a9d0c75.mesh"
+
+[deps]
+
+files=[ "res://.import/disguise_mask.obj-842b5c84c095590eeb1ccf6f3a9d0c75.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/disguise_mask.obj"
+dest_files=[ "res://.import/disguise_mask.obj-842b5c84c095590eeb1ccf6f3a9d0c75.mesh", "res://.import/disguise_mask.obj-842b5c84c095590eeb1ccf6f3a9d0c75.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

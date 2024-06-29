@@ -1,0 +1,94 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Materials/Fx/wildfire.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/ParticleEffects/fireblast_particle_mesh2.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=4]
+[ext_resource path="res://Scenes/ParticleEffects/fireblast_particle_mesh.tres" type="ArrayMesh" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.985034 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.317534 ), 0.0, 2.52956, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+render_priority = -1
+emission_shape = 1
+emission_sphere_radius = 0.28
+flag_rotate_y = true
+gravity = Vector3( 0, 0, 0 )
+angle_random = 0.12
+scale_random = 0.76
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 4 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.929412, 0.733333, 0.27451, 1 )
+shader_param/dark_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.612245, 0.968708 )
+colors = PoolColorArray( 0.0913706, 0.908629, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0.117497, 0 ), 0.0, 0.86025, 0, 0, Vector2( 0.934866, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 2
+emission_box_extents = Vector3( 0.9, 0.2, 0.3 )
+flag_rotate_y = true
+direction = Vector3( 0, 0, 1 )
+spread = 0.0
+gravity = Vector3( 0, 1, 5 )
+initial_velocity = -4.4
+angle = 345.6
+angle_random = 1.0
+scale = 0.8
+scale_random = 0.76
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=12]
+
+[node name="WildfireEffect" type="Spatial"]
+
+[node name="Plane" type="MeshInstance" parent="."]
+transform = Transform( 0.590401, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
+mesh = ExtResource( 5 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( -1.5, 0.000113762, -0.000859606, 8.54974e-05, 2, -0.000306206, 0.000859589, -0.00040834, -1.5, 0, 0.0299544, 0.0820386 )
+material_override = ExtResource( 1 )
+lifetime = 1.61
+process_material = SubResource( 5 )
+draw_pass_1 = ExtResource( 2 )
+
+[node name="Particles2" type="Particles" parent="."]
+transform = Transform( -1.5, 0.000113762, -0.000859606, 8.54974e-05, 2, -0.000306206, 0.000859589, -0.00040834, -1.5, 0, 0.135305, 0.205652 )
+material_override = SubResource( 6 )
+amount = 16
+lifetime = 0.89
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )

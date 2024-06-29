@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Materials/Map/ice_ground.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Meshes/Maps/ice_island_ctf.glb" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Materials/CelShaded/icy_rock.tres" type="Material" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[node name="ice_island_ctf" instance=ExtResource( 2 )]
+
+[node name="Curve027" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.113159, 0 )
+material/0 = ExtResource( 3 )
+
+[node name="Curve009" parent="." index="1"]
+material/0 = ExtResource( 1 )
+
+[node name="Plane" parent="." index="2"]
+transform = Transform( 6.45483, 0, 0, 0, 6.45483, 0, 0, 0, 6.45483, 0, -0.304398, 0 )
+material/0 = SubResource( 1 )

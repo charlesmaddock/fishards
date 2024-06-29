@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform vec4 color: hint_color;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0,1.0);
+uniform float noise_speed = 1.0;
+
+uniform sampler2D vertex_disp_gradient;
+uniform float cutout= 1.0;
+
+void fragment() {
+	float gradient = texture(vertex_disp_gradient, vec2(UV.y, UV.x)).r;
+	float noise = texture(noise_tex, UV*noise_scale + vec2(0, -TIME*noise_speed)).r;
+	
+	float alpha = step(gradient*cutout, noise) * color.a;
+	
+	ALBEDO = color.rgb;
+	ALPHA = alpha;
+	ALPHA_SCISSOR = 1.0;
+}
+
+void vertex() {
+	float gradient = texture(vertex_disp_gradient, vec2(UV.y, UV.x)).r;
+	float noise = texture(noise_tex, UV*noise_scale + vec2(0, -TIME*noise_speed)).r;
+	VERTEX += noise*NORMAL*gradient;
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.987342, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.892405, 0.892405, 0.892405, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/noise_speed = 2.442
+shader_param/cutout = 5.0
+shader_param/noise_tex = ExtResource( 1 )
+shader_param/vertex_disp_gradient = SubResource( 3 )

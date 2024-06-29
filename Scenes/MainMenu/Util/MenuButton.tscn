@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/Button.gd" type="Script" id=1]
+
+[node name="Button" type="Button"]
+margin_right = 140.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 27 )
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+centered = false
+hframes = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_Button_visibility_changed"]

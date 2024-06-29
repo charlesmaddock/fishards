@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Shaders/fireball.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/swiss_cheese_noise.tga" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/fireball_shape_texture.png" type="Texture" id=3]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 1, 1.5 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/outer_cutout = 0.5
+shader_param/inner_cutout = -0.2
+shader_param/scroll_speed = 1.5
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/shape_tex = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance"]
+transform = Transform( 1.68137, 0, 0, 0, -3.18451e-07, 5.84485, 0, -2.66876, -1.30016e-06, 0, -0.341313, 0.194324 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )

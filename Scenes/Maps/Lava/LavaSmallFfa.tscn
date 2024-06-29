@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Meshes/ModelScenes/lava_small_2_ffa.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_5.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_6.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/Bones.tscn" type="PackedScene" id=12]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 6.0
+
+[node name="LavaSmallFfa" type="Spatial"]
+script = ExtResource( 1 )
+generate_environment = false
+spawn_area_container = NodePath("SpawnAreas")
+hand_placed_entity_container = NodePath("HandPlacedEntities")
+
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1.16371, 0, 0, 0, 1.16371, 0, 0, 0, 1.16371, -2.3548, 0, 0.464986 )
+shape = SubResource( 1 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 4 )]
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 9.1621, -8.29459, 6.37303, -6.93447, 5.17028, -7.98428, 5.52753, -9.31123, 5.11891, -11.1986, -0.239945, -13.5719, -4.3484, -12.3215, -6.63663, -12.9998, -11.3969, -10.9349, -11.9525, -9.68141, -13.752, -9.1505, -15.5264, -6.48635, -15.0493, -4.4123, -14.988, -2.74965, -14.0941, -2.00981, -13.6818, 0.542599, -14.6504, 2.03668, -14.4207, 3.66985, -12.0475, 7.65072, -10.2679, 8.65849, -9.19616, 8.17364, -7.92024, 8.60746, -7.48939, 11.3635, -5.49896, 12.4608, -4.25963, 13.344, -2.09057, 13.1143, -0.967758, 11.6342, 3.47195, 10.3922, 7.78455, 9.21835, 9.21358, 7.63621, 9.32145, 4.11676, 10.5463, 3.1981, 11.5933, 2.72903, 13.7368, 0.508928, 14.1451, -1.04769, 11.8415, -3.01229, 10.6677, -7.8863 )
+
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( -12.3939, 9.65887, -14.0526, 8.61262, -15.5071, 8.74021, -16.2982, 9.45472, -15.5326, 11.7259, -12.9298, 12.67, -11.6794, 11.9555, -11.858, 10.4755 )
+
+[node name="CollisionPolygon5" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 8.39947, -14.5913, 7.91462, -12.2947, 10.5175, -10.2277, 11.7169, -11.1463, 11.8955, -12.8561, 9.77746, -14.6423 )
+
+[node name="HandPlacedEntities" type="Spatial" parent="."]
+
+[node name="Rock_8" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2708, 0, -29.2003 )
+
+[node name="Rock_2" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5801, 0, 3.08743 )
+
+[node name="Rock_7" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.58822, 0, 0.617517 )
+
+[node name="Rock_10" parent="HandPlacedEntities" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95489, 3.8147e-06, -29.1274 )
+
+[node name="Rock_3" parent="HandPlacedEntities" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0577, 3.8147e-06, -14.6777 )
+
+[node name="Rock_4" parent="HandPlacedEntities" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8417, 0, 4.24616 )
+
+[node name="Rock_5" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7592, 0, 21.7684 )
+
+[node name="Rock_6" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8963, 0, 25.9351 )
+
+[node name="Rock_9" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7722, 0, -24.4438 )
+
+[node name="HandPlacedRiffRaff" type="Spatial" parent="."]
+
+[node name="Bones" parent="HandPlacedRiffRaff" instance=ExtResource( 12 )]
+transform = Transform( -0.450426, 0, -0.892814, 0, 1, 0, 0.892814, 0, -0.450426, 4.00266, -7.62939e-06, -5.13506 )
+
+[node name="lava_small_2_ffa" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.425172, 0 )
+
+[node name="Curve011" parent="lava_small_2_ffa" index="0"]
+transform = Transform( 423.311, 0, 0, 0, 423.311, 0, 0, 0, 423.311, 0, -0.412744, 0 )
+
+[node name="Curve012" parent="lava_small_2_ffa" index="1"]
+transform = Transform( 423.311, 0, 0, 0, 423.311, 0, 0, 0, 423.311, 0, -0.412744, 0 )
+
+[node name="Lava" parent="lava_small_2_ffa" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254621, -0.294978, -0.153687 )
+
+[editable path="lava_small_2_ffa"]

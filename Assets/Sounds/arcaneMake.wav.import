@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/arcaneMake.wav-61d32c1bd14573aea9500b23b984f6e8.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/arcaneMake.wav"
+dest_files=[ "res://.import/arcaneMake.wav-61d32c1bd14573aea9500b23b984f6e8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

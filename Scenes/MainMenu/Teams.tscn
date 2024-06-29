@@ -1,0 +1,170 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Scripts/MainMenu/TeamsUI.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MainMenu/DisplayPlayer.tscn" type="PackedScene" id=4]
+
+[node name="Teams" type="Panel"]
+margin_left = 110.0
+margin_top = 57.0
+margin_right = 448.0
+margin_bottom = 279.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+display_player_row_scene = ExtResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 340.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlueContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 338.0
+margin_bottom = 17.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamTitle" type="Control" parent="ScrollContainer/VBoxContainer/BlueContainer"]
+margin_right = 338.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 17 )
+
+[node name="BlueSwitch" type="Button" parent="ScrollContainer/VBoxContainer/BlueContainer/TeamTitle"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 82.0
+margin_top = -2.03358
+margin_right = 195.0
+margin_bottom = 19.9664
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/BlueSwitch"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -13.0
+margin_right = 119.0
+margin_bottom = 8.0
+text = "Switch to Blue"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamName" type="Label" parent="ScrollContainer/VBoxContainer/BlueContainer/TeamTitle"]
+margin_left = 4.0
+margin_top = 0.966415
+margin_right = 78.0
+margin_bottom = 15.9664
+custom_fonts/font = ExtResource( 1 )
+text = "Blue Team"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 338.0
+margin_bottom = 35.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamTitle" type="Control" parent="ScrollContainer/VBoxContainer/RedContainer"]
+margin_right = 338.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 16, 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedSwitch" type="Button" parent="ScrollContainer/VBoxContainer/RedContainer/TeamTitle"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 74.0
+margin_top = -5.41606
+margin_right = 174.0
+margin_bottom = 16.5839
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/RedContainer/TeamTitle/RedSwitch"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -12.0
+margin_right = 113.0
+margin_bottom = 8.0
+text = "Switch to Red "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamName" type="Label" parent="ScrollContainer/VBoxContainer/RedContainer/TeamTitle"]
+margin_left = 4.0
+margin_top = -2.41606
+margin_right = 68.0
+margin_bottom = 12.5839
+custom_fonts/font = ExtResource( 1 )
+text = "RED Team"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AllContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 338.0
+margin_bottom = 53.0
+custom_constants/separation = 0
+
+[node name="Title" type="Control" parent="ScrollContainer/VBoxContainer/AllContainer"]
+margin_right = 338.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 16, 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Players" type="Label" parent="ScrollContainer/VBoxContainer/AllContainer/Title"]
+margin_left = 4.0
+margin_top = -2.41606
+margin_right = 68.0
+margin_bottom = 12.5839
+custom_fonts/font = ExtResource( 1 )
+text = "Players"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/BlueSwitch" to="." method="_on_switch_blue"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/RedContainer/TeamTitle/RedSwitch" to="." method="_on_switch_red"]

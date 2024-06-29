@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/14.tres" type="Material" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 200, 200 )
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Water Plane" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+layers = 2147483649
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="Water body" type="StaticBody" parent="."]
+transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -3, 0 )
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Water body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+shape = SubResource( 2 )

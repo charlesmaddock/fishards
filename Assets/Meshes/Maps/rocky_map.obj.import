@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rocky_map.obj-ef19969a7953aa7877255a58915d8f9e.mesh"
+
+[deps]
+
+files=[ "res://.import/rocky_map.obj-ef19969a7953aa7877255a58915d8f9e.mesh" ]
+
+source_file="res://Assets/Meshes/Maps/rocky_map.obj"
+dest_files=[ "res://.import/rocky_map.obj-ef19969a7953aa7877255a58915d8f9e.mesh", "res://.import/rocky_map.obj-ef19969a7953aa7877255a58915d8f9e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

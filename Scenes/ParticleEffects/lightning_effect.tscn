@@ -1,0 +1,180 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.shader" type="Shader" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 color: hint_color;
+uniform vec4 dark_color: hint_color;
+uniform sampler2D lightning_width_gradient;
+uniform sampler2D end_start_fade_gradient;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0);
+uniform float noise_speed = 2.0;
+uniform float noise_strength = 0.4;
+uniform float cutout = 0.36;
+
+void fragment(){
+	float noise = texture(noise_tex, UV*noise_scale + vec2( -ceil(TIME*20.0)*noise_speed,-ceil(TIME*20.0))).r;
+	float end_start_fade = texture(end_start_fade_gradient, vec2(UV.y, UV.x)).r;
+	float lightning_shape = texture(lightning_width_gradient, vec2(UV.x + (noise*noise_strength-0.5)*end_start_fade, UV.y+noise)).r;
+	
+	float shape = step(cutout * (1.0 - end_start_fade*0.5), lightning_shape);
+	ALBEDO = mix(color.rgb, dark_color.rgb, COLOR.r);
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.1;
+}
+
+
+void vertex() {
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],WORLD_MATRIX[1],vec4(normalize(cross(CAMERA_MATRIX[0].xyz,WORLD_MATRIX[1].xyz)), 0.0),WORLD_MATRIX[3]);
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, 1.0, 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.920561, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.317757, 0.44186, 0.586449, 1 )
+colors = PoolColorArray( 0.0688863, 0.0688863, 0.0688863, 1, 0.206659, 0.206659, 0.206659, 1, 0.895522, 0.895522, 0.895522, 1, 0.136719, 0.136719, 0.136719, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.956863, 0.976471, 0.988235, 1 )
+shader_param/dark_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/noise_scale = Vector2( 0.042, 1.94 )
+shader_param/noise_speed = 2.866
+shader_param/noise_strength = 1.007
+shader_param/cutout = 0.889
+shader_param/lightning_width_gradient = SubResource( 5 )
+shader_param/end_start_fade_gradient = SubResource( 3 )
+shader_param/noise_tex = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.486111 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.115789, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.915789, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.936842, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+gravity = Vector3( 0, 0, 0 )
+scale = 0.8
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=12]
+size = Vector2( 3, 1 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.392523, 0.44186, 0.469626, 1 )
+colors = PoolColorArray( 0.0688863, 0.0688863, 0.0688863, 1, 0.206659, 0.206659, 0.206659, 1, 0.895522, 0.895522, 0.895522, 1, 0.136719, 0.136719, 0.136719, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
+
+[sub_resource type="OpenSimplexNoise" id=15]
+
+[sub_resource type="NoiseTexture" id=16]
+flags = 39
+width = 256
+height = 256
+seamless = true
+bump_strength = 0.0
+noise = SubResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.956863, 0.976471, 0.988235, 1 )
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/noise_scale = Vector2( 0.007, 1.668 )
+shader_param/noise_speed = 2.866
+shader_param/noise_strength = 1.007
+shader_param/cutout = 0.889
+shader_param/lightning_width_gradient = SubResource( 14 )
+shader_param/end_start_fade_gradient = SubResource( 3 )
+shader_param/noise_tex = SubResource( 16 )
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 2 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/light_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/dark_color = Color( 0.309804, 0.341176, 0.517647, 1 )
+shader_param/billboard = false
+shader_param/speed = 3.0
+shader_param/polar_scale = 1
+shader_param/noise_tex = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=19]
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+
+[sub_resource type="Curve" id=21]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.881188, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=22]
+curve = SubResource( 21 )
+
+[sub_resource type="ParticlesMaterial" id=23]
+emission_shape = 1
+emission_sphere_radius = 0.3
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 347.6
+angle_random = 0.78
+scale = 5.0
+scale_curve = SubResource( 22 )
+color_ramp = SubResource( 20 )
+
+[sub_resource type="QuadMesh" id=24]
+
+[node name="lightning_effect" type="Spatial"]
+
+[node name="Lightning" type="Particles" parent="."]
+transform = Transform( 0.494744, 0, 0, 0, 18.2064, 0, 0, 0, 1.06172, 0, 7.288, 0 )
+material_override = SubResource( 6 )
+amount = 1
+lifetime = 0.76
+explosiveness = 0.39
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="Lightning2" type="Particles" parent="."]
+transform = Transform( 1.59983, 0, 0, 0, 18.2064, 0, 0, 0, 1.06172, 0.01, 7.212, 0 )
+material_override = SubResource( 17 )
+amount = 1
+lifetime = 0.76
+explosiveness = 0.39
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="Perimiter" type="Particles" parent="."]
+transform = Transform( 0.572756, 0, 0, 0, -2.5036e-08, 0.572756, 0, -0.572756, -2.5036e-08, 0, 0, 0 )
+material_override = SubResource( 18 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource( 23 )
+draw_pass_1 = SubResource( 24 )

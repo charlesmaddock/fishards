@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Components/EntityInfoPanel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/UI/EntityComponentPanel/hp.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Images/UI/EntityComponentPanel/health_bar_background.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Util/ColorDependsOnBackgroundLabel.gd" type="Script" id=6]
+
+[node name="EntityInfoPanel" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 180.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Elements" type="Control" parent="Control"]
+margin_right = 181.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="Control/Elements" instance=ExtResource( 5 )]
+margin_top = -4.76255
+margin_right = 180.0
+margin_bottom = 20.2374
+rect_pivot_offset = Vector2( 24.5, 25 )
+custom_constants/separation = 1
+on_spell_hud = true
+display_only = true
+show_keys = false
+use_clients_elements = false
+label_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[node name="ElementButton" parent="Control/Elements/ElementsDisplay" index="0"]
+margin_left = 66.0
+margin_right = 74.0
+
+[node name="Control" parent="Control/Elements/ElementsDisplay/ElementButton" index="0"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="PickerContainer" parent="Control/Elements/ElementsDisplay/ElementButton" index="1"]
+visible = false
+
+[node name="TextureRect" parent="Control/Elements/ElementsDisplay/ElementButton" index="2"]
+margin_top = 8.0
+margin_bottom = 16.0
+
+[node name="ElementButton2" parent="Control/Elements/ElementsDisplay" index="1"]
+margin_left = 75.0
+margin_right = 84.0
+
+[node name="ElementButton3" parent="Control/Elements/ElementsDisplay" index="2"]
+margin_left = 85.0
+margin_right = 94.0
+
+[node name="ElementButton4" parent="Control/Elements/ElementsDisplay" index="3"]
+margin_left = 95.0
+margin_right = 104.0
+
+[node name="ElementButton5" parent="Control/Elements/ElementsDisplay" index="4"]
+margin_left = 105.0
+margin_right = 114.0
+
+[node name="Name" type="Control" parent="Control"]
+margin_top = 13.0
+margin_right = 181.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Name"]
+self_modulate = Color( 0.827451, 0.752941, 0.709804, 0.72549 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -89.8104
+margin_top = -8.58506
+margin_right = 90.1895
+margin_bottom = 4.41494
+theme = ExtResource( 3 )
+text = "name goes here"
+align = 1
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control"]
+margin_top = 20.0
+margin_right = 181.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="TextureProgress" type="TextureProgress" parent="Control/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -14.5
+margin_right = 11.5
+margin_bottom = 2.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+tint_under = Color( 0.376471, 0.352941, 0.337255, 1 )
+tint_progress = Color( 0.807843, 0.372549, 0.254902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="health_bar_background" type="Sprite" parent="Control/Control"]
+position = Vector2( 89, 3 )
+texture = ExtResource( 4 )
+
+[editable path="Control/Elements/ElementsDisplay"]
+[editable path="Control/Elements/ElementsDisplay/ElementButton"]

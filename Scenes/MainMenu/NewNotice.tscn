@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/MainMenu/NewNotice.gd" type="Script" id=2]
+
+[node name="NewNotice" type="Panel"]
+self_modulate = Color( 30, 0.2, 0.2, 1 )
+margin_left = 116.712
+margin_top = -1.815
+margin_right = 152.712
+margin_bottom = 15.185
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 2.97968
+margin_top = 0.664001
+margin_right = 58.9797
+margin_bottom = 13.664
+custom_fonts/font = ExtResource( 1 )
+text = "NEW!"

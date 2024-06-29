@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh"
+
+[deps]
+
+files=[ "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh" ]
+
+source_file="res://Assets/Meshes/burnt_tree_1.obj"
+dest_files=[ "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh", "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

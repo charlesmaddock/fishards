@@ -1,0 +1,203 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/PlayUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/UI/MainMenu/back_button.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/UI/MainMenu/fishards_logo_more_readable.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/MainMenu/host_button2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/UI/MainMenu/join_button.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/MainMenu/quickplay_button.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=10]
+[ext_resource path="res://Assets/Images/UI/MainMenu/connectionerror.png" type="Texture" id=11]
+
+[node name="PlayUI" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+rect_pivot_offset = Vector2( 402.391, 107.713 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -21.8516
+margin_right = 72.0
+margin_bottom = 98.1484
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Training" parent="Buttons" instance=ExtResource( 8 )]
+self_modulate = Color( 0.866667, 0.866667, 0.866667, 1 )
+margin_top = -31.0
+margin_right = 140.0
+margin_bottom = -6.0
+button_text = "Training"
+
+[node name="Quickplay2" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = -1.0
+margin_bottom = 26.0
+image = ExtResource( 7 )
+
+[node name="Host" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = 30.0
+margin_bottom = 57.0
+image = ExtResource( 5 )
+
+[node name="Join" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = 62.0
+margin_bottom = 89.0
+image = ExtResource( 6 )
+
+[node name="Back" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = 94.0
+margin_bottom = 121.0
+image = ExtResource( 2 )
+
+[node name="Logo" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -111.0
+margin_top = -103.323
+margin_right = 111.0
+margin_bottom = -63.3233
+size_flags_vertical = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Logo"]
+self_modulate = Color( 100, 100, 100, 1 )
+margin_left = 200.0
+margin_top = 31.0
+margin_right = 239.0
+margin_bottom = 47.0
+theme = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Logo/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.76883
+margin_right = 1.76883
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.345098, 0.345098, 0.345098, 1 )
+text = "DEMO"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NotConnected" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 0.235294, 0.235294, 0.235294, 0.690196 )
+margin_left = 243.0
+margin_top = 154.0
+margin_right = 393.0
+margin_bottom = 250.0
+theme = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="connectionerror" type="Sprite" parent="NotConnected"]
+position = Vector2( 73.0358, 15.6845 )
+scale = Vector2( 0.56497, 0.56497 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="NotConnected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.234924
+margin_top = 25.8894
+margin_right = -0.234924
+margin_bottom = -41.1106
+custom_fonts/font = ExtResource( 9 )
+custom_constants/line_spacing = -2
+text = "Cannot connect to steam. "
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="NotConnected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 48.2354
+margin_bottom = -16.7646
+custom_constants/line_spacing = -4
+text = "Make sure steam is open and you are connected to the internet."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="DemoBlock" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 0.235294, 0.235294, 0.235294, 0.87451 )
+margin_left = 207.0
+margin_top = 153.0
+margin_right = 428.0
+margin_bottom = 250.0
+theme = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DemoBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -2.0
+margin_right = -10.0
+margin_bottom = -62.0
+custom_fonts/font = ExtResource( 9 )
+custom_constants/line_spacing = -2
+text = "Multiplayer isn't available in the demo"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="DemoBlock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.80402
+margin_top = 26.2551
+margin_right = -0.195984
+margin_bottom = -6.74492
+custom_constants/line_spacing = -4
+text = "In the full version of Fishards you can play with up to 10 players and enjoy a variety of fun gamemodes.
+
+ You aren't limited to 3 elements per game either. The full version also has customization, ranking and much more!"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="pressed" from="Buttons/Training" to="." method="_on_Training_pressed"]
+[connection signal="pressed" from="Buttons/Quickplay2" to="." method="_on_quickplay_pressed"]
+[connection signal="pressed" from="Buttons/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Buttons/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Buttons/Back" to="." method="_on_Back_pressed"]

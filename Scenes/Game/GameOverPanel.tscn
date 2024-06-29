@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Theme/Resources/blank_stylebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/Game/GameOverPanel.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=4]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 70.33
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 66.78
+damping_random = 0.74
+scale = 4.0
+scale_random = 0.41
+color = Color( 0.643137, 0.639216, 0.635294, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="GameOverPanel" type="PanelContainer"]
+process_priority = 1
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -95.5
+margin_top = 83.303
+margin_right = 95.5
+margin_bottom = 127.303
+rect_pivot_offset = Vector2( 95.299, -0.0743656 )
+mouse_filter = 1
+theme = ExtResource( 1 )
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 3.0
+margin_right = 191.0
+margin_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 184.0
+margin_bottom = 36.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Margin/VBox"]
+margin_right = 180.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.764706, 0.733333, 0.690196, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+text = "ROUND OVER!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Margin/VBox"]
+margin_top = 19.0
+margin_right = 180.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 180, 0 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/line_spacing = -4
+text = "Waiting for the next round to start..."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confetti" type="Node2D" parent="."]
+position = Vector2( 37.9037, 6.39345 )
+
+[node name="Particles2D" type="Particles2D" parent="Confetti"]
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource( 1 )
+
+[node name="Particles2D2" type="Particles2D" parent="Confetti"]
+position = Vector2( 51.9724, 5.65685 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource( 1 )
+
+[node name="Particles2D3" type="Particles2D" parent="Confetti"]
+position = Vector2( 117.38, 5.30331 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource( 1 )

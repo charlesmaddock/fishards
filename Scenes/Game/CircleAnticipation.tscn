@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+render_mode unshaded;
+
+
+uniform vec4 color: hint_color;
+uniform float big_circle_radius = 0.5;
+uniform float small_circle_radius = 0.25;
+uniform float smoothing = 0.1;
+uniform float cutout = 0.1;
+
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0);
+uniform float speed = 1.0;
+uniform float polar_scale = 1.0;
+
+
+void fragment(){
+	
+	// Torus
+	float big_radius = clamp(big_circle_radius, 0.0, 1.0);
+	float small_radius = clamp(small_circle_radius, 0.0, big_circle_radius);
+	
+	float big_circle = 1.0 - distance(vec2(0.5)/big_radius, UV/big_radius);
+	big_circle = smoothstep(0.0, smoothing*1.5, big_circle);
+	
+	float small_circle = 1.0 - distance(vec2(0.5)/small_radius, UV/small_radius);
+	small_circle = smoothstep(0.0, smoothing, small_circle);
+	
+	float ring_shape = big_circle- small_circle;
+	
+	// Noise
+	float x = (UV.x - 0.5)*noise_scale.x;
+	float y = (UV.y - 0.5)*noise_scale.y;
+	vec2 polar_coordinates = vec2(sqrt(pow(x, 2)+ pow(y, 2)) - TIME*speed, atan(y/x)/3.14159265359*polar_scale);
+	float noise = texture(noise_tex, polar_coordinates).r;
+	float shape = step(cutout, noise * ring_shape /2.0);
+	
+	ALBEDO = color.rgb;
+	ALPHA = shape;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/big_circle_radius = 0.732
+shader_param/small_circle_radius = 0.39
+shader_param/smoothing = 0.406
+shader_param/cutout = 0.2
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/speed = 0.8
+shader_param/polar_scale = 2.0
+shader_param/noise_tex = ExtResource( 2 )
+
+[node name="CircleAnticipation" type="MeshInstance"]
+transform = Transform( 4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )

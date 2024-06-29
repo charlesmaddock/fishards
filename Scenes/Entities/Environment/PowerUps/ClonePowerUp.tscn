@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/PowerUp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Materials/Palette/20.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=5]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.441037
+
+[sub_resource type="Animation" id=2]
+resource_name = "spin"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2, 0 ), Vector3( 0, 0.5, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Disappear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.23 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 1, 0 ) ]
+}
+
+[node name="ClonePowerUp" type="Spatial"]
+script = ExtResource( 1 )
+age_limit_seconds = 16.0
+
+[node name="PowerUp" parent="." instance=ExtResource( 2 )]
+power_type = 3
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+shape = SubResource( 1 )
+
+[node name="StillSolid" parent="." instance=ExtResource( 3 )]
+disable_collider_on_ready = true
+
+[node name="Model" type="Spatial" parent="."]
+transform = Transform( 0.400712, 0, 0.916204, 0, 1, 0, -0.916204, 0, 0.400712, 0, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Model"]
+transform = Transform( 1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0.645239, 0 )
+width = 0.8
+height = 0.30547
+depth = 0.32
+material = ExtResource( 4 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Model"]
+transform = Transform( 1, 5.96046e-08, -3.55271e-15, 0, -3.20559e-08, -0.733353, -5.96046e-08, 1, -4.37114e-08, 0, 0.762078, 0 )
+radius = 0.4
+height = 0.32
+sides = 12
+material = ExtResource( 4 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Model"]
+transform = Transform( 1, 5.96046e-08, -3.55271e-15, 0, -4.37114e-08, -1, -5.96046e-08, 1, -4.37114e-08, 0, 1.50365, 0 )
+radius = 0.3
+height = 0.32
+material = ExtResource( 4 )
+
+[node name="Spinner" type="AnimationPlayer" parent="Model"]
+autoplay = "spin"
+anims/spin = SubResource( 2 )
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 5 )]
+stop_particle_node_array = [ NodePath("../PowerUp/Particles") ]
+on_destroy_animator = NodePath("../AppearAndDisappear")
+on_destroy_animation_name = "Disappear"
+
+[node name="AppearAndDisappear" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model")
+autoplay = "Appear"
+anims/Appear = SubResource( 3 )
+anims/Disappear = SubResource( 4 )

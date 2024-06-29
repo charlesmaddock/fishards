@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/5.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/6.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Meshes/Hats/viking_hat.obj" type="ArrayMesh" id=5]
+
+[node name="Viking" type="Spatial"]
+script = ExtResource( 4 )
+hat_type = 5
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 1 )
+material/3 = ExtResource( 3 )
+material/4 = ExtResource( 2 )
+material/5 = ExtResource( 1 )

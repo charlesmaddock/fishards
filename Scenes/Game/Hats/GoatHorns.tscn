@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/Hats/goat_horns.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/6.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/8.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=4]
+
+[node name="GoatHorns" type="Spatial"]
+script = ExtResource( 4 )
+hat_type = 26
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 3 )

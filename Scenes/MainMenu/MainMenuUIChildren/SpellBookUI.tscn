@@ -1,0 +1,342 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/MainMenu/SpellBookUI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/MainMenu/Util/SpellDescription.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Theme/Resources/blank_stylebox.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/push_small.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dive_small.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_beam_small.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/meteor_small.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/wildfire_small.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/fireblast_small.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres" type="StyleBox" id=18]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_bal_smalll.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/heal_small.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/rock_dash_small.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/invisibility_small.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dash_beam_small.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/totem_small.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/arcane_wal_smalll.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/grab_small.png" type="Texture" id=26]
+
+[node name="SpellBook" type="Control"]
+margin_right = 222.0
+margin_bottom = 360.0
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellBook" type="Label" parent="."]
+margin_left = 22.182
+margin_top = 43.171
+margin_right = 157.182
+margin_bottom = 62.171
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "SpellBook"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FilterOptions" type="HBoxContainer" parent="."]
+margin_left = 24.0
+margin_top = 67.0
+margin_right = 197.0
+margin_bottom = 86.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoveredOnly" type="CheckBox" parent="FilterOptions"]
+margin_right = 87.0
+margin_bottom = 19.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Discovered only "
+
+[node name="ElementFilter" type="HBoxContainer" parent="FilterOptions"]
+margin_left = 91.0
+margin_right = 162.0
+margin_bottom = 19.0
+
+[node name="Fire" type="CheckBox" parent="FilterOptions/ElementFilter"]
+margin_right = 11.0
+margin_bottom = 19.0
+custom_icons/checked = ExtResource( 7 )
+custom_icons/unchecked = ExtResource( 7 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/hover_pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+flat = true
+
+[node name="Water" type="CheckBox" parent="FilterOptions/ElementFilter"]
+margin_left = 15.0
+margin_right = 26.0
+margin_bottom = 19.0
+custom_icons/checked = ExtResource( 8 )
+custom_icons/unchecked = ExtResource( 8 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/hover_pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+flat = true
+
+[node name="Earth" type="CheckBox" parent="FilterOptions/ElementFilter"]
+margin_left = 30.0
+margin_right = 41.0
+margin_bottom = 19.0
+custom_icons/checked = ExtResource( 13 )
+custom_icons/unchecked = ExtResource( 13 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/hover_pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+flat = true
+
+[node name="Arcane" type="CheckBox" parent="FilterOptions/ElementFilter"]
+margin_left = 45.0
+margin_right = 56.0
+margin_bottom = 19.0
+custom_icons/checked = ExtResource( 16 )
+custom_icons/unchecked = ExtResource( 16 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/hover_pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+flat = true
+
+[node name="Goo" type="CheckBox" parent="FilterOptions/ElementFilter"]
+margin_left = 60.0
+margin_right = 71.0
+margin_bottom = 19.0
+custom_icons/checked = ExtResource( 15 )
+custom_icons/unchecked = ExtResource( 15 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/hover_pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+flat = true
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 24.0
+margin_top = 90.0
+margin_right = 197.0
+margin_bottom = 272.0
+custom_styles/panel = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+margin_left = 1.0
+margin_top = 5.0
+margin_right = 169.0
+margin_bottom = 178.0
+custom_styles/bg = ExtResource( 5 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spells" type="VBoxContainer" parent="Panel/ScrollContainer"]
+margin_left = 3.0
+margin_right = 162.0
+margin_bottom = 341.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Fireball" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_right = 159.0
+margin_bottom = 19.0
+icon_tex = ExtResource( 6 )
+element1_tex = ExtResource( 7 )
+element2_tex = ExtResource( 7 )
+spell_type = 1
+spellName_text = "Fireball"
+description_text = "Shoot a low damage projectile with low cooldown."
+
+[node name="Push" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 23.0
+margin_right = 159.0
+margin_bottom = 42.0
+icon_tex = ExtResource( 9 )
+element1_tex = ExtResource( 7 )
+element2_tex = ExtResource( 8 )
+spell_type = 2
+spellName_text = "Push"
+description_text = "Shoot a steam projectile with high knockback."
+
+[node name="Meteor" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 46.0
+margin_right = 159.0
+margin_bottom = 65.0
+icon_tex = ExtResource( 12 )
+element1_tex = ExtResource( 7 )
+element2_tex = ExtResource( 13 )
+spell_type = 3
+spellName_text = "Meteor"
+description_text = "Fling a large meteor that deals high AOE damage on impact."
+
+[node name="Fireblast" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 69.0
+margin_right = 159.0
+margin_bottom = 88.0
+icon_tex = ExtResource( 17 )
+element1_tex = ExtResource( 7 )
+element2_tex = ExtResource( 16 )
+spell_type = 4
+spellName_text = "Fireblast"
+description_text = "Shoot a large burst of flame that deals medium AOE damage."
+
+[node name="Wildfire" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 92.0
+margin_right = 159.0
+margin_bottom = 111.0
+icon_tex = ExtResource( 14 )
+element1_tex = ExtResource( 7 )
+element2_tex = ExtResource( 15 )
+spell_type = 11
+spellName_text = "Goo Flame"
+description_text = "Shoot a continous green flame that deals medium damage over time."
+
+[node name="FrostBeam" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 115.0
+margin_right = 159.0
+margin_bottom = 134.0
+icon_tex = ExtResource( 11 )
+element1_tex = ExtResource( 8 )
+element2_tex = ExtResource( 8 )
+spell_type = 6
+spellName_text = "Frost Ray"
+description_text = "Shoot a ray of frost that deals low damage and slows target."
+
+[node name="Dive" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 138.0
+margin_right = 159.0
+margin_bottom = 157.0
+icon_tex = ExtResource( 10 )
+element1_tex = ExtResource( 8 )
+element2_tex = ExtResource( 13 )
+spell_type = 5
+spellName_text = "Dive"
+description_text = "Teleport to another location. If you dive into someone you damage and shortly stun them."
+
+[node name="IceOrb" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 161.0
+margin_right = 159.0
+margin_bottom = 180.0
+icon_tex = ExtResource( 19 )
+element1_tex = ExtResource( 8 )
+element2_tex = ExtResource( 16 )
+spell_type = 17
+spellName_text = "Frost Orb"
+description_text = "Shoot a large ice orb that deals damage and freezes on impact. "
+
+[node name="Heal" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 184.0
+margin_right = 159.0
+margin_bottom = 203.0
+icon_tex = ExtResource( 20 )
+element1_tex = ExtResource( 8 )
+element2_tex = ExtResource( 15 )
+spell_type = 12
+spellName_text = "Heal"
+description_text = "An instant AOE heal that returns a large amount of hit points."
+
+[node name="RockDash" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 207.0
+margin_right = 159.0
+margin_bottom = 226.0
+icon_tex = ExtResource( 21 )
+element1_tex = ExtResource( 13 )
+element2_tex = ExtResource( 13 )
+spell_type = 8
+spellName_text = "Rock Dash"
+description_text = "Dash a short distance and deal damage on impact."
+
+[node name="Invincibility" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 230.0
+margin_right = 159.0
+margin_bottom = 249.0
+icon_tex = ExtResource( 22 )
+element1_tex = ExtResource( 13 )
+element2_tex = ExtResource( 16 )
+spell_type = 9
+spellName_text = "Invincibility"
+description_text = "Turn invincible for a short duration."
+
+[node name="Totem" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 253.0
+margin_right = 159.0
+margin_bottom = 272.0
+icon_tex = ExtResource( 24 )
+element1_tex = ExtResource( 13 )
+element2_tex = ExtResource( 15 )
+spell_type = 13
+spellName_text = "Totem"
+description_text = "Summon a totem that duplicates your spells."
+
+[node name="ArcaneShield" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 276.0
+margin_right = 159.0
+margin_bottom = 295.0
+icon_tex = ExtResource( 25 )
+element1_tex = ExtResource( 16 )
+element2_tex = ExtResource( 16 )
+spell_type = 10
+spellName_text = "Arcane Shield"
+description_text = "Hold up a shield that reflects projectiles and protects against damage. Release to create a stationary version."
+
+[node name="GooBlast" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 299.0
+margin_right = 159.0
+margin_bottom = 318.0
+icon_tex = ExtResource( 23 )
+element1_tex = ExtResource( 16 )
+element2_tex = ExtResource( 15 )
+spell_type = 14
+spellName_text = "Goo Beam"
+description_text = "Shoot a medium damage beam that heals teammates and has a recoil."
+
+[node name="Grab" parent="Panel/ScrollContainer/Spells" instance=ExtResource( 4 )]
+margin_top = 322.0
+margin_right = 159.0
+margin_bottom = 341.0
+icon_tex = ExtResource( 26 )
+element1_tex = ExtResource( 15 )
+element2_tex = ExtResource( 15 )
+spell_type = 15
+spellName_text = "Grab"
+description_text = "Grab target if it is not stationary. If it is stationary it will pull the caster towards instead."
+
+[connection signal="visibility_changed" from="." to="." method="_on_SpellBook_visibility_changed"]
+[connection signal="toggled" from="FilterOptions/DiscoveredOnly" to="." method="_on_DiscoveredOnly_toggled"]
+[connection signal="toggled" from="FilterOptions/ElementFilter/Fire" to="." method="_on_Fire_toggled"]
+[connection signal="toggled" from="FilterOptions/ElementFilter/Water" to="." method="_on_Water_toggled"]
+[connection signal="toggled" from="FilterOptions/ElementFilter/Earth" to="." method="_on_Earth_toggled"]
+[connection signal="toggled" from="FilterOptions/ElementFilter/Arcane" to="." method="_on_Arcane_toggled"]
+[connection signal="toggled" from="FilterOptions/ElementFilter/Goo" to="." method="_on_Goo_toggled"]

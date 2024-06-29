@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=2]
+[ext_resource path="res://Assets/Sounds/shoot egg(dont know 2).wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.984314, 0.976471, 0.976471, 1 )
+shader_param/dark_color = null
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+spread = 180.0
+gravity = Vector3( 0, 5, 0 )
+initial_velocity = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="Poof" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.980911, 0 )
+material_override = SubResource( 1 )
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Sound" parent="." instance=ExtResource( 4 )]
+stream = ExtResource( 3 )
+autoplay = true

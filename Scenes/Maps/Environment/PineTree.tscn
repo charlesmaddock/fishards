@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/pine_tree.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Maps/Environment/ice_tree.tres" type="Material" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0.639216, 0.65098, 0.662745, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0.352941, 0.517647, 0.47451, 1 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.515909
+height = 6.25814
+
+[node name="PineTree" type="MeshInstance"]
+transform = Transform( 0.858971, 0, 0, 0, 0.881176, 0, 0, 0, 0.858971, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = ExtResource( 2 )
+material/2 = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )

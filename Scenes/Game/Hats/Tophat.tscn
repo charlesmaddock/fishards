@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/5.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Meshes/Hats/top_hat.obj" type="ArrayMesh" id=4]
+
+[sub_resource type="CylinderMesh" id=1]
+
+[node name="Tophat" type="Spatial"]
+script = ExtResource( 3 )
+hat_type = 4
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.406868, 0, 0, 0, 0.0256455, 0, 0, 0, 0.406868, -0.00501539, 0.0248117, -0.00929707 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )

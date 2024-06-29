@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sounds/splash2.wav" type="AudioStream" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+spread = 40.0
+gravity = Vector3( 0, -15, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.3
+angle = 403.4
+angle_random = 1.0
+scale = 0.5
+scale_random = 0.66
+scale_curve = SubResource( 2 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 0.52
+hue_variation_random = 1.0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+
+[node name="BigSplash" type="Particles"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
+emitting = false
+amount = 100
+lifetime = 0.82
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Sound" parent="." instance=ExtResource( 3 )]
+stream = ExtResource( 4 )
+unit_db = -5.0
+autoplay = true

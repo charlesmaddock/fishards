@@ -1,0 +1,292 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/Theme/Resources/blank_stylebox.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/MainMenu/Util/HatButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/no_hat.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/fez_2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/safari.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/viking.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/top_hat.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/MainMenu/CosmeticsSidePanel.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/gooHat.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/wallHat.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/windHat.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/coolcap.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/coolColouredHat.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/knight.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/mohawk.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/halo.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/cannon.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/eye.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/fedora.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/goggles.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/plaugemask.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/snorkel.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/sunglasses.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/winterhat.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/pirate_hat.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/angry_brows.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/disguise_mask.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/frog_hat.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/goat_horns.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/heart_bobbers.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/rhino_horn.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/spiky_horns.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/beanie.png" type="Texture" id=36]
+
+[node name="Cosmetics" type="Control"]
+margin_right = 172.0
+margin_bottom = 296.0
+theme = ExtResource( 2 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hats" type="Label" parent="VBoxContainer"]
+margin_right = 173.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Hats"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="VBoxContainer/Hats"]
+visible = false
+margin_left = 63.0
+margin_right = 278.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.415686, 0.415686, 0.415686, 0.85098 )
+custom_constants/line_spacing = -7
+text = "Unlocking an achievement has a chance of unlocking a hat."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 23.0
+margin_right = 173.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 3 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -5.0
+margin_bottom = -4.0
+custom_styles/bg = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/ScrollContainer"]
+margin_left = 3.0
+margin_right = 153.0
+margin_bottom = 1376.0
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+
+[node name="None" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+icon = ExtResource( 6 )
+
+[node name="Test" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+visible = false
+margin_left = 119.0
+margin_right = 234.0
+hat = 1
+
+[node name="Fez" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 46.0
+margin_bottom = 88.0
+hat = 2
+icon = ExtResource( 7 )
+
+[node name="WinterHat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 92.0
+margin_bottom = 134.0
+hat = 17
+icon = ExtResource( 27 )
+
+[node name="Beanie" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 138.0
+margin_bottom = 180.0
+hat = 11
+icon = ExtResource( 36 )
+
+[node name="CoolCap" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 184.0
+margin_bottom = 226.0
+hat = 6
+icon = ExtResource( 15 )
+
+[node name="Viking" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 230.0
+margin_bottom = 272.0
+hat = 5
+icon = ExtResource( 9 )
+
+[node name="Halo" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 276.0
+margin_bottom = 318.0
+hat = 21
+icon = ExtResource( 19 )
+
+[node name="Cannon" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 322.0
+margin_bottom = 364.0
+hat = 18
+icon = ExtResource( 20 )
+
+[node name="Tophat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 368.0
+margin_bottom = 410.0
+hat = 4
+icon = ExtResource( 10 )
+
+[node name="Sunglasses" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 414.0
+margin_bottom = 456.0
+hat = 16
+icon = ExtResource( 26 )
+
+[node name="Fedora" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 460.0
+margin_bottom = 502.0
+hat = 20
+icon = ExtResource( 22 )
+
+[node name="Frog" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 506.0
+margin_bottom = 548.0
+hat = 27
+icon = ExtResource( 31 )
+
+[node name="Goohat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 552.0
+margin_bottom = 594.0
+hat = 10
+icon = ExtResource( 12 )
+
+[node name="Windhat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 598.0
+margin_bottom = 640.0
+hat = 8
+icon = ExtResource( 14 )
+
+[node name="WallHat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 644.0
+margin_bottom = 686.0
+hat = 9
+icon = ExtResource( 13 )
+
+[node name="Safari" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 690.0
+margin_bottom = 732.0
+hat = 3
+icon = ExtResource( 8 )
+
+[node name="CoolColouredCap" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 736.0
+margin_bottom = 778.0
+hat = 7
+icon = ExtResource( 16 )
+
+[node name="Knight" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 782.0
+margin_bottom = 824.0
+hat = 22
+icon = ExtResource( 17 )
+
+[node name="Mohawk" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 828.0
+margin_bottom = 870.0
+hat = 13
+icon = ExtResource( 18 )
+
+[node name="Eye" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 874.0
+margin_bottom = 916.0
+hat = 19
+icon = ExtResource( 21 )
+
+[node name="Googles" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 920.0
+margin_bottom = 962.0
+hat = 12
+icon = ExtResource( 23 )
+
+[node name="PlaugeMask" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 966.0
+margin_bottom = 1008.0
+hat = 14
+icon = ExtResource( 24 )
+
+[node name="Snorkel" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1012.0
+margin_bottom = 1054.0
+hat = 15
+icon = ExtResource( 25 )
+
+[node name="Disguise" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1058.0
+margin_bottom = 1100.0
+hat = 30
+icon = ExtResource( 30 )
+
+[node name="HeartBobbers" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1104.0
+margin_bottom = 1146.0
+hat = 29
+icon = ExtResource( 33 )
+
+[node name="Rhino" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1150.0
+margin_bottom = 1192.0
+hat = 24
+icon = ExtResource( 34 )
+
+[node name="Goat" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1196.0
+margin_bottom = 1238.0
+hat = 28
+icon = ExtResource( 32 )
+
+[node name="SpikyHorns" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1242.0
+margin_bottom = 1284.0
+hat = 25
+icon = ExtResource( 35 )
+
+[node name="Pirate" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1288.0
+margin_bottom = 1330.0
+hat = 26
+icon = ExtResource( 28 )
+
+[node name="AngryBrows" parent="VBoxContainer/Panel/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 1334.0
+margin_bottom = 1376.0
+hat = 23
+icon = ExtResource( 29 )

@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Entities/Spells/RockDash.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Component
+class_name RockDashable
+var COMPONENT_TYPE: int = Globals.ComponentTypes.RockDashable
+
+
+const _damage_component_scene = preload(\"res://Scenes/Components/Damage.tscn\")
+const _knockback_component_scene = preload(\"res://Scenes/Components/Knockback.tscn\")
+
+
+var _damage_component: Damage
+export(float) var _damage: int = 15
+var _knockback_component: Knockback
+export(float) var _knockback: float = 1
+var _health_component: Health
+
+
+onready var _rock_dash_anim = $RockDash 
+onready var _rock_dash_area = $RockDashArea 
+var _is_rock_dashing: bool = false
+
+
+func _ready():
+	_rock_dash_area.collision_mask = Globals.ColBits.HURTABLE + Globals.ColBits.KNOCKBACKABLE  + Globals.ColBits.SOLID
+	_rock_dash_area.connect(\"area_entered\", self, \"_on_entity_collided\")
+	
+	# Get or create a damage and knockback component for rock dash
+	_damage_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Damage)
+	if _damage_component == null:
+		_damage_component = _damage_component_scene.instance()
+		_damage_component.set_name(\"Rock Dash Damage\")
+		_damage_component.damage = _damage
+		_damage_component.set_enabled(false)
+		parent_entity.set_creator_id(parent_entity.get_id())
+		_damage_component.parent_entity = parent_entity
+		_damage_component.set_damage_creator_id(parent_entity.get_id())
+		_damage_component.repeat_damage = false
+		_damage_component.set_area(_rock_dash_area)
+		get_parent().call_deferred(\"add_child\", _damage_component)
+	
+	
+	_knockback_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Knockback)
+	if _knockback_component == null:
+		_knockback_component = _knockback_component_scene.instance()
+		_knockback_component.set_name(\"Rock Dash Knockback\")
+		_knockback_component.strength = _knockback
+		_knockback_component.parent_entity = parent_entity
+		_knockback_component.always_knockback_on_collide = false
+		_knockback_component.can_knockback_on_ready = false
+		_knockback_component.directional = true
+		_knockback_component.init(_rock_dash_area)
+		get_parent().call_deferred(\"add_child\", _knockback_component)
+	
+	_health_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Health)
+
+
+func _on_entity_collided(area: Area) -> void:
+	var hit_entity: Entity = Util.get_entity_from_area(area)
+	if hit_entity != null && _is_rock_dashing == true && _rock_dash_anim != null:
+		_rock_dash_anim.hit()
+		deactivate_rock_dash()
+
+
+# Any entity can have a spell caster, not just players, so if an entity has a damage constantly like
+# a cactus it should be able to rock dash with the damage it has by default
+func activate_rock_dash(dir: Vector2) -> void:
+	_is_rock_dashing = true
+	_health_component.set_invincible(true)
+	_damage_component.set_enabled(true)
+	_damage_component.can_damage_again()
+	
+	_damage_component.damage = _damage
+	
+	_knockback_component.strength = _knockback
+	
+	PacketSender.trigger_player_animation(parent_entity.get_id(), Globals.PlayerAnimations.START_ROCK_DASH, parent_entity.get_move_dir_v2())
+	_knockback_component.set_can_knockback(true)
+	
+	yield(get_tree().create_timer(0.4), \"timeout\")
+	
+	if _is_rock_dashing == true:
+		deactivate_rock_dash()
+
+
+func deactivate_rock_dash() -> void:
+	# Let other functions that listen to _on_collide work first
+	yield(get_tree(), \"idle_frame\")
+	_health_component.set_invincible(false)
+	_is_rock_dashing = false
+	parent_entity.add_force(parent_entity.get_force() * -0.75)
+	
+	PacketSender.trigger_player_animation(parent_entity.get_id(), Globals.PlayerAnimations.END_ROCK_DASH, parent_entity.get_move_dir_v2())
+	
+	_damage_component.set_enabled(false)
+	_knockback_component.set_can_knockback(false)
+
+
+func handle_rock_dash_effect(animation_nr: int):
+	if _rock_dash_anim != null:
+		if animation_nr == Globals.PlayerAnimations.START_ROCK_DASH: 
+			_rock_dash_anim.play()
+		elif animation_nr == Globals.PlayerAnimations.END_ROCK_DASH:
+			_rock_dash_anim.stop()
+"
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.738225
+
+[node name="RockDashable" type="Spatial"]
+script = SubResource( 1 )
+_damage = 20.0
+_knockback = 10.0
+
+[node name="RockDashArea" type="Area" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 1, 0.5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RockDashArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 3.25842e-08 )
+shape = SubResource( 2 )
+
+[node name="RockDash" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -0.401328 )

@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/ParticleEffects/PushEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Components/SpellRecoil.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sounds/push.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Components/Knockback.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/ReflectProjectiles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Components/Damage.gd" type="Script" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1.53792, 3.78559 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PushEffect:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.649305 ), Vector3( 0, 0, 2.988 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PushEffect/Trail:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PushEffect/push_effect_2/MeshInstance:material/0:shader_param/cutout")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.026, 5.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PushEffect/push_effect_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Area/CollisionShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Push" type="Spatial"]
+script = ExtResource( 2 )
+age_limit_seconds = 0.7
+
+[node name="PushEffect" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.3, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 2.988 )
+
+[node name="Trail" parent="PushEffect" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.495086 )
+emitting = false
+
+[node name="push_effect_2" parent="PushEffect" index="2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.0962905, 1.0186 )
+visible = false
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.649305 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1.00076, 0, 0, 0, 1.00076, 0, 0, 0, 0.541204, 0, 0.431452, 1.83655 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource( 6 )
+strength = 50.0
+launch = true
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 7 )]
+time_until_destroy = 0.2
+destroy_node_array = [ NodePath("../PushEffect/push_effect_2") ]
+destroy_area_directly = false
+
+[node name="ReflectProjectiles" parent="." instance=ExtResource( 8 )]
+projectile_can_pass_though_one_side = false
+invert_projectile = false
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource( 9 )
+damage = 1
+
+[node name="Sounds" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.649305 )
+on_create_stream = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Move"
+anims/Move = SubResource( 2 )
+
+[node name="SpellRecoil" parent="." instance=ExtResource( 3 )]
+force_magnitude = 25.0
+
+[editable path="PushEffect"]
+[editable path="PushEffect/push_effect_2"]

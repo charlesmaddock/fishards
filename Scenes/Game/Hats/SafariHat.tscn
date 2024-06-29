@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/9.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/7.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/8.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Meshes/Hats/safari_hat.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
+
+[node name="SafariHat" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="safari_hat" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 2 )
+material/3 = ExtResource( 1 )

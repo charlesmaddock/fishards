@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/plague_mask.obj-4fc5e735ddb3c27085f9cb99f618a515.mesh"
+
+[deps]
+
+files=[ "res://.import/plague_mask.obj-4fc5e735ddb3c27085f9cb99f618a515.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/plague_mask.obj"
+dest_files=[ "res://.import/plague_mask.obj-4fc5e735ddb3c27085f9cb99f618a515.mesh", "res://.import/plague_mask.obj-4fc5e735ddb3c27085f9cb99f618a515.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

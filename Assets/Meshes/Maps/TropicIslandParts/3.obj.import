@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh"
+
+[deps]
+
+files=[ "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh" ]
+
+source_file="res://Assets/Meshes/Maps/TropicIslandParts/3.obj"
+dest_files=[ "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh", "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

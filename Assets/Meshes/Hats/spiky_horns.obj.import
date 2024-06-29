@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/spiky_horns.obj-13fbeb39cfbda6bfa686e571ef990d1d.mesh"
+
+[deps]
+
+files=[ "res://.import/spiky_horns.obj-13fbeb39cfbda6bfa686e571ef990d1d.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/spiky_horns.obj"
+dest_files=[ "res://.import/spiky_horns.obj-13fbeb39cfbda6bfa686e571ef990d1d.mesh", "res://.import/spiky_horns.obj-13fbeb39cfbda6bfa686e571ef990d1d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

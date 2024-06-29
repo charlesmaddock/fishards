@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Meshes/Maps/rocky_map.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=3]
+[ext_resource path="res://Scenes/Maps/Environment/PineTree.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/base_color = Color( 0.803922, 0.803922, 0.8, 1 )
+shader_param/shade_color = Color( 0.635294, 0.682353, 0.741176, 1 )
+shader_param/shade_threshold = -0.744
+shader_param/use_attenuation = false
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_unshaded = true
+albedo_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[sub_resource type="PlaneMesh" id=4]
+size = Vector2( 200, 200 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+albedo_color = Color( 0.403922, 0.482353, 0.576471, 1 )
+
+[sub_resource type="BoxShape" id=6]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 2 )]
+
+[node name="PineTree" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.863936, 0, 0, 0, 0.863936, 0, 0, 0, 0.863936, 10.5558, 4.09711, -2.66768 )
+
+[node name="PineTree2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.859657, 0, -0.085881, 0, 0.863936, 0, 0.085881, 0, -0.859657, 7.07653, 4.09711, -6.60205 )
+
+[node name="PineTree3" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 0.863936, 0, 0.827528, 0, -0.24816, -11.2055, 4.09711, 2.46455 )
+
+[node name="PineTree5" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 0.863936, 0, 0.827528, 0, -0.24816, -4.8424, 3.97599, -0.969776 )
+
+[node name="PineTree6" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 0.863936, 0, 0.827528, 0, -0.24816, 4.57194, 2.11878, 9.76303 )
+
+[node name="PineTree12" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 1.19627, 0, 0.827528, 0, -0.24816, -14.6936, 6.48726, -14.3848 )
+
+[node name="PineTree15" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 1.19627, 0, 0.827528, 0, -0.24816, -19.9173, 6.48726, -11.4466 )
+
+[node name="PineTree13" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.319167, 0, -1.06431, 0, 1.33012, 0, 1.06431, 0, -0.319167, -15.6634, 6.48726, -9.27736 )
+
+[node name="PineTree16" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.319167, 0, -1.06431, 0, 1.33012, 0, 1.06431, 0, -0.319167, 17.0011, 6.48726, -0.376128 )
+
+[node name="PineTree17" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.890327, 0, 0.66479, 0, 1.03636, 0, -0.66479, 0, -0.890327, 17.2693, 6.48726, 4.452 )
+
+[node name="PineTree14" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.319167, 0, -1.06431, 0, 0.91003, 0, 1.06431, 0, -0.319167, -10.3993, 6.48726, -10.3275 )
+
+[node name="PineTree7" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.250867, 0, -0.836556, 0, 0.641146, 0, 0.836556, 0, -0.250867, -11.3298, 2.93158, 17.8086 )
+
+[node name="PineTree8" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.24816, 0, -0.827528, 0, 0.863936, 0, 0.827528, 0, -0.24816, -21.3407, 3.36185, 14.6162 )
+
+[node name="PineTree9" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.731755, 0, 0.612341, 0, 0.98914, 0, -0.612341, 0, 0.731755, -20.2751, 6.07421, 8.16874 )
+
+[node name="PineTree10" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.469838, 0, -0.830469, 0, 0.98914, 0, 0.830469, 0, -0.469838, 7.82034, 3.37352, 26.7592 )
+
+[node name="PineTree11" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.942093, 0, -0.151287, 0, 0.763979, 0, 0.151287, 0, 0.942093, 9.65433, 3.37352, 28.8578 )
+
+[node name="PineTree4" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.807296, 0, 0, 0, 1.01217, 0, 0, 0, 0.807296, -10.4374, 4.09711, -1.25305 )
+
+[node name="Water Plane" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.973153, 0 )
+layers = 2147483649
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Water body" type="StaticBody" parent="Water Plane"]
+transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -3, 0 )
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Water Plane/Water body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+shape = SubResource( 6 )

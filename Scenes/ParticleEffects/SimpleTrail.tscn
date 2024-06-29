@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=120]
+shader = ExtResource( 2 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=121]
+offsets = PoolRealArray( 0.366667, 0.681481, 0.97037, 1 )
+colors = PoolColorArray( 1, 0, 0.00784314, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0.269307, 0.289062, 0.0869446, 0 )
+
+[sub_resource type="GradientTexture" id=122]
+gradient = SubResource( 121 )
+width = 100
+
+[sub_resource type="Curve" id=123]
+_data = [ Vector2( 0, 0 ), 0.0, 2.77422, 0, 0, Vector2( 0.0350584, 0.258885 ), 0.269105, 0.269105, 0, 0, Vector2( 0.467249, 0.282955 ), -0.188478, -0.188478, 0, 0, Vector2( 1, 0 ), -0.529384, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=124]
+curve = SubResource( 123 )
+
+[sub_resource type="ParticlesMaterial" id=127]
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3( 0, 0, 0 )
+angle = 334.2
+angle_random = 1.0
+scale = 2.2
+scale_random = 0.74
+scale_curve = SubResource( 124 )
+color_ramp = SubResource( 122 )
+
+[sub_resource type="QuadMesh" id=126]
+
+[node name="Trail" type="Particles"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.341313, 1.28716 )
+material_override = SubResource( 120 )
+cast_shadow = 0
+amount = 20
+lifetime = 0.4
+visibility_aabb = AABB( -1.20376, -12.8849, -0.318128, 2.40753, 25.7699, 0.636256 )
+local_coords = false
+process_material = SubResource( 127 )
+draw_pass_1 = SubResource( 126 )

@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Materials/CelShaded/island_ground.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Materials/Map/small_foam.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Shaders/new_foam.shader" type="Shader" id=4]
+[ext_resource path="res://Assets/Meshes/Maps/TropicIslandParts/7.obj" type="ArrayMesh" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.613027, 0.758621, 0.918263, 0.987229 )
+colors = PoolColorArray( 0.069495, 0.069495, 0.069495, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.965972, 0.965972, 0.965972, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/foam_color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 7, 4 )
+shader_param/dark_color_cutout = 0.884
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/scroll_speed = -0.25
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/foam_gradient = SubResource( 2 )
+
+[node name="TropicPart_" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+polygon = PoolVector2Array( -17.0883, 0.604478, -15.3391, 6.21309, -12.1588, 10.3312, -9.13496, 11.3113, -4.57845, 11.8408, 0.783494, 15.2206, 6.18551, 17.4702, 11.5637, 16.417, 14.6615, 13.5593, 17.1769, 7.07924, 18.0107, 1.06612, 11.8336, 0.846066, 11.1719, 5.56562, 10.6039, 7.42339, 8.41098, 7.26298, 7.20057, 6.40554, 7.00478, -0.932344, 7.1928, -6.65456, 9.17182, -7.89914, 10.7901, -6.70713, 11.6774, -3.79229, 11.646, 1.99051, 17.9416, 2.64943, 17.6246, -4.37545, 17.025, -11.2203, 14.9045, -14.4633, 12.3664, -16.6148, 7.58935, -17.1215, 4.88345, -16.4061, -0.404545, -13.7123, -5.19317, -12.0425, -11.454, -10.0783, -14.4392, -7.60983, -17.0363, -2.70286 )
+
+[node name="island" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+mesh = ExtResource( 5 )
+material/0 = SubResource( 3 )
+material/1 = ExtResource( 1 )
+material/2 = ExtResource( 3 )

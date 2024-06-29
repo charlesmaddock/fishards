@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.967391, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 0.05
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale = 0.7
+scale_curve = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="WindHat" type="Spatial"]
+script = ExtResource( 6 )
+hat_type = 8
+
+[node name="Trail" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000504375 )
+material_override = SubResource( 1 )
+amount = 5
+lifetime = 0.6
+explosiveness = 0.05
+randomness = 0.19
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )

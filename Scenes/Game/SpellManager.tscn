@@ -1,0 +1,137 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+
+const SPELL_CAST_RANGE: float = 13.0
+
+
+var active_spell: int = Globals.SpellTypes.NONE
+var stance: int = Globals.PlayerStances.FLOP_AROUND
+
+
+var client: Node
+
+
+var selected_elements: Array = [Globals.Elements.NONE, Globals.Elements.NONE]
+# Starts at -1 so that fill_next_element_slot will work the first time
+var selected_elements_index: int = -1
+var _clients_elements: Array
+
+# Prevent player spamming requests to host since they can hold down fire
+var spam_cooldown_timer: float = 0
+const SPAM_COOLDOWN_MAX: float = 0.1
+
+
+signal update_spell_ui(selected_elements, active_spell)
+
+
+func _ready():
+	client = get_parent()
+	_clients_elements = UserSettings.get_elements()
+
+
+func _process(delta: float) -> void:
+	update_timers(delta)
+	check_change_elements()
+	check_cast_spell()
+
+
+func check_cast_spell() -> void:
+	if Input.is_action_pressed(\"cast_spell\") && spam_cooldown_timer > SPAM_COOLDOWN_MAX:
+		spam_cooldown_timer = 0
+		
+		var offset: float = -PI * 0.5
+		var screen_pos: Vector2 = get_viewport().get_camera().unproject_position(client.get_player().get_global_transform().origin)
+		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		var cast_direction: Vector2 = screen_pos.direction_to(mouse_pos)
+		
+		PacketSender.cast_directional_spell(client.id, active_spell, cast_direction) 
+
+
+func update_timers(delta: float) -> void:
+	spam_cooldown_timer += delta
+
+
+func check_change_elements() -> void:
+	var changed_elements: bool = false
+	if Input.is_action_just_pressed(\"reset_elements\"):
+		reset_elements();
+		changed_elements = true;
+	if Input.is_action_just_pressed(\"element_1\"):
+		fill_next_element_slot(_clients_elements[0])
+		changed_elements = true;
+	if Input.is_action_just_pressed(\"element_2\"):
+		fill_next_element_slot(_clients_elements[1])
+		changed_elements = true;
+	if Input.is_action_just_pressed(\"element_3\"):
+		fill_next_element_slot(_clients_elements[2])
+		changed_elements = true;
+		
+	if changed_elements:
+		check_active_spell();
+		emit_signal(\"update_spell_ui\", selected_elements, active_spell);
+
+
+func reset_elements() -> void:
+	selected_elements =  [Globals.Elements.NONE, Globals.Elements.NONE]
+	selected_elements_index = -1
+
+
+# Keep track of which slot we are selecting, reset if we reach the
+# max amount of 'spell slots'.
+func fill_next_element_slot(element: int) -> void:
+	selected_elements_index += 1;
+	
+	# Reset the selected slot when we all slots are full
+	if (selected_elements_index >= selected_elements.size()):
+		selected_elements_index = 0;
+	
+	# Reset the slots if we are at slot zero
+	if (selected_elements_index == 0):
+		for i in range(selected_elements.size()):
+			selected_elements[i] = Globals.Elements.NONE
+	
+	# Set the requested element
+	selected_elements[selected_elements_index] = element
+
+func check_active_spell()  -> void:
+	if (get_spell_from_elements(Globals.Elements.NONE, Globals.Elements.NONE)):
+		active_spell =Globals.SpellTypes.NONE;
+	elif (get_spell_from_elements(Globals.Elements.FIRE, Globals.Elements.FIRE)):
+		active_spell =Globals.SpellTypes.FIREBALL;
+	elif (get_spell_from_elements(Globals.Elements.WATER, Globals.Elements.WATER)):
+		active_spell =Globals.SpellTypes.DIVE;
+	elif(get_spell_from_elements(Globals.Elements.EARTH, Globals.Elements.EARTH)):
+		active_spell =Globals.SpellTypes.DASH;
+	elif (get_spell_from_elements(Globals.Elements.ARCANE, Globals.Elements.ARCANE)):
+		active_spell =Globals.SpellTypes.ARCANE_WALL;
+	elif (get_spell_from_elements(Globals.Elements.FIRE, Globals.Elements.EARTH)):
+		active_spell =Globals.SpellTypes.METEOR;
+	elif (get_spell_from_elements(Globals.Elements.FIRE, Globals.Elements.WATER)):
+		active_spell =Globals.SpellTypes.PUSH;
+	elif (get_spell_from_elements(Globals.Elements.WATER, Globals.Elements.EARTH)):
+		active_spell =Globals.SpellTypes.FREEZE;
+	elif (get_spell_from_elements(Globals.Elements.FIRE, Globals.Elements.ARCANE)):
+		active_spell =Globals.SpellTypes.FIREBLAST;
+	elif (get_spell_from_elements(Globals.Elements.WATER, Globals.Elements.ARCANE)):
+		active_spell =Globals.SpellTypes.CRAB;
+	elif (get_spell_from_elements(Globals.Elements.EARTH, Globals.Elements.ARCANE)):
+		active_spell =Globals.SpellTypes.TRANSFORM;
+
+func active_spell(new_spell: int) -> void:
+	# Set new active spell
+	# Set new stance
+	active_spell = new_spell
+
+func get_spell_from_elements(firstEl: int, secondEl: int) -> bool:
+	if((selected_elements[0] == firstEl && selected_elements[1] == secondEl) 
+	|| (selected_elements[0] == secondEl && selected_elements[1] == firstEl)):
+		return true;
+	else:
+		return false;
+"
+
+[node name="SpellManager" type="Node"]
+script = SubResource( 1 )

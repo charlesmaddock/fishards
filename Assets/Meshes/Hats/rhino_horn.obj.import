@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rhino_horn.obj-7af972aeb5a50e3cfec0a995bf085949.mesh"
+
+[deps]
+
+files=[ "res://.import/rhino_horn.obj-7af972aeb5a50e3cfec0a995bf085949.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/rhino_horn.obj"
+dest_files=[ "res://.import/rhino_horn.obj-7af972aeb5a50e3cfec0a995bf085949.mesh", "res://.import/rhino_horn.obj-7af972aeb5a50e3cfec0a995bf085949.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

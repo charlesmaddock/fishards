@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/base_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+shader_param/shade_color = Color( 0.721569, 0.733333, 0.74902, 1 )
+shader_param/shade_threshold = -0.984
+shader_param/use_attenuation = false

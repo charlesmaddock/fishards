@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Entities/Environment/Rock_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Entities/Environment/Rock_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Entities/Environment/PalmTree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Entities/Environment/LeafTree.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/Creatures/PlayerEntity.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=6]
+[ext_resource path="res://Scenes/Entities/Environment/DeadTree.tscn" type="PackedScene" id=7]
+
+[node name="Environment" type="Spatial"]
+
+[node name="Rock_02" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -45, 0, -46 )
+
+[node name="Cube001" parent="Rock_02" index="0"]
+transform = Transform( 0.034341, 0, 0, 0, 0.034341, 0, 0, 0, 0.034341, 0.25, 0, 0 )
+material/0 = ExtResource( 6 )
+
+[node name="Rock_01" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -48, 0, -46 )
+
+[node name="Rock" parent="Rock_01" index="0"]
+material/0 = ExtResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0 )
+
+[node name="palm_tree" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -42, 0, -46 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -42 )
+
+[node name="LeafTree" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.1907, 0, 0, 0, 1.1907, 0, 0, 0, 1.1907, -39, 0, -46 )
+
+[node name="DeadTree" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -46 )
+
+[editable path="Rock_02"]
+[editable path="Rock_01"]

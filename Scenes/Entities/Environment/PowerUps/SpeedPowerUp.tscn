@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/PowerUp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.441037
+
+[node name="SpeedPowerUp" type="Spatial"]
+script = ExtResource( 1 )
+age_limit_seconds = 16.0
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+shape = SubResource( 1 )
+
+[node name="PowerUp" parent="." instance=ExtResource( 2 )]
+power_type = 2
+
+[node name="StillSolid" parent="." instance=ExtResource( 3 )]
+disable_collider_on_ready = true

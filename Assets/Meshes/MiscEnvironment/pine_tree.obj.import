@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pine_tree.obj-5a1bdb975231914f6a5b4c18512a7c82.mesh"
+
+[deps]
+
+files=[ "res://.import/pine_tree.obj-5a1bdb975231914f6a5b4c18512a7c82.mesh" ]
+
+source_file="res://Assets/Meshes/MiscEnvironment/pine_tree.obj"
+dest_files=[ "res://.import/pine_tree.obj-5a1bdb975231914f6a5b4c18512a7c82.mesh", "res://.import/pine_tree.obj-5a1bdb975231914f6a5b4c18512a7c82.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

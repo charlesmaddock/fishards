@@ -1,0 +1,608 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Images/UI/Game/timer_icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scripts/Game/Gamemode.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Game/WinnersDisplay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Game/Leaderboard.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Game/GameOverPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Game/DeathPopup.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Game/MapShrinker.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "start"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, -3.99999, 1 ),
+"update": 0,
+"values": [ Vector2( 308, 58 ), Vector2( 308, 58 ), Vector2( 560, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:anchor_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:anchor_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:rect_rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.58, 0.67, 0.76, 0.86, 0.96, 1.08, 1.17, 1.26, 1.36, 1.46, 2.58, 2.67, 2.76, 2.86, 2.96, 3.08, 3.17, 3.26, 3.36, 3.46 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 15.0, 0.0, -15.0, 0.0, 0.0, 15.0, 0.0, -15.0, 0.0, 0.0, 15.0, 0.0, -15.0, 0.0, 0.0, 15.0, 0.0, -15.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "warning"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9, 1, 1.1, 1.2, 1.3, 1.6, 1.7, 1.8, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 9.0, 0.0, -9.0, 0.0, 0.0, 9.0, 0.0, -9.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:anchor_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:anchor_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 307.547, 54.4615 ) ]
+}
+
+[node name="Gamemode" type="Node"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="GamemodeControl" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="DeathPanel" type="PanelContainer" parent="GamemodeControl"]
+margin_left = 13.9664
+margin_top = 15.0407
+margin_right = 184.966
+margin_bottom = 59.0407
+rect_pivot_offset = Vector2( 85.3804, -1.09867 )
+mouse_filter = 1
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="GamemodeControl/DeathPanel"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 3.0
+margin_right = 171.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="GamemodeControl/DeathPanel/Margin"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="GamemodeControl/DeathPanel/Margin/VBox"]
+margin_right = 160.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "You died"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="GamemodeControl/DeathPanel/Margin/VBox"]
+margin_top = 17.0
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/line_spacing = -2
+text = "You will respawn in the next round!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpectateTip" type="Control" parent="GamemodeControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -126.606
+margin_top = 10.2831
+margin_right = -86.6066
+margin_bottom = 50.2831
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Panel" parent="GamemodeControl/SpectateTip"]
+margin_top = 30.1784
+margin_right = 16.0
+margin_bottom = 46.1784
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="<" type="Label" parent="GamemodeControl/SpectateTip/Left"]
+margin_right = 17.0
+margin_bottom = 14.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "<"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RIght" type="Panel" parent="GamemodeControl/SpectateTip"]
+margin_left = 20.2616
+margin_top = 30.3399
+margin_right = 36.2616
+margin_bottom = 46.3399
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name=">" type="Label" parent="GamemodeControl/SpectateTip/RIght"]
+margin_left = 1.45352
+margin_right = 18.4535
+margin_bottom = 14.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = ">"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="GamemodeControl/SpectateTip"]
+margin_top = 2.4185
+margin_right = 208.0
+margin_bottom = 26.4185
+rect_min_size = Vector2( 60, 0 )
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.490196, 0.47451, 0.462745, 1 )
+custom_constants/line_spacing = -2
+text = "Use your keyboard's arrow 
+keys to spectate others"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameStartingScreen" type="Control" parent="GamemodeControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="VBoxContainer" parent="GamemodeControl/GameStartingScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -116.0
+margin_right = 150.0
+margin_bottom = 118.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Round" type="Label" parent="GamemodeControl/GameStartingScreen/Panel"]
+margin_right = 300.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.494118, 0.494118, 0.494118, 1 )
+text = "Round 1/1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamemodeText" type="Label" parent="GamemodeControl/GameStartingScreen/Panel"]
+margin_top = 17.0
+margin_right = 300.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.415686, 0.415686, 0.415686, 1 )
+custom_colors/font_color_shadow = Color( 0.239216, 0.239216, 0.239216, 1 )
+text = "Game Starting"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Countdown" type="Label" parent="GamemodeControl/GameStartingScreen/Panel"]
+margin_top = 34.0
+margin_right = 300.0
+margin_bottom = 234.0
+rect_min_size = Vector2( 300, 200 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.415686, 0.415686, 0.415686, 1 )
+custom_colors/font_color_shadow = Color( 0.239216, 0.239216, 0.239216, 1 )
+text = "4"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverPanel" parent="GamemodeControl" instance=ExtResource( 8 )]
+visible = false
+margin_bottom = 60.0
+
+[node name="InGameScreen" type="Control" parent="GamemodeControl"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InGameScreenIconContainer" type="HBoxContainer" parent="GamemodeControl/InGameScreen"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 10.0
+margin_right = 29.0001
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 12, 6.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IngameIconAnimation" type="AnimationPlayer" parent="GamemodeControl/InGameScreen/InGameScreenIconContainer"]
+anims/start = SubResource( 1 )
+anims/warning = SubResource( 2 )
+
+[node name="Icon" type="Control" parent="GamemodeControl/InGameScreen/InGameScreenIconContainer"]
+margin_right = 6.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 6, 0 )
+
+[node name="TextureRect2" type="TextureRect" parent="GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon"]
+modulate = Color( 0.356863, 0.356863, 0.356863, 1 )
+margin_top = 3.60184
+margin_right = 8.0
+margin_bottom = 11.6018
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon"]
+modulate = Color( 0.513726, 0.513726, 0.513726, 1 )
+margin_top = 2.84589
+margin_right = 8.0
+margin_bottom = 10.8459
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="GamemodeControl/InGameScreen/InGameScreenIconContainer"]
+margin_left = 10.0
+margin_right = 55.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( 12, 6.42077 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.513726, 0.513726, 0.513726, 1 )
+custom_colors/font_color_shadow = Color( 0.34902, 0.34902, 0.34902, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "wave 1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leaderboard" parent="GamemodeControl" instance=ExtResource( 7 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.831
+margin_top = -133.566
+margin_right = 149.169
+margin_bottom = -88.5659
+
+[node name="WinnersDisplay" parent="GamemodeControl" instance=ExtResource( 6 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -157.849
+margin_top = -133.551
+margin_right = 274.151
+margin_bottom = 229.449
+
+[node name="DeathPopup" type="ColorRect" parent="GamemodeControl"]
+visible = false
+modulate = Color( 1, 1, 1, 0.974943 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0.811765, 0.207843, 0.207843, 0.396078 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+gamemodeNodePath = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="GamemodeControl/DeathPopup"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Control" type="Control" parent="GamemodeControl/DeathPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.9497
+margin_top = -32.8981
+margin_right = 20.0503
+margin_bottom = 7.1019
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="GamemodeControl/DeathPopup/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -115.5
+margin_top = -61.0
+margin_right = 115.5
+margin_bottom = -9.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.909804, 0.835294, 0.835294, 1 )
+custom_colors/font_color_shadow = Color( 0.188235, 0.188235, 0.188235, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "You died!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamemodeControl/DeathPopup/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -72.5
+margin_right = 72.5
+margin_bottom = 174.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementSelectPanel" type="Panel" parent="GamemodeControl/DeathPopup/Control/VBoxContainer"]
+margin_right = 145.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GamemodeControl/DeathPopup/Control/VBoxContainer/ElementSelectPanel"]
+margin_left = 7.00403
+margin_top = 3.55233
+margin_right = 140.004
+margin_bottom = 22.5523
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+text = "Change elements?"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="GamemodeControl/DeathPopup/Control/VBoxContainer/ElementSelectPanel"]
+margin_left = 14.0706
+margin_top = 12.7313
+margin_right = 130.071
+margin_bottom = 25.7313
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+text = "Drag and drop the arrows"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="GamemodeControl/DeathPopup/Control/VBoxContainer/ElementSelectPanel" instance=ExtResource( 11 )]
+margin_left = 35.5503
+margin_top = 24.3654
+margin_right = 101.55
+margin_bottom = 49.3654
+kill_on_update = false
+label_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+
+[node name="Button" parent="GamemodeControl/DeathPopup/Control/VBoxContainer" instance=ExtResource( 12 )]
+margin_top = 59.0
+margin_right = 145.0
+margin_bottom = 84.0
+button_text = "Respawn"
+
+[node name="KillLog" type="VBoxContainer" parent="GamemodeControl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -325.253
+margin_top = 28.0407
+margin_right = -14.2528
+margin_bottom = 68.0407
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameStateTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="CenterScreenTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AllRoundsOverTimer" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+
+[node name="RoundOverTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ElementSwitchTimer" type="Timer" parent="."]
+
+[node name="MapShrinker" parent="." instance=ExtResource( 10 )]
+
+[connection signal="timeout" from="GamemodeControl/DeathPopup/Timer" to="GamemodeControl/DeathPopup" method="_on_Timer_timeout"]
+[connection signal="pressed" from="GamemodeControl/DeathPopup/Control/VBoxContainer/Button" to="GamemodeControl/DeathPopup" method="_on_Button_pressed"]
+[connection signal="timeout" from="GameStateTimer" to="." method="_on_GameStateTimer_timeout"]
+[connection signal="timeout" from="CenterScreenTimer" to="." method="_on_CenterScreenTimer_timeout"]
+[connection signal="timeout" from="AllRoundsOverTimer" to="." method="_on_AllRoundsOverTimer_timeout"]
+[connection signal="timeout" from="RoundOverTimer" to="." method="_on_RoundOverTimer_timeout"]
+[connection signal="timeout" from="ElementSwitchTimer" to="." method="_on_ElementSwitchTimer_timeout"]

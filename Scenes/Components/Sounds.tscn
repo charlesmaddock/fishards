@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Components/Sounds.gd" type="Script" id=1]
+
+[node name="Sounds" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="OnCreate" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+unit_size = 10.0
+bus = "SFX"
+
+[node name="OnLive" type="AudioStreamPlayer3D" parent="."]
+unit_size = 10.0
+autoplay = true
+bus = "SFX"
+
+[node name="OnLanded" type="AudioStreamPlayer3D" parent="."]
+unit_size = 10.0
+autoplay = true
+bus = "SFX"
+
+[node name="OnDestroy" type="AudioStreamPlayer3D" parent="."]
+unit_size = 10.0
+bus = "SFX"

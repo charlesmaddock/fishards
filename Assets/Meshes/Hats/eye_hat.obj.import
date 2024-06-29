@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/eye_hat.obj-785eb71e6cee42db5421c24148ebc023.mesh"
+
+[deps]
+
+files=[ "res://.import/eye_hat.obj-785eb71e6cee42db5421c24148ebc023.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/eye_hat.obj"
+dest_files=[ "res://.import/eye_hat.obj-785eb71e6cee42db5421c24148ebc023.mesh", "res://.import/eye_hat.obj-785eb71e6cee42db5421c24148ebc023.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

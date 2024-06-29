@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 17.317
+height = 0.0695753
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 23.7375, 0.297, 4.02275 )
+
+[node name="SpawnArea" type="Spatial"]
+
+[node name="SpawnCircle" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpawnBox" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262592, 17.0378 )
+shape = SubResource( 2 )

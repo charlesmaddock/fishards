@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Materials/CelShaded/tree_color.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/burnt_tree_1.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 1.44188
+height = 8.98862
+
+[node name="burnt_tree_1" type="Spatial"]
+script = ExtResource( 2 )
+manually_set_entity_type = 1
+subtype_name = "BURNT_TREE_1"
+can_move = false
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0490679, 1.44127, -0.103646 )
+shape = SubResource( 1 )
+
+[node name="burnt_tree_1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24154, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="StillSolid" parent="." instance=ExtResource( 5 )]

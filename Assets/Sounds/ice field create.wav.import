@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ice field create.wav-b08327e42b3dea0e357cbeb7799a090c.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/ice field create.wav"
+dest_files=[ "res://.import/ice field create.wav-b08327e42b3dea0e357cbeb7799a090c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Components/Crab.gd" type="Script" id=1]
+
+[node name="Crab" type="Node2D"]
+script = ExtResource( 1 )
+speed = 7.0
+seconds_to_damage_after = 1.5

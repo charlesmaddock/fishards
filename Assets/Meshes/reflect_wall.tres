@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial; render_mode unshaded, cull_disabled;
+
+
+uniform vec4 color: hint_color;
+uniform float frequency = 10.0;
+uniform float speed = 8.0;
+uniform sampler2D cutout_gradient;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(8.0,2.0);
+
+
+void fragment(){
+	float noise = texture(noise_tex, vec2(UV.x * noise_scale.x, UV.y * noise_scale.y)).r;
+	float sin_pattern = abs(sin(frequency * UV.y - TIME*speed));
+	float gradient = texture(cutout_gradient, vec2(UV.y, UV.x)).r;
+	
+	float shape = (sin_pattern + noise) / 2.0;
+	float cut_shape = step(gradient, shape);
+	
+	ALBEDO = vec3(cut_shape) * color.rgb;
+	ALPHA = cut_shape;
+	ALPHA_SCISSOR = 0.9;
+	
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.395973, 0.983221 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.261719, 0.261719, 0.261719, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.819608, 0.435294, 0.67451, 1 )
+shader_param/frequency = 15.0
+shader_param/speed = -14.0
+shader_param/noise_scale = Vector2( 3, 2 )
+shader_param/cutout_gradient = SubResource( 3 )
+shader_param/noise_tex = ExtResource( 1 )

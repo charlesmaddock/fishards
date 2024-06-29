@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Meshes/VFX/heal_vfx_perimiter.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=19]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform vec4 color : hint_color;
+uniform sampler2D noise_tex;
+uniform sampler2D gradient_tex;
+uniform vec2 noise_scale = vec2(1.0, 1.0);
+
+uniform float cutout = 0.7;
+
+uniform float scroll_speed = 0.25;
+
+void fragment(){
+	
+	float noise = texture( noise_tex, vec2(UV.x*noise_scale.x , UV.y*noise_scale.y - TIME * scroll_speed)).r;
+	float gradient = texture( gradient_tex, vec2(UV.y, UV.x)).r;
+	
+	gradient = 1.0 - gradient;
+
+	float shape = step( gradient, cutout - noise);
+	
+	ALBEDO = color.rgb;
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.01;
+	
+}"
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.350649, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.623377, 0.623377, 0.623377, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="ShaderMaterial" id=25]
+shader = SubResource( 19 )
+shader_param/color = Color( 0.501961, 0.67451, 0.482353, 1 )
+shader_param/noise_scale = Vector2( 1, 0.5 )
+shader_param/cutout = 0.7
+shader_param/scroll_speed = -0.4
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/gradient_tex = SubResource( 21 )
+
+[sub_resource type="Curve" id=23]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.881188, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 23 )
+
+[sub_resource type="ParticlesMaterial" id=26]
+gravity = Vector3( 0, 0, 0 )
+scale = 0.8
+scale_curve = SubResource( 24 )
+
+[node name="Perimiter" type="Particles"]
+material_override = SubResource( 25 )
+amount = 1
+lifetime = 10.0
+one_shot = true
+process_material = SubResource( 26 )
+draw_pass_1 = ExtResource( 1 )

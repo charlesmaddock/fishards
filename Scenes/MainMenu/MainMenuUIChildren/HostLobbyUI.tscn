@@ -1,0 +1,202 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/MainMenu/RoomSettings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/MainMenu/HostLobbyUI.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/Theme/Resources/simple_stone_no_shadow_styleboxflat.tres" type="StyleBox" id=8]
+
+[node name="HostLobbyUI" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -241.0
+margin_top = -145.0
+margin_right = 240.0
+margin_bottom = 142.0
+theme = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostLobby" type="Label" parent="Control"]
+margin_top = -23.9499
+margin_right = 139.0
+margin_bottom = -4.94992
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Host lobby"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Control/Container"]
+margin_right = 481.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+
+[node name="Name" type="Label" parent="Control/Container/HBox"]
+margin_right = 230.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Room name"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Control/Container/HBox/Name"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -98.0
+margin_top = -10.0
+margin_bottom = 10.0
+text = "unnamed room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Type" type="Label" parent="Control/Container/HBox"]
+margin_left = 250.0
+margin_right = 481.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( 94.3451, 0.999962 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Type"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="Control/Container/HBox/Type"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -98.2203
+margin_top = -7.5
+margin_right = -0.220276
+margin_bottom = 11.5
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/disabled = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+text = "Public"
+align = 2
+items = [ "Private", null, false, 0, null, "Friends Only (They must join via steam)", null, false, 1, null, "Public", null, false, 2, null ]
+selected = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSettingsControl" parent="Control/Container" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 21.0
+margin_right = 481.0
+margin_bottom = 267.0
+
+[node name="Buttons" type="Control" parent="Control/Container"]
+margin_top = 275.0
+margin_right = 481.0
+margin_bottom = 275.0
+
+[node name="ErrorMessage" type="Label" parent="Control/Container/Buttons"]
+margin_left = 113.0
+margin_top = -7.0
+margin_right = 373.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.686275, 0.203922, 0.180392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Container/Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -7.01129
+margin_right = 1.0
+margin_bottom = 17.9887
+size_flags_horizontal = 3
+custom_constants/separation = 40
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" parent="Control/Container/Buttons/HBoxContainer" instance=ExtResource( 3 )]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0.019 )
+size_flags_horizontal = 3
+button_text = "back"
+
+[node name="Control" type="Control" parent="Control/Container/Buttons/HBoxContainer"]
+margin_left = 140.0
+margin_right = 180.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Control/Container/Buttons/HBoxContainer"]
+margin_left = 220.0
+margin_right = 260.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="Control/Container/Buttons/HBoxContainer"]
+margin_left = 300.0
+margin_right = 340.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" parent="Control/Container/Buttons/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 380.0
+margin_right = 480.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+button_text = "host"
+
+[connection signal="pressed" from="Control/Container/Buttons/HBoxContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Control/Container/Buttons/HBoxContainer/Host" to="." method="_on_Host_pressed"]

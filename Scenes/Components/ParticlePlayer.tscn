@@ -1,0 +1,513 @@
+[gd_scene load_steps=62 format=2]
+
+[ext_resource path="res://Scripts/Components/ParticlePlayer.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Meshes/VFX/fishard_fire_mesh.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=5]
+[ext_resource path="res://Scenes/ParticleEffects/FireballHit.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Textures/Particle/heal_plus.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Meshes/VFX/dash_beam_hit_particle.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://Assets/Shaders/fireblast.shader" type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.803922, 0.223529, 0.34902, 1 )
+shader_param/dark_color = Color( 0.819608, 0.435294, 0.67451, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+spread = 180.0
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 9.56
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 3 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="ShaderMaterial" id=52]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.929412, 0.733333, 0.27451, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+spread = 180.0
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 9.56
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 3 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0.366667, 0.681481, 0.97037, 1 )
+colors = PoolColorArray( 1, 0, 0.00784314, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0.269307, 0.289062, 0.0869446, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+width = 100
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 0 ), 0.0, 2.77422, 0, 0, Vector2( 0.0350584, 0.258885 ), 0.269105, 0.269105, 0, 0, Vector2( 0.443396, 0.20241 ), -0.188478, -0.188478, 0, 0, Vector2( 1, 0 ), -0.529384, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3( 0, 0, 1 )
+spread = 60.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+angle = 334.2
+angle_random = 1.0
+scale = 2.2
+scale_random = 0.74
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 9 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+lifetime_randomness = 1.0
+spread = 90.0
+gravity = Vector3( 0, -15, 0 )
+initial_velocity = 6.0
+angle = 403.4
+angle_random = 1.0
+scale = 0.5
+scale_random = 0.66
+scale_curve = SubResource( 14 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 0.52
+hue_variation_random = 1.0
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=17]
+material = SubResource( 16 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+lifetime_randomness = 1.0
+spread = 90.0
+gravity = Vector3( 0, -15, 0 )
+initial_velocity = 6.0
+angle = 403.4
+angle_random = 1.0
+scale = 0.9
+scale_random = 0.66
+scale_curve = SubResource( 19 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 0.52
+hue_variation_random = 1.0
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=22]
+material = SubResource( 21 )
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.411765, 0.643137, 0.415686, 1 )
+shader_param/dark_color = Color( 0.337255, 0.54902, 0.396078, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 7 )
+
+[sub_resource type="Curve" id=24]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.439024, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 24 )
+
+[sub_resource type="ParticlesMaterial" id=26]
+emission_shape = 1
+emission_sphere_radius = 0.7
+gravity = Vector3( 0, 2, 0 )
+scale = 0.3
+scale_random = 0.51
+scale_curve = SubResource( 25 )
+color = Color( 1, 0, 0, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[sub_resource type="QuadMesh" id=27]
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/dark_color = Color( 0.215686, 0.2, 0.192157, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=29]
+offsets = PoolRealArray( 0, 0.271186 )
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
+[sub_resource type="Curve" id=31]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0487805, 1 ), 1.4, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=32]
+curve = SubResource( 31 )
+
+[sub_resource type="ParticlesMaterial" id=33]
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 0.1, 0.1 )
+direction = Vector3( 0, 1, 0 )
+spread = 34.12
+gravity = Vector3( 0, -3.586, 0 )
+initial_velocity = 15.0
+damping = 53.55
+scale = 0.88
+scale_random = 0.91
+scale_curve = SubResource( 32 )
+color_ramp = SubResource( 30 )
+
+[sub_resource type="QuadMesh" id=34]
+
+[sub_resource type="Shader" id=35]
+code = "shader_type spatial;
+render_mode unshaded, cull_front;
+
+uniform vec4 color: hint_color;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0);
+uniform float gradient_vertex_strenght = 1.0;
+uniform float cutout = 1.0;
+uniform float speed = 1.0;
+
+
+
+void fragment() {
+	float gradient = (1.0 - UV.y);
+	float noise = texture(noise_tex, UV*noise_scale + TIME*vec2(0.0, 1.0)*speed).r;
+	
+	ALPHA = step(gradient * cutout, noise);
+	ALBEDO = color.rgb;
+	ALPHA_SCISSOR = 1.0;
+}
+
+void vertex() {
+	float noise = texture(noise_tex, UV*noise_scale + TIME*vec2(0.0, 1.0)*speed).r *2.0 -1.0;
+	float gradient = (1.0 - UV.y) * 2.0;
+	VERTEX.xz += (NORMAL.xz * noise * gradient * 0.4);
+	VERTEX.xz -= NORMAL.xz * 0.2 * gradient;
+}"
+
+[sub_resource type="ShaderMaterial" id=36]
+shader = SubResource( 35 )
+shader_param/color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/noise_scale = Vector2( 0.5, 0.5 )
+shader_param/gradient_vertex_strenght = 1.088
+shader_param/cutout = 0.781
+shader_param/speed = 1.4
+shader_param/noise_tex = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=37]
+shader = SubResource( 35 )
+shader_param/color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/noise_scale = Vector2( 0.25, 0.25 )
+shader_param/gradient_vertex_strenght = 1.088
+shader_param/cutout = 0.781
+shader_param/speed = 1.4
+shader_param/noise_tex = ExtResource( 8 )
+
+[sub_resource type="Gradient" id=38]
+offsets = PoolRealArray( 0, 0.902027, 1 )
+colors = PoolColorArray( 0.0472973, 0.0472973, 0.0472973, 1, 0.903471, 0.903471, 0.903471, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=39]
+gradient = SubResource( 38 )
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = ExtResource( 10 )
+shader_param/noise_outer_cutout = 0.116
+shader_param/noise_inner_cutout = 0.4
+shader_param/noise_scale = 1.0
+shader_param/noise_scroll_speed = Vector2( 0, -2 )
+shader_param/light_color = Color( 0.694118, 0.552941, 0.788235, 1 )
+shader_param/dark_color = Color( 0.466667, 0.415686, 0.584314, 1 )
+shader_param/flip_shape_tex = true
+shader_param/noise_texture = ExtResource( 8 )
+shader_param/shape_texture = SubResource( 39 )
+
+[sub_resource type="Gradient" id=41]
+
+[sub_resource type="GradientTexture" id=42]
+gradient = SubResource( 41 )
+
+[sub_resource type="ParticlesMaterial" id=43]
+gravity = Vector3( 0, 0, 0 )
+color_ramp = SubResource( 42 )
+
+[sub_resource type="ShaderMaterial" id=51]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.694118, 0.552941, 0.788235, 1 )
+shader_param/dark_color = Color( 0.466667, 0.415686, 0.584314, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = true
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=44]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 1, 1, 1, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=45]
+_data = [ Vector2( 0.331522, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.576087, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=46]
+curve = SubResource( 45 )
+
+[sub_resource type="ParticlesMaterial" id=47]
+emission_shape = 1
+emission_sphere_radius = 0.2
+gravity = Vector3( 0, 0, 0 )
+angle = 720.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 46 )
+
+[sub_resource type="QuadMesh" id=48]
+
+[sub_resource type="CurveTexture" id=49]
+curve = SubResource( 45 )
+
+[sub_resource type="ParticlesMaterial" id=50]
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 14.7
+initial_velocity_random = 0.08
+damping = 38.19
+angle = 720.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 49 )
+
+[node name="ParticlePlayer" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="FireblastHurtEffect" type="Spatial" parent="."]
+
+[node name="FireblastHit" type="Particles" parent="FireblastHurtEffect"]
+material_override = SubResource( 1 )
+emitting = false
+amount = 24
+lifetime = 0.36
+one_shot = true
+explosiveness = 0.52
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="WildfireHurtEffect" type="Spatial" parent="."]
+
+[node name="WildfireHit" type="Particles" parent="WildfireHurtEffect"]
+material_override = SubResource( 52 )
+emitting = false
+amount = 24
+lifetime = 0.36
+one_shot = true
+explosiveness = 0.52
+local_coords = false
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="FireHurtEffect" type="Spatial" parent="."]
+
+[node name="FireballHit" parent="FireHurtEffect" instance=ExtResource( 6 )]
+amount = 8
+process_material = SubResource( 12 )
+
+[node name="WaterSplashEffect" type="Spatial" parent="."]
+
+[node name="BigSplash" type="Particles" parent="WaterSplashEffect"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
+emitting = false
+amount = 20
+lifetime = 0.82
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 17 )
+
+[node name="LavaSplashEffect" type="Spatial" parent="."]
+
+[node name="BigSplash" type="Particles" parent="LavaSplashEffect"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
+emitting = false
+amount = 20
+lifetime = 0.82
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 20 )
+draw_pass_1 = SubResource( 22 )
+
+[node name="Healed" type="Spatial" parent="."]
+
+[node name="Healed" type="Particles" parent="Healed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.656716, 0 )
+material_override = SubResource( 23 )
+emitting = false
+lifetime = 0.6
+one_shot = true
+process_material = SubResource( 26 )
+draw_pass_1 = SubResource( 27 )
+
+[node name="DashBeamTrail" type="Spatial" parent="."]
+
+[node name="MeteorMuzzle" type="Spatial" parent="."]
+
+[node name="Particles" type="Particles" parent="MeteorMuzzle"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.91713, 0 )
+material_override = SubResource( 28 )
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.75
+local_coords = false
+process_material = SubResource( 33 )
+draw_pass_1 = SubResource( 34 )
+
+[node name="BurningEffect" type="Spatial" parent="."]
+
+[node name="FireMesh" type="MeshInstance" parent="BurningEffect"]
+transform = Transform( 1.43194, 0, 0, 0, 1.43194, 0, 0, 0, 1.43194, -0.000226498, 0.306854, -0.106562 )
+visible = false
+mesh = ExtResource( 3 )
+material/0 = SubResource( 36 )
+
+[node name="FireMesh2" type="MeshInstance" parent="BurningEffect"]
+transform = Transform( 0.847599, 0, 0, 0, 0.847599, 0, 0, 0, 0.847599, -0.000226498, 0.340285, -0.106562 )
+visible = false
+mesh = ExtResource( 3 )
+material/0 = SubResource( 37 )
+
+[node name="DashBeamHurt" type="Spatial" parent="."]
+
+[node name="Particles" type="Particles" parent="DashBeamHurt"]
+transform = Transform( -1.18916, 0, -1.0396e-07, 0, 1.18916, 0, 1.15747e-07, 0, -1.32399, 0, 0, 0 )
+material_override = SubResource( 40 )
+emitting = false
+amount = 1
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 43 )
+draw_pass_1 = ExtResource( 9 )
+
+[node name="WildfireHit2" type="Particles" parent="DashBeamHurt"]
+material_override = SubResource( 51 )
+emitting = false
+lifetime = 0.36
+one_shot = true
+explosiveness = 0.52
+local_coords = false
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="PushedTrail" type="Spatial" parent="."]
+
+[node name="Particles" type="Particles" parent="PushedTrail"]
+material_override = SubResource( 44 )
+emitting = false
+amount = 16
+local_coords = false
+process_material = SubResource( 47 )
+draw_pass_1 = SubResource( 48 )
+
+[node name="PushedLanding" type="Spatial" parent="."]
+
+[node name="Particles" type="Particles" parent="PushedLanding"]
+material_override = SubResource( 44 )
+emitting = false
+amount = 16
+lifetime = 0.86
+one_shot = true
+explosiveness = 0.86
+local_coords = false
+process_material = SubResource( 50 )
+draw_pass_1 = SubResource( 48 )

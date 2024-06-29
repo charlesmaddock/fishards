@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Globals/SceneLoader.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/MainMenu/Loading.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Fonts/pixel_small.tres" type="DynamicFont" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.376471, 0.352941, 0.337255, 0 ), Color( 0.376471, 0.352941, 0.337255, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect/loading/LoadingSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="SceneLoader" type="CanvasLayer"]
+process_priority = 100
+layer = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Process Priority is very low since the loading should be done last"
+}
+
+[node name="Fade Animation" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.376471, 0.352941, 0.337255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gamemodeTips" type="VBoxContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -36.0
+margin_right = 120.0
+margin_bottom = 36.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="round" type="Label" parent="ColorRect/gamemodeTips"]
+margin_right = 240.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 0, 18 )
+custom_colors/font_color = Color( 1, 1, 1, 0.45098 )
+text = "Coming up next:"
+
+[node name="title" type="Label" parent="ColorRect/gamemodeTips"]
+margin_top = 22.0
+margin_right = 240.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="desc" type="Label" parent="ColorRect/gamemodeTips"]
+margin_top = 39.0
+margin_right = 240.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.8 )
+autowrap = true
+
+[node name="loading" type="Control" parent="ColorRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingSprite" parent="ColorRect/loading" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Label" type="Label" parent="ColorRect/loading"]
+margin_left = -177.0
+margin_top = -23.0
+margin_right = -34.0
+margin_bottom = -10.0
+text = "Loading... 0%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ColorRect/loading"]
+pause_mode = 2
+margin_left = -274.0
+margin_top = -23.0
+margin_right = -197.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/loading/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+custom_colors/font_color = Color( 0.313726, 0.227451, 0.227451, 1 )
+text = "Cancel Loading"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SlowPlayerTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="ColorRect/loading/Button" to="." method="cancel_loading"]
+[connection signal="timeout" from="SlowPlayerTimer" to="." method="_on_SlowPlayerTimer_timeout"]

@@ -1,0 +1,505 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Meshes/ModelScenes/TropicIslandLarge_1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Textures/Sprites/paint_circle.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_5.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_6.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_6.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_5.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Entities/Environment/PalmTree.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_1.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_2.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Meshes/ModelScenes/grass.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/TropicalBridge.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/TropicalBridgeWhole.tscn" type="PackedScene" id=24]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 12.7362
+height = 0.0695753
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 6.84061, 1, 16.1614 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 5.0
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.482353, 0.635294, 0.901961, 1 )
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.92549, 0.376471, 0.376471, 1 )
+albedo_texture = ExtResource( 6 )
+
+[node name="IslandMedium" type="Spatial"]
+script = ExtResource( 3 )
+environment_types = [ "PALM_TREE" ]
+ground_scenes = [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 2 ) ]
+spawn_area_container = NodePath("SpawnAreas")
+red_team_spawn_container_path = NodePath("TeamSpawnAreas/RedTeamContainer")
+blue_team_spawn_container_path = NodePath("TeamSpawnAreas/BlueTeamContainer")
+hand_placed_entity_container = NodePath("HandPlacedEntities")
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.93726, 0.100225, -0.333914, 0.314813, 0.168202, 0.934131, 0.149789, -0.980644, 0.126097, 0, 8.79119, -12.0225 )
+shadow_contact = 0.38
+
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="SpawnCircle" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.905, 0.5, -4.0448 )
+shape = SubResource( 1 )
+
+[node name="SpawnCircle5" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1135, 0.499985, -34.6382 )
+shape = SubResource( 1 )
+
+[node name="SpawnCircle3" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8941, 0.5, -21.9014 )
+shape = SubResource( 1 )
+
+[node name="SpawnCircle4" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2343, 0.5, 28.6742 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 0.983502, 0, 0.180897, 0, 1, 0, -0.180897, 0, 0.983502, -35.8285, 0.5, 4.81415 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 0.229183, 0, -0.973383, 0, 1, 0, 0.973383, 0, 0.229183, -9.48576, 0.5, -27.4987 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( -0.911633, 0, -0.411005, 0, 1, 0, 0.411005, 0, -0.911633, 23.9092, 0.5, -14.0844 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( -0.929171, 0, 0.369649, 0, 1, 0, -0.369649, 0, -0.929171, 23.6696, 0.5, 12.8908 )
+shape = SubResource( 2 )
+
+[node name="island_shaped_3" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.412924, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, -0.923113, 0 )
+depth = 2.0
+polygon = PoolVector2Array( -3.77361, -32.0067, -6.18517, -25.7945, -14.2087, -18.7122, -21.1318, -11.9829, -25.3555, -1.59994, -24.572, 6.61431, -17.025, 15.3541, -10.0339, 19.2053, -1.57201, 19.9163, 8.86026, 17.2009, 17.6939, 9.18075, 19.7608, 2.62021, 17.2168, -5.62184, 12.2616, -12.9772, 8.49341, -17.9536, 8.26522, -21.2777, 10.2488, -25.2345, 9.83761, -30.8205, 12.3492, -34.1516, 20.0082, -34.417, 30.8733, -25.9902, 34.42, -20.3041, 35.4028, -14.4004, 38.6175, -10.4068, 45.6921, -4.51152, 47.8113, 1.34121, 47.2521, 8.41527, 43.8118, 14.5196, 38.9463, 19.2668, 39.1875, 26.0234, 41.0306, 33.5488, 39.5188, 39.055, 35.4113, 45.7108, 28.1426, 50.1882, 22.0295, 50.7232, 16.4998, 49.3379, 11.4937, 46.1652, 3.65871, 40.8717, -1.74663, 38.2022, -9.84157, 37.3597, -17.6583, 38.3149, -26.1191, 38.9616, -31.9095, 37.8636, -36.8226, 34.7039, -41.259, 29.1071, -45.253, 22.0144, -48.0674, 15.2505, -49.2325, 11.6494, -48.5835, 8.6063, -47.3428, 4.05012, -47.8096, -3.51091, -46.2374, -10.5384, -44.5195, -15.7974, -41.5775, -22.5309, -40.6921, -30.2394, -41.0979, -36.3581, -40.2803, -40.1202, -35.0451, -43.911, -27.3841, -44.8103, -19.8385, -43.0278, -9.47681, -40.6892, -6.52552, -38.4737 )
+
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, -0.923113, 0 )
+depth = 2.0
+polygon = PoolVector2Array( -13.8822, -4.17395, -16.5143, -1.07391, -15.5295, 3.55384, -12.2061, 7.99147, -8.53293, 10.1983, -3.88825, 10.3511, 3.28071, 7.94319, 6.83352, 6.81781, 7.57071, 0.985649, 6.59168, -4.47771, 4.59635, -6.59268, -1.63576, -7.60264, -10.1084, -6.30401 )
+
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, -0.923113, 0 )
+depth = 2.0
+polygon = PoolVector2Array( -7.17168, -18.5996, -7.52415, -14.5481, -5.00184, -12.4767, -1.82576, -13.103, 1.9429, -17.5976, 2.76568, -21.4595, 1.08351, -23.9281, -2.7858, -23.2199 )
+
+[node name="HandPlacedEntities" type="Spatial" parent="."]
+
+[node name="WaterRock_1" parent="HandPlacedEntities" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.008, 0, -11.2339 )
+
+[node name="WaterRock_8" parent="HandPlacedEntities" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.2378, 0, 15.7945 )
+
+[node name="WaterRock_9" parent="HandPlacedEntities" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.415, 0, -16.2906 )
+
+[node name="WaterRock_10" parent="HandPlacedEntities" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4649, 0.0376892, -45.1822 )
+
+[node name="WaterRock_2" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2518, 0, 24.8519 )
+
+[node name="WaterRock_11" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8411, 0, -41.2786 )
+
+[node name="WaterRock_16" parent="HandPlacedEntities" instance=ExtResource( 11 )]
+transform = Transform( -0.841237, 0, 0.540666, 0, 1, 0, -0.540666, 0, -0.841237, 36.0355, 0.037693, -52.4135 )
+
+[node name="WaterRock_17" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( -0.841237, 0, 0.540666, 0, 1, 0, -0.540666, 0, -0.841237, 35.9388, 3.8147e-06, -57.1159 )
+
+[node name="WaterRock_12" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -51.5863, 0.0103998, 10.8926 )
+
+[node name="WaterRock_7" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 0.799833, 0, -1.41537, 0, 1, 0, 1.08339, 0, 0.612229, 42.1366, 0, 21.5867 )
+
+[node name="WaterRock_20" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 0.799833, 0, -1.41537, 0, 1, 0, 1.08339, 0, 0.612229, -35.5405, 0, 49.439 )
+
+[node name="WaterRock_21" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( 0.970245, 0, 0.790995, 0, 1, 0, -0.933859, 0, 1.32379, -23.2639, 0, 49.8066 )
+
+[node name="WaterRock_22" parent="HandPlacedEntities" instance=ExtResource( 7 )]
+transform = Transform( -0.790566, 0, -1.01182, 0, 1, 0, 1.09017, 0, -1.16375, -34.3041, 0, 53.5169 )
+
+[node name="WaterRock_3" parent="HandPlacedEntities" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0255, 0, 2.64451 )
+
+[node name="WaterRock_4" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434561, 3.8147e-06, 32.6429 )
+
+[node name="WaterRock_5" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58605, 0, 28.5582 )
+
+[node name="WaterRock_23" parent="HandPlacedEntities" instance=ExtResource( 9 )]
+transform = Transform( -0.995207, 0, 0.097791, 0, 1, 0, -0.097791, 0, -0.995207, 2.93939, -1.90735e-06, 10.1185 )
+
+[node name="WaterRock_24" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( -0.995207, 0, 0.097791, 0, 1, 0, -0.097791, 0, -0.995207, -8.19912, -3.8147e-06, 9.88541 )
+
+[node name="WaterRock_19" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4238, 0, 50.4176 )
+
+[node name="WaterRock_18" parent="HandPlacedEntities" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1045, 0, -55.6298 )
+
+[node name="WaterRock_6" parent="HandPlacedEntities" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.754, 7.62939e-06, -1.33142 )
+
+[node name="WaterRock_25" parent="HandPlacedEntities" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.27937, 9.53674e-06, 8.96418 )
+
+[node name="WaterRock_13" parent="HandPlacedEntities" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8892, 7.62939e-06, -12.3135 )
+
+[node name="WaterRock_14" parent="HandPlacedEntities" instance=ExtResource( 12 )]
+transform = Transform( -0.748238, 0, -0.66343, 0, 1, 0, 0.66343, 0, -0.748238, -18.4638, 7.62939e-06, -8.39675 )
+
+[node name="WaterRock_15" parent="HandPlacedEntities" instance=ExtResource( 12 )]
+transform = Transform( -0.61617, 0, 0.787613, 0, 1, 0, -0.787613, 0, -0.61617, -9.36511, 7.62939e-06, -12.3659 )
+
+[node name="Rock_1" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( 0.74329, 0, 0, 0, 0.74329, 0, 0, 0, 0.74329, 24.135, 0, 15.3938 )
+
+[node name="Rock_16" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( 0.74329, 0, 0, 0, 0.74329, 0, 0, 0, 0.74329, -35.9746, 0, -5.82019 )
+
+[node name="Rock_17" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( 0.74329, 0, 0, 0, 0.74329, 0, 0, 0, 0.74329, 39.0345, 0, -0.969357 )
+
+[node name="Rock_2" parent="HandPlacedEntities" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.3393, 0, 14.6105 )
+
+[node name="Rock_3" parent="HandPlacedEntities" instance=ExtResource( 14 )]
+transform = Transform( 0.0969053, 0, -0.995294, 0, 1, 0, 0.995294, 0, 0.0969053, 28.1006, 0, 15.5306 )
+
+[node name="Rock_4" parent="HandPlacedEntities" instance=ExtResource( 15 )]
+transform = Transform( -0.888657, 0, -0.458572, 0, 1, 0, 0.458572, 0, -0.888657, 19.6964, 0, 10.6234 )
+
+[node name="Rock_5" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( 0.69364, 0, 0, 0, 0.69364, 0, 0, 0, 0.69364, 19.6742, -9.53674e-07, 7.5717 )
+
+[node name="Rock_19" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( 0.69364, 0, 0, 0, 0.69364, 0, 0, 0, 0.69364, -35.2892, -9.53674e-07, -11.2525 )
+
+[node name="Rock_20" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( 0.69364, 0, 0, 0, 0.69364, 0, 0, 0, 0.69364, -12.8853, -9.53674e-07, -3.26013 )
+
+[node name="Rock_6" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7083, 0, 31.4875 )
+
+[node name="Rock_18" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8634, -3.8147e-06, -3.18065 )
+
+[node name="Rock_7" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( 1.46528, 0, 0, 0, 1.46528, 0, 0, 0, 1.46528, -11.7151, 0, 37.7829 )
+
+[node name="Rock_8" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( -0.736447, 0, -0.100632, 0, 0.74329, 0, 0.100632, 0, -0.736447, -13.0085, 3.8147e-06, -31.4553 )
+
+[node name="Rock_9" parent="HandPlacedEntities" instance=ExtResource( 18 )]
+transform = Transform( -0.990793, 0, -0.135387, 0, 1, 0, 0.135387, 0, -0.990793, -23.007, 3.8147e-06, -33.0311 )
+
+[node name="Rock_10" parent="HandPlacedEntities" instance=ExtResource( 14 )]
+transform = Transform( -0.230763, 0, 0.97301, 0, 1, 0, -0.97301, 0, -0.230763, -20.7547, 3.8147e-06, -32.2651 )
+
+[node name="Rock_11" parent="HandPlacedEntities" instance=ExtResource( 15 )]
+transform = Transform( 0.818391, 0, 0.574662, 0, 1, 0, -0.574662, 0, 0.818391, -11.21, 3.8147e-06, -30.2698 )
+
+[node name="Rock_12" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( -0.687254, 0, -0.0939097, 0, 0.69364, 0, 0.0939097, 0, -0.687254, -9.59945, 2.86102e-06, -25.3728 )
+
+[node name="Rock_23" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( -0.687254, 0, -0.0939097, 0, 0.69364, 0, 0.0939097, 0, -0.687254, -35.9599, -9.53674e-07, -9.92899 )
+
+[node name="Rock_24" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( 0.226084, 0, 0.708072, 0, 0.74329, 0, -0.708072, 0, 0.226084, -30.4074, 0, 42.1929 )
+
+[node name="Rock_25" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( -0.119579, 0, -0.683255, 0, 0.69364, 0, 0.683255, 0, -0.119579, -34.317, -9.53674e-07, 40.9291 )
+
+[node name="Rock_21" parent="HandPlacedEntities" instance=ExtResource( 16 )]
+transform = Transform( 0.0759238, 0, 0.689473, 0, 0.69364, 0, -0.689473, 0, 0.0759238, -0.89101, -9.53674e-07, 4.03246 )
+
+[node name="Rock_13" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( -0.990793, 0, -0.135387, 0, 1, 0, 0.135387, 0, -0.990793, -11.6931, 3.8147e-06, -21.105 )
+
+[node name="Rock_14" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( 1.46528, 0, 0, 0, 1.46528, 0, 0, 0, 1.46528, 3.27351, 0, 2.83977 )
+
+[node name="Rock_22" parent="HandPlacedEntities" instance=ExtResource( 13 )]
+transform = Transform( 1.46528, 0, 0, 0, 1.46528, 0, 0, 0, 1.46528, 13.0366, 0, 15.907 )
+
+[node name="PalmTree" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7518, 0, -14.7548 )
+
+[node name="PalmTree2" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66534, 0, 4.51574 )
+
+[node name="PalmTree9" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9604, 0, -4.78888 )
+
+[node name="PalmTree10" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 0.00148353, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00148353, -7.98221, 0, -7.85041 )
+
+[node name="PalmTree3" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2462, 0, 38.2942 )
+
+[node name="PalmTree4" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.2773, 0, 28.9007 )
+
+[node name="PalmTree5" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11385, -3.8147e-06, 17.5941 )
+
+[node name="PalmTree6" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 0.708722, 0, -0.705488, 0, 1, 0, 0.705488, 0, 0.708722, 32.0703, -3.8147e-06, -32.5667 )
+
+[node name="PalmTree8" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 0.607958, 0, 0.793969, 0, 1, 0, -0.793969, 0, 0.607958, 36.6612, -3.8147e-06, -34.2391 )
+
+[node name="PalmTree7" parent="HandPlacedEntities" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6357, -3.8147e-06, -45.6812 )
+
+[node name="HandPlacedGroundEnv" type="Spatial" parent="."]
+
+[node name="grass" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.901009, 0, 0.69651 )
+
+[node name="grass47" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63199, 0, 4.48438 )
+
+[node name="grass46" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05986, 0, -2.67628 )
+
+[node name="grass2" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.56511, 0, -7.07171 )
+
+[node name="grass48" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.19382, 0, -5.36275 )
+
+[node name="grass3" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1793, 0, -2.76917 )
+
+[node name="grass4" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5422, 0, -9.29695 )
+
+[node name="grass5" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3267, 0, -3.60861 )
+
+[node name="grass6" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8947, 0, -11.676 )
+
+[node name="grass7" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.6778, -9.53674e-07, 12.4222 )
+
+[node name="grass8" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7891, -9.53674e-07, 8.95439 )
+
+[node name="grass9" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3163, -1.90735e-06, 12.0519 )
+
+[node name="grass10" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3163, -1.90735e-06, 8.05188 )
+
+[node name="grass11" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.8133, -1.90735e-06, 12.082 )
+
+[node name="grass12" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.9611, -1.90735e-06, 15.9322 )
+
+[node name="grass13" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4425, -1.90735e-06, 15.7408 )
+
+[node name="grass14" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4235, -9.53674e-07, 15.0966 )
+
+[node name="grass15" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3722, -9.53674e-07, 18.7114 )
+
+[node name="grass16" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2295, -9.53674e-07, 19.6944 )
+
+[node name="grass17" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2598, -1.90735e-06, 19.89 )
+
+[node name="grass18" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.0309, -1.90735e-06, 24.6192 )
+
+[node name="grass19" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.9351, -1.90735e-06, 28.6174 )
+
+[node name="grass20" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.553, -1.90735e-06, 22.9855 )
+
+[node name="grass21" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4202, -1.90735e-06, 35.2463 )
+
+[node name="grass22" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3386, -1.90735e-06, 37.6941 )
+
+[node name="grass23" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27632, -1.90735e-06, 34.4758 )
+
+[node name="grass24" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6446, -1.90735e-06, 19.1804 )
+
+[node name="grass25" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9611, -1.90735e-06, 16.0357 )
+
+[node name="grass26" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5873, -1.90735e-06, 20.4016 )
+
+[node name="grass27" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4737, -1.90735e-06, 3.56754 )
+
+[node name="grass28" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0593, -1.90735e-06, 0.138128 )
+
+[node name="grass29" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7415, -1.90735e-06, 4.01331 )
+
+[node name="grass30" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2989, -1.90735e-06, 6.93712 )
+
+[node name="grass34" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0903, -1.90735e-06, -31.4084 )
+
+[node name="grass35" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2799, -1.90735e-06, -28.8746 )
+
+[node name="grass36" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6719, -1.90735e-06, -25.738 )
+
+[node name="grass37" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.6547, -1.90735e-06, -29.6761 )
+
+[node name="grass38" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4933, -1.90735e-06, -25.1764 )
+
+[node name="grass39" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0376, -1.90735e-06, -21.2631 )
+
+[node name="grass40" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03181, -1.90735e-06, -24.018 )
+
+[node name="grass41" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18642, -9.53674e-07, -23.4083 )
+
+[node name="grass42" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2869, -1.90735e-06, -32.2699 )
+
+[node name="grass43" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7343, -9.53674e-07, -29.5078 )
+
+[node name="grass49" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.6217, -9.53674e-07, -31.6771 )
+
+[node name="grass44" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82521, -9.53674e-07, -25.2798 )
+
+[node name="grass45" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4762, -9.53674e-07, -23.1699 )
+
+[node name="grass31" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.4147, -1.90735e-06, 6.30639 )
+
+[node name="grass32" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1127, -1.90735e-06, -5.03068 )
+
+[node name="grass33" parent="HandPlacedGroundEnv" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1127, -1.90735e-06, -5.03068 )
+
+[node name="SmallTropicalBridge" parent="HandPlacedGroundEnv" instance=ExtResource( 23 )]
+transform = Transform( -0.293085, -0.017813, 0.28521, -0.0110942, 0.425911, 0.0134169, -0.255857, 0.00193697, -0.327291, -4.78442, -0.246981, 24.2939 )
+
+[node name="SmallTropicalBridge3" parent="HandPlacedGroundEnv" instance=ExtResource( 24 )]
+transform = Transform( 0.0725173, 0.0397705, -0.44715, -0.0111136, 0.420529, 0.0413174, 0.379665, 0.0047135, 0.0866168, 5.31012, -0.743047, 20.2304 )
+
+[node name="SmallTropicalBridge2" parent="HandPlacedGroundEnv" instance=ExtResource( 23 )]
+transform = Transform( -0.295094, -0.0177972, 0.282619, -0.0110942, 0.425911, 0.0134169, -0.253537, 0.00207743, -0.329531, 7.55769, -0.246981, -7.61011 )
+
+[node name="SmallTropicalBridge4" parent="HandPlacedGroundEnv" instance=ExtResource( 24 )]
+transform = Transform( 0.31806, 0.0316448, -0.257833, -0.0111136, 0.420529, 0.0413174, 0.219641, -0.0245462, 0.375457, 11.8693, -0.743047, -11.6585 )
+
+[node name="SmallTropicalBridge5" parent="HandPlacedGroundEnv" instance=ExtResource( 23 )]
+transform = Transform( -0.341242, -0.0169799, 0.208169, -0.0110942, 0.425911, 0.0134169, -0.186857, 0.00572161, -0.380959, -17.7119, -0.246985, 12.494 )
+
+[node name="SmallTropicalBridge6" parent="HandPlacedGroundEnv" instance=ExtResource( 24 )]
+transform = Transform( 0.356682, 0.0258691, -0.174401, -0.0111136, 0.420529, 0.0413174, 0.148937, -0.0305729, 0.420749, -14.3331, -0.489036, 7.63974 )
+
+[node name="small_pebbles_2" parent="HandPlacedGroundEnv" instance=ExtResource( 21 )]
+transform = Transform( 0.269407, 0, 0.963026, 0, 1, 0, -0.963026, 0, 0.269407, -9.63128, 0, -2.75046 )
+
+[node name="small_pebbles_4" parent="HandPlacedGroundEnv" instance=ExtResource( 21 )]
+transform = Transform( -0.650628, 0, 0.759396, 0, 1, 0, -0.759396, 0, -0.650628, -0.497597, 0, -6.63903 )
+
+[node name="small_pebbles_1" parent="HandPlacedGroundEnv" instance=ExtResource( 20 )]
+transform = Transform( 0.269407, 0, 0.963026, 0, 1, 0, -0.963026, 0, 0.269407, 1.73218, 0, 3.56003 )
+
+[node name="small_pebbles_3" parent="HandPlacedGroundEnv" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63316, 0, 4.16834 )
+
+[node name="TeamSpawnAreas" type="Spatial" parent="."]
+
+[node name="BlueTeamContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Blue spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/BlueTeamContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -38 )
+shape = SubResource( 3 )
+
+[node name="Blue Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/BlueTeamContainer/Blue spawn collision shape"]
+transform = Transform( 3.31002e-07, 1.7, 4.37114e-08, 0, -7.43094e-08, 1, 1.7, -3.31002e-07, -8.51092e-15, 0, 0.1, 0 )
+material_override = SubResource( 4 )
+modulate = Color( 0.988235, 0.988235, 0.992157, 1 )
+texture = ExtResource( 6 )
+
+[node name="RedTeamContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Red spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/RedTeamContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 34 )
+shape = SubResource( 3 )
+
+[node name="Red Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/RedTeamContainer/Red spawn collision shape"]
+transform = Transform( 3.31002e-07, 1.7, 4.37114e-08, 0, -7.43094e-08, 1, 1.7, -3.31002e-07, -8.51092e-15, 0, 0.1, 0 )
+material_override = SubResource( 5 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 6 )
+
+[node name="Water Plane" parent="." instance=ExtResource( 1 )]

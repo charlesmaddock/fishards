@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Shaders/new_foam.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.115646, 0.55102, 0.918263, 0.987229 )
+colors = PoolColorArray( 0.069495, 0.069495, 0.069495, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.965972, 0.965972, 0.965972, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/foam_color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 2, 0.991 )
+shader_param/dark_color_cutout = 0.828
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/scroll_speed = -0.25
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/foam_gradient = SubResource( 2 )

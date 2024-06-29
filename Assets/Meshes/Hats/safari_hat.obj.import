@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/safari_hat.obj-d5c99d5b96009aa7681962599371b4a3.mesh"
+
+[deps]
+
+files=[ "res://.import/safari_hat.obj-d5c99d5b96009aa7681962599371b4a3.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/safari_hat.obj"
+dest_files=[ "res://.import/safari_hat.obj-d5c99d5b96009aa7681962599371b4a3.mesh", "res://.import/safari_hat.obj-d5c99d5b96009aa7681962599371b4a3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

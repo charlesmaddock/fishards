@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/LoadingLobbyUI.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/MainMenu/Loading.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/MainMenu/PasswordPopup.tscn" type="PackedScene" id=4]
+
+[node name="LoadingLobbyUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+zoomed_in = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.376471, 0.352941, 0.337255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FailedResponse" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -47.0
+margin_right = 73.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FailedResponse"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.5
+margin_top = -8.5
+margin_right = 41.5
+margin_bottom = 9.5
+text = "Failed to join room"
+
+[node name="Back" type="Button" parent="FailedResponse"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -19.0
+margin_right = 20.0
+text = "back"
+
+[node name="Loading" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingSprite" parent="Loading" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 14.0713
+margin_top = 15.8336
+margin_right = 54.0713
+margin_bottom = 55.8336
+loading_text = "Loading Lobby"
+loading_text_color = Color( 0.160784, 0.160784, 0.160784, 1 )
+
+[node name="Status" type="Label" parent="Loading"]
+margin_left = -40.7859
+margin_top = 71.5754
+margin_right = 83.2141
+margin_bottom = 84.5754
+custom_colors/font_color = Color( 0.160784, 0.160784, 0.160784, 1 )
+text = "Waiting for host to respond"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leave" type="Button" parent="Loading"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.3105
+margin_top = 51.6276
+margin_right = 19.6895
+margin_bottom = 70.6276
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Loading/Leave"]
+margin_right = 40.0
+margin_bottom = 16.0
+text = "Cancel"
+align = 1
+
+[node name="PasswordPopup" parent="." instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="FailedResponse/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Loading/Leave" to="." method="_on_Leave_pressed"]
+[connection signal="pressed" from="PasswordPopup/Button" to="." method="_on_passwordButton_pressed"]
+[connection signal="pressed" from="PasswordPopup/Back" to="." method="_on_Back_pressed"]
+
+[editable path="PasswordPopup"]

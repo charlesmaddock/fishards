@@ -1,0 +1,249 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Entities/Environment/PalmTree.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_6.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_6.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_4.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Meshes/golden_gooey_god.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_2.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Meshes/ModelScenes/grass.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_3.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_1.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_5.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/SmallTropicalBridge.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Materials/CelShaded/highland_rock.tres" type="Material" id=26]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=27]
+[ext_resource path="res://Scenes/Game/TeamSpawnAreas.tscn" type="PackedScene" id=28]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 9.5492
+height = 4.39172
+
+[sub_resource type="CylinderShape" id=2]
+radius = 11.6363
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 27 )
+shader_param/base_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/shade_color = Color( 0.627451, 0.345098, 0.266667, 1 )
+shader_param/shade_threshold = -0.235
+shader_param/use_attenuation = false
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+
+[sub_resource type="Animation" id=5]
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("golden_gooey_god:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[node name="IslandSmall" type="Spatial"]
+script = ExtResource( 12 )
+environment_types = [ "PALM_TREE" ]
+ground_scenes = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 7 ), ExtResource( 21 ) ]
+spawn_area_container = NodePath("SpawnAreas")
+red_team_spawn_container_path = NodePath("TeamSpawnAreas/RedTeamSpawnContainer")
+blue_team_spawn_container_path = NodePath("TeamSpawnAreas/BlueTeamSpawnContainer")
+hand_placed_entity_container = NodePath("HandPlacedEntityContainer")
+
+[node name="HandPlacedEntityContainer" type="Spatial" parent="."]
+
+[node name="PalmTree5" parent="HandPlacedEntityContainer" instance=ExtResource( 2 )]
+transform = Transform( 0.908107, 0, 0.418739, 0, 1, 0, -0.418739, 0, 0.908107, 15.4815, 0, 11.1866 )
+
+[node name="PalmTree6" parent="HandPlacedEntityContainer" instance=ExtResource( 2 )]
+transform = Transform( 0.908107, 0, 0.418739, 0, 1, 0, -0.418739, 0, 0.908107, 22.6883, -9.53676e-07, -11.5561 )
+
+[node name="PalmTree7" parent="HandPlacedEntityContainer" instance=ExtResource( 2 )]
+transform = Transform( 0.976304, 0, 0.216406, 0, 1, 0, -0.216406, 0, 0.976304, 10.2157, -0.0210657, -20.8697 )
+
+[node name="PalmTree4" parent="HandPlacedEntityContainer" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4658, 0, -8.13345 )
+
+[node name="PalmTree2" parent="HandPlacedEntityContainer" instance=ExtResource( 2 )]
+transform = Transform( 0.809089, 0, 0.587686, 0, 1, 0, -0.587686, 0, 0.809089, -8.14389, 1.90735e-06, 23.0356 )
+
+[node name="WaterRock_1" parent="HandPlacedEntityContainer" instance=ExtResource( 8 )]
+transform = Transform( 0.0202967, 0, 0.999794, 0, 1, 0, -0.999794, 0, 0.0202967, -31.731, -0.565844, -21.6523 )
+
+[node name="WaterRock_2" parent="HandPlacedEntityContainer" instance=ExtResource( 10 )]
+transform = Transform( 0.778112, 0, -0.628126, 0, 1, 0, 0.628126, 0, 0.778112, 44.5758, -3.8147e-06, 10.1693 )
+
+[node name="WaterRock_9" parent="HandPlacedEntityContainer" instance=ExtResource( 10 )]
+transform = Transform( -0.994194, 0, -0.1076, 0, 1, 0, 0.1076, 0, -0.994194, 37.3626, 0, -16.3531 )
+
+[node name="WaterRock_3" parent="HandPlacedEntityContainer" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5472, -0.668935, 17.5383 )
+
+[node name="WaterRock_7" parent="HandPlacedEntityContainer" instance=ExtResource( 11 )]
+transform = Transform( 0.676233, 0, 0.736687, 0, 1, 0, -0.736687, 0, 0.676233, 3.66433, -0.644794, -30.3239 )
+
+[node name="WaterRock_4" parent="HandPlacedEntityContainer" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2042, -0.623334, -12.3026 )
+
+[node name="WaterRock_8" parent="HandPlacedEntityContainer" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.4877, -0.623338, 6.1125 )
+
+[node name="WaterRock_5" parent="HandPlacedEntityContainer" instance=ExtResource( 9 )]
+transform = Transform( 0.778112, 0, -0.628126, 0, 1, 0, 0.628126, 0, 0.778112, -36.6075, -0.62258, -8.63851 )
+
+[node name="WaterRock_10" parent="HandPlacedEntityContainer" instance=ExtResource( 10 )]
+transform = Transform( 0.84153, 0, 0.540211, 0, 1, 0, -0.540211, 0, 0.84153, 6.56843, -0.626889, 33.8189 )
+
+[node name="WaterRock_11" parent="HandPlacedEntityContainer" instance=ExtResource( 9 )]
+transform = Transform( 0.84153, 0, 0.540211, 0, 1, 0, -0.540211, 0, 0.84153, 10.4433, -0.626889, 34.7939 )
+
+[node name="WaterRock_6" parent="HandPlacedEntityContainer" instance=ExtResource( 13 )]
+transform = Transform( 0.0202967, 0, 0.999794, 0, 1, 0, -0.999794, 0, 0.0202967, -29.5159, -0.565844, -23.7912 )
+
+[node name="Rock_4" parent="HandPlacedEntityContainer" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7179, -1.90735e-06, 7.3137 )
+
+[node name="Rock_10" parent="HandPlacedEntityContainer" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6432, -1.90735e-06, -11.1892 )
+
+[node name="Rock_5" parent="HandPlacedEntityContainer" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.255, 0, 9.35255 )
+
+[node name="Rock_6" parent="HandPlacedEntityContainer" instance=ExtResource( 4 )]
+transform = Transform( -0.99963, 0, 0.0272061, 0, 1, 0, -0.0272061, 0, -0.99963, -2.12389, 3.8147e-06, 20.854 )
+
+[node name="Rock_7" parent="HandPlacedEntityContainer" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3853, 0, -8.82838 )
+
+[node name="Rock_9" parent="HandPlacedEntityContainer" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29254, 0, -15.2204 )
+
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="SpawnCircle" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7404, 0, -0.592916 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3343, 0, -7.68932 )
+shape = SubResource( 2 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.806187, 0.590527, -0.0366251, -3.34746e-08, 0.0619022, 0.998082, 0.591662, -0.80464, 0.0499048, 0, 8.79119, -12.0225 )
+
+[node name="SmallTropicalBridge" parent="." instance=ExtResource( 25 )]
+transform = Transform( 0.00836211, 0, -0.3499, 0, 0.35, 0, 0.3499, 0, 0.00836211, 3.53546, -0.581892, 0 )
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 0.410656, -6.22263, 1.75362, -2.7981, 1.90589, 4.01454, 3.85333, 14.7162, 2.16318, 20.2179, -0.478586, 23.1356, -5.09185, 24.2607, -14.4309, 23.1356, -24.3325, 19.3662, -28.8051, 15.3905, -30.3241, 10.6647, -29.5927, 6.33272, -26.6672, 1.94449, -21.7726, -2.66878, -20.3225, -6.78223, -17.0031, -10.1579, -10.7584, -12.1269, -4.09127, -10.9482 )
+
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 5.48043, 1.42931, 9.54962, 5.55879, 12.6015, 12.9673, 16.2036, 16.004, 20.6032, 17.1438, 25.787, 15.8854, 28.7887, 12.9613, 31.4862, 10.3198, 34.4826, 5.60586, 36.4902, 1.36177, 37.6957, -3.34631, 36.1344, -7.06479, 32.114, -9.9041, 25.8981, -10.8032, 18.587, -12.9868, 13.952, -13.9889, 9.12665, -12.6118, 5.28959, -6.84932 )
+
+[node name="CollisionPolygon4" type="CollisionPolygon" parent="Ground"]
+polygon = PoolVector2Array( 6.99865, 20.1065, 4.81894, 22.8313, 5.49979, 27.1233, 8.83764, 29.917, 12.5844, 29.5081, 15.5132, 26.1695, 15.8532, 22.0138, 14.3544, 18.8805, 10.6084, 18.1994 )
+
+[node name="Water Plane" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.702745, 0 )
+
+[node name="HandPlacedGroundEnvironment" type="Spatial" parent="."]
+
+[node name="grass" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 23.4333, 0.101979, -6.07438 )
+
+[node name="grass4" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 20.2471, 0.101979, -12.9069 )
+
+[node name="grass2" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 24.8452, 0.10198, -0.386412 )
+
+[node name="grass5" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 20.4231, 0.10198, 8.75989 )
+
+[node name="grass6" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, -6.86269, 0.101976, 3.3415 )
+
+[node name="grass10" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, -5.60165, 0.101976, -17.8793 )
+
+[node name="grass7" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, -12.9018, 0.101979, 3.60364 )
+
+[node name="grass8" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 0.343535, 0, -1.21752, 0, 1.26505, 0, 1.21752, 0, 0.343535, 11.0918, 0.101975, -24.9442 )
+
+[node name="grass9" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 0.343535, 0, -1.21752, 0, 1.26505, 0, 1.21752, 0, 0.343535, -4.86179, 0.101979, 21.1971 )
+
+[node name="grass3" parent="HandPlacedGroundEnvironment" instance=ExtResource( 21 )]
+transform = Transform( 1.26505, 0, 0, 0, 1.26505, 0, 0, 0, 1.26505, 19.1556, 0.10198, -2.9001 )
+
+[node name="TropicPart_" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.03656, -0.553239, 21.5557 )
+
+[node name="TropicPart_4" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5047, -0.553239, -105.345 )
+
+[node name="CSGBox2" type="CSGCylinder" parent="TropicPart_4"]
+transform = Transform( 4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 0.313035, -0.925461 )
+height = 0.536
+sides = 20
+material = ExtResource( 26 )
+
+[node name="golden_gooey_god" type="MeshInstance" parent="TropicPart_4/CSGBox2"]
+transform = Transform( 0.16603, 0, -0.397707, 0, 0.430972, 0, 0.397707, 0, 0.16603, 0.0265725, 0.538773, -0.0136695 )
+mesh = ExtResource( 16 )
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TropicPart_4/CSGBox2"]
+autoplay = "spin-loop"
+anims/spin-loop = SubResource( 5 )
+
+[node name="TropicPart_2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.716748, 0, 0.521781, 0, 0.886557, 0, -0.521781, 0, 0.716748, 19.1626, -0.553239, 0.574618 )
+
+[node name="TropicPart_3" parent="." instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3264, -0.553239, -24.0147 )
+
+[node name="TropicPart_5" parent="." instance=ExtResource( 24 )]
+transform = Transform( -0.244495, 0, 0.969651, 0, 1, 0, -0.969651, 0, -0.244495, -11.1758, -0.553243, -5.0094 )
+
+[node name="TeamSpawnAreas" parent="." instance=ExtResource( 28 )]
+
+[node name="RedTeamSpawnContainer" parent="TeamSpawnAreas" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 0, -3.5 )
+
+[node name="BlueTeamSpawnContainer" parent="TeamSpawnAreas" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3, 0, -6.1 )
+
+[editable path="Water Plane"]
+[editable path="TropicPart_"]
+[editable path="TropicPart_4"]
+[editable path="TeamSpawnAreas"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Knockback.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ParticleEffects/FireblastEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Sounds/fireblast.wav" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=7]
+
+[node name="Fireblast" type="Spatial"]
+script = ExtResource( 1 )
+age_limit_seconds = 0.3
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.207084, 2.50769 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Area"]
+transform = Transform( -0.0150966, -0.999886, 1.61516e-07, -6.06486e-11, -1.61534e-07, -1, 0.999886, -0.0150966, 2.37797e-09, 0, -0.139998, -0.127069 )
+polygon = PoolVector2Array( -0.49719, 1.40845, 2.10671, 1.68688, 2.08239, -1.83678, -0.569235, -1.45012, -2.03159, -0.734792, -2.01521, 0.624192 )
+
+[node name="Knockback" parent="." instance=ExtResource( 3 )]
+strength = 5.0
+
+[node name="Damage" parent="." instance=ExtResource( 2 )]
+damage = 33
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 5 )]
+
+[node name="Fireblast" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.999986, 0, 0.00521851, 0, 1, 0, -0.00521851, 0, 0.999986, 0, 0.160716, 1.12272 )
+
+[node name="Particles" parent="Fireblast" index="1"]
+transform = Transform( -2, 6.13206e-05, -0.00110656, 6.17234e-05, 2, -0.000728056, 0.00110654, -0.00072809, -2, 0.00211011, 0.0299544, -0.322306 )
+
+[node name="Sounds" parent="." instance=ExtResource( 7 )]
+on_create_stream = ExtResource( 6 )
+
+[editable path="Fireblast"]

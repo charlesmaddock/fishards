@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="ConeCollider" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.292394, 0 )
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+polygon = PoolVector2Array( -0.852573, -1.93411, -0.440707, -2.2912, 0.452621, -2.28489, 0.832627, -1.89213, 0.143993, 0.222137, -0.146043, 0.221024 )

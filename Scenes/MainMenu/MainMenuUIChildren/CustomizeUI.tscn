@@ -1,0 +1,417 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/CustomizeUI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_for_buttons.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/MainMenu/CosmeticsSidePanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MainMenu/Util/PopupGridContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/SpellBookUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres" type="StyleBox" id=8]
+[ext_resource path="res://Assets/Theme/Resources/blank_stylebox.tres" type="StyleBox" id=9]
+[ext_resource path="res://Scripts/MainMenu/StatsSidePanel.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/MainMenu/RankContainer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/MainMenu/textStat.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/MainMenu/NewNotice.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/MainMenu/ColorSelectButton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=18]
+
+[sub_resource type="ImageTexture" id=1]
+
+[sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="ImageTexture" id=3]
+
+[sub_resource type="ImageTexture" id=4]
+
+[node name="CustomizeUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+zoomed_in = true
+color_select_button_scene = ExtResource( 15 )
+
+[node name="YourFishard" type="Label" parent="."]
+margin_left = 24.1262
+margin_top = 40.2392
+margin_right = 185.126
+margin_bottom = 59.2392
+rect_pivot_offset = Vector2( 92, 32 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Your Fishard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tabs" type="VBoxContainer" parent="YourFishard"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = 14.5
+margin_right = 82.5
+margin_bottom = 238.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorsToggle" type="CheckBox" parent="YourFishard/Tabs"]
+margin_right = 114.0
+margin_bottom = 27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_icons/radio_checked = SubResource( 1 )
+custom_icons/checked = SubResource( 2 )
+custom_icons/radio_unchecked = SubResource( 3 )
+custom_icons/unchecked = SubResource( 4 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/hover_pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "COLORS"
+
+[node name="SpellsToggle" type="CheckBox" parent="YourFishard/Tabs"]
+margin_top = 31.0
+margin_right = 114.0
+margin_bottom = 58.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_icons/radio_checked = SubResource( 1 )
+custom_icons/checked = SubResource( 2 )
+custom_icons/radio_unchecked = SubResource( 3 )
+custom_icons/unchecked = SubResource( 4 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/hover_pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "Spells"
+
+[node name="CosmeticsToggle" type="CheckBox" parent="YourFishard/Tabs"]
+margin_top = 62.0
+margin_right = 84.0
+margin_bottom = 89.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_icons/radio_checked = SubResource( 1 )
+custom_icons/checked = SubResource( 2 )
+custom_icons/radio_unchecked = SubResource( 3 )
+custom_icons/unchecked = SubResource( 4 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/hover_pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "Hats"
+
+[node name="NewNotice" parent="YourFishard/Tabs/CosmeticsToggle" instance=ExtResource( 13 )]
+margin_left = 70.1021
+margin_top = -2.83468
+margin_right = 106.102
+margin_bottom = 14.1653
+
+[node name="StatsToggle" type="CheckBox" parent="YourFishard/Tabs"]
+margin_top = 93.0
+margin_right = 99.0
+margin_bottom = 120.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_icons/radio_checked = SubResource( 1 )
+custom_icons/checked = SubResource( 2 )
+custom_icons/radio_unchecked = SubResource( 3 )
+custom_icons/unchecked = SubResource( 4 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/hover_pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "Stats"
+
+[node name="SidePanel" type="Control" parent="."]
+margin_left = 412.0
+margin_top = 40.0
+margin_right = 584.0
+margin_bottom = 336.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="Label" parent="SidePanel"]
+margin_left = 27.5124
+margin_right = 117.512
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 92, 32 )
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Colors"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="SidePanel/Colors"]
+margin_top = 26.0
+margin_right = 172.0
+margin_bottom = 210.0
+custom_styles/panel = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/Colors/Panel"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 167.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" parent="SidePanel/Colors/Panel/VBoxContainer" instance=ExtResource( 6 )]
+margin_right = 3.0
+margin_bottom = 23.0
+category_name = "Body"
+
+[node name="Legs" parent="SidePanel/Colors/Panel/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 27.0
+margin_right = 3.0
+margin_bottom = 50.0
+category_name = "Legs"
+
+[node name="Mouth" parent="SidePanel/Colors/Panel/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 54.0
+margin_right = 3.0
+margin_bottom = 77.0
+category_name = "Face"
+
+[node name="Random" type="Button" parent="SidePanel/Colors"]
+margin_left = 1.0
+margin_top = 216.0
+margin_right = 81.0
+margin_bottom = 235.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Randomize"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spells" type="Control" parent="SidePanel"]
+visible = false
+margin_left = -412.488
+margin_top = -40.0
+margin_right = -372.488
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select Elements" type="Control" parent="SidePanel/Spells"]
+margin_left = 440.0
+margin_top = 40.0
+margin_right = 584.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="SidePanel/Spells/Select Elements"]
+margin_left = 1.0
+margin_top = 27.0
+margin_right = 65.0
+margin_bottom = 60.0
+custom_styles/panel = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="SidePanel/Spells/Select Elements" instance=ExtResource( 16 )]
+margin_left = 8.0
+margin_top = 29.0
+margin_right = 57.0
+margin_bottom = 54.0
+
+[node name="Desc" type="Label" parent="SidePanel/Spells/Select Elements"]
+margin_left = 69.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 57.0
+custom_colors/font_color = Color( 0.329412, 0.329412, 0.329412, 1 )
+custom_constants/line_spacing = -3
+text = "Drag arrows to swap selected elements"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Elements" type="Label" parent="SidePanel/Spells/Select Elements"]
+margin_right = 124.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "elements"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellBook" parent="SidePanel/Spells" instance=ExtResource( 7 )]
+margin_left = 416.0
+margin_top = 64.0
+margin_right = 416.0
+margin_bottom = 64.0
+
+[node name="SpellBook" parent="SidePanel/Spells/SpellBook" index="0"]
+margin_left = 24.182
+margin_right = 159.182
+
+[node name="Spells" parent="SidePanel/Spells/SpellBook/Panel/ScrollContainer" index="0"]
+margin_right = 168.0
+
+[node name="Cosmetics" parent="SidePanel" instance=ExtResource( 5 )]
+anchor_left = 0.0232558
+anchor_right = 0.0232558
+margin_left = 24.075
+margin_top = 3.29657
+margin_right = 196.075
+margin_bottom = 299.297
+
+[node name="StatsSidePanel" type="Control" parent="SidePanel"]
+visible = false
+anchor_left = 0.0232558
+anchor_right = 0.0232558
+margin_left = 3.0
+margin_right = 175.0
+margin_bottom = 296.0
+theme = ExtResource( 1 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/StatsSidePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 21.0
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Label" parent="SidePanel/StatsSidePanel/VBoxContainer"]
+margin_right = 193.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Stats"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RankContainer" parent="SidePanel/StatsSidePanel/VBoxContainer/Stats" instance=ExtResource( 11 )]
+margin_left = 75.794
+margin_top = 4.58004
+margin_right = 93.794
+margin_bottom = 17.58
+use_clients_rank = true
+
+[node name="Label" type="Label" parent="SidePanel/StatsSidePanel/VBoxContainer/Stats"]
+margin_left = 78.0037
+margin_top = -4.29434
+margin_right = 202.004
+margin_bottom = 8.70566
+custom_colors/font_color = Color( 0.415686, 0.415686, 0.415686, 0.85098 )
+custom_constants/line_spacing = -6
+text = "Your rank:"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="SidePanel/StatsSidePanel/VBoxContainer"]
+margin_top = 23.0
+margin_right = 193.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 8 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SidePanel/StatsSidePanel/VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1.0
+margin_bottom = -4.0
+custom_styles/bg = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/StatsSidePanel/VBoxContainer/Panel/ScrollContainer"]
+margin_left = 3.0
+margin_right = 179.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 176, 0 )
+custom_constants/separation = 2
+
+[node name="textStat" parent="SidePanel/StatsSidePanel/VBoxContainer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
+margin_right = 176.0
+margin_bottom = 41.0
+
+[node name="Back" parent="." instance=ExtResource( 17 )]
+margin_left = 32.1262
+margin_top = 313.239
+margin_right = 129.126
+margin_bottom = 338.239
+button_text = "back"
+
+[connection signal="pressed" from="YourFishard/Tabs/ColorsToggle" to="." method="_on_Colors_pressed"]
+[connection signal="pressed" from="YourFishard/Tabs/SpellsToggle" to="." method="_on_Spells_pressed"]
+[connection signal="pressed" from="YourFishard/Tabs/CosmeticsToggle" to="." method="_on_CosmeticsToggle_pressed"]
+[connection signal="pressed" from="YourFishard/Tabs/StatsToggle" to="." method="_on_StatsToggle_pressed"]
+[connection signal="mouse_entered" from="SidePanel/Colors/Random" to="SidePanel/Colors/Random" method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="SidePanel/Colors/Random" to="SidePanel/Colors/Random" method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="SidePanel/Colors/Random" to="." method="_on_random_pressed"]
+[connection signal="pressed" from="SidePanel/Colors/Random" to="SidePanel/Colors/Random" method="_on_Button_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+
+[editable path="SidePanel/Spells/SpellBook"]

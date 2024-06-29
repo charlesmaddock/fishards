@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Camera
+
+export(float) var speed: float = 0.5
+
+func _process(delta):
+	if Input.is_action_pressed(\"ui_down\"):
+		transform.origin.z += speed
+	if Input.is_action_pressed(\"ui_up\"):
+		transform.origin.z -= speed 
+	if Input.is_action_pressed(\"ui_left\"):
+		transform.origin.x -= speed 
+	if Input.is_action_pressed(\"ui_right\"):
+		transform.origin.x += speed 
+"
+
+[node name="Camera" type="Camera"]
+transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, -19.671, 45, 45.232 )
+fov = 15.3
+size = 55.61
+far = 124.4
+script = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}

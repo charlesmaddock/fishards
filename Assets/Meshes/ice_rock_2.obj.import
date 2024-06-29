@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ice_rock_2.obj-aa21f5912c57e482d8a07b21dcb4ceae.mesh"
+
+[deps]
+
+files=[ "res://.import/ice_rock_2.obj-aa21f5912c57e482d8a07b21dcb4ceae.mesh" ]
+
+source_file="res://Assets/Meshes/ice_rock_2.obj"
+dest_files=[ "res://.import/ice_rock_2.obj-aa21f5912c57e482d8a07b21dcb4ceae.mesh", "res://.import/ice_rock_2.obj-aa21f5912c57e482d8a07b21dcb4ceae.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

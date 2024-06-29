@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Materials/Map/ice_sheets.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Meshes/Maps/ice_island_ffa.glb" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Materials/Map/ice_ground.tres" type="Material" id=6]
+
+[node name="ice_island_ffa" instance=ExtResource( 5 )]
+
+[node name="island" parent="." index="0"]
+transform = Transform( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0, 0 )
+material/0 = ExtResource( 6 )
+
+[node name="ice_rocks" parent="." index="1"]
+transform = Transform( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0.307846, 0 )
+material/0 = ExtResource( 2 )
+
+[node name="DirectionalLight" parent="." index="2" instance=ExtResource( 4 )]

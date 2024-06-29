@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Components/EntityInfoPanel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/Launchable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Components/SpellCaster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Components/Kinematic.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Components/Health.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Components/ParticlePlayer.tscn" type="PackedScene" id=12]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.500263
+height = 0.754722
+
+[node name="PlayerEntity" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.288746, 0 )
+script = ExtResource( 3 )
+
+[node name="SpellSpawnPos" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547903, 1.25253 )
+
+[node name="TransformContainer" type="Spatial" parent="."]
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.872608, 0 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." instance=ExtResource( 11 )]
+despawn_on_no_health = false
+
+[node name="EntityComponentPanel" parent="." instance=ExtResource( 1 )]
+show_panel_above_path = NodePath("../Player")
+
+[node name="SpellCaster" parent="." instance=ExtResource( 8 )]
+default_entity_model_path = NodePath("../Player")
+transform_container_path = NodePath("../TransformContainer")
+
+[node name="ParticlePlayer" parent="." instance=ExtResource( 12 )]
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+
+[node name="Kinematic" parent="." instance=ExtResource( 10 )]
+
+[node name="Launchable" parent="." instance=ExtResource( 2 )]
+launch_spatial_paths = [ NodePath("../Player"), NodePath("../ParticlePlayer"), NodePath("../TransformContainer") ]
+launch_directly = false
+
+[editable path="ParticlePlayer"]

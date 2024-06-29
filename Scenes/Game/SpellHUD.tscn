@@ -1,0 +1,512 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scripts/Game/SpellHUD.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Game/SpellHUDElement.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Images/UI/Game/spell_background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/cooldown.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/highlight.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Textures/Sprites/smallcircle.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Game/SpellCooldownPreview.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/blank_small.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Fonts/pixel_small.tres" type="DynamicFont" id=27]
+[ext_resource path="res://Assets/Images/UI/Game/cooldown_bar.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Images/UI/Game/cooldown_fill.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Images/UI/Game/spell_holder_2.png" type="Texture" id=33]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Appear"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -14 ), Vector2( 0, -14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellHolderRect:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1e-05, 1e-05 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellHolderRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "AutoClearSpellsConfig"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1.0069, 1.24754 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellHolderRect:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellHolderRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Disappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "NormalSpellConfig"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellHolderRect:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellHolderRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellHolderRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.47451 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellHolderRect:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.666, 0.666 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellHolderRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -14 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellHolderRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.47451 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellHolderRect:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.666, 0.666 ) ]
+}
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+
+void fragment(){
+	float circle = 1.0 - step(0.5, distance(vec2(0.5), UV));
+	COLOR = vec4(color.rgb, circle);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/color = Color( 0.784314, 0.74902, 0.721569, 1 )
+
+[node name="SpellHUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.195435
+margin_top = -0.159653
+margin_right = -0.195435
+margin_bottom = -0.159668
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+spellCooldownPreview = ExtResource( 8 )
+
+[node name="SpellHUDElement1" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.72144
+margin_top = 17.5439
+margin_right = -1.72144
+margin_bottom = 25.5439
+is_left = true
+
+[node name="SpellHUDElement2" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -0.145264
+margin_top = 17.6726
+margin_right = 7.85474
+margin_bottom = 25.6726
+
+[node name="SpellIconHudVBox" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.3197
+margin_top = 25.9363
+margin_right = 35.6803
+margin_bottom = 65.9363
+custom_constants/separation = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterAlign0" type="HBoxContainer" parent="SpellIconHudVBox"]
+visible = false
+margin_right = 72.0
+margin_bottom = 4.0
+alignment = 1
+
+[node name="Cooldown2" type="TextureRect" parent="SpellIconHudVBox/CenterAlign0"]
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = 27.0
+margin_right = 45.0
+margin_bottom = 4.0
+texture = ExtResource( 30 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CooldownSlider" type="TextureProgress" parent="SpellIconHudVBox/CenterAlign0/Cooldown2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.33711
+margin_right = -1.0
+margin_bottom = -0.662888
+max_value = 1.0
+step = 0.001
+texture_progress = ExtResource( 31 )
+tint_progress = Color( 0.0470588, 0.0431373, 0.0431373, 0.364706 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterAlign1" type="HBoxContainer" parent="SpellIconHudVBox"]
+margin_right = 72.0
+margin_bottom = 18.0
+alignment = 1
+
+[node name="SpellHolderContainer" type="Control" parent="SpellIconHudVBox/CenterAlign1"]
+margin_left = 27.0
+margin_right = 45.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 18, 18 )
+
+[node name="SpellHolderAnimator" type="AnimationPlayer" parent="SpellIconHudVBox/CenterAlign1/SpellHolderContainer"]
+anims/Appear = SubResource( 1 )
+anims/AutoClearSpellsConfig = SubResource( 2 )
+anims/Disappear = SubResource( 3 )
+anims/NormalSpellConfig = SubResource( 9 )
+anims/RevertStandby = SubResource( 10 )
+anims/Standby = SubResource( 11 )
+
+[node name="SpellHolderRect" type="TextureRect" parent="SpellIconHudVBox/CenterAlign1/SpellHolderContainer"]
+self_modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_top = -14.0
+margin_right = 18.0
+margin_bottom = 4.0
+rect_pivot_offset = Vector2( 9, 9 )
+texture = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellTextureRect" type="TextureRect" parent="SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -9.0
+margin_right = 31.0
+margin_bottom = 31.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoolDownSlider" type="TextureProgress" parent="SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect/SpellTextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+tint_progress = Color( 0.0470588, 0.0431373, 0.0431373, 0.529412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterAlign2" type="HBoxContainer" parent="SpellIconHudVBox"]
+margin_top = 19.0
+margin_right = 72.0
+margin_bottom = 19.0
+alignment = 1
+
+[node name="SpellCooldownPreviewContainer" type="GridContainer" parent="SpellIconHudVBox/CenterAlign2"]
+margin_left = 36.0
+margin_right = 36.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 4
+
+[node name="SpellCharges" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 12.7866
+margin_top = 10.0425
+margin_right = 20.7866
+margin_bottom = 20.0425
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="SpellCharges"]
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+position = Vector2( 3.52362, 6.56601 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="SpellCharges"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.61102
+margin_top = -6.99213
+margin_right = 6.38898
+margin_bottom = 6.00787
+custom_fonts/font = ExtResource( 27 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellHolderRect2" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -16.0
+margin_top = -32.1322
+margin_right = 16.0
+margin_bottom = -0.132202
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="SpellHolderRect2" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -28.6155
+margin_top = -33.7295
+margin_right = 31.3845
+margin_bottom = 8.27051
+rect_pivot_offset = Vector2( 29.9006, 0.593475 )
+custom_constants/separation = 1
+display_only = true
+
+[node name="SpellTextureRect2" type="TextureRect" parent="SpellHolderRect2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -14.0
+margin_top = -30.0
+margin_right = 14.0
+margin_bottom = -2.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoolDownSlider" type="TextureProgress" parent="SpellHolderRect2/SpellTextureRect2"]
+margin_right = 28.0
+margin_bottom = 28.0
+max_value = 1.0
+step = 0.001
+texture_progress = ExtResource( 4 )
+fill_mode = 3
+tint_progress = Color( 0.0470588, 0.0431373, 0.0431373, 0.364706 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Highlight" type="TextureRect" parent="SpellHolderRect2"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -14.0
+margin_top = -30.0
+margin_right = 14.0
+margin_bottom = -2.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 8 )
+margin_left = 312.0
+margin_top = 208.0
+margin_right = 328.0
+margin_bottom = 224.0
+color = Color( 0.764706, 0.733333, 0.690196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

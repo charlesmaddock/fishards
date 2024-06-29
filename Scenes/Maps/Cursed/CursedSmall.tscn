@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/19.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 12.7531 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 7.09966
+height = 0.0695753
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 12, 1, 4 )
+
+[node name="Cursed" type="Spatial"]
+script = ExtResource( 1 )
+environment_types = [ "DEAD_TREE" ]
+spawn_area_container = NodePath("SpawnArea")
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 14.2008, 0, 0, 0, 11.5555, 0, 0, 0, 1, 0, -11.5432, 0 )
+depth = 25.7691
+material = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="CSGBox"]
+collision_layer = 2147483656
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGBox/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="Water Plane" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.48191, 0 )
+
+[node name="SpawnArea" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="SpawnCircle" type="CollisionShape" parent="SpawnArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17934, 0, -5.259 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.262951, 0, 7.23113 )
+shape = SubResource( 3 )

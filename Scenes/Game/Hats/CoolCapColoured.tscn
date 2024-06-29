@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Meshes/Hats/colored_cap_hat.obj" type="ArrayMesh" id=10]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.819608, 0.435294, 0.67451, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.917647, 0.894118, 0.87451, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.803922, 0.223529, 0.34902, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.917647, 0.894118, 0.87451, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.501961, 0.67451, 0.482353, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.368627, 0.47451, 0.6, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.372549, 0.309804, 0.517647, 1 )
+
+[node name="CoolCapColoured" type="Spatial"]
+script = ExtResource( 3 )
+hat_type = 7
+
+[node name="colored_cap_hat" type="MeshInstance" parent="."]
+mesh = ExtResource( 10 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+material/3 = SubResource( 4 )
+material/4 = SubResource( 5 )
+material/5 = SubResource( 6 )
+material/6 = SubResource( 7 )
+material/7 = SubResource( 8 )
+material/8 = SubResource( 9 )

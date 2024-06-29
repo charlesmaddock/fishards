@@ -1,0 +1,155 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Scenes/ParticleEffects/fireball_effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=5]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Components/Damage.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Components/Projectile.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Sounds/fireballShoot.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Sounds/fireballHit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/ParticleEffects/SimpleTrail.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Util/EmitOnStartParticles.gd" type="Script" id=14]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 12 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+gravity = Vector3( 0, 0, -10 )
+initial_velocity = 9.56
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=7]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 12 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.366667, 0.681481, 0.97037, 1 )
+colors = PoolColorArray( 1, 0, 0.00784314, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0.269307, 0.289062, 0.0869446, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+width = 100
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 2.77422, 0, 0, Vector2( 0.0350584, 0.258885 ), 0.269105, 0.269105, 0, 0, Vector2( 0.443396, 0.20241 ), -0.188478, -0.188478, 0, 0, Vector2( 1, 0 ), -0.529384, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3( 0, 0, 1 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+angle = 334.2
+angle_random = 1.0
+scale = 2.2
+scale_random = 0.74
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+
+[sub_resource type="QuadMesh" id=14]
+
+[sub_resource type="SphereShape" id=15]
+radius = 0.238726
+
+[node name="Fireball" type="Spatial"]
+script = ExtResource( 6 )
+age_limit_seconds = 0.6
+
+[node name="MeshInstance" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.68137, 0, 0, 0, -3.18451e-07, 5.84485, 0, -2.66876, -1.30016e-06, 0, -0.341313, -0.66573 )
+
+[node name="FireStartExplosion" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19468, 0.579778 )
+material_override = SubResource( 1 )
+emitting = false
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB( -4, -4.08936, -4, 8, 8, 8 )
+local_coords = false
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )
+script = ExtResource( 14 )
+
+[node name="Trail" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.341313, 0.386151 )
+
+[node name="Explosion" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00660527 )
+material_override = SubResource( 8 )
+emitting = false
+lifetime = 0.23
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 0.619882, 0, 0, 0, 0.619882, 0, 0, 0, 0.619882, 0, -0.111092, 1.63909 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.505228 )
+shape = SubResource( 15 )
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 3 )]
+collide_particles_array = [ NodePath("../Explosion") ]
+destroy_node_array = [ NodePath("../MeshInstance"), NodePath("../Projectile") ]
+stop_particle_node_array = [ NodePath("../Trail") ]
+
+[node name="Damage" type="Node" parent="."]
+script = ExtResource( 7 )
+damage = 7
+
+[node name="Sounds" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.45735 )
+on_create_stream = ExtResource( 10 )
+on_destroy_stream = ExtResource( 11 )
+
+[node name="Projectile" parent="." instance=ExtResource( 9 )]
+speed = 22

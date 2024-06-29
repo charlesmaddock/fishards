@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Shaders/waterfall_impact_foam.shader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/frequency = 10.0
+shader_param/speed = 8.0
+shader_param/noise_scale = Vector2( 8, 2 )
+shader_param/cutout_gradient = SubResource( 2 )

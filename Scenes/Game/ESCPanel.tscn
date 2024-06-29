@@ -1,0 +1,183 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/MainMenu/UI.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/SettingsUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Game/ESCPanel.gd" type="Script" id=7]
+
+[node name="ESCPanel" type="CanvasLayer"]
+layer = 11
+script = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 0.321569 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="ColorRect"]
+self_modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.5
+margin_top = -75.5
+margin_right = 75.5
+margin_bottom = 75.5
+rect_pivot_offset = Vector2( -620.973, -73.6018 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/Panel"]
+margin_left = 3.0
+margin_right = 151.0
+margin_bottom = 177.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Panel/MarginContainer"]
+margin_top = 3.0
+margin_right = 145.0
+margin_bottom = 177.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="ColorRect/Panel/MarginContainer/VBoxContainer"]
+margin_right = 145.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel"]
+margin_left = 5.0
+margin_top = 2.97974
+margin_right = 138.0
+margin_bottom = 21.9797
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+text = "Your elements"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel"]
+margin_left = 14.0706
+margin_top = 12.7313
+margin_right = 130.071
+margin_bottom = 25.7313
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+text = "Drag and drop the arrows"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel" instance=ExtResource( 4 )]
+margin_left = 24.0897
+margin_top = 23.3654
+margin_right = 90.0897
+margin_bottom = 48.3654
+update_elements_with_button = true
+label_color = Color( 0.333333, 0.333333, 0.333333, 1 )
+
+[node name="ElementButton" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="0"]
+margin_left = 3.0
+margin_right = 12.0
+
+[node name="Control" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay/ElementButton" index="0"]
+margin_top = 0.0
+margin_bottom = 0.0
+
+[node name="ElementButton2" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="1"]
+margin_left = 15.0
+margin_right = 24.0
+
+[node name="ElementButton3" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="2"]
+margin_left = 27.0
+margin_right = 36.0
+
+[node name="ElementButton4" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="3"]
+margin_left = 39.0
+margin_right = 48.0
+
+[node name="ElementButton5" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="4"]
+margin_left = 51.0
+margin_right = 60.0
+
+[node name="UpdateElements" parent="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay" index="5"]
+visible = true
+margin_left = 63.0
+margin_right = 63.0
+
+[node name="NoElementsPanel" type="Panel" parent="ColorRect/Panel/MarginContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 145.0
+margin_bottom = 87.0
+rect_min_size = Vector2( 0, 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="ColorRect/Panel/MarginContainer/VBoxContainer/NoElementsPanel"]
+margin_left = 5.0
+margin_right = 145.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+custom_constants/line_spacing = -4
+text = "You cannot choose your own elements in this lobby."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" parent="ColorRect/Panel/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 91.0
+margin_right = 145.0
+margin_bottom = 116.0
+button_text = "Resume"
+
+[node name="Settings" parent="ColorRect/Panel/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 120.0
+margin_right = 145.0
+margin_bottom = 145.0
+button_text = "Settings"
+
+[node name="Leave" parent="ColorRect/Panel/MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 149.0
+margin_right = 145.0
+margin_bottom = 174.0
+button_text = "Leave"
+
+[node name="UI" type="Control" parent="ColorRect"]
+margin_left = 247.5
+margin_top = 104.5
+margin_right = 395.5
+margin_bottom = 249.5
+mouse_filter = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsUI" parent="ColorRect/UI" instance=ExtResource( 6 )]
+visible = false
+
+[connection signal="pressed" from="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay/UpdateElements/Button" to="." method="_on_update_elements_button_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/MarginContainer/VBoxContainer/Leave" to="." method="_on_leave_button_pressed"]
+
+[editable path="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay"]
+[editable path="ColorRect/Panel/MarginContainer/VBoxContainer/Panel/ElementsDisplay/ElementButton"]

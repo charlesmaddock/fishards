@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/empty spell.wav-086554bbadf18ff21f00f84db5ccf7db.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/empty spell.wav"
+dest_files=[ "res://.import/empty spell.wav-086554bbadf18ff21f00f84db5ccf7db.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

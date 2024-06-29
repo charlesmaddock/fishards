@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/light_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/billboard = false
+shader_param/speed = 3.0
+shader_param/polar_scale = 2
+shader_param/noise_tex = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.881188, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 0.3
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 347.6
+angle_random = 0.78
+scale = 5.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=7]
+
+[node name="Perimiter" type="Particles"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+material_override = SubResource( 1 )
+emitting = false
+amount = 3
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )

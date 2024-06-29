@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/dead_fish_bone.glb" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/6.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Materials/Palette/1.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/Materials/Palette/2.tres" type="Material" id=5]
+
+[node name="dead_fish_bone" instance=ExtResource( 2 )]
+
+[node name="Light" parent="." index="0"]
+visible = false
+
+[node name="Camera" parent="." index="1"]
+visible = false
+
+[node name="Plane002" parent="." index="2"]
+transform = Transform( 0.886354, 0, 0, 0, 0.661475, 0, 0, 0, 0.886354, 3.82671, 0, -0.0278139 )
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 5 )
+material/2 = ExtResource( 3 )

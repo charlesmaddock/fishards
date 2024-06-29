@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/Hats/pirate_hat.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/5.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+
+[node name="PirateHat" type="Spatial"]
+script = ExtResource( 4 )
+hat_type = 28
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = ExtResource( 2 )

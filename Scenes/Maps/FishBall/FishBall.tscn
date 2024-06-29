@@ -1,0 +1,277 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Game/FishBallGoal.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Textures/Sprites/paint_circle.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Sprites/paint_arrow.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Meshes/ModelScenes/highLandsGrass.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_3.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Entities/Environment/TheFishBall.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Maps/Islands/Parts/TropicPart_2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_6.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Entities/Environment/DeadTree.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_5.tscn" type="PackedScene" id=23]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 3.17425
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.92549, 0.376471, 0.376471, 1 )
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 2.97376
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.3
+albedo_color = Color( 0.482353, 0.635294, 0.901961, 1 )
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="CylinderShape" id=5]
+radius = 18.5897
+
+[sub_resource type="CylinderShape" id=6]
+radius = 3.00423
+
+[sub_resource type="CylinderShape" id=7]
+radius = 2.67895
+
+[sub_resource type="PlaneMesh" id=8]
+size = Vector2( 200, 200 )
+
+[node name="Highlands" type="Spatial"]
+script = ExtResource( 1 )
+generate_environment = false
+spawn_area_container = NodePath("SpawnArea")
+red_team_spawn_container_path = NodePath("TeamSpawnAreas/RedTeamSpawnContainer")
+blue_team_spawn_container_path = NodePath("TeamSpawnAreas/BlueTeamSpawnContainer")
+hand_placed_entity_container = NodePath("HandPlacedEntities")
+
+[node name="HandPlacedEntities" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+
+[node name="TheFishBall" parent="HandPlacedEntities" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08367, 0, 5.93217 )
+
+[node name="MiddleWalls" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2" type="CollisionPolygon" parent="MiddleWalls"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 8.79365, 0.31913, 0 )
+depth = 3.0
+polygon = PoolVector2Array( 4.03872, 1.97324, 2.30896, 2.75358, 0.314014, 10.2108, 2.30175, 13.4204, 3.37357, 12.9611, 3.71285, 11.2267, 4.36676, 9.1151, 4.81537, 6.06962, 5.02201, 3.16678, 5.96503, 1.47885, 5.13416, 0.576346 )
+
+[node name="CollisionPolygon3" type="CollisionPolygon" parent="MiddleWalls"]
+transform = Transform( -0.816773, -0.57696, 2.52197e-08, 0, -4.37114e-08, -1, 0.57696, -0.816773, 3.57023e-08, -4.02579, 0.383141, 10.7116 )
+depth = 3.0
+polygon = PoolVector2Array( 1.61828, 2.1524, -0.941802, 5.70309, -1.75523, 7.68538, 0.223202, 11.3219, 2.76384, 11.4194, 3.20763, 9.77687, 3.17376, 8.07574, 4.5807, 6.1377, 5.02201, 3.16678, 6.53308, 1.30757, 5.27461, 0.279569 )
+
+[node name="Grass" type="Spatial" parent="."]
+transform = Transform( 1.75672, 0, 0.468505, 0, 1, 0, -0.522699, 0, 1.57458, 0, 0.0472717, 0 )
+
+[node name="grass_par_1" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( 0.206132, 0, 0.599603, 0, 0.7, 0, -0.746344, 0, 0.206132, -7.25982, 0.178785, 1.99354 )
+
+[node name="grass_par_2" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.451196, 0, 0.472351, 0, 0.7, 0, -0.488482, 0, -0.574617, 2.40211, 0.279676, -4.73493 )
+
+[node name="grass_par_3" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.094828, 0, -0.693544, 0, 0.7, 0, 0.693412, 0, -0.0958364, -1.43944, 0.279676, 13.7439 )
+
+[node name="grass_par_3_2" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( 0.310652, 0, -0.597604, 0, 0.7, 0, 0.609829, 0, 0.404192, 1.25876, 0.279676, 13.3972 )
+
+[node name="grass_par_4" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.090715, 0, -0.694097, 0, 0.7, 0, 0.694097, 0, -0.090715, 11.6874, 0.279676, 3.14075 )
+
+[node name="grass_par_6" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.090715, 0, -0.694097, 0, 0.7, 0, 0.694097, 0, -0.090715, 3.34843, 0.279676, 3.96593 )
+
+[node name="grass_par_7" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.090715, 0, -0.694097, 0, 0.7, 0, 0.694097, 0, -0.090715, -3.95842, 0.279676, 4.45018 )
+
+[node name="grass_par_8" parent="Grass" instance=ExtResource( 11 )]
+transform = Transform( -0.0907151, 0, -0.694097, 0, 0.7, 0, 0.694097, 0, -0.090715, -8.26913, 0.279676, -3.37562 )
+
+[node name="Rock_14" parent="Grass" instance=ExtResource( 20 )]
+transform = Transform( -0.760386, 0, -0.239564, 0, 0.8, 0, 0.272155, 0, -0.755933, 4.0534, 3.8147e-06, 9.64669 )
+
+[node name="Rock_15" parent="Grass" instance=ExtResource( 20 )]
+transform = Transform( -0.760386, 0, -0.239564, 0, 0.8, 0, 0.272155, 0, -0.755932, 6.91358, 3.8147e-06, 3.75361 )
+
+[node name="Rock_8" parent="Grass" instance=ExtResource( 18 )]
+transform = Transform( -0.407645, 0, -0.404339, 0, 0.7, 0, 0.586591, 0, -0.276756, 5.58846, 3.8147e-06, 4.80822 )
+
+[node name="Rock_11" parent="Grass" instance=ExtResource( 8 )]
+transform = Transform( 0.604516, 0, -0.402924, 0, 0.8, 0, 0.538543, 0, 0.699746, 4.24913, 3.8147e-06, 7.64443 )
+
+[node name="Rock_9" parent="Grass" instance=ExtResource( 3 )]
+transform = Transform( -0.564076, 0, 0.56729, 0, 0.8, 0, -0.56729, 0, -0.564076, -6.51423, 3.8147e-06, -0.32092 )
+
+[node name="Rock_10" parent="Grass" instance=ExtResource( 22 )]
+transform = Transform( 0.416114, 0, 0.683264, 0, 0.8, 0, -0.683264, 0, 0.416114, -5.31849, 3.8147e-06, 1.31831 )
+
+[node name="Rock_12" parent="Grass" instance=ExtResource( 23 )]
+transform = Transform( -0.475858, 0, 0.171935, 0, 0.5, 0, -0.167936, 0, -0.674834, -5.89312, 2.86102e-06, 3.55339 )
+
+[node name="Rock_13" parent="Grass" instance=ExtResource( 20 )]
+transform = Transform( -0.792634, 0, -0.108309, 0, 1.2, 0, 0.108309, 0, -0.792634, -6.88151, 3.8147e-06, 6.05202 )
+
+[node name="DeadTree" parent="Grass" instance=ExtResource( 21 )]
+transform = Transform( 0.982084, 0, -0.168906, 0, 1, 0, 0.210242, 0, 0.982084, -5.31744, 0, 2.40779 )
+
+[node name="DeadTree2" parent="Grass" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 0.999999, -3.75639, 0, 12.8922 )
+
+[node name="TeamSpawnAreas" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+
+[node name="RedTeamSpawnContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Red spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/RedTeamSpawnContainer"]
+transform = Transform( 0.995954, 0, 0.0898678, 0, 1, 0, -0.0898678, 0, 0.995954, -14.6599, 0, 6.98568 )
+shape = SubResource( 1 )
+
+[node name="Red Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/RedTeamSpawnContainer/Red spawn collision shape"]
+transform = Transform( -0.107841, 1.19515, 4.35345e-08, 0, -5.24537e-08, 1, 1.19515, 0.107841, 3.92824e-09, -7.24173, -0.115248, 0.0649843 )
+material_override = SubResource( 2 )
+modulate = Color( 0.996078, 0.992157, 0.992157, 1 )
+texture = ExtResource( 6 )
+
+[node name="BlueTeamSpawnContainer" type="Spatial" parent="TeamSpawnAreas"]
+
+[node name="Blue spawn collision shape" type="CollisionShape" parent="TeamSpawnAreas/BlueTeamSpawnContainer"]
+transform = Transform( 0.996899, 0, 0.0786853, 0, 1, 0, -0.0786853, 0, 0.996899, 16.8604, 0, 6.71646 )
+shape = SubResource( 3 )
+
+[node name="Blue Spawn Area Indicator" type="Sprite3D" parent="TeamSpawnAreas/BlueTeamSpawnContainer/Blue spawn collision shape"]
+transform = Transform( -0.0944222, 1.19628, 4.3576e-08, 0, -5.24537e-08, 1, 1.19628, 0.0944222, 3.43944e-09, 8.31929, -0.0946259, 0.742201 )
+material_override = SubResource( 4 )
+modulate = Color( 0.988235, 0.988235, 0.992157, 1 )
+texture = ExtResource( 6 )
+
+[node name="SpawnArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206464, 0, 8.68438 )
+shape = SubResource( 5 )
+
+[node name="BlueGoal" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1739, 0.0472717, 3.29531 )
+script = ExtResource( 2 )
+is_blue_team = true
+
+[node name="Area" type="Area" parent="BlueGoal"]
+
+[node name="CollisionShape" type="CollisionShape" parent="BlueGoal/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0788, 0, 3.54514 )
+shape = SubResource( 6 )
+
+[node name="RedGoal" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6462, 0.0472717, 3.84661 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="RedGoal"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11623, 0, 0.601019 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RedGoal/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.107969, 0.774372, 3.20414 )
+shape = SubResource( 7 )
+
+[node name="Pebbles" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+
+[node name="small_pebbles_1" parent="Pebbles" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74638, 0, 19.5804 )
+
+[node name="small_pebbles_2" parent="Pebbles" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38037, 0, 14.5334 )
+
+[node name="small_pebbles_8" parent="Pebbles" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19718, 0, 6.85803 )
+
+[node name="small_pebbles_3" parent="Pebbles" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -17.6144, 0, 15.2364 )
+
+[node name="small_pebbles_4" parent="Pebbles" instance=ExtResource( 14 )]
+transform = Transform( -0.922275, 0, 0.346458, 0, 1, 0, -0.431245, 0, -0.922275, 4.65603, 0, -6.09281 )
+
+[node name="small_pebbles_5" parent="Pebbles" instance=ExtResource( 15 )]
+transform = Transform( -0.922275, 0, 0.346458, 0, 1, 0, -0.431245, 0, -0.922275, -2.81275, 0, -5.55135 )
+
+[node name="small_pebbles_9" parent="Pebbles" instance=ExtResource( 15 )]
+transform = Transform( -0.996158, 0, -0.278048, 0, 1, 0, 0.210318, 0, -0.945153, 7.99815, 0, 6.32105 )
+
+[node name="small_pebbles_6" parent="Pebbles" instance=ExtResource( 12 )]
+transform = Transform( -0.922275, 0, 0.346458, 0, 1, 0, -0.431245, 0, -0.922275, 14.3681, 0, -1.86523 )
+
+[node name="small_pebbles_7" parent="Pebbles" instance=ExtResource( 12 )]
+transform = Transform( -0.922275, 0, 0.346458, 0, 1, 0, -0.431245, 0, -0.922275, 14.1882, 0, 14.3836 )
+
+[node name="Arrows" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Arrows"]
+transform = Transform( -0.663222, 1.34541, -5.88099e-08, 0, -6.55671e-08, -1.5, -1.34541, -0.663222, 2.89903e-08, -13.3802, 0.1, 1.35069 )
+modulate = Color( 0.921569, 0.231373, 0.231373, 1 )
+alpha_cut = 1
+texture = ExtResource( 7 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="Arrows"]
+transform = Transform( 0.472927, 1.4235, -6.2223e-08, 0, -6.55671e-08, -1.5, -1.4235, 0.472927, -2.06723e-08, -3.18968, 0.1, 2.83727 )
+modulate = Color( 0.921569, 0.231373, 0.231373, 1 )
+alpha_cut = 1
+texture = ExtResource( 7 )
+
+[node name="Sprite3D3" type="Sprite3D" parent="Arrows"]
+transform = Transform( -0.652352, -1.35072, 5.90417e-08, 0, -6.55671e-08, -1.5, 1.35072, -0.652352, 2.85152e-08, 17.8291, 0.1, 1.14011 )
+modulate = Color( 0.384314, 0.65098, 0.964706, 1 )
+alpha_cut = 1
+texture = ExtResource( 7 )
+
+[node name="Sprite3D4" type="Sprite3D" parent="Arrows"]
+transform = Transform( 0.94995, -1.16086, 5.07428e-08, 0, -6.55671e-08, -1.5, 1.16086, 0.94995, -4.15236e-08, 7.21401, 0.1, 1.1939 )
+modulate = Color( 0.384314, 0.65098, 0.964706, 1 )
+alpha_cut = 1
+texture = ExtResource( 7 )
+
+[node name="Water Plane" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.665727, 0 )
+mesh = SubResource( 8 )
+
+[node name="TropicPart_" parent="." instance=ExtResource( 19 )]
+transform = Transform( -1.19913, 0, -0.0457097, 0, 1, 0, 0.0457097, 0, -1.19913, 10.861, -0.552728, 6.124 )
+
+[node name="TropicPart_2" parent="." instance=ExtResource( 19 )]
+transform = Transform( 1.19745, 0, 0.0781913, 0, 1, 0, -0.0781913, 0, 1.19745, -7.818, -0.652728, 7.453 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1, -8.74228e-08, 4.37114e-08, 4.37114e-08, 1.91069e-15, 1, -8.74228e-08, 1, 1.91068e-15, 0, 16.4817, 0 )
+directional_shadow_mode = 0
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0472717, 0 )
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.21072, 0 )
+depth = 10.0
+polygon = PoolVector2Array( 3.63265, 13.9319, 7.15426, 12.5422, 12.7164, 10.1146, 20.0469, 8.13764, 24.6468, 6.40648, 29.6897, 1.97521, 31.3885, -3.50046, 31.0674, -9.59178, 28.2121, -15.4965, 24.035, -19.4567, 18.5073, -20.1325, 13.7172, -22.901, 8.56371, -26.2797, 3.52685, -28.0745, -2.25041, -26.9485, -8.22783, -24.2153, -20.6627, -20.9429, -25.7185, -16.9398, -28.9286, -11.2255, -28.1453, -4.91342, -25.4148, 1.89226, -20.9936, 5.70706, -15.9046, 6.47891, -11.3326, 8.88126, -5.88841, 12.7481, -1.74951, 14.5022, 1.31817, 14.41, 1.52726, 18.6149, -10.3754, 15.808, -23.1755, 7.83315, -31.6505, -0.201706, -33.3761, -16.617, -21.7591, -24.7096, -7.38195, -30.4208, 5.10892, -33.6668, 19.9873, -26.4265, 28.5972, -21.8263, 36.0413, -11.0738, 34.3858, 6.6663, 22.6313, 13.0755, 11.9916, 16.0611, 5.59605, 17.899, 1.89083, 18.1247, 1.78283, 14.4368 )

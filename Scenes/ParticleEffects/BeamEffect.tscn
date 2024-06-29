@@ -1,0 +1,194 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Assets/Meshes/VFX/beam_ring.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Util/AdjustableBeam.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Meshes/VFX/small_ring.tres" type="ArrayMesh" id=6]
+[ext_resource path="res://Assets/Shaders/beam.shader" type="Shader" id=7]
+[ext_resource path="res://Assets/Shaders/adjustable_beam.shader" type="Shader" id=8]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 0.415686, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+gravity = Vector3( 0, 0, 0 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 8 )
+shader_param/color = Color( 0.694118, 0.552941, 0.788235, 1 )
+shader_param/max_length = 11.0
+shader_param/beam_length = 10.0
+shader_param/noise_scale = Vector2( 0.349, 0.14 )
+shader_param/cylinder_diameter = 0.5
+shader_param/fadeout_multiplier = 0.9
+shader_param/animate_beam = false
+shader_param/noise_tex = ExtResource( 3 )
+
+[sub_resource type="ArrayMesh" id=5]
+resource_name = "Cylinder"
+surfaces/0 = {
+"aabb": AABB( -3.77489e-08, -0.5, -0.5, 1, 1, 1 ),
+"array_data": PoolByteArray( 155, 92, 205, 38, 105, 33, 162, 178, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 0, 0, 255, 0, 0, 0, 56, 155, 92, 205, 38, 105, 33, 162, 178, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 0, 0, 255, 0, 60, 0, 56, 0, 0, 128, 63, 30, 50, 115, 51, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 213, 0, 0, 255, 0, 0, 0, 0, 0, 0, 128, 63, 30, 50, 115, 51, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 213, 0, 0, 255, 0, 60, 0, 0, 133, 73, 229, 50, 244, 4, 181, 190, 243, 4, 181, 190, 0, 167, 167, 0, 0, 89, 167, 127, 0, 0, 0, 255, 0, 59, 0, 56, 0, 0, 128, 63, 241, 4, 181, 190, 243, 4, 181, 190, 0, 167, 167, 0, 0, 89, 167, 127, 241, 0, 0, 255, 0, 59, 0, 0, 105, 33, 34, 51, 0, 0, 0, 191, 46, 189, 187, 50, 0, 129, 0, 0, 0, 0, 130, 127, 0, 0, 0, 255, 0, 58, 0, 56, 0, 0, 128, 63, 253, 255, 255, 190, 46, 189, 187, 50, 0, 129, 0, 0, 0, 0, 129, 127, 255, 1, 1, 255, 0, 58, 0, 0, 133, 73, 229, 50, 244, 4, 181, 190, 243, 4, 181, 62, 0, 167, 89, 0, 0, 167, 167, 127, 0, 0, 0, 255, 0, 57, 0, 56, 0, 0, 128, 63, 241, 4, 181, 190, 243, 4, 181, 62, 0, 167, 89, 0, 0, 167, 167, 127, 255, 0, 0, 255, 0, 57, 0, 0, 34, 30, 7, 167, 243, 88, 213, 50, 0, 0, 0, 63, 0, 0, 127, 0, 0, 129, 0, 127, 0, 0, 0, 255, 0, 56, 0, 56, 0, 0, 128, 63, 166, 119, 215, 51, 0, 0, 0, 63, 0, 0, 127, 0, 0, 129, 0, 127, 255, 1, 1, 255, 0, 56, 0, 0, 133, 73, 229, 178, 244, 4, 181, 62, 241, 4, 181, 62, 0, 89, 89, 0, 0, 167, 89, 127, 0, 0, 0, 255, 0, 54, 0, 56, 0, 0, 128, 63, 247, 4, 181, 62, 241, 4, 181, 62, 0, 89, 89, 0, 0, 167, 89, 127, 255, 0, 0, 255, 0, 54, 0, 0, 104, 33, 34, 179, 255, 255, 255, 62, 46, 222, 204, 177, 0, 127, 0, 0, 0, 0, 127, 127, 0, 0, 0, 255, 0, 52, 0, 56, 255, 255, 127, 63, 1, 0, 0, 63, 46, 222, 204, 177, 0, 127, 0, 0, 0, 0, 126, 127, 255, 0, 0, 255, 0, 52, 0, 0, 133, 73, 229, 178, 244, 4, 181, 62, 242, 4, 181, 190, 0, 89, 167, 0, 0, 89, 89, 127, 0, 0, 0, 255, 0, 48, 0, 56, 0, 0, 128, 63, 247, 4, 181, 62, 242, 4, 181, 190, 0, 89, 167, 0, 0, 89, 89, 127, 255, 0, 0, 255, 0, 48, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 5, 0, 3, 0, 1, 0, 4, 0, 5, 0, 4, 0, 7, 0, 5, 0, 4, 0, 6, 0, 7, 0, 6, 0, 9, 0, 7, 0, 6, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0, 14, 0, 17, 0, 15, 0, 14, 0, 16, 0, 17, 0, 16, 0, 2, 0, 17, 0, 16, 0, 0, 0, 2, 0 ),
+"blend_shape_data": [  ],
+"format": 97567,
+"index_count": 48,
+"material": SubResource( 4 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 18
+}
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+width = 256
+height = 256
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 8 )
+shader_param/color = Color( 0.466667, 0.415686, 0.584314, 1 )
+shader_param/max_length = 10.5
+shader_param/beam_length = 11.0
+shader_param/noise_scale = Vector2( 1, 0.291 )
+shader_param/cylinder_diameter = 0.6
+shader_param/fadeout_multiplier = 1.0
+shader_param/animate_beam = false
+shader_param/noise_tex = SubResource( 7 )
+
+[sub_resource type="ArrayMesh" id=9]
+resource_name = "Cylinder"
+surfaces/0 = {
+"aabb": AABB( -3.77489e-08, -0.5, -0.5, 1, 1, 1 ),
+"array_data": PoolByteArray( 155, 92, 205, 38, 105, 33, 162, 178, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 0, 0, 255, 0, 0, 0, 56, 155, 92, 205, 38, 105, 33, 162, 178, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 0, 0, 255, 0, 60, 0, 56, 0, 0, 128, 63, 30, 50, 115, 51, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 213, 0, 0, 255, 0, 0, 0, 0, 0, 0, 128, 63, 30, 50, 115, 51, 0, 0, 0, 191, 0, 0, 129, 0, 0, 127, 0, 127, 213, 0, 0, 255, 0, 60, 0, 0, 133, 73, 229, 50, 244, 4, 181, 190, 243, 4, 181, 190, 0, 167, 167, 0, 0, 89, 167, 127, 0, 0, 0, 255, 0, 59, 0, 56, 0, 0, 128, 63, 241, 4, 181, 190, 243, 4, 181, 190, 0, 167, 167, 0, 0, 89, 167, 127, 241, 0, 0, 255, 0, 59, 0, 0, 105, 33, 34, 51, 0, 0, 0, 191, 46, 189, 187, 50, 0, 129, 0, 0, 0, 0, 130, 127, 0, 0, 0, 255, 0, 58, 0, 56, 0, 0, 128, 63, 253, 255, 255, 190, 46, 189, 187, 50, 0, 129, 0, 0, 0, 0, 129, 127, 255, 1, 1, 255, 0, 58, 0, 0, 133, 73, 229, 50, 244, 4, 181, 190, 243, 4, 181, 62, 0, 167, 89, 0, 0, 167, 167, 127, 0, 0, 0, 255, 0, 57, 0, 56, 0, 0, 128, 63, 241, 4, 181, 190, 243, 4, 181, 62, 0, 167, 89, 0, 0, 167, 167, 127, 255, 0, 0, 255, 0, 57, 0, 0, 34, 30, 7, 167, 243, 88, 213, 50, 0, 0, 0, 63, 0, 0, 127, 0, 0, 129, 0, 127, 0, 0, 0, 255, 0, 56, 0, 56, 0, 0, 128, 63, 166, 119, 215, 51, 0, 0, 0, 63, 0, 0, 127, 0, 0, 129, 0, 127, 255, 1, 1, 255, 0, 56, 0, 0, 133, 73, 229, 178, 244, 4, 181, 62, 241, 4, 181, 62, 0, 89, 89, 0, 0, 167, 89, 127, 0, 0, 0, 255, 0, 54, 0, 56, 0, 0, 128, 63, 247, 4, 181, 62, 241, 4, 181, 62, 0, 89, 89, 0, 0, 167, 89, 127, 255, 0, 0, 255, 0, 54, 0, 0, 104, 33, 34, 179, 255, 255, 255, 62, 46, 222, 204, 177, 0, 127, 0, 0, 0, 0, 127, 127, 0, 0, 0, 255, 0, 52, 0, 56, 255, 255, 127, 63, 1, 0, 0, 63, 46, 222, 204, 177, 0, 127, 0, 0, 0, 0, 126, 127, 255, 0, 0, 255, 0, 52, 0, 0, 133, 73, 229, 178, 244, 4, 181, 62, 242, 4, 181, 190, 0, 89, 167, 0, 0, 89, 89, 127, 0, 0, 0, 255, 0, 48, 0, 56, 0, 0, 128, 63, 247, 4, 181, 62, 242, 4, 181, 190, 0, 89, 167, 0, 0, 89, 89, 127, 255, 0, 0, 255, 0, 48, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 5, 0, 3, 0, 1, 0, 4, 0, 5, 0, 4, 0, 7, 0, 5, 0, 4, 0, 6, 0, 7, 0, 6, 0, 9, 0, 7, 0, 6, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0, 14, 0, 17, 0, 15, 0, 14, 0, 16, 0, 17, 0, 16, 0, 2, 0, 17, 0, 16, 0, 0, 0, 2, 0 ),
+"blend_shape_data": [  ],
+"format": 97567,
+"index_count": 48,
+"material": SubResource( 8 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 18
+}
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 7 )
+shader_param/color = Color( 0.466667, 0.415686, 0.584314, 1 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/noise_tex = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=11]
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0.0063857, 0.009009 ), 0.0, 4.27065, 0, 0, Vector2( 0.083014, 1 ), 13.8142, -0.02167, 0, 0, Vector2( 0.651685, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 12 )
+
+[sub_resource type="Shader" id=16]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform sampler2D noise_texture;
+uniform sampler2D shape_texture;
+uniform float noise_outer_cutout = 0.2;
+uniform float noise_inner_cutout = 0.4;
+uniform float noise_scale = 0.8;
+uniform vec4 light_color : hint_color;
+uniform vec4 dark_color : hint_color;
+
+
+float impulse( float k, float x, float time){
+    float h = k*x+time;
+    return h*exp(1.0-h);
+}
+
+void fragment(){
+	float noise = texture(noise_texture, vec2(UV.x, UV.y*0.8)/noise_scale).r;
+	float shape = texture(shape_texture, vec2(UV.y, UV.x)).r;
+	float wave = impulse(4, UV.y, COLOR.r*17.0-3.0);
+	
+	float outline_shape = step(noise_outer_cutout, wave * noise *shape);
+	float outer_shape = step(noise_outer_cutout, wave * noise *shape) - 
+			step(noise_inner_cutout, wave * noise * shape);
+	float inner_shape = step(noise_inner_cutout, wave * noise * shape);
+	//vec3 color = outer_shape * dark_color.rgb + inner_shape * light_color.rgb;
+	
+	vec3 color = dark_color.rgb * outer_shape + light_color.rgb * inner_shape;
+	ALBEDO = vec3(color);
+	ALPHA = outline_shape;
+	ALPHA_SCISSOR = 0.9;
+}"
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0, 0.227273, 0.577922 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.367089, 0.367089, 0.367089, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=18]
+gradient = SubResource( 17 )
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 16 )
+shader_param/noise_outer_cutout = 0.2
+shader_param/noise_inner_cutout = 0.4
+shader_param/noise_scale = 1.0
+shader_param/light_color = Color( 0.694118, 0.552941, 0.788235, 1 )
+shader_param/dark_color = Color( 0.466667, 0.415686, 0.584314, 1 )
+shader_param/noise_texture = ExtResource( 3 )
+shader_param/shape_texture = SubResource( 18 )
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.607692, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.884615, 0.884615, 0.884615, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+gravity = Vector3( 0, 0, 0 )
+color_ramp = SubResource( 21 )
+
+[node name="BeamEffect" type="Spatial"]
+script = ExtResource( 4 )
+Beam = NodePath("Beam")
+
+[node name="Beam" type="Particles" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 3 )
+draw_passes = 2
+draw_pass_1 = SubResource( 5 )
+draw_pass_2 = SubResource( 9 )
+
+[node name="Ring2" type="Particles" parent="."]
+material_override = SubResource( 10 )
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+process_material = SubResource( 15 )
+draw_pass_1 = ExtResource( 6 )
+
+[node name="Ring" type="Particles" parent="."]
+material_override = SubResource( 19 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 22 )
+draw_pass_1 = ExtResource( 1 )

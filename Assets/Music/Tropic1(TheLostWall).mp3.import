@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tropic1(TheLostWall).mp3-a46242395e333daee5c8b8cd2b2d21e0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Tropic1(TheLostWall).mp3"
+dest_files=[ "res://.import/Tropic1(TheLostWall).mp3-a46242395e333daee5c8b8cd2b2d21e0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

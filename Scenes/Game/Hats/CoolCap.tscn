@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Meshes/Hats/cool_cap_hat.obj" type="ArrayMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.215686, 0.2, 0.192157, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.686275, 0.203922, 0.180392, 1 )
+
+[node name="CoolCap" type="Spatial"]
+script = ExtResource( 3 )
+hat_type = 6
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )

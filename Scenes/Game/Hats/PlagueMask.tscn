@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/2.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Materials/Palette/10.tres" type="Material" id=4]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Meshes/Hats/plague_mask_and_hat.obj" type="ArrayMesh" id=6]
+
+[node name="PlagueMask" type="Spatial"]
+script = ExtResource( 5 )
+hat_type = 14
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 4 )
+material/3 = ExtResource( 1 )
+material/4 = ExtResource( 2 )

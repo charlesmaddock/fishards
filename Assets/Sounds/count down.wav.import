@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/count down.wav-150af828698e9fd5381b07963283494a.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/count down.wav"
+dest_files=[ "res://.import/count down.wav-150af828698e9fd5381b07963283494a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

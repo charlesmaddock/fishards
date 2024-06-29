@@ -1,0 +1,1068 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/MainMenu/SettingsUI.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Scripts/MainMenu/KeyBindButton.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends HSlider
+
+onready var label: Label = $Panel/Label
+
+func _ready():
+	label.text = str(value)
+
+func _on_Slider_value_changed(value):
+	label.text = str(value)
+
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends HSlider
+
+onready var label: Label = $Panel/Label
+
+func _ready():
+	label.text = str(value)
+
+func _on_Slider_value_changed(value):
+	label.text = str(value)
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends HSlider
+
+onready var label: Label = $Panel/Label
+
+func _ready():
+	label.text = str(value)
+
+func _on_Slider_value_changed(value):
+	label.text = str(value)
+"
+
+[node name="SettingsUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+zoomed_in = true
+
+[node name="Control" type="PanelContainer" parent="."]
+self_modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -164.0
+margin_right = 160.0
+margin_bottom = 164.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+margin_left = 3.0
+margin_right = 320.0
+margin_bottom = 324.0
+custom_constants/margin_right = 9
+custom_constants/margin_top = 9
+custom_constants/margin_left = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+margin_left = 6.0
+margin_top = 9.0
+margin_right = 308.0
+margin_bottom = 324.0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_right = 302.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+text = "Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicTitle" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 302.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+text = "Music and sound"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolume" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 302.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Master Volume"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolume" type="HSlider" parent="Control/MarginContainer/VBoxContainer/MasterVolume"]
+anchor_left = 1.00017
+anchor_top = 0.406949
+anchor_right = 1.00017
+anchor_bottom = 0.406949
+margin_left = -131.051
+margin_top = -5.13898
+margin_right = -26.0513
+margin_bottom = 6.86102
+value = 100.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume"]
+margin_left = 115.002
+margin_top = -1.86102
+margin_right = 131.002
+margin_bottom = 14.139
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume/Panel"]
+margin_left = 0.949219
+margin_top = -0.966984
+margin_right = 16.9492
+margin_bottom = 12.033
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 302.0
+margin_bottom = 85.0
+custom_constants/separation = 41
+
+[node name="MusicVolume" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicContainer"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Music Volume"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolume" type="HSlider" parent="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -72.4917
+margin_top = -8.21167
+margin_right = -22.4917
+margin_bottom = 11.7883
+value = 100.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume"]
+margin_left = 55.0
+margin_top = 1.94715
+margin_right = 71.0
+margin_bottom = 17.9472
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume/Panel"]
+margin_left = 0.724274
+margin_top = -1.15881
+margin_right = 16.7243
+margin_bottom = 11.8412
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXVolume" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicContainer"]
+margin_left = 171.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "SFX Volume"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXVolume" type="HSlider" parent="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -76.8662
+margin_top = -8.21167
+margin_right = -26.8662
+margin_bottom = 11.7883
+value = 100.0
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume"]
+margin_left = 60.9196
+margin_top = 1.94715
+margin_right = 76.9196
+margin_bottom = 17.9472
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume/Panel"]
+margin_left = 0.724274
+margin_top = -1.15881
+margin_right = 16.7243
+margin_bottom = 11.8412
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyBinds" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 302.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+text = "Keybinds"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 109.0
+margin_right = 302.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Movement"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="up" type="Control" parent="Control/MarginContainer/VBoxContainer/Movement"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -57.2023
+margin_top = -11.0
+margin_right = -37.2023
+margin_bottom = 9.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="up" type="Button" parent="Control/MarginContainer/VBoxContainer/Movement/up"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -8.0
+margin_right = -30.0
+margin_bottom = 12.0
+text = "w"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/Movement/up"]
+margin_left = -39.6639
+margin_top = -12.1831
+margin_right = -19.6639
+margin_bottom = 0.816879
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 0.705882 )
+text = "Up"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="Control" parent="Control/MarginContainer/VBoxContainer/Movement"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -55.2023
+margin_top = -9.99998
+margin_right = -35.2025
+margin_bottom = 10.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="Button" parent="Control/MarginContainer/VBoxContainer/Movement/left"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -27.2679
+margin_top = -9.0
+margin_right = -7.2679
+margin_bottom = 11.0
+text = "a"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/Movement/left"]
+margin_left = -17.268
+margin_top = -13.1831
+margin_right = 2.73198
+margin_bottom = -0.183121
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 0.705882 )
+text = "Left"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="Control" parent="Control/MarginContainer/VBoxContainer/Movement"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -52.4703
+margin_top = -10.0
+margin_right = -32.4703
+margin_bottom = 10.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="Button" parent="Control/MarginContainer/VBoxContainer/Movement/down"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -5.26797
+margin_top = -9.0
+margin_right = 14.732
+margin_bottom = 11.0
+text = "s"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control/MarginContainer/VBoxContainer/Movement/down"]
+margin_left = 4.73204
+margin_top = -13.1831
+margin_right = 27.732
+margin_bottom = -0.183121
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 0.705882 )
+text = "Down"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="Control" parent="Control/MarginContainer/VBoxContainer/Movement"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -49.9469
+margin_top = -10.0
+margin_right = -29.9469
+margin_bottom = 10.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="Button" parent="Control/MarginContainer/VBoxContainer/Movement/right"]
+anchor_left = 0.500015
+anchor_top = 0.657556
+anchor_right = 0.500015
+anchor_bottom = 0.657556
+margin_left = 17.7317
+margin_top = -12.1511
+margin_right = 37.7317
+margin_bottom = 7.84888
+text = "d"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Control/MarginContainer/VBoxContainer/Movement/right"]
+margin_left = 27.9469
+margin_top = -13.1831
+margin_right = 50.9469
+margin_bottom = -0.183121
+custom_colors/font_color = Color( 0.4, 0.4, 0.4, 0.705882 )
+text = "Right"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementButtons" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 131.0
+margin_right = 302.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Element Buttons"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element1" type="Control" parent="Control/MarginContainer/VBoxContainer/ElementButtons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -132.149
+margin_top = -11.0
+margin_right = -112.149
+margin_bottom = 9.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element1" type="Button" parent="Control/MarginContainer/VBoxContainer/ElementButtons/Element1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -0.268009
+margin_top = -6.98784
+margin_right = 19.732
+margin_bottom = 13.0122
+text = "1"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element2" type="Control" parent="Control/MarginContainer/VBoxContainer/ElementButtons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -105.149
+margin_top = -10.0
+margin_right = -85.1492
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element2" type="Button" parent="Control/MarginContainer/VBoxContainer/ElementButtons/Element2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.2681
+margin_top = -7.98784
+margin_right = 17.7319
+margin_bottom = 12.0122
+text = "2"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element3" type="Control" parent="Control/MarginContainer/VBoxContainer/ElementButtons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -77.2023
+margin_top = -10.0
+margin_right = -57.2023
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element3" type="Button" parent="Control/MarginContainer/VBoxContainer/ElementButtons/Element3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -5.26801
+margin_top = -7.98784
+margin_right = 14.732
+margin_bottom = 12.0122
+text = "3"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element4" type="Control" parent="Control/MarginContainer/VBoxContainer/ElementButtons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -49.9469
+margin_top = -10.0
+margin_right = -29.9469
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element4" type="Button" parent="Control/MarginContainer/VBoxContainer/ElementButtons/Element4"]
+anchor_left = 0.6
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.5
+margin_left = -9.2681
+margin_top = -7.98784
+margin_right = 10.7319
+margin_bottom = 12.0122
+text = "4"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Element5" type="Control" parent="Control/MarginContainer/VBoxContainer/ElementButtons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -22.0
+margin_top = -10.0
+margin_right = -2.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element5" type="Button" parent="Control/MarginContainer/VBoxContainer/ElementButtons/Element5"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -10.268
+margin_top = -7.98784
+margin_right = 9.73199
+margin_bottom = 12.0122
+text = "5"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CastKeybindContainers" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 302.0
+margin_bottom = 173.0
+custom_constants/separation = 41
+
+[node name="CastSpell" type="Label" parent="Control/MarginContainer/VBoxContainer/CastKeybindContainers"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Cast Spell Button"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CastSpell" type="Button" parent="Control/MarginContainer/VBoxContainer/CastKeybindContainers/CastSpell"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -20.5382
+margin_top = -7.0
+margin_right = -0.538177
+margin_bottom = 13.0
+rect_min_size = Vector2( 20, 20 )
+text = "LMB"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetElements" type="Label" parent="Control/MarginContainer/VBoxContainer/CastKeybindContainers"]
+margin_left = 171.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Reset Spell Button"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetElements" type="Button" parent="Control/MarginContainer/VBoxContainer/CastKeybindContainers/ResetElements"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -22.2149
+margin_top = -7.0
+margin_right = -2.21487
+margin_bottom = 13.0
+text = "R"
+clip_text = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OtherKeybinds" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 302.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+custom_constants/separation = 41
+
+[node name="ChatLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/OtherKeybinds"]
+margin_top = 3.0
+margin_right = 130.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Open Chat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chat" type="Button" parent="Control/MarginContainer/VBoxContainer/OtherKeybinds/ChatLabel"]
+margin_left = 109.046
+margin_right = 129.046
+margin_bottom = 20.0
+text = "C"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeaderboardLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/OtherKeybinds"]
+margin_left = 171.0
+margin_top = 3.0
+margin_right = 302.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Leaderboard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leaderboard" type="Button" parent="Control/MarginContainer/VBoxContainer/OtherKeybinds/LeaderboardLabel"]
+margin_left = 109.0
+margin_right = 129.0
+margin_bottom = 20.0
+text = "TAB"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Other" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 197.0
+margin_right = 302.0
+margin_bottom = 217.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+text = "Other"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstOtherContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 219.0
+margin_right = 302.0
+margin_bottom = 239.0
+custom_constants/separation = 41
+
+[node name="Fullscreen" type="Label" parent="Control/MarginContainer/VBoxContainer/FirstOtherContainer"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Fullscreen"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/FirstOtherContainer/Fullscreen"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrettyGraphics" type="Label" parent="Control/MarginContainer/VBoxContainer/FirstOtherContainer"]
+margin_left = 171.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Pretty Graphics"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrettyGraphics" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/FirstOtherContainer/PrettyGraphics"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FiscondOtherContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 241.0
+margin_right = 302.0
+margin_bottom = 261.0
+custom_constants/separation = 41
+
+[node name="RightClickToMove" type="Label" parent="Control/MarginContainer/VBoxContainer/FiscondOtherContainer"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Right Click to Move "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightClickToMove" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/FiscondOtherContainer/RightClickToMove"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Caution" type="Label" parent="Control/MarginContainer/VBoxContainer/FiscondOtherContainer/RightClickToMove"]
+margin_top = 11.2131
+margin_right = 58.0
+margin_bottom = 24.2131
+custom_colors/font_color = Color( 0.894118, 0.133333, 0.133333, 0.537255 )
+text = "(Experimental)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowCooldowns" type="Label" parent="Control/MarginContainer/VBoxContainer/FiscondOtherContainer"]
+margin_left = 171.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Show Cooldowns"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowCooldowns" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/FiscondOtherContainer/ShowCooldowns"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondOtherContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 263.0
+margin_right = 302.0
+margin_bottom = 283.0
+custom_constants/separation = 41
+
+[node name="DisableSpellHUD" type="Label" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer"]
+margin_right = 130.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Disable Spell HUD"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisableSpellHUD" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableSpellHUD"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AutoClearElements" type="Label" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer"]
+margin_left = 171.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Auto Clear Elements"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="toggle" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer/AutoClearElements"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinimalHUD" type="Label" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer"]
+visible = false
+margin_left = 228.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinimalHUD" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer/MinimalHUD"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Caution2" type="Label" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer/MinimalHUD"]
+visible = false
+margin_left = -0.148987
+margin_top = 11.1717
+margin_right = 57.851
+margin_bottom = 24.1717
+custom_colors/font_color = Color( 0.894118, 0.133333, 0.133333, 0.537255 )
+text = "(Hides names, HUD, etc)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisableController" type="Label" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer"]
+visible = false
+margin_left = 228.0
+margin_right = 302.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = " "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisableController" type="CheckBox" parent="Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableController"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -9.0
+margin_right = -1.0
+margin_bottom = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+margin_top = 285.0
+margin_right = 302.0
+margin_bottom = 315.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Back" parent="Control/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+margin_top = 5.0
+margin_right = 129.0
+margin_bottom = 30.0
+button_text = "Back"
+
+[node name="Reset" parent="Control/MarginContainer/VBoxContainer/Buttons" instance=ExtResource( 3 )]
+margin_left = 171.0
+margin_top = 5.0
+margin_right = 302.0
+margin_bottom = 30.0
+button_text = "Reset"
+
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume" to="Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume" method="_on_Slider_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume" to="Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume" method="_on_Slider_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume" to="Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume" method="_on_Slider_value_changed"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/Movement/up/up" to="." method="_on_up_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/Movement/left/left" to="." method="_on_left_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/Movement/down/down" to="." method="_on_down_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/Movement/right/right" to="." method="_on_right_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/ElementButtons/Element1/Element1" to="." method="_on_Element1_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/ElementButtons/Element2/Element2" to="." method="_on_Element2_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/ElementButtons/Element3/Element3" to="." method="_on_Element3_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/ElementButtons/Element4/Element4" to="." method="_on_Element4_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/ElementButtons/Element5/Element5" to="." method="_on_Element5_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/CastKeybindContainers/CastSpell/CastSpell" to="." method="_on_CastSpell_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/CastKeybindContainers/ResetElements/ResetElements" to="." method="_on_ResetSpell_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/OtherKeybinds/ChatLabel/Chat" to="." method="_on_Chat_new_bind"]
+[connection signal="new_bind" from="Control/MarginContainer/VBoxContainer/OtherKeybinds/LeaderboardLabel/Leaderboard" to="." method="_on_Leaderboard_new_bind"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/FirstOtherContainer/Fullscreen/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/FirstOtherContainer/PrettyGraphics/PrettyGraphics" to="." method="_on_PrettyGraphics_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/FiscondOtherContainer/RightClickToMove/RightClickToMove" to="." method="_on_RightClickToMove_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/FiscondOtherContainer/ShowCooldowns/ShowCooldowns" to="." method="_on_ShowCooldowns_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableSpellHUD/DisableSpellHUD" to="." method="_on_DisableSpellHUD_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/SecondOtherContainer/AutoClearElements/toggle" to="." method="_on_AutoClearElements_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/SecondOtherContainer/MinimalHUD/MinimalHUD" to="." method="_on_MinimalHUD_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableController/DisableController" to="." method="_on_DisableController_toggled"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Buttons/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Buttons/Reset" to="." method="_on_Reset_pressed"]

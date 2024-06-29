@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Materials/Palette/4.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Meshes/Hats/beanie.obj" type="ArrayMesh" id=4]
+
+[node name="Beanie" type="Spatial"]
+script = ExtResource( 3 )
+hat_type = 11
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )

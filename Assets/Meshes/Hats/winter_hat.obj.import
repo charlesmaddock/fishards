@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh"
+
+[deps]
+
+files=[ "res://.import/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/winter_hat.obj"
+dest_files=[ "res://.import/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh", "res://.import/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

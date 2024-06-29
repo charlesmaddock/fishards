@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/bones.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/base_color = Color( 0.862745, 0.792157, 0.709804, 1 )
+shader_param/shade_color = Color( 0.729412, 0.682353, 0.623529, 1 )
+shader_param/shade_threshold = 0.0
+shader_param/use_attenuation = false
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.458501, 1.16025, 2.58031 )
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.288142
+
+[node name="Bones" type="Spatial"]
+
+[node name="bones" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0528711, -0.406873, 1.05124 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.990595, 0, -0.136822, 0, 1, 0, 0.136822, 0, 0.990595, -2.70311, 0.596478, 0.431474 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.988633, 0, -0.150346, 0, 1, 0, 0.150346, 0, 0.988633, -1.93102, 0.596478, -3.31603 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.988633, 0, -0.150346, 0, 1, 0, 0.150346, 0, 0.988633, 2.69988, 0.596478, 4.68798 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.988633, 0, -0.150346, 0, 1, 0, 0.150346, 0, 0.988633, 2.96898, 0.596478, 2.70794 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.988633, 0, -0.150346, 0, 1, 0, 0.150346, 0, 0.988633, 2.85828, 0.596478, -0.383746 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.988633, 0, -0.150346, 0, 1, 0, 0.150346, 0, 0.988633, 2.24757, 0.596478, -1.88744 )
+shape = SubResource( 3 )

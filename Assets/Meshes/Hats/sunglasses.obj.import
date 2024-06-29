@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sunglasses.obj-0763d2d94cd7215aad3c7914ddc663bd.mesh"
+
+[deps]
+
+files=[ "res://.import/sunglasses.obj-0763d2d94cd7215aad3c7914ddc663bd.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/sunglasses.obj"
+dest_files=[ "res://.import/sunglasses.obj-0763d2d94cd7215aad3c7914ddc663bd.mesh", "res://.import/sunglasses.obj-0763d2d94cd7215aad3c7914ddc663bd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

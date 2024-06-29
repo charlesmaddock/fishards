@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh"
+
+[deps]
+
+files=[ "res://.import/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/beanie.obj"
+dest_files=[ "res://.import/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh", "res://.import/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Components/ChangeSpeedOnCollide.gd" type="Script" id=1]
+
+[node name="ChangeSpeedOnCollide" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Repeat" type="Timer" parent="."]
+
+[connection signal="timeout" from="Repeat" to="." method="_on_Repeat_timeout"]

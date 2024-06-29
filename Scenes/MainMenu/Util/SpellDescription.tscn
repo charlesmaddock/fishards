@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Theme/Resources/simple_stone_styleboxflat.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/blank_small.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/MainMenu/SpellDescription.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/pixel_small.tres" type="DynamicFont" id=5]
+
+[sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="ImageTexture" id=3]
+
+[sub_resource type="ImageTexture" id=4]
+
+[sub_resource type="ImageTexture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 4.0
+bg_color = Color( 0.784314, 0.74902, 0.721569, 0.462745 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[node name="SpellDescription" type="VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 37.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spell" type="HBoxContainer" parent="."]
+margin_right = 101.0
+margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="Spell"]
+margin_right = 18.0
+margin_bottom = 19.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Control" type="Control" parent="Spell"]
+margin_left = 22.0
+margin_right = 32.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Element1" type="TextureRect" parent="Spell/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -3.5
+margin_right = 4.0
+margin_bottom = 4.5
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="Spell"]
+margin_left = 36.0
+margin_right = 46.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Element2" type="TextureRect" parent="Spell/Control2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -3.5
+margin_right = 4.0
+margin_bottom = 4.5
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellName" type="CheckBox" parent="Spell"]
+margin_left = 50.0
+margin_right = 72.0
+margin_bottom = 19.0
+custom_icons/radio_checked = SubResource( 2 )
+custom_icons/checked = SubResource( 3 )
+custom_icons/radio_unchecked = SubResource( 4 )
+custom_icons/unchecked = SubResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_hover = Color( 0.945098, 0.945098, 0.945098, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "???"
+
+[node name="DescriptionParent" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 23.0
+margin_right = 101.0
+margin_bottom = 36.0
+
+[node name="Description" type="Label" parent="DescriptionParent"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/line_spacing = -4
+text = "???"
+valign = 3
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="DescriptionParent"]
+margin_left = 101.0
+margin_right = 101.0
+margin_bottom = 13.0
+
+[connection signal="toggled" from="Spell/SpellName" to="." method="_on_SpellName_toggled"]

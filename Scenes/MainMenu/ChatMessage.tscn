@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+export(Array, Color) var name_colors
+
+
+onready var message_label: RichTextLabel = $Message
+onready var message_backdrop = $Message/Panel
+onready var disappearTimer = $DisappearTimer
+
+
+var _message: String = \"\"
+
+
+var _life_span: float = 0
+var _hide_after_life_span_over: bool = false
+var _chat_open: bool = false 
+
+
+func _ready():
+	if _message == \"\":
+		queue_free()
+	
+	message_label.bbcode_text = _message
+	
+	# Messages in game have a backdrop
+	if _hide_after_life_span_over == false:
+		message_backdrop.visible = false
+	
+	# Ingame messages get deleted after 4 seconds
+	if _hide_after_life_span_over == true:
+		var long_message_extra_time = float(_message.length()) / 25
+		disappearTimer.start(4 + long_message_extra_time)
+
+
+func create_chat_message(message: String, username: String, in_game_message: bool) -> void:
+	_hide_after_life_span_over = in_game_message
+	if username != \"\":
+		var name_hash = \"0x\" + username.sha1_text().substr(0,6)
+		var index: int = name_hash.hex_to_int() % name_colors.size()
+		_message = \"[color=#\" + str(name_colors[index].to_html(false)) + \"][\" + username + \"]:[/color] \" 
+	_message += message
+
+
+func _on_DisappearTimer_timeout():
+	queue_free()
+"
+
+[node name="ChatMessage" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 1 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+name_colors = [ Color( 0.466667, 0.0862745, 0.0862745, 1 ), Color( 0.901961, 0.470588, 0.960784, 1 ), Color( 0.698039, 0.160784, 0.968627, 1 ), Color( 0.0745098, 0.141176, 0.862745, 1 ), Color( 0.737255, 0.945098, 0.466667, 1 ), Color( 0.941176, 0.745098, 0.537255, 1 ), Color( 0.396078, 0.886275, 0.921569, 1 ), Color( 0, 0.384314, 0.980392, 1 ) ]
+
+[node name="Message" type="RichTextLabel" parent="."]
+margin_right = 640.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+bbcode_enabled = true
+bbcode_text = "[color=blue]blue[/color]: hello"
+text = "blue: hello"
+fit_content_height = true
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="Message"]
+modulate = Color( 0.262745, 0.262745, 0.262745, 0.392157 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisappearTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_DisappearTimer_timeout"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Shaders/toon.shader" type="Shader" id=1]
+[ext_resource path="res://Scenes/Entities/Environment/DeadTree.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/shadow_color = Color( 0, 0, 0, 0 )
+shader_param/clamp_diffuse_to_max = false
+shader_param/cuts = 3
+shader_param/wrap = 0.0
+shader_param/steepness = 1.0
+shader_param/use_attenuation = true
+shader_param/use_ramp = false
+
+[sub_resource type="PlaneMesh" id=2]
+
+[sub_resource type="CylinderMesh" id=3]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.501961, 0.67451, 0.482353, 1 )
+shader_param/shadow_color = Color( 0.270588, 0.427451, 0.301961, 1 )
+shader_param/clamp_diffuse_to_max = false
+shader_param/cuts = 1
+shader_param/wrap = 0.0
+shader_param/steepness = 1.0
+shader_param/use_attenuation = false
+shader_param/use_ramp = false
+
+[sub_resource type="SphereMesh" id=5]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/shadow_color = Color( 0.309804, 0.341176, 0.517647, 1 )
+shader_param/clamp_diffuse_to_max = false
+shader_param/cuts = 1
+shader_param/wrap = 0.0
+shader_param/steepness = 1.0
+shader_param/use_attenuation = false
+shader_param/use_ramp = false
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 10.3808, 0, 0, 0, 0.463029, 0, 0, 0, 15.0302, 0.000566721, 0.00254893, -0.00123042 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0.000959931, 5.67207e-11, -0.00076514, 0.797078, 0.603876, 0.000579679, -0.603876, 0.797078, 0, 0.44451, 0.591605 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.0632145, 0, 0, 0, 0.207973, 0, 0, 0, 0.0632145, -0.0802368, 0.066309, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="MeshInstance2"]
+transform = Transform( 13.569, 0.367404, 8.12356, -1.78184, 3.46335, 2.81962, -5.63581, -10.9673, 9.90967, 8.75709, 1.89482, 0 )
+light_energy = 0.62
+shadow_enabled = true
+shadow_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shadow_contact = 0.12
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.039
+directional_shadow_split_2 = 0.0
+directional_shadow_split_3 = 0.203
+directional_shadow_normal_bias = 0.0
+directional_shadow_bias_split_scale = 0.45
+directional_shadow_max_distance = 68.5
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 0.0632145, 0, 0, 0, 0.0713434, 0, 0, 0, 0.0632145, 0.187751, 0.106983, 0.0415376 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="DeadTree" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.150024, 0, 0, 0, 0.150024, 0, 0, 0, 0.234294, 0.571351, 0.0301684, 0.111142 )

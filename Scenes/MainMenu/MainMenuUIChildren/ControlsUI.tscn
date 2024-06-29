@@ -1,0 +1,480 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/MainMenu/ControlsUI.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_4px_margin.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Shaders/circle.shader" type="Shader" id=11]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_for_buttons.tres" type="StyleBox" id=12]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 11 )
+shader_param/color = Color( 0.784314, 0.74902, 0.721569, 1 )
+
+[node name="ControlsUI" type="Control"]
+margin_right = 640.0
+margin_bottom = 360.0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -132.0
+margin_right = 120.0
+margin_bottom = 132.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 27.0
+custom_constants/separation = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlsTitle" type="Label" parent="Control/VBoxContainer"]
+margin_right = 240.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.764706, 0.733333, 0.690196, 1 )
+custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Default Controls"
+
+[node name="spacer" type="Control" parent="Control/VBoxContainer"]
+margin_top = 26.0
+margin_right = 240.0
+margin_bottom = 26.0
+
+[node name="CreateSpell" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 33.0
+margin_right = 240.0
+margin_bottom = 62.0
+
+[node name="CreateSpell" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_right = 110.0
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( -416, -24 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "create spell by combining:"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="1" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_left = 114.0
+margin_top = 1.0
+margin_right = 132.0
+margin_bottom = 28.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "1"
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/CreateSpell/1"]
+material = SubResource( 1 )
+margin_left = 2.0
+margin_top = -11.0
+margin_right = 16.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire" type="Sprite" parent="Control/VBoxContainer/CreateSpell/1"]
+position = Vector2( 9, -4 )
+texture = ExtResource( 7 )
+
+[node name="2" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_left = 136.0
+margin_top = 1.0
+margin_right = 159.0
+margin_bottom = 28.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "2"
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/CreateSpell/2"]
+material = SubResource( 1 )
+margin_left = 4.0
+margin_top = -11.0
+margin_right = 18.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="water" type="Sprite" parent="Control/VBoxContainer/CreateSpell/2"]
+position = Vector2( 11, -4 )
+texture = ExtResource( 10 )
+
+[node name="3" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_left = 163.0
+margin_top = 1.0
+margin_right = 186.0
+margin_bottom = 28.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "3"
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/CreateSpell/3"]
+material = SubResource( 1 )
+margin_left = 4.0
+margin_top = -11.0
+margin_right = 18.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="earth" type="Sprite" parent="Control/VBoxContainer/CreateSpell/3"]
+position = Vector2( 11, -4 )
+texture = ExtResource( 9 )
+
+[node name="4" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_left = 190.0
+margin_top = 1.0
+margin_right = 213.0
+margin_bottom = 28.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "4"
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/CreateSpell/4"]
+material = SubResource( 1 )
+margin_left = 4.0
+margin_top = -11.0
+margin_right = 18.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arcane" type="Sprite" parent="Control/VBoxContainer/CreateSpell/4"]
+position = Vector2( 11, -4 )
+texture = ExtResource( 6 )
+
+[node name="5" type="Label" parent="Control/VBoxContainer/CreateSpell"]
+margin_left = 217.0
+margin_top = 1.0
+margin_right = 240.0
+margin_bottom = 28.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "5"
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer/CreateSpell/5"]
+material = SubResource( 1 )
+margin_left = 4.0
+margin_top = -11.0
+margin_right = 18.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goo" type="Sprite" parent="Control/VBoxContainer/CreateSpell/5"]
+position = Vector2( 11, -4 )
+texture = ExtResource( 8 )
+
+[node name="ShootSpell" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 69.0
+margin_right = 240.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ShootSpell"]
+margin_top = 7.0
+margin_right = 86.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "Shoot spell"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/ShootSpell"]
+margin_left = 90.0
+margin_right = 179.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab" type="Label" parent="Control/VBoxContainer/ShootSpell"]
+margin_left = 183.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "lmb"
+
+[node name="ResetElements" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 103.0
+margin_right = 240.0
+margin_bottom = 130.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ResetElements"]
+margin_top = 7.0
+margin_right = 113.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "reset elements"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/ResetElements"]
+margin_left = 117.0
+margin_right = 213.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="Control/VBoxContainer/ResetElements"]
+margin_left = 217.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "r"
+
+[node name="MoveWith" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 137.0
+margin_right = 240.0
+margin_bottom = 164.0
+
+[node name="MoveWith" type="Label" parent="Control/VBoxContainer/MoveWith"]
+margin_top = 7.0
+margin_right = 74.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "move with:"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/MoveWith"]
+margin_left = 78.0
+margin_right = 128.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="Label" parent="Control/VBoxContainer/MoveWith"]
+margin_left = 132.0
+margin_right = 159.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "w"
+
+[node name="A" type="Label" parent="Control/VBoxContainer/MoveWith"]
+margin_left = 163.0
+margin_right = 186.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "a"
+
+[node name="S" type="Label" parent="Control/VBoxContainer/MoveWith"]
+margin_left = 190.0
+margin_right = 213.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "s"
+
+[node name="D" type="Label" parent="Control/VBoxContainer/MoveWith"]
+margin_left = 217.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "d"
+
+[node name="OpenLeaderboard" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 171.0
+margin_right = 240.0
+margin_bottom = 198.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/OpenLeaderboard"]
+margin_top = 7.0
+margin_right = 131.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "open leaderboard:"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/OpenLeaderboard"]
+margin_left = 135.0
+margin_right = 183.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab" type="Label" parent="Control/VBoxContainer/OpenLeaderboard"]
+margin_left = 187.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "tab"
+
+[node name="OpenChat" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 205.0
+margin_right = 240.0
+margin_bottom = 232.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveWith3" type="Label" parent="Control/VBoxContainer/OpenChat"]
+margin_top = 7.0
+margin_right = 75.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "open chat:"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/OpenChat"]
+margin_left = 79.0
+margin_right = 213.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab" type="Label" parent="Control/VBoxContainer/OpenChat"]
+margin_left = 217.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "t"
+
+[node name="GoBack" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 239.0
+margin_right = 240.0
+margin_bottom = 266.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/GoBack"]
+margin_top = 7.0
+margin_right = 58.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -416, -24 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "go back:"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Spacer" type="Control" parent="Control/VBoxContainer/GoBack"]
+margin_left = 62.0
+margin_right = 79.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Esc" type="Label" parent="Control/VBoxContainer/GoBack"]
+margin_left = 83.0
+margin_right = 136.0
+margin_bottom = 27.0
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "esc"
+
+[node name="or" type="Label" parent="Control/VBoxContainer/GoBack"]
+margin_left = 140.0
+margin_top = 7.0
+margin_right = 156.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "or"
+
+[node name="Back" type="Button" parent="Control/VBoxContainer/GoBack"]
+margin_left = 160.0
+margin_right = 240.0
+margin_bottom = 27.0
+custom_styles/hover = ExtResource( 12 )
+custom_styles/pressed = ExtResource( 12 )
+custom_styles/focus = ExtResource( 12 )
+custom_styles/disabled = ExtResource( 12 )
+custom_styles/normal = ExtResource( 12 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+text = "back"
+
+[connection signal="pressed" from="Control/VBoxContainer/GoBack/Back" to="." method="_on_Back_pressed"]

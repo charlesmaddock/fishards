@@ -1,0 +1,294 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/MainMenu/LobbyUI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/Game/Chat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/MainMenu/Util/MenuButtonV2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/MainMenu/ElementsDisplay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/MainMenu/RoomSettings.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/MainMenu/Teams.tscn" type="PackedScene" id=10]
+
+[node name="LobbyUI" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+zoomed_in = true
+
+[node name="Lobby" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -302.0
+margin_top = -180.0
+margin_right = 338.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="HBoxContainer" parent="Lobby"]
+anchor_left = 0.376
+anchor_top = 0.341
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.64
+margin_top = -93.76
+margin_right = 280.0
+margin_bottom = -130.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyName" type="Label" parent="Lobby/TitleContainer"]
+margin_top = 4.0
+margin_right = 81.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "LOBBY NAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ping" type="RichTextLabel" parent="Lobby/TitleContainer"]
+margin_left = 85.0
+margin_right = 385.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 300, 0 )
+rect_clip_content = false
+custom_colors/default_color = Color( 0.396078, 0.396078, 0.396078, 1 )
+custom_constants/line_separation = -6
+bbcode_enabled = true
+bbcode_text = "ping: ..."
+text = "ping: ..."
+scroll_active = false
+
+[node name="Chat" parent="Lobby" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.5416
+margin_top = -128.265
+margin_right = 151.458
+margin_bottom = 71.7348
+
+[node name="Teams" parent="Lobby" instance=ExtResource( 10 )]
+margin_left = 7.0
+margin_top = 54.0
+margin_right = 252.0
+margin_bottom = 276.0
+
+[node name="RoomSettingsContainer" type="VBoxContainer" parent="Lobby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 158.0
+margin_top = -128.0
+margin_right = 285.0
+margin_bottom = 209.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsPanel" type="Panel" parent="Lobby/RoomSettingsContainer"]
+margin_right = 127.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 54 )
+
+[node name="Label" type="Label" parent="Lobby/RoomSettingsContainer/ElementsPanel"]
+margin_left = 4.65134
+margin_top = 4.06992
+margin_right = 109.651
+margin_bottom = 17.0699
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+text = "Your elements"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="Lobby/RoomSettingsContainer/ElementsPanel"]
+margin_left = 5.23209
+margin_top = 13.7134
+margin_right = 110.232
+margin_bottom = 26.7134
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+text = "Drag and drop the arrows"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementsDisplay" parent="Lobby/RoomSettingsContainer/ElementsPanel" instance=ExtResource( 6 )]
+margin_left = -0.41931
+margin_top = 22.5227
+margin_right = 118.581
+margin_bottom = 47.5227
+label_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+
+[node name="NoElementsPanel" type="Panel" parent="Lobby/RoomSettingsContainer"]
+margin_top = 58.0
+margin_right = 127.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 54 )
+
+[node name="Label" type="Label" parent="Lobby/RoomSettingsContainer/NoElementsPanel"]
+margin_left = 4.65134
+margin_top = 4.06992
+margin_right = 109.651
+margin_bottom = 17.0699
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+text = "Your elements"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="Label" parent="Lobby/RoomSettingsContainer/NoElementsPanel"]
+margin_left = 4.0
+margin_top = 15.0
+margin_right = 127.0
+margin_bottom = 49.0
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
+custom_constants/line_spacing = -4
+text = "This lobby's element mode doesn't allow you to choose your own elements."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditSettings" type="Button" parent="Lobby/RoomSettingsContainer"]
+margin_top = 116.0
+margin_right = 127.0
+margin_bottom = 135.0
+text = "Edit Settings"
+
+[node name="RoomSettingsContainer" type="PanelContainer" parent="Lobby/RoomSettingsContainer"]
+margin_top = 139.0
+margin_right = 127.0
+margin_bottom = 318.0
+
+[node name="RoomSettingsList" type="RichTextLabel" parent="Lobby/RoomSettingsContainer/RoomSettingsContainer"]
+margin_left = 3.0
+margin_right = 127.0
+margin_bottom = 173.0
+rect_min_size = Vector2( 0, 173 )
+size_flags_vertical = 2
+custom_colors/default_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" parent="Lobby" instance=ExtResource( 5 )]
+margin_left = 375.458
+margin_top = 282.735
+margin_right = 471.458
+margin_bottom = 307.735
+button_text = "join"
+
+[node name="Start" parent="Lobby" instance=ExtResource( 5 )]
+margin_left = 375.458
+margin_top = 282.735
+margin_right = 471.458
+margin_bottom = 307.735
+button_text = "start"
+
+[node name="Leave" parent="Lobby" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -312.572
+margin_top = 103.06
+margin_right = -195.572
+margin_bottom = 128.06
+button_text = "leave"
+
+[node name="MinPlayerBlock" type="Panel" parent="Lobby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 33.4584
+margin_top = 102.735
+margin_right = 151.458
+margin_bottom = 128.735
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lobby/MinPlayerBlock"]
+margin_top = -2.0
+margin_right = 117.0
+margin_bottom = 23.0
+custom_colors/font_color = Color( 0.364706, 0.364706, 0.364706, 1 )
+custom_constants/line_spacing = -4
+text = "You need at least 2 players/bots to play"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSettingsControlContainer" type="VBoxContainer" parent="Lobby"]
+margin_left = 11.0
+margin_top = 53.0
+margin_right = 478.0
+margin_bottom = 309.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSettingsControl" parent="Lobby/RoomSettingsControlContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 467.0
+margin_bottom = 246.0
+
+[node name="ButtonsContainer" type="Control" parent="Lobby/RoomSettingsControlContainer"]
+margin_top = 250.0
+margin_right = 467.0
+margin_bottom = 250.0
+
+[node name="Back" parent="Lobby/RoomSettingsControlContainer/ButtonsContainer" instance=ExtResource( 5 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -230.5
+margin_right = -113.5
+button_text = "back"
+
+[node name="UpdateSettings" parent="Lobby/RoomSettingsControlContainer/ButtonsContainer" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -0.220703
+margin_right = 232.779
+margin_bottom = 26.0
+button_text = "Update Settings"
+
+[connection signal="pressed" from="Lobby/RoomSettingsContainer/EditSettings" to="." method="_on_edit_settings_pressed"]
+[connection signal="pressed" from="Lobby/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Lobby/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Lobby/Leave" to="." method="_on_Leave_pressed"]
+[connection signal="pressed" from="Lobby/RoomSettingsControlContainer/ButtonsContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Lobby/RoomSettingsControlContainer/ButtonsContainer/UpdateSettings" to="." method="_on_update_settings_pressed"]

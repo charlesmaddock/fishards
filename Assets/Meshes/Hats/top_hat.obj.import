@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh"
+
+[deps]
+
+files=[ "res://.import/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/top_hat.obj"
+dest_files=[ "res://.import/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh", "res://.import/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/test.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/MainMenu/HatButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Images/UI/GeneratedIcons/question_mark.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform bool discovered = false;
+uniform vec4 undiscovered_color: hint_color;
+uniform sampler2D icon_tex;
+
+void fragment(){
+	vec4 icon = texture(icon_tex, UV);
+	COLOR = icon;
+	if(discovered == false){
+		COLOR = vec4(icon.a) * undiscovered_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/discovered = false
+shader_param/undiscovered_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+shader_param/icon_tex = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_bottom = 6.0
+bg_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+border_width_bottom = 2
+border_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+border_width_bottom = 2
+border_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[node name="HBoxContainer" type="Panel"]
+self_modulate = Color( 0.894118, 0.894118, 0.894118, 1 )
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 150, 42 )
+theme = ExtResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HatButton" type="Button" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_bottom = -2.0
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+icon = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestionMark" type="TextureRect" parent="HatButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.7868
+margin_top = -16.9272
+margin_right = -40.7868
+margin_bottom = 15.0728
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="VBoxContainer" parent="HatButton"]
+margin_left = 36.0
+margin_top = -1.0
+margin_right = 144.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 108, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="HatButton/Control"]
+margin_right = 108.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+custom_constants/line_spacing = -6
+text = "Master of Adaption"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="desc" type="Label" parent="HatButton/Control"]
+margin_top = 9.0
+margin_right = 108.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 0.32549, 0.32549, 0.32549, 0.666667 )
+custom_constants/line_spacing = -6
+text = "Win 50 Rounds With 'Random Same' as Element Mode
+"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewNotice" type="Panel" parent="."]
+self_modulate = Color( 30, 0.2, 0.2, 1 )
+margin_left = 2.3768
+margin_top = -1.018
+margin_right = 38.3768
+margin_bottom = 15.982
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewNotice"]
+margin_left = 2.97968
+margin_top = 0.664001
+margin_right = 58.9797
+margin_bottom = 13.664
+custom_fonts/font = ExtResource( 3 )
+text = "NEW!"
+
+[connection signal="mouse_entered" from="HatButton" to="." method="_on_HatButton_mouse_entered"]
+[connection signal="mouse_exited" from="HatButton" to="." method="_on_HatButton_mouse_exited"]
+[connection signal="pressed" from="HatButton" to="." method="_on_HatButton_pressed"]

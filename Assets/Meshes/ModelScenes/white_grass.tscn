@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/stalacmite.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform sampler2D alpha_texture;
+uniform vec4 light_color : hint_color;
+uniform vec4 dark_color : hint_color;
+uniform bool billboard = true;
+uniform bool circle_shape = false;
+
+void fragment(){
+	float alpha = texture(alpha_texture, vec2(UV)).r;
+	if(circle_shape){
+		alpha = 1.0 - distance(UV, vec2(0.5, 0.5));
+	}
+	
+	vec3 color = COLOR.g * light_color.rgb + COLOR.r * dark_color.rgb;
+	ALBEDO = color;
+	ALPHA = alpha;
+	ALPHA_SCISSOR = 0.5;
+}
+
+void vertex()
+{
+	if(billboard){
+		mat4 mat_world = mat4(normalize(CAMERA_MATRIX[0])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[1])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[2])*length(WORLD_MATRIX[2]),WORLD_MATRIX[3]);
+		mat_world = mat_world * mat4( vec4(cos(INSTANCE_CUSTOM.x),-sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),vec4(0.0, 0.0, 1.0, 0.0),vec4(0.0, 0.0, 0.0, 1.0));
+		MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat_world;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/light_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/dark_color = null
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 0, 2 )
+flag_rotate_y = true
+spread = 105.43
+gravity = Vector3( 0, 0, 0 )
+angle_random = 1.0
+scale = 2.0
+scale_random = 1.0
+
+[sub_resource type="QuadMesh" id=4]
+
+[node name="grass" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0208392, 0 )
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.192384, 0 )
+material_override = SubResource( 2 )
+lifetime = 100000.0
+explosiveness = 1.0
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )

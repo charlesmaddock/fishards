@@ -1,0 +1,110 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game/WaterPlane.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Meshes/ModelScenes/tropic_island_tiny.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_6.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Entities/Environment/PalmTree.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/WaterRock_4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Game/Map.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Entities/Environment/Rocks/Rock_3.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Meshes/ModelScenes/pebbles_2.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Meshes/ModelScenes/grass.tscn" type="PackedScene" id=20]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 6.0
+height = 4.39172
+
+[node name="IslandSmall" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5707, 0 )
+script = ExtResource( 12 )
+environment_types = [ "PALM_TREE" ]
+spawn_area_container = NodePath("SpawnAreas")
+hand_placed_entity_container = NodePath("../IslandSmall/HandPlacedEntityContainer")
+
+[node name="Water Plane" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.848661, 0 )
+
+[node name="HandPlacedEntityContainer" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.773569, 0 )
+
+[node name="WaterRock_2" parent="HandPlacedEntityContainer" instance=ExtResource( 1 )]
+transform = Transform( -0.949683, 0, 0.313213, 0, 1, 0, -0.313213, 0, -0.949683, -13.2625, 0, 9.84532 )
+
+[node name="WaterRock_5" parent="HandPlacedEntityContainer" instance=ExtResource( 1 )]
+transform = Transform( 0.999478, 0, 0.0323178, 0, 1, 0, -0.0323178, 0, 0.999478, -18.5116, 0, -7.86922 )
+
+[node name="WaterRock_3" parent="HandPlacedEntityContainer" instance=ExtResource( 8 )]
+transform = Transform( -0.347214, 0, -0.937786, 0, 1, 0, 0.937786, 0, -0.347214, -17.1163, 1.90735e-06, 7.72651 )
+
+[node name="WaterRock_4" parent="HandPlacedEntityContainer" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0635, 0, -1.32151 )
+
+[node name="WaterRock_6" parent="HandPlacedEntityContainer" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70947, -1.90735e-06, -18.7408 )
+
+[node name="WaterRock_7" parent="HandPlacedEntityContainer" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9883, -1.90735e-06, 10.7696 )
+
+[node name="WaterRock_1" parent="HandPlacedEntityContainer" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45298, 0, -18.5768 )
+
+[node name="PalmTree" parent="HandPlacedEntityContainer" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34681, 0, -6.02839 )
+
+[node name="Rock_2" parent="HandPlacedEntityContainer" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83206, 0.024437, 1.41443 )
+
+[node name="Rock_4" parent="HandPlacedEntityContainer" instance=ExtResource( 17 )]
+transform = Transform( -0.898304, 0, -0.439375, 0, 1, 0, 0.439375, 0, -0.898304, -11.4597, 0.00289154, 0.496338 )
+
+[node name="SpawnAreas" type="Spatial" parent="."]
+
+[node name="SpawnCircle" type="CollisionShape" parent="SpawnAreas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76248, 0, -2.68118 )
+shape = SubResource( 1 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.415861, 0.907873, 0.0531697, -0.126822, -5.08987e-08, 0.991925, 0.900542, -0.419246, 0.115138, 0, 8.79119, -12.0225 )
+
+[node name="Ground" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="Ground"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.13163e-14, -0.811059 )
+polygon = PoolVector2Array( 6.51566, 9.13361, 8.30338, 0.789716, 7.72733, -2.35189, 5.47974, -6.14388, 2.9816, -7.1904, -4.04963, -7.44511, -10.7167, -5.94849, -14.5667, -3.60928, -15.9767, -1.69294, -16.2418, 0.0268165, -15.4367, 4.462, -12.7031, 9.04214, -8.30375, 12.3717, -5.19595, 13.2022, -2.14117, 13.2962, 1.77667, 13.1098, 4.52233, 11.8021 )
+
+[node name="HandPlacedSmallEnvironments" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.606026, 0 )
+
+[node name="small_pebbles_1" parent="HandPlacedSmallEnvironments" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.341, 0, 4.6568 )
+
+[node name="small_pebbles_2" parent="HandPlacedSmallEnvironments" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383562, 0, -9.90789 )
+
+[node name="small_pebbles_4" parent="HandPlacedSmallEnvironments" instance=ExtResource( 19 )]
+transform = Transform( -0.504422, 0, 0.863457, 0, 1, 0, -0.863457, 0, -0.504422, -11.4741, 0, -6.8116 )
+
+[node name="small_pebbles_3" parent="HandPlacedSmallEnvironments" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83008, -9.53674e-07, -3.67539 )
+
+[node name="grass" parent="HandPlacedSmallEnvironments" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807831, 0, 1.93408 )
+
+[node name="grass3" parent="HandPlacedSmallEnvironments" instance=ExtResource( 20 )]
+transform = Transform( 1.25699, 0, 0, 0, 1.25699, 0, 0, 0, 1.25699, -7.66175, 0, -7.82855 )
+
+[node name="grass2" parent="HandPlacedSmallEnvironments" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03642, 0, 3.48122 )
+
+[node name="tropic_island_tiny" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.823291, 0 )

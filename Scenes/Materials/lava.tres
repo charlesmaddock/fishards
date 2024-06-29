@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Shaders/lava.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/lava_texture_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=3]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/light_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/dark_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/noise_scale = 24.0
+shader_param/shape_scale = 20.0
+shader_param/shape_strength = 1.0
+shader_param/scroll_speed = 0.05
+shader_param/noise_tex = ExtResource( 3 )
+shader_param/shape_tex = ExtResource( 2 )

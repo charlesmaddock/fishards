@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/progress.png" type="Texture" id=2]
+
+[node name="SpellCooldownPreview" type="TextureRect"]
+modulate = Color( 1, 1, 1, 0.686275 )
+margin_right = 18.0
+margin_bottom = 18.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoolDownSlider" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 10.0
+margin_bottom = 9.0
+max_value = 1.0
+step = 0.001
+value = 0.641
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0.0470588, 0.0431373, 0.0431373, 0.505882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

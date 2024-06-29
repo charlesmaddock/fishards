@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Materials/CelShaded/island_ground.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Meshes/Maps/TropicIslandParts/1.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Assets/Shaders/new_foam.shader" type="Shader" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.613027, 0.758621, 0.918263, 0.987229 )
+colors = PoolColorArray( 0.069495, 0.069495, 0.069495, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.965972, 0.965972, 0.965972, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/foam_color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 4, 3 )
+shader_param/dark_color_cutout = 0.884
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/scroll_speed = -0.25
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/foam_gradient = SubResource( 2 )
+
+[node name="TropicPart_" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+polygon = PoolVector2Array( -4.77984, -3.14445, -5.09218, 0.568936, -4.22457, 2.85944, -2.2117, 4.80289, 1.81402, 5.35816, 4.59038, 3.86587, 5.80504, 0.534232, 4.7292, -2.69329, 2.61223, -4.84497, -0.0253167, -5.78199, -2.83639, -5.46965 )
+
+[node name="1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+mesh = ExtResource( 3 )
+material/0 = SubResource( 3 )
+material/1 = ExtResource( 1 )

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Game/Gamemodes/Survive.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+min_value = 1.0
+max_value = 4.0
+_data = [ Vector2( 0, 0.931035 ), 0.0, 7.22563, 0, 0, Vector2( 1, 4 ), -1.19704, -1.19704, 0, 0, Vector2( 1, 6 ), -0.0625751, 0.0, 0, 0 ]
+
+[node name="Survive" type="Node"]
+script = ExtResource( 1 )
+difficulty_curve = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/ElementButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/spell_slot.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/UI/MainMenu/small_arrow_down.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/Textures/Sprites/elementSelector.png" type="Texture" id=5]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+margin_top = -8.0
+margin_right = 9.0
+margin_bottom = 17.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+custom_constants/separation = 0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_top = 4.0
+margin_right = 9.0
+margin_bottom = 4.0
+
+[node name="Sprite" type="Sprite" parent="Control"]
+position = Vector2( 3.93896, 16 )
+texture = ExtResource( 5 )
+
+[node name="PickerContainer" type="VBoxContainer" parent="."]
+margin_top = 4.0
+margin_right = 9.0
+margin_bottom = 21.0
+mouse_filter = 2
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PickerContainer"]
+margin_right = 9.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 9, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "1"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker" type="Control" parent="PickerContainer"]
+margin_top = 13.0
+margin_right = 9.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 6, 4 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="PickerContainer/Picker"]
+margin_top = -12.0
+margin_right = 9.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PickerContainer/Picker/TextureButton"]
+margin_left = 0.646618
+margin_top = 12.1253
+margin_right = 7.64662
+margin_bottom = 15.1253
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 21.0
+margin_bottom = 21.0
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="greyCover" type="TextureRect" parent="TextureRect"]
+modulate = Color( 0.784314, 0.74902, 0.721569, 1 )
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 39.0
+margin_bottom = 39.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="PickerContainer/Picker/TextureButton" to="." method="_on_picker_mouse_entered"]
+[connection signal="mouse_exited" from="PickerContainer/Picker/TextureButton" to="." method="_on_picker_mouse_exited"]

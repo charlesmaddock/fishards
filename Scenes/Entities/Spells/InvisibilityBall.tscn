@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ParticleEffects/InvisibleEffect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Util/EmitOnStartParticles.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Game/Paricles/Poof.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sounds/sneakyTree.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.513873
+
+[node name="InvisibilityBall" type="Spatial"]
+script = ExtResource( 1 )
+disable_collider_on_ready = true
+
+[node name="InvisibleEffect" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.771914, 0, 0, 0, 0.771914, 0, 0, 0, 0.771914, 0, 1.19096, 0 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.23733, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Poof" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+
+[node name="Sounds" parent="." instance=ExtResource( 6 )]
+on_create_stream = ExtResource( 5 )

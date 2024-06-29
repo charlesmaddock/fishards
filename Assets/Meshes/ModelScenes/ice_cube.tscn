@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Meshes/ice_cube.glb" type="PackedScene" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.482353, 0.607843, 0.666667, 0.376471 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+
+[node name="ice_cube" instance=ExtResource( 1 )]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0 )
+
+[node name="cube" parent="." index="0"]
+material/0 = SubResource( 1 )
+
+[node name="snow" parent="." index="1"]
+material/0 = SubResource( 2 )

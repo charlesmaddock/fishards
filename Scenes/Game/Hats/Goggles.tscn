@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/Hats/engineering_goggles.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Scenes/Materials/Palette/26.tres" type="Material" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.913725, 0.905882, 0.427451, 1 )
+
+[node name="Goggles" type="Spatial"]
+script = ExtResource( 2 )
+hat_type = 12
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 3 )
+material/0 = SubResource( 1 )
+material/1 = ExtResource( 4 )
+material/2 = SubResource( 1 )

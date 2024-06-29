@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/MainMenu/MenuButtonV2.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
+
+[node name="Button" type="Button"]
+margin_right = 97.0
+margin_bottom = 25.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+font_highlight_color = Color( 1, 1, 1, 1 )
+button_text = "text"
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 3.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+text = "text"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_Button_visibility_changed"]

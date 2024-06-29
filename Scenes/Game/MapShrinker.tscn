@@ -1,0 +1,215 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Materials/Map/tropic_island_water.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Game/MapShrinker.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Materials/Map/ice_water.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/Materials/lava.tres" type="Material" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 foam_color: hint_color;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(3.0, 1.0);
+uniform sampler2D foam_gradient;
+
+
+uniform float dark_color_cutout = 0.7;
+
+uniform vec4 dark_color: hint_color;
+
+uniform float scroll_speed = 0.25;
+
+void fragment(){
+	
+	float noise = texture( noise_tex, vec2(UV.x  * noise_scale.x, UV.y * noise_scale.y - TIME  * scroll_speed)).r;
+	float cutout_gradient = 1.0 - texture(foam_gradient, vec2(UV.y, UV.x)).r;
+	float inner_color_gradient = UV.y;
+	
+	
+	float foam_shape = step(cutout_gradient, noise);
+	float inner_shape = step(dark_color_cutout, inner_color_gradient);
+
+	inner_shape *= 1.0  - foam_shape;
+	
+	vec3 inner_color = inner_shape * dark_color.rgb;
+	vec3 outer_color = foam_shape * foam_color.rgb;
+	
+	vec3 color = inner_color + outer_color;
+	float alpha = inner_shape + foam_shape;
+	
+	ALBEDO = vec3(color);
+	ALPHA = alpha;
+	ALPHA_SCISSOR = 0.01;
+	
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.172932, 0.421053, 0.586466, 0.857143 )
+colors = PoolColorArray( 0.965972, 0.965972, 0.965972, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.069495, 0.069495, 0.069495, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/foam_color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 12, 5 )
+shader_param/dark_color_cutout = 1.0
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 0 )
+shader_param/scroll_speed = -0.25
+shader_param/noise_tex = ExtResource( 1 )
+shader_param/foam_gradient = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 1 )
+shader_param/foam_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/noise_scale = Vector2( 12, 5 )
+shader_param/dark_color_cutout = 1.0
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 0 )
+shader_param/scroll_speed = -0.25
+shader_param/noise_tex = ExtResource( 1 )
+shader_param/foam_gradient = SubResource( 3 )
+
+[sub_resource type="Animation" id=5]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -4, 0 ), Vector3( 0, -1000, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 50.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 50 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.4, 1, 1.4 ), Vector3( 0.3, 1, 0.3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("foam:material:shader_param/noise_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 50 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 12, 5 ), Vector2( 3, 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -1000, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1.4, 0, 0, 0, 1, 0, 0, 0, 1.4, 0, -1000, 0 )
+script = ExtResource( 3 )
+
+[node name="water" type="CSGTorus" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0.0999999, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 600.0
+sides = 60
+ring_sides = 40
+material = ExtResource( 2 )
+
+[node name="foam" type="CSGTorus" parent="."]
+transform = Transform( 1, -3.01992e-08, -1.50996e-07, -1.50996e-07, -0.2, 0, -1.50996e-07, 4.55995e-15, -1, 0, 0.1, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 60.0
+sides = 60
+ring_sides = 16
+material = SubResource( 4 )
+
+[node name="ice" type="CSGTorus" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0.0999999, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 600.0
+sides = 60
+ring_sides = 40
+material = ExtResource( 4 )
+
+[node name="icefoam" type="CSGTorus" parent="."]
+transform = Transform( 1, -3.01992e-08, -1.50996e-07, -1.50996e-07, -0.2, 0, -1.50996e-07, 4.55995e-15, -1, 0, 0.1, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 60.0
+sides = 60
+ring_sides = 16
+material = SubResource( 4 )
+
+[node name="lava" type="CSGTorus" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0.0999999, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 600.0
+sides = 60
+ring_sides = 40
+material = ExtResource( 5 )
+
+[node name="lavafoam" type="CSGTorus" parent="."]
+transform = Transform( 1, -3.01992e-08, -1.50996e-07, -1.50996e-07, -0.2, 0, -1.50996e-07, 4.55995e-15, -1, 0, 0.1, 0 )
+visible = false
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+inner_radius = 50.0
+outer_radius = 60.0
+sides = 60
+ring_sides = 16
+material = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hide = SubResource( 5 )
+anims/shrink = SubResource( 6 )
+
+[node name="ShrinkTimer" type="Timer" parent="."]
+wait_time = 240.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ShrinkTimer" to="." method="_on_ShrinkTimer_timeout"]

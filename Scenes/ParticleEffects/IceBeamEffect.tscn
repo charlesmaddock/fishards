@@ -1,0 +1,287 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Scripts/Util/IceBeamEffect.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.shader" type="Shader" id=3]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=4]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Particle/pebbles_particle.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Particle/ice_muzzle_shape.png" type="Texture" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 1, 1, 1, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 6 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 0, 1 )
+spread = 42.08
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 3.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.7
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="SphereMesh" id=6]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D noise_tex;
+
+void fragment() {
+	ALBEDO = vec3(1.0);
+}
+
+void vertex() {
+	float noise = texture(noise_tex, UV + TIME).r;
+	VERTEX += NORMAL * noise;
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/noise_tex = ExtResource( 5 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled;
+
+uniform sampler2D alpha_texture;
+uniform sampler2D noise_tex;
+uniform float speed = 1.0;
+uniform vec4 light_color : hint_color;
+uniform vec4 dark_color : hint_color;
+uniform bool billboard = true;
+uniform bool gradient_color = true;
+uniform bool random_between_colors = false;
+
+void fragment(){
+	float alpha = texture(alpha_texture, vec2(UV.y, 1.0 -UV.x)).r;
+	float noise = texture(noise_tex, UV - TIME*vec2(1.0, 0.0)*speed).r;
+	
+	float shape = alpha * noise * COLOR.a;
+	
+	vec3 color = COLOR.g * light_color.rgb + COLOR.r * dark_color.rgb;
+	if (random_between_colors){
+		color = mix(dark_color.rgb, light_color.rgb, COLOR.r)
+	}
+	ALBEDO = color;
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.5;
+}
+
+void vertex()
+{
+	if(billboard){
+		MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],WORLD_MATRIX[1],vec4(normalize(cross(CAMERA_MATRIX[0].xyz,WORLD_MATRIX[1].xyz)), 0.0),WORLD_MATRIX[3]);
+		MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, 1.0, 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/speed = 1.5
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 0, 0, 0, 1 )
+shader_param/billboard = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 7 )
+shader_param/noise_tex = ExtResource( 5 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.256 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 1
+emission_sphere_radius = 0.4
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 7.0
+scale_random = 1.0
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 12 )
+
+[sub_resource type="QuadMesh" id=16]
+size = Vector2( 1.12, 1 )
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = ExtResource( 3 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 1, 1, 1, 1 )
+shader_param/billboard = true
+shader_param/speed = 2.138
+shader_param/polar_scale = 1
+shader_param/noise_tex = ExtResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+gravity = Vector3( 0, 0, 0 )
+scale = 4.1
+
+[sub_resource type="QuadMesh" id=19]
+
+[sub_resource type="CylinderMesh" id=20]
+top_radius = 0.5
+bottom_radius = 0.5
+radial_segments = 8
+rings = 16
+
+[sub_resource type="Shader" id=21]
+code = "shader_type spatial;
+render_mode unshaded, cull_front;
+
+uniform vec4 color: hint_color = vec4(1.0);
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(0.2);
+uniform float beam_length = 1.0;
+uniform float speed = 1.0;
+uniform float disp_amount = 1.0;
+
+
+void fragment() {
+	ALBEDO = color.rgb;
+	ALPHA = color.a;
+}
+
+void vertex() {
+	float noise = 1.0 - texture(noise_tex, UV * noise_scale * vec2(1.0, beam_length)+ vec2(0.0, TIME*speed)).r;
+	VERTEX.xz += NORMAL.xz * noise * disp_amount;
+}"
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+shader_param/color = Color( 0.505882, 0.713726, 0.807843, 0.501961 )
+shader_param/noise_scale = Vector2( 0.4, 0.4 )
+shader_param/beam_length = 1.0
+shader_param/speed = 2.0
+shader_param/disp_amount = 3.718
+shader_param/noise_tex = ExtResource( 5 )
+
+[sub_resource type="Shader" id=23]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 color: hint_color = vec4(1.0);
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(0.2);
+uniform float beam_length = 1.0;
+
+uniform float speed = 1.0;
+uniform float disp_amount = 1.0;
+
+
+void fragment() {
+	ALBEDO = color.rgb;
+	ALPHA = color.a;
+	ALPHA_SCISSOR = 1.0;
+}
+
+void vertex() {
+	float noise = 1.0 - texture(noise_tex, UV * noise_scale * vec2(1.0,beam_length)  + vec2(0.0, TIME*speed)).r;
+	VERTEX.xz += NORMAL.xz * noise * disp_amount;
+}"
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = SubResource( 23 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/noise_scale = Vector2( 0.2, 0.2 )
+shader_param/beam_length = 1.0
+shader_param/speed = 1.0
+shader_param/disp_amount = 3.512
+shader_param/noise_tex = ExtResource( 5 )
+
+[node name="IceBeamEffect" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.280593, 0 )
+script = ExtResource( 1 )
+beam_max_length = 12.548
+
+[node name="StartEffect" type="Spatial" parent="."]
+transform = Transform( -3.93403e-08, 0.9, 7.43094e-08, 0, -3.93403e-08, 1.7, 0.9, 3.93403e-08, 3.24817e-15, 0, 0, 2.00422 )
+
+[node name="Particles2" type="Particles" parent="StartEffect"]
+transform = Transform( -4.42659e-08, 4.30134e-22, 1.01269, 1.01269, -4.4266e-08, 4.42659e-08, 2.25835e-08, 0.516649, 9.87154e-16, 0.123497, 5.39826e-09, 0 )
+material_override = SubResource( 1 )
+lifetime = 0.32
+visibility_aabb = AABB( -4, -4, -3.60156, 8, 8, 7.20311 )
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Ball2" type="MeshInstance" parent="StartEffect"]
+transform = Transform( -2.21299e-08, 2.24365e-22, 0.506272, 0.506273, -2.21299e-08, 2.21299e-08, 1.12901e-08, 0.258288, 4.93508e-16, -2.25301, -9.84825e-08, 0 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 8 )
+
+[node name="Muzzle" type="Particles" parent="StartEffect"]
+transform = Transform( 1, 3.55271e-15, 4.23516e-22, -3.55271e-15, 1, 7.10543e-15, 1.05879e-22, 4.26093e-23, 1, 0, 0, 0 )
+material_override = SubResource( 10 )
+amount = 5
+lifetime = 0.15
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 16 )
+
+[node name="EndEffect" type="Spatial" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="Particles" type="Particles" parent="EndEffect"]
+transform = Transform( 1.82284, -2.89504e-09, -4.40536e-13, -2.89516e-09, 1.75661, -1.26544e-16, 4.40536e-13, -1.26547e-16, 1.82284, 0, 0, 0 )
+material_override = SubResource( 1 )
+lifetime = 0.32
+visibility_aabb = AABB( -4, -4, -3.60156, 8, 8, 7.20311 )
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Ball" type="MeshInstance" parent="EndEffect"]
+transform = Transform( 0.49993, 0, 0, 0, 0.49993, 0, 0, 0, 0.49993, 0, 0, 0 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 8 )
+
+[node name="Particles3" type="Particles" parent="EndEffect"]
+material_override = SubResource( 17 )
+amount = 1
+lifetime = 10.0
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 19 )
+
+[node name="Beam" type="Spatial" parent="."]
+
+[node name="BeamOutline" type="MeshInstance" parent="Beam"]
+transform = Transform( 0.199, 0, 0, 0, -2.18557e-08, -0.199, 0, 0.5, -8.69857e-09, 0, 0, 0.5 )
+mesh = SubResource( 20 )
+material/0 = SubResource( 22 )
+
+[node name="Beam" type="MeshInstance" parent="Beam"]
+transform = Transform( 0.098, 0, 0, 0, -2.18557e-08, -0.098, 0, 0.5, -4.28372e-09, 0, 0, 0.5 )
+mesh = SubResource( 20 )
+material/0 = SubResource( 24 )

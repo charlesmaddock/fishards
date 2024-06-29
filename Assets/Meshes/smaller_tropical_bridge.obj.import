@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/smaller_tropical_bridge.obj-074d9e6d34f2871bc7336cd7bc981a24.mesh"
+
+[deps]
+
+files=[ "res://.import/smaller_tropical_bridge.obj-074d9e6d34f2871bc7336cd7bc981a24.mesh" ]
+
+source_file="res://Assets/Meshes/smaller_tropical_bridge.obj"
+dest_files=[ "res://.import/smaller_tropical_bridge.obj-074d9e6d34f2871bc7336cd7bc981a24.mesh", "res://.import/smaller_tropical_bridge.obj-074d9e6d34f2871bc7336cd7bc981a24.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

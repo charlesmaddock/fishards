@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Particle/shard_particle.png" type="Texture" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/light_color = Color( 1, 1, 1, 1 )
+shader_param/dark_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/alpha_texture = ExtResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+spread = 90.0
+gravity = Vector3( -14, 0, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 0.46
+angle = 360.0
+angle_random = 1.0
+scale = 0.2
+scale_random = 1.0
+
+[sub_resource type="QuadMesh" id=3]
+
+[node name="EggExplosionParticles" type="Particles"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.63766, 0 )
+material_override = SubResource( 1 )
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 3 )

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Materials/lava.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/CelShaded/lava_rock.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Meshes/lava_crater.glb" type="PackedScene" id=4]
+
+[node name="lava_crater" instance=ExtResource( 4 )]
+
+[node name="stoneset2" parent="." index="0"]
+transform = Transform( 0.116498, -0.750755, 0.0759595, 0.481855, 0.179584, -0.0369995, 0.0114418, 0.0811331, 0.784778, -2.15537, -0.178558, 0.201233 )
+material/0 = ExtResource( 2 )
+
+[node name="stoneset3" parent="." index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="stoneset1" parent="." index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Sun" parent="." index="3"]
+transform = Transform( 1.01348, 0, 0, 0, 1.01348, 0, 0, 0, 1.01348, 6.09988, 4.77786, 3.48948 )
+
+[node name="vulcano" parent="Armature/Skeleton" index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 1 )

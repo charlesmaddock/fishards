@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Materials/Map/rock_foam.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Materials/CelShaded/rock.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Meshes/Maps/water_rocks.glb" type="PackedScene" id=3]
+
+[node name="water_rocks" instance=ExtResource( 3 )]
+
+[node name="rock001" parent="." index="0"]
+material/0 = ExtResource( 2 )
+
+[node name="rock005" parent="." index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="rock002" parent="." index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="foam" parent="." index="3"]
+material/0 = ExtResource( 1 )
+
+[node name="rock003" parent="." index="4"]
+material/0 = ExtResource( 2 )
+
+[node name="foam001" parent="." index="5"]
+material/0 = ExtResource( 1 )
+
+[node name="foam002" parent="." index="6"]
+material/0 = ExtResource( 1 )
+
+[node name="rock004" parent="." index="7"]
+material/0 = ExtResource( 2 )
+
+[node name="rock" parent="." index="8"]
+material/0 = ExtResource( 2 )
+
+[node name="foam005" parent="." index="9"]
+material/0 = ExtResource( 1 )
+
+[node name="foam003" parent="." index="10"]
+material/0 = ExtResource( 1 )
+
+[node name="foam004" parent="." index="11"]
+material/0 = ExtResource( 1 )

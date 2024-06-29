@@ -1,0 +1,358 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=73 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeOneShot" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "360"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "empty"
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Backflip"
+
+[sub_resource type="AnimationNodeOneShot" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Dance1"
+
+[sub_resource type="AnimationNodeOneShot" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "DashBeamKick"
+
+[sub_resource type="AnimationNodeOneShot" id=11]
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "DiveDown"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "DiveUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+advance_condition = "up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "dive_again"
+
+[sub_resource type="AnimationNodeStateMachine" id=16]
+states/DiveDown/node = SubResource( 12 )
+states/DiveDown/position = Vector2( 141.5, 85.5 )
+states/DiveUp/node = SubResource( 13 )
+states/DiveUp/position = Vector2( 346.5, 85.75 )
+transitions = [ "DiveDown", "DiveUp", SubResource( 14 ), "DiveUp", "DiveDown", SubResource( 15 ) ]
+start_node = "DiveDown"
+end_node = "DiveUp"
+graph_offset = Vector2( -132.66, -61.83 )
+
+[sub_resource type="AnimationNodeOneShot" id=17]
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Flop-loop"
+
+[sub_resource type="AnimationNodeOneShot" id=19]
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "FlopOnce"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "FlopRecover"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/FlopOnce/node = SubResource( 20 )
+states/FlopOnce/position = Vector2( 252, 151.25 )
+states/FlopRecover/node = SubResource( 21 )
+states/FlopRecover/position = Vector2( 478, 151.5 )
+transitions = [ "FlopOnce", "FlopRecover", SubResource( 22 ) ]
+start_node = "FlopOnce"
+end_node = "FlopRecover"
+
+[sub_resource type="AnimationNodeOneShot" id=24]
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "Frozen"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Frozen"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+advance_condition = "unfreeze"
+
+[sub_resource type="AnimationNodeStateMachine" id=28]
+"states/Frozen 3/node" = SubResource( 25 )
+"states/Frozen 3/position" = Vector2( 274, 266 )
+"states/Frozen 4/node" = SubResource( 26 )
+"states/Frozen 4/position" = Vector2( 457, 266 )
+transitions = [ "Frozen 3", "Frozen 4", SubResource( 27 ) ]
+start_node = "Frozen 3"
+end_node = "Frozen 4"
+
+[sub_resource type="AnimationNodeOneShot" id=29]
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "FlopRecover"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "LaunchedRight-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "LaunchedForward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "LaunchedLeft-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "LaunchedBack-loop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=35]
+blend_point_0/node = SubResource( 31 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 32 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 33 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 34 )
+blend_point_3/pos = Vector2( 0, -1 )
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+advance_condition = "recover"
+
+[sub_resource type="AnimationNodeStateMachine" id=37]
+states/FlopRecover/node = SubResource( 30 )
+states/FlopRecover/position = Vector2( 446, 148.594 )
+states/pushed_blend/node = SubResource( 35 )
+states/pushed_blend/position = Vector2( 196, 148.312 )
+transitions = [ "pushed_blend", "FlopRecover", SubResource( 36 ) ]
+start_node = "pushed_blend"
+end_node = "FlopRecover"
+graph_offset = Vector2( -25.665, 70.5525 )
+
+[sub_resource type="AnimationNodeOneShot" id=38]
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "DisengageRockDash"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "EngageRockDash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+advance_condition = "disengage"
+
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/DisengageRockDash/node = SubResource( 39 )
+states/DisengageRockDash/position = Vector2( 367.5, 144.312 )
+states/EngageRockDash/node = SubResource( 40 )
+states/EngageRockDash/position = Vector2( 98, 144.375 )
+transitions = [ "EngageRockDash", "DisengageRockDash", SubResource( 41 ) ]
+start_node = "EngageRockDash"
+end_node = "DisengageRockDash"
+graph_offset = Vector2( -228, -2 )
+
+[sub_resource type="AnimationNodeOneShot" id=43]
+
+[sub_resource type="AnimationNodeBlendTree" id=44]
+graph_offset = Vector2( 525.72, 89.5419 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( -840, 260 )
+"nodes/Animation 2/node" = SubResource( 3 )
+"nodes/Animation 2/position" = Vector2( 480, 500 )
+nodes/backflip/node = SubResource( 5 )
+nodes/backflip/position = Vector2( 1770, 260 )
+nodes/backflip_animation/node = SubResource( 6 )
+nodes/backflip_animation/position = Vector2( 1630, 560 )
+nodes/dance/node = SubResource( 7 )
+nodes/dance/position = Vector2( 1320, 260 )
+nodes/dance_animation/node = SubResource( 8 )
+nodes/dance_animation/position = Vector2( 1130, 540 )
+nodes/dash_beam/node = SubResource( 9 )
+nodes/dash_beam/position = Vector2( 460, 240 )
+nodes/dash_beam_kick/node = SubResource( 10 )
+nodes/dash_beam_kick/position = Vector2( 240, 500 )
+nodes/dive/node = SubResource( 11 )
+nodes/dive/position = Vector2( -20, 240 )
+nodes/dive_state_machine/node = SubResource( 16 )
+nodes/dive_state_machine/position = Vector2( -260, 470 )
+nodes/flop/node = SubResource( 17 )
+nodes/flop/position = Vector2( 860, 240 )
+nodes/flop_animation/node = SubResource( 18 )
+nodes/flop_animation/position = Vector2( 680, 490 )
+nodes/flop_once/node = SubResource( 19 )
+nodes/flop_once/position = Vector2( 1570, 260 )
+nodes/flop_once_states/node = SubResource( 23 )
+nodes/flop_once_states/position = Vector2( 1370, 550 )
+nodes/frozen/node = SubResource( 24 )
+nodes/frozen/position = Vector2( 220, 240 )
+nodes/frozen_state_machine/node = SubResource( 28 )
+nodes/frozen_state_machine/position = Vector2( -20, 480 )
+nodes/output/position = Vector2( 1980, 280 )
+nodes/pushed/node = SubResource( 29 )
+nodes/pushed/position = Vector2( 1100, 260 )
+nodes/pushed_states/node = SubResource( 37 )
+nodes/pushed_states/position = Vector2( 910, 490 )
+nodes/rock_dash/node = SubResource( 38 )
+nodes/rock_dash/position = Vector2( -290, 240 )
+nodes/rock_dash_state_machine/node = SubResource( 42 )
+nodes/rock_dash_state_machine/position = Vector2( -550, 430 )
+nodes/spin/node = SubResource( 43 )
+nodes/spin/position = Vector2( 660, 240 )
+node_connections = [ "dance", 0, "pushed", "dance", 1, "dance_animation", "frozen", 0, "dive", "frozen", 1, "frozen_state_machine", "flop", 0, "spin", "flop", 1, "flop_animation", "flop_once", 0, "dance", "flop_once", 1, "flop_once_states", "output", 0, "backflip", "rock_dash", 0, "Animation", "rock_dash", 1, "rock_dash_state_machine", "spin", 0, "dash_beam", "spin", 1, "Animation 2", "dash_beam", 0, "frozen", "dash_beam", 1, "dash_beam_kick", "dive", 0, "rock_dash", "dive", 1, "dive_state_machine", "backflip", 0, "flop_once", "backflip", 1, "backflip_animation", "pushed", 0, "flop", "pushed", 1, "pushed_states" ]
+
+[sub_resource type="AnimationNodeBlend2" id=45]
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "Run-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=47]
+animation = "RunSideLeft-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=48]
+animation = "RunBack-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "RunSideRight-loop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=50]
+blend_point_0/node = SubResource( 46 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 47 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 48 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 49 )
+blend_point_3/pos = Vector2( -1, 0 )
+
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "EngageDirectionalSpell"
+
+[sub_resource type="AnimationNodeOneShot" id=52]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "EngageSpell"
+
+[sub_resource type="AnimationNodeOneShot" id=54]
+
+[sub_resource type="AnimationNodeAnimation" id=55]
+animation = "ShootForward"
+
+[sub_resource type="AnimationNodeAnimation" id=56]
+animation = "ShootUp"
+
+[sub_resource type="AnimationNodeBlend2" id=57]
+
+[sub_resource type="AnimationNodeBlendTree" id=58]
+graph_offset = Vector2( -327.051, 1.69119 )
+nodes/aim/node = SubResource( 51 )
+nodes/aim/position = Vector2( -680, -10 )
+nodes/aim_shoot/node = SubResource( 52 )
+nodes/aim_shoot/position = Vector2( -370, 20 )
+nodes/bombard/node = SubResource( 53 )
+nodes/bombard/position = Vector2( -690, 270 )
+nodes/bombard_shoot/node = SubResource( 54 )
+nodes/bombard_shoot/position = Vector2( -370, 250 )
+nodes/shoot_forward/node = SubResource( 55 )
+nodes/shoot_forward/position = Vector2( -640, 140 )
+nodes/shoot_up/node = SubResource( 56 )
+nodes/shoot_up/position = Vector2( -700, 430 )
+nodes/stance_blend/node = SubResource( 57 )
+nodes/stance_blend/position = Vector2( 0, 120 )
+node_connections = [ "output", 0, "stance_blend", "bombard_shoot", 0, "bombard", "bombard_shoot", 1, "shoot_up", "stance_blend", 0, "aim_shoot", "stance_blend", 1, "bombard_shoot", "aim_shoot", 0, "aim", "aim_shoot", 1, "shoot_forward" ]
+
+[sub_resource type="AnimationNodeBlend2" id=59]
+filter_enabled = true
+filters = [ "Armature/Skeleton:head", "Armature/Skeleton:mouth_1_l", "Armature/Skeleton:mouth_1_r", "Armature/Skeleton:mouth_2_l", "Armature/Skeleton:mouth_2_r", "Armature/Skeleton:mouth_3_l", "Armature/Skeleton:mouth_3_r", "Armature/Skeleton:mouth_4_l", "Armature/Skeleton:mouth_4_r", "Armature/Skeleton:spine_1", "Armature/Skeleton:spine_2", "Armature/Skeleton:spine_3", "Skeleton:head", "Skeleton:mouth_1_l", "Skeleton:mouth_1_r", "Skeleton:mouth_2_l", "Skeleton:mouth_2_r", "Skeleton:mouth_3_l", "Skeleton:mouth_3_r", "Skeleton:mouth_4_l", "Skeleton:mouth_4_r", "Skeleton:spine_1", "Skeleton:spine_2", "Skeleton:spine_3" ]
+
+[sub_resource type="AnimationNodeOneShot" id=60]
+filter_enabled = true
+filters = [ "Armature/Skeleton:head", "Armature/Skeleton:mouth_1_l", "Armature/Skeleton:mouth_1_r", "Armature/Skeleton:mouth_2_l", "Armature/Skeleton:mouth_2_r", "Armature/Skeleton:mouth_3_l", "Armature/Skeleton:mouth_3_r", "Armature/Skeleton:mouth_4_l", "Armature/Skeleton:mouth_4_r", "Armature/Skeleton:spine_1", "Armature/Skeleton:spine_2", "Armature/Skeleton:spine_3", "Skeleton:head", "Skeleton:mouth_1_l", "Skeleton:mouth_1_r", "Skeleton:mouth_2_l", "Skeleton:mouth_2_r", "Skeleton:mouth_3_l", "Skeleton:mouth_3_r", "Skeleton:mouth_4_l", "Skeleton:mouth_4_r", "Skeleton:spine_1", "Skeleton:spine_2", "Skeleton:spine_3" ]
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "HurtLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=62]
+animation = "HurtForward"
+
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "HurtRight"
+
+[sub_resource type="AnimationNodeAnimation" id=64]
+animation = "HurtBack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=65]
+blend_point_0/node = SubResource( 61 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 62 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 63 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 64 )
+blend_point_3/pos = Vector2( 0, -1 )
+
+[sub_resource type="AnimationNodeOneShot" id=66]
+
+[sub_resource type="AnimationNodeAnimation" id=67]
+animation = "PushedRight"
+
+[sub_resource type="AnimationNodeAnimation" id=68]
+animation = "PushedForward"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "PushedLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "PushedBack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=71]
+blend_point_0/node = SubResource( 67 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 68 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 69 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 70 )
+blend_point_3/pos = Vector2( 0, -1 )
+
+[sub_resource type="AnimationNodeBlendTree" id=72]
+graph_offset = Vector2( -509.713, 51.2103 )
+nodes/hurt_blend/node = SubResource( 65 )
+nodes/hurt_blend/position = Vector2( -390, 150 )
+nodes/push/node = SubResource( 66 )
+nodes/push/position = Vector2( -80, 150 )
+nodes/push_blend/node = SubResource( 71 )
+nodes/push_blend/position = Vector2( -340, 350 )
+node_connections = [ "push", 0, "hurt_blend", "push", 1, "push_blend", "output", 0, "push" ]
+
+[resource]
+graph_offset = Vector2( -217.556, -43.4648 )
+nodes/Animation/node = SubResource( 1 )
+nodes/Animation/position = Vector2( -700, 100 )
+nodes/full_body_override/node = SubResource( 2 )
+nodes/full_body_override/position = Vector2( 530, 10 )
+nodes/full_body_override_blend/node = SubResource( 44 )
+nodes/full_body_override_blend/position = Vector2( 190, 260 )
+nodes/move_blend/node = SubResource( 45 )
+nodes/move_blend/position = Vector2( -400, 50 )
+nodes/output/position = Vector2( 990, 50 )
+nodes/run/node = SubResource( 50 )
+nodes/run/position = Vector2( -700, -100 )
+nodes/stance_tree/node = SubResource( 58 )
+nodes/stance_tree/position = Vector2( -330, 290 )
+nodes/upper_body_blend/node = SubResource( 59 )
+nodes/upper_body_blend/position = Vector2( -100, 50 )
+nodes/upper_body_override/node = SubResource( 60 )
+nodes/upper_body_override/position = Vector2( 180, 50 )
+nodes/upper_body_override_blend/node = SubResource( 72 )
+nodes/upper_body_override_blend/position = Vector2( -110, 240 )
+node_connections = [ "upper_body_blend", 0, "move_blend", "upper_body_blend", 1, "stance_tree", "move_blend", 0, "run", "move_blend", 1, "Animation", "output", 0, "full_body_override", "upper_body_override", 0, "upper_body_blend", "upper_body_override", 1, "upper_body_override_blend", "full_body_override", 0, "upper_body_override", "full_body_override", 1, "full_body_override_blend" ]

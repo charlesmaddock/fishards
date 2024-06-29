@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Meshes/VFX/totem_2.glb" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0.501961, 0.67451, 0.482353, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.337255, 0.54902, 0.396078, 0.623529 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/base_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/shade_color = Color( 0.576471, 0.533333, 0.490196, 1 )
+shader_param/shade_threshold = -0.104
+shader_param/use_attenuation = false
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 3 )
+shader_param/base_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+shader_param/shade_color = Color( 0.576471, 0.533333, 0.490196, 1 )
+shader_param/shade_threshold = 0.0
+shader_param/use_attenuation = false
+
+[node name="totem_2" instance=ExtResource( 2 )]
+
+[node name="Sphere002" parent="." index="0"]
+transform = Transform( 0.774863, 0, 0, 0, 1, 0, 0, 0, 0.774863, 0, 0, 0 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+
+[node name="Plane001" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+material/0 = SubResource( 3 )
+
+[node name="Sphere003" parent="." index="2"]
+transform = Transform( 0.284693, 0, 0, 0, 0, -0.284693, 0, 0.284693, 0, 0, 1.373, -0.529 )
+visible = false
+material/0 = SubResource( 4 )

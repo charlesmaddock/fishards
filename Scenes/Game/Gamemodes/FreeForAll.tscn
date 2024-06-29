@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Game/Gamemodes/FreeForAll.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/23.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/24.tres" type="Material" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "spin"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Container:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.2, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="FreeForAll" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Crown" type="Spatial" parent="."]
+transform = Transform( -0.185815, 0, -0.235526, 0, 0.3, 0, 0.235526, 0, -0.185815, 0, 0.2, 0 )
+
+[node name="Container" type="Spatial" parent="Crown"]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 0.3, 0 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -0.839434, 0, 1.52307 )
+polygon = PoolVector2Array( 0, 0, -0.695451, 1.68611, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGPolygon2" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.384818, 0.384818, 0.838946, -0.707107, 0.707107, 0, -0.593224, -0.593224, 0.544214, 0.911751, 0, 1.4012 )
+polygon = PoolVector2Array( 0, 0, -0.567392, 1.74003, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGPolygon3" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.375358, -0.375358, 0.847474, -0.707107, 0.707107, 0, -0.599255, -0.599255, -0.530837, 1.80773, 0, -0.151002 )
+polygon = PoolVector2Array( 0, 0, -0.697451, 1.68689, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGPolygon5" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.361921, -0.361921, -0.859085, -0.707107, 0.707107, 0, 0.607465, 0.607465, -0.511833, -0.926717, 0, -1.40098 )
+polygon = PoolVector2Array( 0, 0, -0.648789, 1.63941, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGPolygon6" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.374825, 0.374825, -0.847946, -0.707107, 0.707107, 0, 0.599589, 0.599589, 0.530082, -1.79066, 0, 0.12135 )
+polygon = PoolVector2Array( 0, 0, -0.767565, 1.5014, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGPolygon4" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.707041, -0.707041, -0.0136131, -0.707107, 0.707107, 0, 0.00962596, 0.00962596, -0.999907, 0.743517, -1.51992e-05, -1.50917 )
+polygon = PoolVector2Array( 0, 0, -0.690238, 1.68151, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 2 )
+
+[node name="CSGTorus" type="CSGTorus" parent="Crown/Container"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0532472, 0, 0.0163481 )
+inner_radius = 1.1
+outer_radius = 1.8
+sides = 6
+material = ExtResource( 2 )
+
+[node name="CSGPolygon7" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.636396, 0.636396, -9.9476e-14, -0.636396, 0.636396, 0, -1.42109e-14, -1.42109e-14, 0.9, -0.811966, 0, 1.28881 )
+polygon = PoolVector2Array( 0, 0, -0.695451, 1.68611, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGPolygon8" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.4068, 0.4068, 0.692118, -0.636396, 0.636396, 0, -0.489402, -0.489402, 0.575302, 0.768098, 0, 1.29505 )
+polygon = PoolVector2Array( 0, 0, -0.567392, 1.74003, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGPolygon9" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.337822, -0.337822, 0.762727, -0.636396, 0.636396, -1.89661e-08, -0.539329, -0.539329, -0.477753, 1.67273, 0, -0.0868883 )
+polygon = PoolVector2Array( 0, 0, -0.697451, 1.68689, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGPolygon10" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.407235, -0.407235, -0.691606, -0.636396, 0.636396, 0, 0.489039, 0.489039, -0.575918, -0.744898, 0, -1.25511 )
+polygon = PoolVector2Array( 0, 0, -0.648789, 1.63941, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGPolygon11" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( 0.337342, 0.337342, -0.763151, -0.636396, 0.636396, -6.39488e-15, 0.53963, 0.53963, 0.477074, -1.59597, 0, 0.0601864 )
+polygon = PoolVector2Array( 0, 0, -0.767565, 1.5014, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGPolygon12" type="CSGPolygon" parent="Crown/Container"]
+transform = Transform( -0.636337, -0.636337, -0.0122519, -0.636396, 0.636396, 0, 0.00866338, 0.00866338, -0.899917, 0.709552, -1.51992e-05, -1.39218 )
+polygon = PoolVector2Array( 0, 0, -0.690238, 1.68151, 1, 1, 0, 0 )
+depth = 0.4
+material = ExtResource( 3 )
+
+[node name="CSGTorus2" type="CSGTorus" parent="Crown/Container"]
+transform = Transform( 0.9, 0, -1.42109e-14, 0, 0.9, 0, 1.42109e-14, 0, 0.9, 0.0532472, 0, 0.0163481 )
+inner_radius = 1.1
+outer_radius = 1.7
+material = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Crown"]
+autoplay = "spin"
+anims/spin = SubResource( 1 )

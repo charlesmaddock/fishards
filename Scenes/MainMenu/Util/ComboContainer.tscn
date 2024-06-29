@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/Sprites/Element Icons/fire_element.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/MainMenu/ComboContainer.gd" type="Script" id=4]
+
+[node name="ComboContainer" type="Control"]
+margin_right = 100.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 100, 28 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number1" type="Label" parent="."]
+margin_left = 3.06568
+margin_top = -0.816931
+margin_right = 19.0656
+margin_bottom = 12.1831
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+text = "2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="element1" type="Sprite" parent="."]
+position = Vector2( 9.06005, 21.5622 )
+scale = Vector2( 0.667, 0.667 )
+texture = ExtResource( 3 )
+
+[node name="+" type="Label" parent="."]
+margin_left = 14.9248
+margin_top = 10.1831
+margin_right = 33.9248
+margin_bottom = 33.1831
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number2" type="Label" parent="."]
+margin_left = 31.9742
+margin_top = -0.816931
+margin_right = 47.9742
+margin_bottom = 12.1831
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+text = "2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="element2" type="Sprite" parent="."]
+position = Vector2( 38.1761, 21.4028 )
+scale = Vector2( 0.667, 0.667 )
+texture = ExtResource( 3 )
+
+[node name="=" type="Label" parent="."]
+margin_left = 45.8863
+margin_top = 10.1831
+margin_right = 64.8863
+margin_bottom = 33.1831
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+text = "="
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spell" type="Sprite" parent="."]
+position = Vector2( 69.8653, 21.521 )
+texture = ExtResource( 2 )

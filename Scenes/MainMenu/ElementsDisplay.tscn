@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/MainMenu/ElementButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/MainMenu/SelectElements.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture" id=8]
+
+[node name="ElementsDisplay" type="HBoxContainer"]
+margin_right = 45.0
+margin_bottom = 25.0
+grow_horizontal = 2
+theme = ExtResource( 1 )
+custom_constants/separation = 3
+alignment = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElementButton" parent="." instance=ExtResource( 2 )]
+margin_top = 0.0
+margin_bottom = 25.0
+element = 1
+element_icon = ExtResource( 3 )
+
+[node name="PickerContainer" parent="ElementButton" index="0"]
+margin_top = 0.0
+margin_bottom = 17.0
+
+[node name="TextureRect" parent="ElementButton" index="1"]
+margin_top = 17.0
+margin_right = 8.0
+margin_bottom = 25.0
+texture = ExtResource( 3 )
+
+[node name="ElementButton2" parent="." instance=ExtResource( 2 )]
+margin_left = 12.0
+margin_top = 0.0
+margin_right = 21.0
+margin_bottom = 25.0
+element = 2
+element_icon = ExtResource( 4 )
+
+[node name="ElementButton3" parent="." instance=ExtResource( 2 )]
+margin_left = 24.0
+margin_top = 0.0
+margin_right = 33.0
+margin_bottom = 25.0
+element = 3
+element_icon = ExtResource( 5 )
+
+[node name="ElementButton4" parent="." instance=ExtResource( 2 )]
+margin_left = 36.0
+margin_top = 0.0
+margin_right = 45.0
+margin_bottom = 25.0
+element = 4
+element_icon = ExtResource( 6 )
+
+[node name="ElementButton5" parent="." instance=ExtResource( 2 )]
+margin_left = 48.0
+margin_top = 0.0
+margin_right = 57.0
+margin_bottom = 25.0
+element = 5
+element_icon = ExtResource( 8 )
+
+[node name="UpdateElements" type="Control" parent="."]
+visible = false
+margin_left = 50.0
+margin_right = 50.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UpdateElements"]
+self_modulate = Color( 0.858824, 0.858824, 0.858824, 1 )
+margin_left = 10.0
+margin_top = 7.31168
+margin_right = 56.0
+margin_bottom = 26.3117
+rect_min_size = Vector2( 46, 0 )
+text = "update"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="UpdateElements/Button" to="." method="_on_update_elements_button_pressed"]
+
+[editable path="ElementButton"]

@@ -1,0 +1,386 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Meshes/ModelScenes/crab.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/Crab.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Components/Health.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Materials/CelShaded/egg.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Sounds/arcaneBounce.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sounds/zap.wav" type="AudioStream" id=9]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.shader" type="Shader" id=11]
+[ext_resource path="res://Scenes/Components/Kinematic.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Shaders/explosion_particle.shader" type="Shader" id=13]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Components/Launchable.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Game/Paricles/ShardsExplosion.tscn" type="PackedScene" id=17]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.823131
+height = 2.69646
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.448718, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.884615, 0.884615, 0.884615, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0396039, 0.984091 ), 0.0706293, 0.0706293, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 0.78
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale = 0.3
+scale_random = 0.68
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.0843537, 0.666667 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.136054, 0.136054, 0.136054, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 13 )
+shader_param/light_color = Color( 0.654902, 0.701961, 0.890196, 1 )
+shader_param/dark_color = Color( 0.509804, 0.615686, 0.764706, 1 )
+shader_param/scroll_speed = 1.5
+shader_param/noise_tex = SubResource( 8 )
+shader_param/shape_tex = ExtResource( 14 )
+
+[sub_resource type="SphereMesh" id=10]
+material = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 0.78
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale = 0.3
+scale_random = 0.36
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = ExtResource( 13 )
+shader_param/light_color = Color( 0.54902, 0.701961, 0.839216, 1 )
+shader_param/dark_color = Color( 0.27451, 0.494118, 0.682353, 1 )
+shader_param/scroll_speed = 1.5
+shader_param/noise_tex = SubResource( 8 )
+shader_param/shape_tex = ExtResource( 14 )
+
+[sub_resource type="SphereMesh" id=13]
+material = SubResource( 12 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "gooey"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGSphere:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.7, 1.3, 0.7 ), Vector3( 0.7, 0.7, 0.7 ), Vector3( 0.7, 1.3, 0.7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGSphere:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 360, 0, 0 ) ]
+}
+
+[sub_resource type="Shader" id=15]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 color: hint_color;
+uniform vec4 dark_color: hint_color;
+uniform sampler2D lightning_width_gradient;
+uniform sampler2D end_start_fade_gradient;
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0);
+uniform float noise_speed = 2.0;
+uniform float noise_strength = 0.4;
+uniform float cutout = 0.36;
+
+void fragment(){
+	float noise = texture(noise_tex, UV*noise_scale + vec2( -ceil(TIME*20.0)*noise_speed,-ceil(TIME*20.0))).r;
+	float end_start_fade = texture(end_start_fade_gradient, vec2(UV.y, UV.x)).r;
+	float lightning_shape = texture(lightning_width_gradient, vec2(UV.x + (noise*noise_strength-0.5)*end_start_fade, UV.y+noise)).r;
+	
+	float shape = step(cutout * (1.0 - end_start_fade*0.5), lightning_shape);
+	ALBEDO = mix(color.rgb, dark_color.rgb, COLOR.r);
+	ALPHA = shape;
+	ALPHA_SCISSOR = 0.1;
+}
+
+
+void vertex() {
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],WORLD_MATRIX[1],vec4(normalize(cross(CAMERA_MATRIX[0].xyz,WORLD_MATRIX[1].xyz)), 0.0),WORLD_MATRIX[3]);
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(length(WORLD_MATRIX[0].xyz), 0.0, 0.0, 0.0),vec4(0.0, 1.0, 0.0, 0.0),vec4(0.0, 0.0, length(WORLD_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+}"
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0.920561, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.317757, 0.44186, 0.586449, 1 )
+colors = PoolColorArray( 0.0688863, 0.0688863, 0.0688863, 1, 0.206659, 0.206659, 0.206659, 1, 0.895522, 0.895522, 0.895522, 1, 0.136719, 0.136719, 0.136719, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 15 )
+shader_param/color = Color( 0.956863, 0.976471, 0.988235, 1 )
+shader_param/dark_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/noise_scale = Vector2( 0.042, 1.94 )
+shader_param/noise_speed = 2.866
+shader_param/noise_strength = 1.007
+shader_param/cutout = 0.889
+shader_param/lightning_width_gradient = SubResource( 19 )
+shader_param/end_start_fade_gradient = SubResource( 17 )
+shader_param/noise_tex = ExtResource( 14 )
+
+[sub_resource type="Gradient" id=21]
+offsets = PoolRealArray( 0, 0.486111 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=22]
+gradient = SubResource( 21 )
+
+[sub_resource type="Curve" id=23]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.115789, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.915789, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.936842, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 23 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+gravity = Vector3( 0, 0, 0 )
+scale = 0.8
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 22 )
+
+[sub_resource type="QuadMesh" id=26]
+size = Vector2( 3, 1 )
+
+[sub_resource type="Gradient" id=27]
+offsets = PoolRealArray( 0, 0.392523, 0.44186, 0.469626, 1 )
+colors = PoolColorArray( 0.0688863, 0.0688863, 0.0688863, 1, 0.206659, 0.206659, 0.206659, 1, 0.895522, 0.895522, 0.895522, 1, 0.136719, 0.136719, 0.136719, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=28]
+gradient = SubResource( 27 )
+
+[sub_resource type="OpenSimplexNoise" id=29]
+
+[sub_resource type="NoiseTexture" id=30]
+flags = 39
+width = 256
+height = 256
+seamless = true
+bump_strength = 0.0
+noise = SubResource( 29 )
+
+[sub_resource type="ShaderMaterial" id=31]
+shader = SubResource( 15 )
+shader_param/color = Color( 0.956863, 0.976471, 0.988235, 1 )
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/noise_scale = Vector2( 0.007, 1.668 )
+shader_param/noise_speed = 2.866
+shader_param/noise_strength = 1.007
+shader_param/cutout = 0.889
+shader_param/lightning_width_gradient = SubResource( 28 )
+shader_param/end_start_fade_gradient = SubResource( 17 )
+shader_param/noise_tex = SubResource( 30 )
+
+[sub_resource type="ShaderMaterial" id=32]
+shader = ExtResource( 11 )
+shader_param/noise_scale = Vector2( 1, 1 )
+shader_param/light_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+shader_param/dark_color = Color( 0.309804, 0.341176, 0.517647, 1 )
+shader_param/billboard = false
+shader_param/speed = 3.0
+shader_param/polar_scale = 1
+shader_param/noise_tex = ExtResource( 14 )
+
+[sub_resource type="Gradient" id=33]
+colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="Curve" id=35]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.881188, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=36]
+curve = SubResource( 35 )
+
+[sub_resource type="ParticlesMaterial" id=37]
+emission_shape = 1
+emission_sphere_radius = 0.3
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 347.6
+angle_random = 0.78
+scale = 5.0
+scale_curve = SubResource( 36 )
+color_ramp = SubResource( 34 )
+
+[sub_resource type="QuadMesh" id=38]
+
+[node name="Crab" type="Spatial"]
+script = ExtResource( 1 )
+disable_collider_on_ready = true
+age_limit_seconds = 5.0
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0283833, 0.766363, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Damage" parent="." instance=ExtResource( 3 )]
+damage = 25
+can_damage_multiple = false
+damage_crabs = false
+
+[node name="Crab" parent="." instance=ExtResource( 4 )]
+speed = 160.0
+seconds_to_damage_after = 1.0
+_egg_node = NodePath("../Egg")
+_explosion_egg_particles = NodePath("../Egg/EggExplosionParticles")
+_crab_node = NodePath("../crab")
+_crab_animator = NodePath("../crab/AnimationPlayer")
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
+max_health = 5
+
+[node name="Kinematic" parent="." instance=ExtResource( 12 )]
+
+[node name="Launchable" parent="." instance=ExtResource( 16 )]
+launch_spatial_paths = [ NodePath("../Egg") ]
+
+[node name="Explosion" type="Spatial" parent="."]
+
+[node name="Explosion" type="Spatial" parent="Explosion"]
+transform = Transform( 0.684346, 0, 0, 0, 0.684346, 0, 0, 0, 0.684346, 0, 0, 0 )
+
+[node name="FireParticles" type="Particles" parent="Explosion/Explosion"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0528994, 0 )
+emitting = false
+amount = 4
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.54
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="Particles2" type="Particles" parent="Explosion/Explosion"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0528994, 0 )
+emitting = false
+amount = 4
+lifetime = 0.7
+one_shot = true
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
+
+[node name="Egg" type="Spatial" parent="."]
+transform = Transform( -0.7, 1.40199e-08, -5.95683e-08, 0, 0.681382, 0.160369, 6.11959e-08, 0.160369, -0.681382, 0, 0, 0 )
+
+[node name="EggExplosionParticles" parent="Egg" instance=ExtResource( 17 )]
+transform = Transform( 6.24449e-08, 1.42857, 4.65488e-07, 1.42857, -6.24449e-08, 0, 2.03471e-14, 4.65488e-07, -1.42857, 0, 0.910943, 0 )
+local_coords = false
+
+[node name="CSGSphere" type="CSGSphere" parent="Egg"]
+transform = Transform( 0.7, 0, 0, 0, 1.3, 0, 0, 0, 0.7, 7.50317e-16, 0.323814, 0.0762124 )
+rings = 8
+material = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Egg"]
+autoplay = "gooey"
+anims/gooey = SubResource( 14 )
+
+[node name="lightning_effect" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.246798, 0 )
+
+[node name="Lightning" type="Particles" parent="lightning_effect"]
+transform = Transform( 0.494744, 0, 0, 0, 18.2064, 0, 0, 0, 1.06172, 0, 7.288, 0 )
+material_override = SubResource( 20 )
+emitting = false
+amount = 1
+lifetime = 0.76
+one_shot = true
+explosiveness = 0.39
+process_material = SubResource( 25 )
+draw_pass_1 = SubResource( 26 )
+
+[node name="Lightning2" type="Particles" parent="lightning_effect"]
+transform = Transform( 1.59983, 0, 0, 0, 18.2064, 0, 0, 0, 1.06172, 0.01, 7.212, 0 )
+material_override = SubResource( 31 )
+emitting = false
+amount = 1
+lifetime = 0.76
+one_shot = true
+explosiveness = 0.39
+process_material = SubResource( 25 )
+draw_pass_1 = SubResource( 26 )
+
+[node name="Perimiter" type="Particles" parent="lightning_effect"]
+transform = Transform( 0.572756, 0, 0, 0, -2.5036e-08, 0.572756, 0, -0.572756, -2.5036e-08, 0, 0, 0 )
+material_override = SubResource( 32 )
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource( 37 )
+draw_pass_1 = SubResource( 38 )
+
+[node name="crab" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.224683, 0, 0, 0, 0.224683, 0, 0, 0, 0.224683, 0, 0.246798, 0 )
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 6 )]
+destroy_particles_array = [ NodePath("../Explosion/Explosion/FireParticles"), NodePath("../Explosion/Explosion/Particles2") ]
+collide_particles_array = [ NodePath("../lightning_effect/Lightning"), NodePath("../lightning_effect/Lightning2") ]
+destroy_node_array = [ NodePath("../Kinematic"), NodePath("../Egg"), NodePath("../Crab"), NodePath("../crab") ]
+
+[node name="Sounds" parent="." instance=ExtResource( 10 )]
+on_create_stream = ExtResource( 8 )
+on_destroy_stream = ExtResource( 9 )
+
+[editable path="Kinematic"]
+[editable path="crab"]

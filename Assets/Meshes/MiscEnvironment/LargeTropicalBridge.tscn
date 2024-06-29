@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Meshes/large_tropical_bridge.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/CelShaded/light_tree.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/7.tres" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 4.898, 1, 4.13146 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 5.14515, 1, 2.49924 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2.85496, 1, 1.92669 )
+
+[sub_resource type="CylinderShape" id=4]
+radius = 0.75961
+height = 3.55046
+
+[node name="LargeTropicalBridge" type="Spatial"]
+transform = Transform( 0.994058, 0, 0.10885, 0, 1, 0, -0.10885, 0, 0.994058, 0, -0.699565, 0 )
+
+[node name="Map" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18403, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Map"]
+transform = Transform( 0.995977, 0, -0.0896069, 0, 1, 0, 0.0896069, 0, 0.995977, -1.36556, 0.919784, 4.25105 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Map"]
+transform = Transform( 0.995129, 0, -0.0985903, 0, 1, 0, 0.0985903, 0, 0.995129, -0.513582, 0.919784, -4.66464 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Map"]
+transform = Transform( 0.968436, 0, -0.249265, 0, 1, 0, 0.249265, 0, 0.968436, 1.26995, 0.919784, -0.657649 )
+shape = SubResource( 3 )
+
+[node name="Solid" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18403, 0 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Solid"]
+transform = Transform( 0.995772, 0, -0.0918666, 0, 1, 0, 0.0918666, 0, 0.995772, -5.38508, 1.67584, -6.60646 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Solid"]
+transform = Transform( 0.995772, 0, -0.0918666, 0, 1, 0, 0.0918666, 0, 0.995772, -6.81498, 1.67584, 6.14757 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Solid"]
+transform = Transform( 0.995772, 0, -0.0918666, 0, 1, 0, 0.0918666, 0, 0.995772, 4.93614, 1.67584, -4.7852 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Solid"]
+transform = Transform( 0.995772, 0, -0.0918666, 0, 1, 0, 0.0918666, 0, 0.995772, 2.88752, 1.67584, 7.91206 )
+shape = SubResource( 4 )
+
+[node name="tropical_bridge" type="MeshInstance" parent="."]
+transform = Transform( 0.122285, 0, 0.992496, 0, 1, 0, -0.992496, 0, 0.122285, 0.649614, 0.300536, 3.13519 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 2 )

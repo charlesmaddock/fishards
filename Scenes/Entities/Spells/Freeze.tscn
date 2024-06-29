@@ -1,0 +1,111 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Components/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sounds/iceLoop.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Components/ChangeSpeedOnCollide.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/iceShoot.wav" type="AudioStream" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.705882, 0.764706, 0.784314, 1 )
+shader_param/dark_color = Color( 0.368627, 0.47451, 0.6, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 0.92
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+
+[sub_resource type="QuadMesh" id=3]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.713115 )
+colors = PoolColorArray( 0, 1, 0, 1, 0.901639, 0.0983607, 0, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.12111, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 0.14
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, -9, 0 )
+initial_velocity = 2.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.8
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="SphereShape" id=9]
+radius = 0.284588
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_unshaded = true
+albedo_color = Color( 0.482353, 0.607843, 0.666667, 1 )
+
+[node name="Freeze" type="Spatial"]
+script = ExtResource( 2 )
+age_limit_seconds = 2.0
+
+[node name="Cloud" type="Particles" parent="."]
+material_override = SubResource( 1 )
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="Trail" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34, 1.287 )
+material_override = SubResource( 1 )
+lifetime = 0.33
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.24928 )
+shape = SubResource( 9 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Area"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 1.5, 0, -0.34, 1.287 )
+radius = 0.312052
+material = SubResource( 10 )
+
+[node name="Damage" parent="." instance=ExtResource( 6 )]
+damage = 3
+
+[node name="ChangeSpeedOnCollide" parent="." instance=ExtResource( 7 )]
+speed_modifier = -0.12
+
+[node name="Sounds" parent="." instance=ExtResource( 8 )]
+on_create_stream = ExtResource( 9 )
+on_live_stream = ExtResource( 5 )
+
+[node name="Projectile" parent="." instance=ExtResource( 3 )]
+speed = 23

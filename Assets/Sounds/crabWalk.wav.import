@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/crabWalk.wav-15618602571ca56fa86335ce1aa0a036.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/crabWalk.wav"
+dest_files=[ "res://.import/crabWalk.wav-15618602571ca56fa86335ce1aa0a036.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

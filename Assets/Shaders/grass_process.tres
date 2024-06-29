@@ -1,0 +1,12 @@
+[gd_resource type="ParticlesMaterial" format=2]
+
+[resource]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 0, 2 )
+flag_rotate_y = true
+spread = 105.43
+gravity = Vector3( 0, 0, 0 )
+angle_random = 1.0
+scale_random = 0.11
+hue_variation = 1.0
+hue_variation_random = 1.0

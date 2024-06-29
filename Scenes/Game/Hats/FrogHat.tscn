@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/Hats/frog_hat.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/1.tres" type="Material" id=3]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 0.501961, 0.67451, 0.482353, 1 )
+
+[node name="FrogHat" type="Spatial"]
+script = ExtResource( 5 )
+hat_type = 25
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 2 )

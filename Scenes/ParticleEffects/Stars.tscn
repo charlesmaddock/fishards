@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Textures/Particle/star_particle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/light_color = Color( 0.886275, 0.639216, 0.909804, 1 )
+shader_param/dark_color = Color( 0.819608, 0.435294, 0.67451, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/alpha_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 1, 0, 0, 1, 0, 1, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.291536, 1 ), -0.0537171, -0.0537171, 0, 0, Vector2( 1, 0.009009 ), -5.10113, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 0.5, 0.5, 0.5 )
+gravity = Vector3( 0, 0.5, 0 )
+scale = 0.15
+scale_random = 0.33
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=7]
+
+[node name="Particles" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00233703, 0.984638, -0.00136283 )
+material_override = SubResource( 1 )
+cast_shadow = 0
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )

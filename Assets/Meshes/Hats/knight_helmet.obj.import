@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/knight_helmet.obj-1f717e80598f87d73c28b005b4eea17e.mesh"
+
+[deps]
+
+files=[ "res://.import/knight_helmet.obj-1f717e80598f87d73c28b005b4eea17e.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/knight_helmet.obj"
+dest_files=[ "res://.import/knight_helmet.obj-1f717e80598f87d73c28b005b4eea17e.mesh", "res://.import/knight_helmet.obj-1f717e80598f87d73c28b005b4eea17e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

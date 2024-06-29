@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Maps/GoodShadowLight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=2]
+[ext_resource path="res://Assets/Meshes/tree_leaf_test.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Materials/CelShaded/grass.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/Maps/TestCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Textures/Particle/circle.png" type="Texture" id=6]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 0.717647, 0.623529, 0.517647, 1 )
+shader_param/shade_color = Color( 0.498039, 0.4, 0.364706, 1 )
+shader_param/shade_threshold = -0.171
+shader_param/use_attenuation = true
+
+[sub_resource type="Shader" id=3]
+code = "shader_type spatial;
+render_mode ambient_light_disabled;
+
+uniform vec4 base_color : hint_color = vec4(1.0);
+uniform vec4 shade_color : hint_color = vec4(1.0);
+
+uniform float shade_threshold : hint_range(-1.0, 1.0, 0.001) = 0.0;
+
+uniform sampler2D base_texture: hint_albedo;
+uniform sampler2D shade_texture: hint_albedo;
+uniform sampler2D alpha_texture: hint_albedo;
+
+uniform bool use_attenuation = false;
+
+void light()
+{
+	float attenuation = 1.0f;
+	if (use_attenuation) {
+		attenuation = ATTENUATION.x;
+	}
+	
+	float NdotL = dot(normalize(NORMAL), normalize(LIGHT));
+	float angle = acos(NdotL);
+	vec4 base = base_color.rgba;
+	vec4 shade = shade_color.rgba;
+	vec4 diffuse = base;
+
+	float shade_value = step(0 ,shade_threshold + NdotL);
+	diffuse = mix(shade, base, shade_value);
+
+	
+	DIFFUSE_LIGHT = diffuse.rgb;
+}
+
+void fragment(){
+	float alpha_cutout = texture(alpha_texture,UV).a;
+	
+	ALPHA_SCISSOR = 1.0;
+	ALPHA = alpha_cutout;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/base_color = Color( 0.917647, 0.65098, 0.329412, 1 )
+shader_param/shade_color = Color( 0.807843, 0.372549, 0.254902, 1 )
+shader_param/shade_threshold = 0.054
+shader_param/use_attenuation = false
+shader_param/alpha_texture = ExtResource( 6 )
+
+[node name="tree_leaf_test" instance=ExtResource( 3 )]
+
+[node name="DirectionalLight" parent="." index="0" instance=ExtResource( 1 )]
+transform = Transform( 0.754091, -0.150387, -0.63932, 0.65677, 0.172671, 0.734056, 0, -0.973431, 0.228979, 0, 45.2494, -12.0225 )
+
+[node name="Cube" parent="." index="1"]
+transform = Transform( 0.459455, 0, 0, 0, 0.459455, 0, 0, 0, 0.459455, 2.33827, -0.531107, -0.428508 )
+material/0 = SubResource( 2 )
+
+[node name="Sphere" parent="." index="2"]
+transform = Transform( 0.459455, 0, 0, 0, 0.459455, 0, 0, 0, 0.459455, 2.33827, -0.531107, -0.428508 )
+material/0 = ExtResource( 4 )
+
+[node name="Plane001" parent="." index="3"]
+transform = Transform( 0.0708144, 0.415971, -0.151951, -0.379718, -0.0221552, -0.237612, -0.227894, 0.166172, 0.348694, 6.33509, 5.37802, 1.67261 )
+material/0 = SubResource( 4 )
+
+[node name="Camera" parent="." index="4" instance=ExtResource( 5 )]

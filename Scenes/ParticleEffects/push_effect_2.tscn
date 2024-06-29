@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Meshes/VFX/push_mesh.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/Fx/push_2.tres" type="Material" id=2]
+
+[node name="push_effect_2" type="Spatial"]
+transform = Transform( 1.5242, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )

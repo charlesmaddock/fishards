@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Shaders/fireblast.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/smooth_corner_rect.png" type="Texture" id=3]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/noise_outer_cutout = 0.2
+shader_param/noise_inner_cutout = 0.5
+shader_param/noise_scale = 0.8
+shader_param/noise_scroll_speed = Vector2( 0, 0 )
+shader_param/light_color = Color( 0.905882, 0.909804, 0.639216, 1 )
+shader_param/dark_color = Color( 0.929412, 0.74902, 0.27451, 1 )
+shader_param/flip_shape_tex = false
+shader_param/use_color_for_time = true
+shader_param/impulse_progress = 0.0
+shader_param/noise_texture = ExtResource( 2 )
+shader_param/shape_texture = ExtResource( 3 )

@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/MainMenu/IconPhotographer.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Scenes/Game/Hats/KnightHelmet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/UI/Game/spell_holder_2.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Spin"
+length = 10.0
+loop = true
+
+[node name="IconPhotographer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="frame" type="Sprite" parent="."]
+position = Vector2( 319.945, 179.792 )
+scale = Vector2( 1.92586, 1.92586 )
+texture = ExtResource( 4 )
+
+[node name="IconPhotographer" type="ViewportContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="IconPhotographer"]
+size = Vector2( 32, 32 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IconPhotographer/Viewport"]
+anims/Spin = SubResource( 1 )
+
+[node name="Position" type="Spatial" parent="IconPhotographer/Viewport"]
+
+[node name="Camera" type="Camera" parent="IconPhotographer/Viewport/Position"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379263, 1.76301 )
+projection = 1
+size = 1.29633
+
+[node name="Rot" type="Spatial" parent="IconPhotographer/Viewport/Position"]
+transform = Transform( 1.5901, 0.601324, -5.47733e-08, -0.450622, 1.19159, -1.12563, -0.398158, 1.05286, 1.27395, -0.064, 0.322, -0.161 )
+script = ExtResource( 7 )
+hat_type = 21
+
+[node name="KnightHelmet" parent="IconPhotographer/Viewport/Position/Rot" instance=ExtResource( 3 )]
+transform = Transform( 0.793897, -0.0726108, -0.0584034, 0.0938087, 0.723083, 0.288021, 0.030453, -0.334482, 0.635321, 0.057, -0.141, 0 )
+
+[node name="Save" type="Button" parent="IconPhotographer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.0
+margin_top = 44.0
+margin_right = 26.0
+margin_bottom = 63.0
+text = "save image"
+
+[node name="Label" type="Label" parent="IconPhotographer/Save"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 37.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="IconPhotographer/Save"]
+margin_top = 38.0
+margin_right = 66.0
+margin_bottom = 58.0
+text = "file_name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="IconPhotographer/Save" to="IconPhotographer" method="_on_Save_pressed"]

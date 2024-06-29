@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/Hats/disguise_mask.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scenes/Materials/Palette/3.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Materials/Palette/8.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Materials/Palette/9.tres" type="Material" id=4]
+[ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
+
+[node name="DisguiseMask" type="Spatial"]
+script = ExtResource( 5 )
+hat_type = 24
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 3 )

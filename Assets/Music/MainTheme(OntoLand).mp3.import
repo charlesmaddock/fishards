@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/MainTheme(OntoLand).mp3-4681f7c9b0bdcfa8217f11231bdd9aff.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/MainTheme(OntoLand).mp3"
+dest_files=[ "res://.import/MainTheme(OntoLand).mp3-4681f7c9b0bdcfa8217f11231bdd9aff.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

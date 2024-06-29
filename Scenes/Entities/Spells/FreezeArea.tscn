@@ -1,0 +1,261 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Components/ChangeSpeedOnCollide.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=5]
+[ext_resource path="res://Assets/Textures/Particle/pebbles_particle.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sounds/ice field create.wav" type="AudioStream" id=9]
+[ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=10]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 10.1883
+height = 2.45585
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 5 )
+shader_param/alpha_grayscale = false
+shader_param/light_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+shader_param/dark_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+shader_param/billboard = true
+shader_param/circle_shape = false
+shader_param/gradient_color = true
+shader_param/random_between_colors = false
+shader_param/alpha_texture = ExtResource( 6 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.0033557, 0.662951 ), 0.0, 0.0, 0, 0, Vector2( 0.35906, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.647651, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.993289, 0.559347 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 2, 1, 2 )
+gravity = Vector3( 0, -1, 0 )
+angular_velocity = 53.33
+angular_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.8
+scale_random = 0.65
+scale_curve = SubResource( 4 )
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Spatial
+
+
+export(NodePath) var damage_component_path
+
+
+func _on_DamageAreaDestroyTimer_timeout():
+	get_node(damage_component_path).set_enabled(false)
+"
+
+[sub_resource type="Animation" id=8]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.13, 0.23, 0.4, 0.49, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="CylinderMesh" id=9]
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 1, 1, 0.258824 )
+
+[sub_resource type="QuadMesh" id=11]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 color: hint_color;
+uniform sampler2D noise_tex;
+uniform float noise_1_scale = 0.5;
+uniform float noise_2_scale = 1.0;
+
+uniform float noise_1_speed = 1.0;
+uniform float noise_2_speed = 0.5;
+uniform float cutout = 0.5;
+uniform float torus_shape_radius = 0.5;
+uniform float torus_inner_radius = 0.5;
+
+
+void fragment() {
+	vec2 uv_1 = UV*noise_1_scale + TIME*noise_1_speed;
+	vec2 uv_2 = UV*noise_2_scale + TIME*noise_2_speed;
+	
+	float noise_1 = texture(noise_tex, uv_1).r;
+	float noise_2 = texture(noise_tex, uv_2).r;
+	float result = (noise_1 + noise_2)/2.0;
+	
+	float circle = 1.0 - distance(vec2(1.0), UV*2.0);
+	float circle_gradient = 1.0 - distance(vec2(0.5/torus_inner_radius), vec2(distance(vec2(0.5/torus_shape_radius), UV/torus_shape_radius))/torus_shape_radius);
+	
+	float shape = ((circle_gradient - (1.0 - smoothstep(0.0, 0.2, circle))) + circle*1.9);
+	shape = step(cutout, shape *result);
+	ALBEDO = color.rgb;
+	ALPHA = shape;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/noise_1_scale = 0.876
+shader_param/noise_2_scale = 1.076
+shader_param/noise_1_speed = 0.5
+shader_param/noise_2_speed = 0.5
+shader_param/cutout = 0.338
+shader_param/torus_shape_radius = 0.5
+shader_param/torus_inner_radius = 0.254
+shader_param/noise_tex = ExtResource( 4 )
+
+[sub_resource type="Shader" id=14]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D noise_tex;
+uniform vec2 noise_scale = vec2(1.0);
+uniform float polar_scale = 1.0;
+
+uniform float torus_inner_radius = 0.5;
+uniform float torus_shape_radius = 0.5;
+
+void fragment() {
+	float x = (UV.x - 0.5)*noise_scale.x;
+	float y = (UV.y - 0.5)*noise_scale.y;
+	vec2 polar_coordinates = vec2(sqrt(pow(x, 2)+ pow(y, 2)), atan(y/x)/3.14159265359*polar_scale);
+	float noise = texture(noise_tex, polar_coordinates).r;
+	
+	float circle = distance(vec2(1.0), UV*2.0);
+	float circle_gradient = 1.0 - distance(vec2(0.5/torus_inner_radius), vec2(distance(vec2(0.5/torus_shape_radius), UV/torus_shape_radius))/torus_shape_radius);
+	
+	float shape = ((circle_gradient - (1.0 - smoothstep(0.0, 0.2, circle))) + circle*1.9);
+	
+	ALBEDO = vec3(step(0.5,noise));
+	ALPHA = (step(0.5,noise) - step(0.9, circle))*COLOR.a/4.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 14 )
+shader_param/noise_scale = Vector2( 0.5, 0.5 )
+shader_param/polar_scale = 0.5
+shader_param/torus_inner_radius = 0.244
+shader_param/torus_shape_radius = 0.466
+shader_param/noise_tex = ExtResource( 4 )
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0.028, 0.276, 0.632, 1 )
+colors = PoolColorArray( 1, 1, 0.992157, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+flag_rotate_y = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 5.0
+color_ramp = SubResource( 17 )
+
+[sub_resource type="PlaneMesh" id=19]
+size = Vector2( 4, 4 )
+
+[sub_resource type="SphereMesh" id=20]
+
+[sub_resource type="SpatialMaterial" id=21]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 1, 1, 0.176471 )
+
+[node name="FreezeArea" type="Spatial"]
+script = ExtResource( 3 )
+subtype_name = "FREEZE_AREA"
+age_limit_seconds = 1.0
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 0.310969, 0, 0, 0, 0.310969, 0, 0, 0, 0.310969, 0, -1, 0 )
+shape = SubResource( 1 )
+
+[node name="ChangeSpeedOnCollide" parent="." instance=ExtResource( 2 )]
+affect_teammates = true
+affect_creator = true
+speed_modifier = -0.4
+modifier_name = "freezearea"
+duration = 6.0
+
+[node name="Damage" parent="." instance=ExtResource( 1 )]
+damage = 30
+damage_depends_on_dist_from_centre = true
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -0.622383, 0 )
+material_override = SubResource( 2 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="Effect" type="Spatial" parent="."]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.5, 0 )
+script = SubResource( 7 )
+damage_component_path = NodePath("../Damage")
+
+[node name="SizeUp" type="AnimationPlayer" parent="Effect"]
+autoplay = "size_up"
+anims/size_up = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Effect"]
+transform = Transform( 2.99208, 0, 0, 0, 0.618579, 0, 0, 0, 2.99208, 0, 0, 0 )
+visible = false
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+
+[node name="Ground" type="MeshInstance" parent="Effect"]
+transform = Transform( 6.41733, 0, 0, 0, -2.8051e-07, 6.41733, 0, -6.41733, -2.8051e-07, 0, 0.170839, 0 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 13 )
+
+[node name="Spin" type="Particles" parent="Effect"]
+transform = Transform( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -1.16235, 0 )
+visible = false
+material_override = SubResource( 15 )
+amount = 3
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 19 )
+
+[node name="DamageAreaDestroyTimer" type="Timer" parent="Effect"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Sphere" type="MeshInstance" parent="Effect"]
+transform = Transform( 2.64407, 0, 0, 0, 2.64407, 0, 0, 0, 2.64407, 0, 0, 0 )
+mesh = SubResource( 20 )
+material/0 = SubResource( 21 )
+
+[node name="Sounds" parent="." instance=ExtResource( 8 )]
+on_create_stream = ExtResource( 9 )
+
+[node name="PrettyDestroy" parent="." instance=ExtResource( 10 )]
+time_until_destroy = 0.3
+stop_particle_node_array = [ NodePath("../Particles") ]
+
+[connection signal="timeout" from="Effect/DamageAreaDestroyTimer" to="Effect" method="_on_DamageAreaDestroyTimer_timeout"]

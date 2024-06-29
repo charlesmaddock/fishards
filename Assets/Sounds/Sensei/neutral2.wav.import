@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/neutral2.wav-2bc70fbc38f385a6dffac8235b08f9e1.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sensei/neutral2.wav"
+dest_files=[ "res://.import/neutral2.wav-2bc70fbc38f385a6dffac8235b08f9e1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

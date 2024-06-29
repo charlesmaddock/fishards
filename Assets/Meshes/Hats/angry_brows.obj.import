@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh"
+
+[deps]
+
+files=[ "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh" ]
+
+source_file="res://Assets/Meshes/Hats/angry_brows.obj"
+dest_files=[ "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh", "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

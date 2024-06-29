@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/MainMenu/Main menu island.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/MainMenu/MainMenu.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/MainMenu/MainMenuUIChildren/LobbyUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/MainMenu/UI.gd" type="Script" id=10]
+
+[node name="LobbyScene" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyUI" parent="UI" instance=ExtResource( 9 )]
+margin_left = -319.511
+margin_right = 320.489
+
+[node name="Main menu island" parent="." instance=ExtResource( 1 )]

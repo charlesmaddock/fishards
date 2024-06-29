@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Materials/lava.tres" type="Material" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 4.89517, 0, 0, 0, 4.89517, 0, 0, 0, 4.89517, 0.00379753, -0.00153446, 0.013883 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 3.43641, 0 )

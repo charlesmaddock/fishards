@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Sound" type="AudioStreamPlayer3D"]
+unit_db = -10.0
+unit_size = 10.0
+bus = "SFX"

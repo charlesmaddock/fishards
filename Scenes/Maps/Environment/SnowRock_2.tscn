@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Materials/CelShaded/icy_rock.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Meshes/MiscEnvironment/snow_rock_2.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.905882, 0.905882, 0.905882, 0 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 1.12587
+
+[node name="SnowRock_2" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
+material/1 = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0638914, -2.38419e-07, -0.185571 )
+shape = SubResource( 2 )

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Materials/CelShaded/grass.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Meshes/HighlandAssets/highland_rock_3.glb" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Materials/CelShaded/rock.tres" type="Material" id=3]
+
+[node name="highland_rock_3" instance=ExtResource( 2 )]
+
+[node name="Rock" parent="." index="0"]
+transform = Transform( 0.252662, 0, 0.431465, 0, 0.5, 0, -0.431465, 0, 0.252662, 0, 0, 0 )
+material/0 = ExtResource( 3 )
+
+[node name="Grass" parent="Rock" index="0"]
+material/0 = ExtResource( 1 )
