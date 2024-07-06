@@ -234,7 +234,7 @@ func try_request_cast_spell(cast_pos: Vector3 = Vector3.DOWN, team_name: String 
 			if holding_down_spell == false:
 				holding_down_spell = true
 	
-	if allowed_to_cast == true || Lobby.is_host == false:
+	if allowed_to_cast == true:
 		var cast_direction: Vector2
 		var player_pos: Vector3 = parent_entity.get_global_transform().origin
 		
