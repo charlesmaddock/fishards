@@ -39,7 +39,7 @@ func _read_packets(channel: int) -> void:
 	var packet_size: int = Steam.getAvailableP2PPacketSize(channel)
 	while packet_size > 0:
 		var packet: Dictionary = Steam.readP2PPacket(packet_size, channel)
-		open_packet(packet["steam_id_remote"], bytes2var(packet["data"]))
+		open_packet(packet["steamIDRemote"], bytes2var(packet["data"]))
 		packet_size = Steam.getAvailableP2PPacketSize(channel)
 
 
