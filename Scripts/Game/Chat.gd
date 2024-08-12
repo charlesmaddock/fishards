@@ -35,19 +35,22 @@ func _ready():
 
 
 func _process(delta) -> void:
-	if Input.is_action_just_pressed("ui_accept"): 
-		send_chat_message()
-	
-	if Input.is_action_just_pressed("ui_cancel"): 
-		close_chat()
-	
-	if Input.is_action_just_pressed("open_chat") && _focused == false: 
-		open_chat()
-	
 	if chatInput.text.length() > 512:
 		sendChatMsg.disabled = true
 	else:
 		sendChatMsg.disabled = false
+	
+	if Input.is_action_just_pressed("ui_accept") && _focused: 
+		send_chat_message()
+		return
+	
+	if Input.is_action_just_pressed("ui_cancel"): 
+		close_chat()
+		return
+	
+	if Input.is_action_just_pressed("open_chat") && not _focused: 
+		open_chat()
+		return
 
 
 func open_chat():
