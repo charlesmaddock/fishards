@@ -6,10 +6,10 @@ var COMPONENT_TYPE: int = Globals.ComponentTypes.Turret
 signal shoot()
 
 
-export(float) var cast_spell_time = 0.4
-export(float) var max_search_range = 9999
-export(String) var team_name = "Blue Team"
-export(NodePath) var turret_model 
+@export var cast_spell_time: float = 0.4
+@export var max_search_range: float = 9999
+@export var team_name: String = "Blue Team"
+@export var turret_model: NodePath 
 
 
 var _hunt_counter: float 
@@ -24,7 +24,7 @@ func init_turret(name: String) -> void:
 
 
 func _ready():
-	parent_entity.connect("landed", self, "_on_landed")
+	parent_entity.connect("landed", Callable(self, "_on_landed"))
 	parent_entity.set_creator_id(parent_entity.get_id())
 	if Lobby.is_host:
 		_spell_caster = parent_entity.get_component_of_type(Globals.ComponentTypes.SpellCaster)

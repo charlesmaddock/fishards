@@ -5,16 +5,16 @@ var _active_spell: int
 var _previous_spell: int
 
 var _controller_dir: Vector2
-var _camera: Camera
+var _camera: Camera3D
 var ray_length: float = 1000
-var clamped: bool = true
+var limit_length: bool = true
 var marker_target_pos: Vector3
-onready var upgrade_arrow: CSGPolygon = $Upgrade
+@onready var upgrade_arrow: CSGPolygon3D = $Upgrade
 
 
 func _ready():
 	_spell_caster = get_parent()
-	_camera = get_viewport().get_camera()
+	_camera = get_viewport().get_camera_3d()
 	
 	upgrade_arrow.set_visible(false)
 	set_visible(false)
@@ -31,7 +31,7 @@ func _process(delta):
 		_follow_mouse(delta)
 		_update_marker_color()
 	
-	global_transform.origin = global_transform.origin.linear_interpolate(marker_target_pos, delta * 14)
+	global_transform.origin = global_transform.origin.lerp(marker_target_pos, delta * 14)
 	global_transform.origin.y = 0.2
 
 
@@ -57,7 +57,7 @@ func _update_marker_color() -> void:
 
 
 func _follow_mouse(delta) -> void:
-	var mouse_pos = Util.get_aim_position(get_world().get_direct_space_state())
+	var mouse_pos = Util.get_aim_position(get_world_3d().get_direct_space_state())
 	if mouse_pos != Vector3.DOWN:
 	
 		if Util.controller_connected:

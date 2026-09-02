@@ -1,20 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh"
+uid="uid://dbqs5kibc5l0t"
+path="res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh"
 
 [deps]
 
-files=[ "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh" ]
+files=["res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh"]
 
 source_file="res://Assets/Meshes/Maps/TropicIslandParts/3.obj"
-dest_files=[ "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh", "res://.import/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh" ]
+dest_files=["res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh", "res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

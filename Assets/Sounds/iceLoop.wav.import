@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/iceLoop.wav-4bb7602990e87accf51a14fb598bc958.sample"
+type="AudioStreamWAV"
+uid="uid://de7ub31p74smx"
+path="res://.godot/imported/iceLoop.wav-4bb7602990e87accf51a14fb598bc958.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/iceLoop.wav"
-dest_files=[ "res://.import/iceLoop.wav-4bb7602990e87accf51a14fb598bc958.sample" ]
+dest_files=["res://.godot/imported/iceLoop.wav-4bb7602990e87accf51a14fb598bc958.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

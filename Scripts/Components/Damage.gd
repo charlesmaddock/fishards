@@ -3,19 +3,19 @@ class_name Damage
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Damage
 
 
-export(int) var damage: int = 10
-export(bool) var _enabled: bool = true
-export(bool) var trigger_manually = false
+@export var damage: int = 10
+@export var _enabled: bool = true
+@export var trigger_manually: bool = false
 
-export(bool) var damage_allies: bool = false
-export(bool) var can_damage_multiple = true
-export(bool) var damage_crabs = true
-export(bool) var damage_depends_on_dist_from_centre = false
-export(bool) var repeat_damage: bool = false
-export(float) var repeat_time: float = 1
+@export var damage_allies: bool = false
+@export var can_damage_multiple: bool = true
+@export var damage_crabs: bool = true
+@export var damage_depends_on_dist_from_centre: bool = false
+@export var repeat_damage: bool = false
+@export var repeat_time: float = 1
 
 
-var _area: Area
+var _area: Area3D
 var entities_in_area: Dictionary
 var recently_exited_entities: Dictionary
 var repeat_damage_wait_time: float
@@ -24,8 +24,8 @@ var repeat_damage_wait_time: float
 func _ready():
 	_area = parent_entity.get_area()
 	if !trigger_manually:
-		_area.connect("area_entered", self, "_on_entity_entered_area")
-		_area.connect("area_exited", self, "_on_entity_exited_area")
+		_area.connect("area_entered", Callable(self, "_on_entity_entered_area"))
+		_area.connect("area_exited", Callable(self, "_on_entity_exited_area"))
 		repeat_damage_wait_time = 0
 
 
@@ -75,7 +75,7 @@ func get_damage_creator_team() -> String:
 				return "Blue Team"
 			else:
 				var team: Dictionary = Lobby.get_team_info_from_player_id(parent_entity.get_creator_id())
-				if team.empty() == false:
+				if team.is_empty() == false:
 					return team.name
 				else:
 					printerr("[Damage]: Couldn't find a team for this damage component")
@@ -91,7 +91,7 @@ func damage_entity(entity: Entity) -> void:
 	if entity != null:
 		var damage_amount = damage
 		
-		var space_state = parent_entity.get_world().direct_space_state
+		var space_state = parent_entity.get_world_3d().direct_space_state
 		var result = space_state.intersect_ray(parent_entity.global_transform.origin, entity.global_transform.origin, [], int(pow(2, Globals.ColBits.BLOCK_DAMAGE)), true, true)
 		if result.get("collider") != null:
 			
@@ -121,8 +121,8 @@ func damage_entity(entity: Entity) -> void:
 			return
 		
 		if damage_depends_on_dist_from_centre == true:
-			if _area.get_child(0).get_shape() is CylinderShape:
-				var shape: CylinderShape = _area.get_child(0).get_shape() 
+			if _area.get_child(0).get_shape() is CylinderShape3D:
+				var shape: CylinderShape3D = _area.get_child(0).get_shape() 
 				var dist = entity.get_pos().distance_to(parent_entity.get_pos())
 				damage_amount = (((shape.radius - dist) / shape.radius) * damage / 2)  + (damage / 1.5)
 			else:
@@ -132,7 +132,7 @@ func damage_entity(entity: Entity) -> void:
 		parent_entity.emit_signal("dealt_damage", damage_amount, entity)
 
 
-func _on_entity_entered_area(area: Area):
+func _on_entity_entered_area(area: Area3D):
 	# Put Entity in dict
 	if _enabled:
 		var entity: Entity = Util.get_entity_from_area(area)
@@ -144,7 +144,7 @@ func _on_entity_entered_area(area: Area):
 			entities_in_area[entity_id] = entity
 
 
-func _on_entity_exited_area(area: Area):
+func _on_entity_exited_area(area: Area3D):
 	var entity: Entity = Util.get_entity_from_area(area)
 	if entity != null:
 		if repeat_damage:

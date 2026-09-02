@@ -1,13 +1,13 @@
-extends Spatial
+extends Node3D
 class_name Players
 
 const WADDLE_SCENE = preload("res://Waddlemancy/Characters/Waddle.tscn")
 
-export(PackedScene) var player_scene: PackedScene
-export(PackedScene) var fishard_bot_scene: PackedScene
-export(PackedScene) var dead_player_scene: PackedScene
-export(PackedScene) var poof_scene: PackedScene
-export(NodePath) var client_node
+@export var player_scene: PackedScene
+@export var fishard_bot_scene: PackedScene
+@export var dead_player_scene: PackedScene
+@export var poof_scene: PackedScene
+@export var client_node: NodePath
 
 var player_ids: Array      
 var living_player_ids: Array  
@@ -223,7 +223,7 @@ func host_spawn_temp_bot(team_name: String, bot_type: int, spawn_pos: Vector3 = 
 
 
 func poof_at(pos: Vector3) -> void:
-	var poof = poof_scene.instance()
+	var poof = poof_scene.instantiate()
 	poof.transform.origin = pos 
 	poof.emitting = true
 	add_child(poof)
@@ -263,7 +263,7 @@ func p2p_handle_player_death(id: int, respawn_time: float, death_type: int) -> v
 		var spell_caster: SpellCaster = get_parent().get_spellcaster_component(id)
 		
 		if player_component != null && spell_caster != null:
-			var dead_player = dead_player_scene.instance()
+			var dead_player = dead_player_scene.instantiate()
 			add_child(dead_player)
 			player_component.kill_player(respawn_time)
 			if player_component.get_in_water() == true:
@@ -303,7 +303,7 @@ func on_player_cast_spell(caster_entity: Entity, spell_type: int) -> void:
 
 
 func _attach_waddle_visual(player_entity: Entity, id: int) -> void:
-	var waddle_visual = WADDLE_SCENE.instance()
+	var waddle_visual = WADDLE_SCENE.instantiate()
 	waddle_visual.name = "WaddleVisual_" + str(id)
 
 	player_entity.add_child(waddle_visual)
@@ -328,9 +328,9 @@ func spawn_player(id: int, player_info: Dictionary) -> void:
 	var player_type = player_info["plyr_type"]
 	
 	if player_type == Globals.PlayerTypes.CLIENT:
-		player_entity = player_scene.instance()
+		player_entity = player_scene.instantiate()
 	else:
-		player_entity = fishard_bot_scene.instance()
+		player_entity = fishard_bot_scene.instantiate()
 	
 	var player_component: Player = player_entity.get_component_of_type(Globals.ComponentTypes.Player)
 	var spell_caster_component: SpellCaster = player_entity.get_component_of_type(Globals.ComponentTypes.SpellCaster)

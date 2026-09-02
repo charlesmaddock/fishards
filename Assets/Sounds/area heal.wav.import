@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/area heal.wav-2a26669943cd656ef25a3882ddf8fea1.sample"
+type="AudioStreamWAV"
+uid="uid://ck0vd6soiftun"
+path="res://.godot/imported/area heal.wav-2a26669943cd656ef25a3882ddf8fea1.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/area heal.wav"
-dest_files=[ "res://.import/area heal.wav-2a26669943cd656ef25a3882ddf8fea1.sample" ]
+dest_files=["res://.godot/imported/area heal.wav-2a26669943cd656ef25a3882ddf8fea1.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

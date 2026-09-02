@@ -4,9 +4,9 @@
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Util/EmitOnStartParticles.gd" type="Script" id=3]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape3D" id=1]
 
-[node name="BigSplash" type="Spatial"]
+[node name="BigSplash" type="Node3D"]
 script = ExtResource( 2 )
 can_move = false
 age_limit_seconds = 2.0
@@ -17,9 +17,9 @@ lifetime = 1.5
 explosiveness = 0.9
 script = ExtResource( 3 )
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource( 1 )

@@ -1,9 +1,9 @@
 extends PanelContainer
 
 
-onready var gameOverPanelTitle = $Margin/VBox/Title
-onready var gameOverPanelText = $Margin/VBox/Text
-onready var confetti: Node2D = $Confetti
+@onready var gameOverPanelTitle = $Margin/VBox/Title
+@onready var gameOverPanelText = $Margin/VBox/Text
+@onready var confetti: Node2D = $Confetti
 
 
 func p2p_show_gameover_panel(winner_ids: Array, text: String, winner_title: String, loser_title: String):
@@ -44,5 +44,5 @@ func hide_gameover_panel() -> void:
 
 func play_confetti() -> void:
 	for particles in confetti.get_children():
-		if particles is Particles2D:
+		if particles is GPUParticles2D:
 			particles.emitting = true

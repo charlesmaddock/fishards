@@ -1,24 +1,24 @@
 extends Panel
 
 
-export(PackedScene) var display_player_row_scene: PackedScene
+@export var display_player_row_scene: PackedScene
 
-onready var redContainer = $ScrollContainer/VBoxContainer/RedContainer
-onready var blueContainer = $ScrollContainer/VBoxContainer/BlueContainer
-onready var allContainer = $ScrollContainer/VBoxContainer/AllContainer
-onready var redTeamTitle = $ScrollContainer/VBoxContainer/RedContainer/TeamTitle/TeamName
-onready var blueTeamTitle = $ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/TeamName
-onready var redTeamSwitch = $ScrollContainer/VBoxContainer/RedContainer/TeamTitle/RedSwitch
-onready var blueTeamSwitch = $ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/BlueSwitch
+@onready var redContainer = $ScrollContainer/VBoxContainer/RedContainer
+@onready var blueContainer = $ScrollContainer/VBoxContainer/BlueContainer
+@onready var allContainer = $ScrollContainer/VBoxContainer/AllContainer
+@onready var redTeamTitle = $ScrollContainer/VBoxContainer/RedContainer/TeamTitle/TeamName
+@onready var blueTeamTitle = $ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/TeamName
+@onready var redTeamSwitch = $ScrollContainer/VBoxContainer/RedContainer/TeamTitle/RedSwitch
+@onready var blueTeamSwitch = $ScrollContainer/VBoxContainer/BlueContainer/TeamTitle/BlueSwitch
 
 
 func _ready():
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
-	Lobby.connect("room_settings_updated", self, "_on_room_settings_updated")
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
+	Lobby.connect("room_settings_updated", Callable(self, "_on_room_settings_updated"))
 	redTeamTitle.modulate = Globals.RED_TEAM_COLOR
 	blueTeamTitle.modulate = Globals.BLUE_TEAM_COLOR
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	update_players()
 
 
@@ -55,7 +55,7 @@ func update_players() -> void:
 	var my_preferred_team: String
 	
 	for player_info in Lobby.client_members + Lobby._bot_members:
-		var display_player_row = display_player_row_scene.instance()
+		var display_player_row = display_player_row_scene.instantiate()
 		
 		if display_as_teams == true:
 			var container = redContainer if player_info["team"] == "Red Team" else blueContainer

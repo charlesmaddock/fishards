@@ -108,7 +108,7 @@ func fileExists(file_name: String) -> bool:
 
 func fileWrite(
 	file_name: String,
-	data: PoolByteArray,
+	data: PackedByteArray,
 	_data_size: int
 ) -> bool:
 
@@ -136,7 +136,7 @@ func fileRead(
 
 	return {
 		"ret": false,
-		"buf": PoolByteArray()
+		"buf": PackedByteArray()
 	}
 
 
@@ -225,13 +225,13 @@ func readP2PPacket(
 
 	return {
 		"steam_id_remote": 0,
-		"data": PoolByteArray()
+		"data": PackedByteArray()
 	}
 
 
 func sendP2PPacket(
 	_remote_id: int,
-	_data: PoolByteArray,
+	_data: PackedByteArray,
 	_send_type: int,
 	_channel: int = 0
 ) -> bool:

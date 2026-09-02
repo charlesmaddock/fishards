@@ -5,13 +5,13 @@ var classContainer = preload("res://Scenes/MainMenu/ClassContainer.tscn")
 var textStat = preload("res://Scenes/MainMenu/textStat.tscn")
 
 
-onready var statsContainer = $VBoxContainer/Panel/ScrollContainer/VBoxContainer
+@onready var statsContainer = $VBoxContainer/Panel/ScrollContainer/VBoxContainer
 
 
 func _ready():
-	AchievementHandler.connect("achievements_data_dict_updated", self, "_on_achievements_data_dict_updated")
+	AchievementHandler.connect("achievements_data_dict_updated", Callable(self, "_on_achievements_data_dict_updated"))
 	
-	if AchievementHandler.achievements_data_dict.empty() == false:
+	if AchievementHandler.achievements_data_dict.is_empty() == false:
 		_on_achievements_data_dict_updated(AchievementHandler.achievements_data_dict)
 
 
@@ -28,7 +28,7 @@ func _on_achievements_data_dict_updated(data: Dictionary) -> void:
 				var suffix = "kills" if key == "class_kills" else "wins"
 				if score == 1:
 					suffix = suffix.replace("s", "")
-				var class_container = classContainer.instance()
+				var class_container = classContainer.instantiate()
 				statsContainer.add_child(class_container)
 				class_container.set_class_values(class_title, class_elements, score, suffix)
 		elif key == "element_available_rounds_won" || key == "element_mode_rounds_won":
@@ -47,7 +47,7 @@ func _on_achievements_data_dict_updated(data: Dictionary) -> void:
 					text = "Rounds won with " + element_mode
 				
 				var score = data[key][available_element_amount]
-				var class_container = classContainer.instance()
+				var class_container = classContainer.instantiate()
 				statsContainer.add_child(class_container)
 				class_container.set_class_values(text, [], score, "")
 				
@@ -56,6 +56,6 @@ func _on_achievements_data_dict_updated(data: Dictionary) -> void:
 
 
 func create_stat_text(text: String) -> void:
-	var textStatMarginContainer = textStat.instance()
+	var textStatMarginContainer = textStat.instantiate()
 	textStatMarginContainer.get_node("label").text = text
 	statsContainer.add_child(textStatMarginContainer)

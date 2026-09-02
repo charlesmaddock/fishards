@@ -1,26 +1,26 @@
-extends Spatial
+extends Node3D
 class_name Map
 
 
-export(bool) var generate_environment: bool = true 
-export(int) var env_density: int = 3
-export(float) var env_spawn_chance: float = 0.5
-export(Array, String) var environment_types: Array
-export(Array, PackedScene) var ground_scenes: Array
+@export var generate_environment: bool = true 
+@export var env_density: int = 3
+@export var env_spawn_chance: float = 0.5
+@export var environment_types: Array # (Array, String)
+@export var ground_scenes: Array # (Array, PackedScene)
 
 
-export(NodePath) var spawn_area_container = null
-export(NodePath) var red_team_spawn_container_path = null
-export(NodePath) var blue_team_spawn_container_path = null
-export(NodePath) var hand_placed_entity_container = null
+@export var spawn_area_container: NodePath = null
+@export var red_team_spawn_container_path: NodePath = null
+@export var blue_team_spawn_container_path: NodePath = null
+@export var hand_placed_entity_container: NodePath = null
 
 
 var _spawn_areas
-var _hand_placed_entity_container: Spatial 
+var _hand_placed_entity_container: Node3D 
 var _time_since_last_powerup: float
 var _time_to_next_powerup: float 
-var _red_team_spawn_container: Spatial = null
-var _blue_team_spawn_container: Spatial = null
+var _red_team_spawn_container: Node3D = null
+var _blue_team_spawn_container: Node3D = null
 
 
 func _ready():
@@ -53,30 +53,30 @@ func _ready():
 		# To replace the foam we get the material of the water plane
 		var water_plane_material: Material
 		if get_node("Water Plane") != null:
-			water_plane_material = get_node("Water Plane").get_surface_material(0)
+			water_plane_material = get_node("Water Plane").get_surface_override_material(0)
 		
 		for child in get_children():
-			if child is DirectionalLight:
-				var light: DirectionalLight = child
+			if child is DirectionalLight3D:
+				var light: DirectionalLight3D = child
 				light.set_shadow(false)
 			
 			# Somethings in the map need to run faster
 			remove_pretty_graphics_materials(child, water_plane_material)
 			# Some spatials contain meshes with foam in
-			if child is Spatial:
+			if child is Node3D:
 				for grand_child in child.get_children():
 					remove_pretty_graphics_materials(grand_child, water_plane_material)
 
 
 func remove_pretty_graphics_materials(search_inside, water_plane_material) -> void:
-	if search_inside is MeshInstance:
-		var map_model: MeshInstance = search_inside
-		for i in map_model.get_surface_material_count():
-			if map_model.get_surface_material(i) is ShaderMaterial:
-				var shader_mat: Material = map_model.get_surface_material(i)
-				if shader_mat.shader.resource_path == "res://Assets/Shaders/foam.shader" || shader_mat.shader.resource_path == "res://Assets/Shaders/new_foam.shader":
+	if search_inside is MeshInstance3D:
+		var map_model: MeshInstance3D = search_inside
+		for i in map_model.get_surface_override_material_count():
+			if map_model.get_surface_override_material(i) is ShaderMaterial:
+				var shader_mat: Material = map_model.get_surface_override_material(i)
+				if shader_mat.gdshader.resource_path == "res://Assets/Shaders/foam.gdshader" || shader_mat.gdshader.resource_path == "res://Assets/Shaders/new_foam.gdshader":
 					# Give the foam the same color as the water
-					map_model.set_surface_material(i, water_plane_material)
+					map_model.set_surface_override_material(i, water_plane_material)
 
 
 func _process(delta: float) -> void:
@@ -107,7 +107,7 @@ func set_time_to_next_power_up() -> void:
 
 
 func clear_hand_placed_entities() -> void:
-	if not Engine.editor_hint && _hand_placed_entity_container != null:
+	if not Engine.is_editor_hint() && _hand_placed_entity_container != null:
 		_hand_placed_entity_container.queue_free()
 
 
@@ -117,9 +117,9 @@ func generate_ground_decoration() -> void:
 			var shape = spawn_area.get_shape()
 			var size = Vector2()
 			
-			if spawn_area.get_shape() is CylinderShape:
+			if spawn_area.get_shape() is CylinderShape3D:
 				size = Vector2(shape.radius * 2, shape.radius * 2)
-			elif spawn_area.get_shape() is BoxShape:
+			elif spawn_area.get_shape() is BoxShape3D:
 				size = Vector2(shape.extents.x * 2, shape.extents.z * 2)
 			else:
 				printerr("Spawn area must be a cylinder or box.")
@@ -146,9 +146,9 @@ func generate_environment(room_node: Node, environment_node: Node) -> Dictionary
 			var shape = spawn_area.get_shape()
 			var size = Vector2()
 			
-			if spawn_area.get_shape() is CylinderShape:
+			if spawn_area.get_shape() is CylinderShape3D:
 				size = Vector2(shape.radius * 2, shape.radius * 2)
-			elif spawn_area.get_shape() is BoxShape:
+			elif spawn_area.get_shape() is BoxShape3D:
 				size = Vector2(shape.extents.x * 2, shape.extents.z * 2)
 			else:
 				printerr("Spawn area must be a cylinder or box.")
@@ -198,7 +198,7 @@ func host_remove_colliding_entities(room_node: Node) -> void:
 	for env_entity_id in environment_node.get_environment_ids():
 		var env_entity = room_node.get_entity(env_entity_id, "host_remove_colliding_entities")
 		if env_entity != null:
-			var env_area: Area = env_entity.get_area()
+			var env_area: Area3D = env_entity.get_area()
 			if env_area != null:
 				if env_area.get_overlapping_areas().size() > 0:
 					entity_ids_to_remove.append(env_entity_id)
@@ -208,18 +208,18 @@ func host_remove_colliding_entities(room_node: Node) -> void:
 		PacketSender.host_broadcast_destroy_entity(id)
 
 
-func try_generate_ground_particle(spawn_area: CollisionShape, pos: Vector2) -> void:
+func try_generate_ground_particle(spawn_area: CollisionShape3D, pos: Vector2) -> void:
 	if ground_scenes.size() > 0:
 		var spawn_point = get_spawn_pos(-1, false, spawn_area, pos)
 		if spawn_point != Vector3.DOWN:
 			var ground_scene: PackedScene = ground_scenes[Util.rand.randi_range(0, ground_scenes.size() - 1)]
-			var ground_thingy = ground_scene.instance()
+			var ground_thingy = ground_scene.instantiate()
 			ground_thingy.transform.origin = Vector3(spawn_point.x, 0, spawn_point.z)
 			ground_thingy.rotation.y = Util.rand.randf_range(-PI, PI)
 			add_child(ground_thingy)
 
 
-func try_generate_environment(spawn_area: CollisionShape, pos: Vector2) -> Dictionary:
+func try_generate_environment(spawn_area: CollisionShape3D, pos: Vector2) -> Dictionary:
 	var env_type: int
 	
 	var spawn_point = get_spawn_pos(-1, false, spawn_area, pos)
@@ -253,7 +253,7 @@ func try_generate_environment(spawn_area: CollisionShape, pos: Vector2) -> Dicti
 
 func get_player_spawn_point(team: String) -> Vector3:
 	var current_gamemodes_teammode: int = GamemodeValues.get_current_rounds_teammode()
-	var spawn_area: CollisionShape = null
+	var spawn_area: CollisionShape3D = null
 	
 	if RoomSettings.get_rounds_gamemode() == GamemodeValues.Gamemodes.Survive:
 		if team == "Wizishes":
@@ -284,7 +284,7 @@ func get_player_spawn_point(team: String) -> Vector3:
 
 
 # Returns Vector3.DOWN if it failed to find a spawn point
-func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area: CollisionShape = null, pos: Vector2 = Vector2.LEFT) -> Vector3:
+func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area: CollisionShape3D = null, pos: Vector2 = Vector2.LEFT) -> Vector3:
 	var spawn_point: Vector3 = Vector3.DOWN
 	var failed_to_find_spawn_point: bool = true
 	var fail_amount: int = 0
@@ -294,7 +294,7 @@ func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area:
 	if spawn_area == null:
 		var child_amount: int = 0
 		for child in _spawn_areas.get_children():
-			if child is CollisionShape:
+			if child is CollisionShape3D:
 				child_amount += 1
 		
 		var spawn_area_index = Util.rand.randi_range(0, child_amount - 1)
@@ -310,8 +310,8 @@ func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area:
 	while failed_to_find_spawn_point == true:
 		fail_amount += 1
 		
-		if spawn_area.get_shape() is CylinderShape:
-			var shape: CylinderShape = spawn_area.get_shape()
+		if spawn_area.get_shape() is CylinderShape3D:
+			var shape: CylinderShape3D = spawn_area.get_shape()
 			# Generate a random pos if one wasn't specified
 			if get_random_spawn_point == true:
 				var x: float = shape.radius * Util.rand.randf_range(-1, 1)
@@ -326,8 +326,8 @@ func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area:
 				if guarantee_spawn == false:
 					return Vector3.DOWN # Vector3.DOWN means it failed
 		
-		elif spawn_area.get_shape() is BoxShape:
-			var shape: BoxShape = spawn_area.get_shape()
+		elif spawn_area.get_shape() is BoxShape3D:
+			var shape: BoxShape3D = spawn_area.get_shape()
 			# Generate a random pos if one wasn't specified
 			if get_random_spawn_point == true:
 				var x: float = shape.extents.x * Util.rand.randf_range(-1, 1)
@@ -345,7 +345,7 @@ func get_spawn_pos(radius: float = -1, guarantee_spawn: bool = true, spawn_area:
 		
 		# Check if we are colliding with something, if so choose another spawn point
 		if radius != -1:
-			var space_state = get_world().get_direct_space_state()
+			var space_state = get_world_3d().get_direct_space_state()
 			var cast_order: Array = [Vector3(radius, 0, 0), Vector3(-radius, 0, 0), Vector3(0, 0, radius), Vector3(0, 0, -radius)]
 			for i in range(4):
 				var collision_mask = 2 + 4 + 64 + 32 # + 16

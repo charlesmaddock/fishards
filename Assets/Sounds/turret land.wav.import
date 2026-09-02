@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/turret land.wav-556511fc84d4d7168279f2dfbb935f88.sample"
+type="AudioStreamWAV"
+uid="uid://cbfa88akqhkv4"
+path="res://.godot/imported/turret land.wav-556511fc84d4d7168279f2dfbb935f88.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/turret land.wav"
-dest_files=[ "res://.import/turret land.wav-556511fc84d4d7168279f2dfbb935f88.sample" ]
+dest_files=["res://.godot/imported/turret land.wav-556511fc84d4d7168279f2dfbb935f88.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

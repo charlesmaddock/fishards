@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/neutral4.wav-404357f7feb207f9da6f15bcacd45187.sample"
+type="AudioStreamWAV"
+uid="uid://dajn341d3bglf"
+path="res://.godot/imported/neutral4.wav-404357f7feb207f9da6f15bcacd45187.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/Sensei/neutral4.wav"
-dest_files=[ "res://.import/neutral4.wav-404357f7feb207f9da6f15bcacd45187.sample" ]
+dest_files=["res://.godot/imported/neutral4.wav-404357f7feb207f9da6f15bcacd45187.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

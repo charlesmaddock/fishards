@@ -2,12 +2,12 @@ extends MainMenuUIChild
 
 var local_settings: Dictionary
 
-onready var masterVolume: Slider = $Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume
-onready var musicVolume: Slider = $Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume
-onready var SFXVolume: Slider = $Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume
+@onready var masterVolume: Slider = $Control/MarginContainer/VBoxContainer/MasterVolume/MasterVolume
+@onready var musicVolume: Slider = $Control/MarginContainer/VBoxContainer/MusicContainer/MusicVolume/MusicVolume
+@onready var SFXVolume: Slider = $Control/MarginContainer/VBoxContainer/MusicContainer/SFXVolume/SFXVolume
 
 
-onready var spell_bind_buttons: Dictionary = {
+@onready var spell_bind_buttons: Dictionary = {
 	"element_1": $Control/MarginContainer/VBoxContainer/ElementButtons/Element1/Element1,
 	"element_2":  $Control/MarginContainer/VBoxContainer/ElementButtons/Element2/Element2,
 	"element_3": $Control/MarginContainer/VBoxContainer/ElementButtons/Element3/Element3,
@@ -24,14 +24,14 @@ onready var spell_bind_buttons: Dictionary = {
 }
 
 #onready var aspectRatio : OptionButton = $Control/MarginContainer/VBoxContainer/AspectRatio/AspectRatio
-onready var fullscreen: CheckBox = $Control/MarginContainer/VBoxContainer/FirstOtherContainer/Fullscreen/Fullscreen
-onready var rightClickToMove: CheckBox = $Control/MarginContainer/VBoxContainer/FiscondOtherContainer/RightClickToMove/RightClickToMove
-onready var showCooldowns: CheckBox = $Control/MarginContainer/VBoxContainer/FiscondOtherContainer/ShowCooldowns/ShowCooldowns
-onready var minimalHUD: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/MinimalHUD/MinimalHUD
-onready var prettyGraphics: CheckBox = $Control/MarginContainer/VBoxContainer/FirstOtherContainer/PrettyGraphics/PrettyGraphics
-onready var disableSpellHUD: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableSpellHUD/DisableSpellHUD
-onready var disableController: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableController/DisableController
-onready var autoClearElements: CheckBox = $"Control/MarginContainer/VBoxContainer/SecondOtherContainer/AutoClearElements/toggle"
+@onready var fullscreen: CheckBox = $Control/MarginContainer/VBoxContainer/FirstOtherContainer/Fullscreen/Fullscreen
+@onready var rightClickToMove: CheckBox = $Control/MarginContainer/VBoxContainer/FiscondOtherContainer/RightClickToMove/RightClickToMove
+@onready var showCooldowns: CheckBox = $Control/MarginContainer/VBoxContainer/FiscondOtherContainer/ShowCooldowns/ShowCooldowns
+@onready var minimalHUD: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/MinimalHUD/MinimalHUD
+@onready var prettyGraphics: CheckBox = $Control/MarginContainer/VBoxContainer/FirstOtherContainer/PrettyGraphics/PrettyGraphics
+@onready var disableSpellHUD: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableSpellHUD/DisableSpellHUD
+@onready var disableController: CheckBox = $Control/MarginContainer/VBoxContainer/SecondOtherContainer/DisableController/DisableController
+@onready var autoClearElements: CheckBox = $"Control/MarginContainer/VBoxContainer/SecondOtherContainer/AutoClearElements/toggle"
 
 
 func init_UI():
@@ -49,19 +49,19 @@ func load_settings():
 	masterVolume.value = local_settings["volumes"]["Master"]
 	musicVolume.value = local_settings["volumes"]["Music"]
 	SFXVolume.value = local_settings["volumes"]["SFX"]
-	fullscreen.pressed = local_settings["fullscreen"]
-	prettyGraphics.pressed = local_settings["prettyGraphics"]
-	disableSpellHUD.pressed = local_settings["disableSpellHUD"]
-	showCooldowns.pressed = local_settings["show_spell_cooldowns"]
-	minimalHUD.pressed = local_settings["minimal_HUD"]
-	rightClickToMove.pressed = local_settings["allow_click_to_move"]
-	autoClearElements.pressed = UserSettings.get_auto_clear_elements()
+	fullscreen.button_pressed = local_settings["fullscreen"]
+	prettyGraphics.button_pressed = local_settings["prettyGraphics"]
+	disableSpellHUD.button_pressed = local_settings["disableSpellHUD"]
+	showCooldowns.button_pressed = local_settings["show_spell_cooldowns"]
+	minimalHUD.button_pressed = local_settings["minimal_HUD"]
+	rightClickToMove.button_pressed = local_settings["allow_click_to_move"]
+	autoClearElements.button_pressed = UserSettings.get_auto_clear_elements()
 	#disableController.pressed = local_settings["disableController"] #DISABLED FOR NOW
 	
 	for key in local_settings["keybinds"].keys():
 		if spell_bind_buttons.has(key):
 			if local_settings["keybinds"][key] > 10:
-				spell_bind_buttons[key].text = OS.get_scancode_string(local_settings["keybinds"][key])
+				spell_bind_buttons[key].text = OS.get_keycode_string(local_settings["keybinds"][key])
 			else:
 				spell_bind_buttons[key].text = spell_bind_buttons[key].get_mouse_button_text(local_settings["keybinds"][key])
 		else:
@@ -133,8 +133,8 @@ func _on_Leaderboard_new_bind(value, is_mouse):
 
 func _on_Fullscreen_toggled(button_pressed):
 	UserSettings.toggle_fullscreen(button_pressed)
-	local_settings["fullscreen"] = OS.is_window_fullscreen()
-	fullscreen.pressed = local_settings["fullscreen"]
+	local_settings["fullscreen"] = ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))
+	fullscreen.button_pressed = local_settings["fullscreen"]
 
 
 func _on_PrettyGraphics_toggled(button_pressed):

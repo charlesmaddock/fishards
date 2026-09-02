@@ -4,10 +4,10 @@ var COMPONENT_TYPE: int = Globals.ComponentTypes.Launchable
 
 
 # This is just a model that gives the impression of 
-export(Array, NodePath) var launch_spatial_paths
-export(bool) var rotate = false
-export(bool) var launch_directly = true
-export(float) var height: float = 6.0
+@export var launch_spatial_paths # (Array, NodePath)
+@export var rotate: bool = false
+@export var launch_directly: bool = true
+@export var height: float = 6.0
 
 
 var _from: Vector3 = Vector3.DOWN
@@ -52,7 +52,7 @@ func initialize_launch():
 		spellcaster.set_immobilized(true)
 	
 	# So that a launched player has time to be damaged
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	_set_invincible = true
 	var health = parent_entity.get_component_of_type(Globals.ComponentTypes.Health)
 	if health != null:
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 	
 	if all_safe_to_use && _from != Vector3.DOWN && _landed == false && _launch_over == false:
 		# In the middle of the arch it should slow down slightly
-		var new_pos = _from.linear_interpolate(_to, _air_time / _total_air_time)
+		var new_pos = _from.lerp(_to, _air_time / _total_air_time)
 		new_pos.y = 0
 		var current_dist: float = new_pos.distance_to(_to)
 		var current_height = get_height(current_dist)

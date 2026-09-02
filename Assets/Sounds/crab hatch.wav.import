@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/crab hatch.wav-d5d4ac67a3a8cd092f67878f711b0b0e.sample"
+type="AudioStreamWAV"
+uid="uid://c20b6f60kveid"
+path="res://.godot/imported/crab hatch.wav-d5d4ac67a3a8cd092f67878f711b0b0e.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/crab hatch.wav"
-dest_files=[ "res://.import/crab hatch.wav-d5d4ac67a3a8cd092f67878f711b0b0e.sample" ]
+dest_files=["res://.godot/imported/crab hatch.wav-d5d4ac67a3a8cd092f67878f711b0b0e.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

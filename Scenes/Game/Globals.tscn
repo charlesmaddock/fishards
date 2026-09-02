@@ -2,29 +2,29 @@
 
 [ext_resource path="res://Scripts/Globals/Globals.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MainMenu/Util/InfoPopUp.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/meteor_small.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dive_small.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/arcane_wal_smalll.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/wildfire_small.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/grab_small.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/rock_dash_small.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/crab.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/push_small.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/heal_small.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dash_beam_small.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/totem_small.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/fireblast_small.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_bal_smalll.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_beam_small.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/invisibility_small.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/meteor_small.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dive_small.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/arcane_wal_smalll.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/wildfire_small.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/grab_small.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/rock_dash_small.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/crab.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/push_small.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/heal_small.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/fire.png" type="Texture2D" id=12]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/goo.png" type="Texture2D" id=13]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/water.png" type="Texture2D" id=14]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/firebal_smalll.png" type="Texture2D" id=15]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/dash_beam_small.png" type="Texture2D" id=16]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/earth.png" type="Texture2D" id=17]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/totem_small.png" type="Texture2D" id=18]
+[ext_resource path="res://Assets/Images/UI/Game/ElementIcons/arcane.png" type="Texture2D" id=19]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/fireblast_small.png" type="Texture2D" id=21]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_bal_smalll.png" type="Texture2D" id=22]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/ice_beam_small.png" type="Texture2D" id=23]
+[ext_resource path="res://Assets/Images/UI/Game/SpellIcons/invisibility_small.png" type="Texture2D" id=24]
 
-[node name="Globals" type="Spatial"]
+[node name="Globals" type="Node3D"]
 script = ExtResource( 1 )
 fireball_icon = ExtResource( 15 )
 meteor_icon = ExtResource( 3 )
@@ -51,7 +51,7 @@ RED_TEAM_COLOR = Color( 0.792157, 0.392157, 0.392157, 1 )
 BLUE_TEAM_COLOR = Color( 0.447059, 0.619608, 0.952941, 1 )
 infoPopupScene = ExtResource( 2 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.406737, 0.913545, 0, -0.913545, 0.406737, 0, 0, 0 )
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 0.406737, 0.913545, 0, -0.913545, 0.406737, 0, 0, 0 )
 fov = 25.0
 far = 200.0

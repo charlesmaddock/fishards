@@ -1,15 +1,15 @@
 extends Panel
 
 
-onready var chatInput: LineEdit = $LineEdit
-onready var sendChatMsg: Button = $LineEdit/SendChatMsg
-onready var chatContainer: VBoxContainer = $ScrollContainer/ChatContainer
-onready var scrollbar = $ScrollContainer.get_v_scrollbar()
-onready var scrollContainer = $ScrollContainer
-onready var InGameMessages = $InGameMessages
+@onready var chatInput: LineEdit = $LineEdit
+@onready var sendChatMsg: Button = $LineEdit/SendChatMsg
+@onready var chatContainer: VBoxContainer = $ScrollContainer/ChatContainer
+@onready var scrollbar = $ScrollContainer.get_v_scroll_bar()
+@onready var scrollContainer = $ScrollContainer
+@onready var InGameMessages = $InGameMessages
 
 
-export var in_game_chat: bool = false
+@export var in_game_chat: bool = false
 var _focused: bool = true
 var _sent_bad_connection: bool
 var _messages_amount_sent_short_period: int
@@ -18,9 +18,9 @@ var chat_message: PackedScene = preload("res://Scenes/MainMenu/ChatMessage.tscn"
 
 
 func _ready():
-	Lobby.connect("lobby_chat", self, "_on_display_chat")
-	Lobby.connect("lobby_message", self, "_on_display_message")
-	Lobby.connect("ping_updated", self, "_on_ping_updated")
+	Lobby.connect("lobby_chat", Callable(self, "_on_display_chat"))
+	Lobby.connect("lobby_message", Callable(self, "_on_display_message"))
+	Lobby.connect("ping_updated", Callable(self, "_on_ping_updated"))
 	
 	_focused = !in_game_chat
 	if in_game_chat == true:
@@ -60,7 +60,7 @@ func open_chat():
 		chatInput.grab_focus()
 		chatInput.visible = true
 		
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		scrollContainer.scroll_vertical = scrollbar.max_value
 
 
@@ -162,12 +162,12 @@ func _display(message, sender = "") -> void:
 	
 	# If necessary, create the ingame chat message that disappears after a few secs
 	if in_game_chat == true:
-		var ingame_chat_message_inst = chat_message.instance()
+		var ingame_chat_message_inst = chat_message.instantiate()
 		ingame_chat_message_inst.create_chat_message(str(message), sender, true)
 		InGameMessages.add_child(ingame_chat_message_inst)
 	
 	# Scroll to the latest message
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	scrollContainer.scroll_vertical = scrollbar.max_value
 
 

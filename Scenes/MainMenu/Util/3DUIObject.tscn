@@ -13,38 +13,38 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[node name="UI3DMesh" type="ViewportContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="UI3DMesh" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2( 150, 150 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Camera" type="Camera" parent="Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.01, -0.193 )
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.01, -0.193 )
 cull_mask = 524288
 current = true
 
-[node name="fish_wizard" parent="Viewport" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.80449, -1.95804 )
+[node name="fish_wizard" parent="SubViewport" instance=ExtResource( 3 )]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.80449, -1.95804 )
 
-[node name="AnimationPlayer" parent="Viewport/fish_wizard" index="1"]
+[node name="AnimationPlayer" parent="SubViewport/fish_wizard" index="1"]
 autoplay = "EngageRockDash"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Viewport"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport"]
 autoplay = "Rotate Slowly"
 "anims/Rotate Slowly" = SubResource( 1 )
 
-[editable path="Viewport/fish_wizard"]
+[editable path="SubViewport/fish_wizard"]

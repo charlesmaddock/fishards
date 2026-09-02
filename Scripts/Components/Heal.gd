@@ -2,23 +2,23 @@ extends Component
 class_name Heal
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Heal
 
-export(int) var heal_amount: int = 10
-export(bool) var heal_enemies: bool = false
-export(bool) var heal_once_only: bool = false
-export(float) var repeat_time: float = 1
-export(bool) var heal_self: bool = true
+@export var heal_amount: int = 10
+@export var heal_enemies: bool = false
+@export var heal_once_only: bool = false
+@export var repeat_time: float = 1
+@export var heal_self: bool = true
 
-var area: Area
+var area: Area3D
 var entities_in_area: Dictionary
 var heal_creator_team: String
 
-onready var repeatHeal: Timer = $RepeatHeal
+@onready var repeatHeal: Timer = $RepeatHeal
 
 
 func _ready():
 	area = parent_entity.get_area()
-	area.connect("area_entered", self, "_on_entity_entered_area")
-	area.connect("area_exited", self, "_on_entity_exited_area")
+	area.connect("area_entered", Callable(self, "_on_entity_entered_area"))
+	area.connect("area_exited", Callable(self, "_on_entity_exited_area"))
 	
 	if !heal_once_only:
 		repeatHeal.wait_time = repeat_time
@@ -29,7 +29,7 @@ func _ready():
 	
 	if totem_team_name != "":
 		heal_creator_team = totem_team_name
-	elif team.empty() == false:
+	elif team.is_empty() == false:
 		heal_creator_team = team.name
 
 
@@ -63,7 +63,7 @@ func heal(entity: Entity) -> void:
 	entity.emit_signal("add_health", heal_amount)
 
 
-func _on_entity_entered_area(entering_area: Area):
+func _on_entity_entered_area(entering_area: Area3D):
 	# Put Entity in dict
 	var entity: Entity = Util.get_entity_from_area(entering_area)
 	if entity != null:
@@ -75,7 +75,7 @@ func _on_entity_entered_area(entering_area: Area):
 		entities_in_area[entity_id] = entity
 
 
-func _on_entity_exited_area(leaving_area: Area):
+func _on_entity_exited_area(leaving_area: Area3D):
 	# Only remove if we should be able to heal again
 	if !heal_once_only:
 		var entity: Entity = Util.get_entity_from_area(leaving_area)

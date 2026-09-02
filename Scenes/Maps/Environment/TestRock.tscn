@@ -3,13 +3,13 @@
 [ext_resource path="res://Assets/Meshes/MiscEnvironment/rock_test.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Scenes/Materials/CelShaded/icy_rock.tres" type="Material" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_unshaded = true
 albedo_color = Color( 0.905882, 0.905882, 0.905882, 1 )
 
-[node name="TestRock" type="Spatial"]
+[node name="TestRock" type="Node3D"]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
 material/1 = SubResource( 1 )

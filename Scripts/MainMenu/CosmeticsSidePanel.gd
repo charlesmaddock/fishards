@@ -1,10 +1,10 @@
 extends Control
 
-onready var hat_container: GridContainer = $VBoxContainer/Panel/ScrollContainer/GridContainer
+@onready var hat_container: GridContainer = $VBoxContainer/Panel/ScrollContainer/GridContainer
 
 
 func _ready():
-	AchievementHandler.connect("fetched_achievements", self, "_load_discovered_hats")
+	AchievementHandler.connect("fetched_achievements", Callable(self, "_load_discovered_hats"))
 	AchievementHandler.load_achievement_data()
 	_undiscover_all_hats()
 	_load_discovered_hats()

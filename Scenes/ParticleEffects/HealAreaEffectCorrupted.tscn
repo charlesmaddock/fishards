@@ -2,16 +2,16 @@
 
 [ext_resource path="res://Assets/Meshes/VFX/heal_vfx_perimiter.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/Meshes/VFX/heal_vfx_ground.tres" type="ArrayMesh" id=2]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=4]
-[ext_resource path="res://Assets/Textures/Particle/circle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=4]
+[ext_resource path="res://Assets/Textures/Particle/circle.png" type="Texture2D" id=5]
 [ext_resource path="res://Scripts/Util/ParticleParent.gd" type="Script" id=6]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 render_mode unshaded, cull_disabled;
 
-uniform vec4 color : hint_color;
+uniform vec4 color : source_color;
 uniform sampler2D noise_tex;
 uniform sampler2D gradient_tex;
 uniform vec2 noise_scale = vec2(1.0, 1.0);
@@ -31,15 +31,15 @@ void fragment(){
 	
 	ALBEDO = color.rgb;
 	ALPHA = shape;
-	ALPHA_SCISSOR = 0.01;
+	ALPHA_SCISSOR_THRESHOLD = 0.01;
 	
 }"
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.642857, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.88961, 0.88961, 0.88961, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.642857, 1 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.88961, 0.88961, 0.88961, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -57,7 +57,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0505618, 1 ), 0.0, 0.0, 0,
 [sub_resource type="CurveTexture" id=6]
 curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticleProcessMaterial" id=7]
 gravity = Vector3( 0, 0, 0 )
 scale = 0.8
 scale_curve = SubResource( 6 )
@@ -72,7 +72,7 @@ uniform sampler2D cutout_gradient;
 uniform sampler2D noise_tex;
 uniform vec2 noise_scale = vec2(8.0,2.0);
 uniform float noise_strength = 1.0;
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 
 
 
@@ -91,9 +91,9 @@ void fragment(){
 }"
 
 [sub_resource type="Gradient" id=9]
-colors = PoolColorArray( 0.420401, 0.420401, 0.420401, 1, 0.643847, 0.643847, 0.643847, 1 )
+colors = PackedColorArray( 0.420401, 0.420401, 0.420401, 1, 0.643847, 0.643847, 0.643847, 1 )
 
-[sub_resource type="GradientTexture" id=10]
+[sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=11]
@@ -113,7 +113,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0393258, 1 ), 0.0, 0.0, 0,
 [sub_resource type="CurveTexture" id=13]
 curve = SubResource( 12 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticleProcessMaterial" id=14]
 gravity = Vector3( 0, 0, 0 )
 scale = 2.0
 scale_curve = SubResource( 13 )
@@ -127,10 +127,10 @@ shader_param/circle_shape = false
 shader_param/alpha_texture = ExtResource( 5 )
 
 [sub_resource type="Gradient" id=16]
-offsets = PoolRealArray( 0, 0.976923 )
-colors = PoolColorArray( 1, 0, 0, 1, 0, 1, 0, 1 )
+offsets = PackedFloat32Array( 0, 0.976923 )
+colors = PackedColorArray( 1, 0, 0, 1, 0, 1, 0, 1 )
 
-[sub_resource type="GradientTexture" id=17]
+[sub_resource type="GradientTexture2D" id=17]
 gradient = SubResource( 16 )
 
 [sub_resource type="Curve" id=18]
@@ -139,7 +139,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.47191, 1 ), 0.0, 0.0, 0, 0
 [sub_resource type="CurveTexture" id=19]
 curve = SubResource( 18 )
 
-[sub_resource type="ParticlesMaterial" id=20]
+[sub_resource type="ParticleProcessMaterial" id=20]
 emission_shape = 2
 emission_box_extents = Vector3( 1.5, 0, 1.5 )
 gravity = Vector3( 0, 2, 0 )
@@ -150,7 +150,7 @@ color_ramp = SubResource( 17 )
 
 [sub_resource type="QuadMesh" id=21]
 
-[node name="HealAreaEffectCorrupted" type="Spatial"]
+[node name="HealAreaEffectCorrupted" type="Node3D"]
 script = ExtResource( 6 )
 
 [node name="Perimiter" type="Particles" parent="."]
@@ -168,7 +168,7 @@ process_material = SubResource( 14 )
 draw_pass_1 = ExtResource( 2 )
 
 [node name="Spikes" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127074, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127074, 0 )
 material_override = SubResource( 15 )
 amount = 3
 lifetime = 0.7

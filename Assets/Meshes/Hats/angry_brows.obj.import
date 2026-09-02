@@ -1,20 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh"
+uid="uid://7x4p6ji7j5ar"
+path="res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh"
 
 [deps]
 
-files=[ "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh" ]
+files=["res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh"]
 
 source_file="res://Assets/Meshes/Hats/angry_brows.obj"
-dest_files=[ "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh", "res://.import/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh" ]
+dest_files=["res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh", "res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

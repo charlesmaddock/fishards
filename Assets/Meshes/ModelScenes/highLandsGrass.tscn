@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/Textures/Particle/grass_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/Particle/grass_sprites.png" type="Texture2D" id=1]
 [ext_resource path="res://Assets/Shaders/grass_process.tres" type="Material" id=2]
 
 [sub_resource type="Shader" id=1]
@@ -11,8 +11,8 @@ uniform sampler2D alpha_texture;
 uniform bool sprite_sheet = false;
 uniform vec2 sprite_divisions = vec2(2.0);
 uniform vec2 sprite_size = vec2(64.0);
-uniform vec4 light_color : hint_color;
-uniform vec4 dark_color : hint_color;
+uniform vec4 light_color : source_color;
+uniform vec4 dark_color : source_color;
 uniform bool billboard = true;
 
 void fragment(){
@@ -28,15 +28,15 @@ void fragment(){
 	vec3 color = light_color.rgb;
 	ALBEDO = color;
 	ALPHA = alpha;
-	ALPHA_SCISSOR = 0.5;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }
 
 void vertex()
 {
 	if(billboard){
-		mat4 mat_world = mat4(normalize(CAMERA_MATRIX[0])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[1])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[2])*length(WORLD_MATRIX[2]),WORLD_MATRIX[3]);
+		mat4 mat_world = mat4(normalize(INV_VIEW_MATRIX[0])*length(MODEL_MATRIX[0]),normalize(INV_VIEW_MATRIX[1])*length(MODEL_MATRIX[0]),normalize(INV_VIEW_MATRIX[2])*length(MODEL_MATRIX[2]),MODEL_MATRIX[3]);
 		mat_world = mat_world * mat4( vec4(cos(INSTANCE_CUSTOM.x),-sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),vec4(0.0, 0.0, 1.0, 0.0),vec4(0.0, 0.0, 0.0, 1.0));
-		MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat_world;
+		MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
 	}
 	VERTEX.x += 0.2*sin(TIME) * step(0.5, (1.0 - UV.y));
 	VERTEX.y = 1.0*step(0.5, (1.0 - UV.y));
@@ -54,10 +54,10 @@ shader_param/alpha_texture = ExtResource( 1 )
 
 [sub_resource type="QuadMesh" id=3]
 
-[node name="grass" type="Spatial"]
+[node name="grass" type="Node3D"]
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00470337, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00470337, 0 )
 material_override = SubResource( 4 )
 amount = 10
 lifetime = 1e+06

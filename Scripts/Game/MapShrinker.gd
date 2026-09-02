@@ -1,13 +1,13 @@
-extends Spatial
+extends Node3D
 
 
-onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-onready var water = $water
-onready var foam = $foam
-onready var iceWater = $ice
-onready var iceFoam = $icefoam
-onready var lavaWater = $lava
-onready var lavaFoam = $lavafoam
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var water = $water
+@onready var foam = $foam
+@onready var iceWater = $ice
+@onready var iceFoam = $icefoam
+@onready var lavaWater = $lava
+@onready var lavaFoam = $lavafoam
 
 var shrinking: bool = false
 

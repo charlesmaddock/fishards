@@ -3,15 +3,15 @@ class_name ReflectProjectiles
 var COMPONENT_TYPE: int = Globals.ComponentTypes.ReflectProjectiles
 
 
-export(bool) var projectile_can_pass_though_one_side
-export(bool) var invert_projectile: bool = true
+@export var projectile_can_pass_though_one_side: bool
+@export var invert_projectile: bool = true
 
 
 var _creator_id: int 
 
 
 func _ready():
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collided")
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collided"))
 	_creator_id = parent_entity.get_creator_id()
 
 
@@ -24,7 +24,7 @@ func can_pass_through(passing_through_entity) -> bool:
 	return true
 
 
-func _on_entity_collided(area: Area):
+func _on_entity_collided(area: Area3D):
 	# Host checks for a reflection and broadcasts it to everyone
 	if Lobby.is_host && area.get_parent() is Entity:
 		var new_direction: Vector3 = area.get_parent().transform.basis.z * -1
@@ -47,4 +47,4 @@ func _on_entity_collided(area: Area):
 					if creator_entity != null:
 						var damage_component: Damage = area.get_parent().get_component_of_type(Globals.ComponentTypes.Damage)
 						if damage_component != null:
-							creator_entity.add_force(new_direction * -1 * (2.8 + ( damage_component.damage / 2.5)))
+							creator_entity.apply_force(new_direction * -1 * (2.8 + ( damage_component.damage / 2.5)))

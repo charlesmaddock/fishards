@@ -1,15 +1,15 @@
-extends Spatial
+extends Node3D
 
 
-onready var enter_area: Area = $EnterArea
-onready var perimeter_animator: AnimationPlayer = $PerimeterAnim
-onready var no_escape_perimeter_animator: AnimationPlayer = $NoEscapePerimeterAnim
-onready var bot_spawn_pos: Spatial = $BotSpawnPos
+@onready var enter_area: Area3D = $EnterArea
+@onready var perimeter_animator: AnimationPlayer = $PerimeterAnim
+@onready var no_escape_perimeter_animator: AnimationPlayer = $NoEscapePerimeterAnim
+@onready var bot_spawn_pos: Node3D = $BotSpawnPos
 
-export(Globals.PlayerTypes) var bot_type: int 
-export(int) var amount_of_bots: int
-export(int) var level: int
-export(bool) var win_on_defeat_bots: bool
+@export var bot_type: int  # (Globals.PlayerTypes)
+@export var amount_of_bots: int
+@export var level: int
+@export var win_on_defeat_bots: bool
 
 var bot_ids: Array
 var spawned_bots: bool
@@ -18,9 +18,9 @@ var defeated_battle: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	enter_area.connect("area_entered", self, "_on_enter_area_entered")
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	Lobby.connect("player_respawn", self, "_on_respawn_player")
+	enter_area.connect("area_entered", Callable(self, "_on_enter_area_entered"))
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	Lobby.connect("player_respawn", Callable(self, "_on_respawn_player"))
 	get_node("NoEscapePerimeter").global_transform.origin.y = -10
 	perimeter_animator.play("up")
 
@@ -55,7 +55,7 @@ func _on_player_killed(killed_id, killer_id, killed_with_spell):
 	if killed_id == SteamValues.STEAM_ID:
 		gameover()
 	
-	if bot_ids.empty() == true && spawned_bots == true && defeated_battle == false:
+	if bot_ids.is_empty() == true && spawned_bots == true && defeated_battle == false:
 		fight_over()
 
 
@@ -67,7 +67,7 @@ func fight_over() -> void:
 	
 	if win_on_defeat_bots == true:
 		Lobby.emit_signal("lobby_chat", "Sensei", "Wow, you did it, I guess you were the chosen one after all...")
-		yield(get_tree().create_timer(4.2), "timeout")
+		await get_tree().create_timer(4.2).timeout
 		Lobby.emit_signal("lobby_chat", "Sensei", "Your reward is this: Try typing '/chosen_one'")
 
 
@@ -78,7 +78,7 @@ func gameover() -> void:
 		no_escape_perimeter_animator.play("disappear")
 		perimeter_animator.play("up")
 		
-		yield(get_tree().create_timer(2), "timeout")
+		await get_tree().create_timer(2).timeout
 		for id in bot_ids:
 			PacketSender.host_broadcast_destroy_entity(id)
 		

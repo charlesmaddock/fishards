@@ -14,8 +14,8 @@ enum InputTypes{
 
 func _ready():
 	rand.randomize()
-	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
-	yield(get_tree(), "idle_frame")
+	Input.connect("joy_connection_changed", Callable(self, "_on_joy_connection_changed"))
+	await get_tree().idle_frame
 	var controller_disabled = UserSettings.get_settings()["disableController"]
 	if Input.get_connected_joypads().size() > 0 && !controller_disabled:
 		#Globals.create_info_popup("Controller support not fully implemented.", "Using your keyboard and mouse is highly recommended for now. Don't worry though, there will be a update soon that fixes this! If you still want to use a controller press R1 to select element 5.")
@@ -203,19 +203,19 @@ func destroy(node: Node) -> void:
 	node.set_process_unhandled_input(false)
 	node.set_process_unhandled_key_input(false)
 	
-	if node is Area:
+	if node is Area3D:
 		set_deferred("monitorable", false)
 		set_deferred("monitoring", false)
 	
-	if node is PhysicsBody:
+	if node is PhysicsBody3D:
 		node.collision_layer = 0
 		node.collision_mask = 0
 	
 	if node.has_method("set_visible"):
 		node.set_visible(false)
 	
-	if node.has_method("set_translation"):
-		node.set_translation(Vector3(9999,0,9999))
+	if node.has_method("set_position"):
+		node.set_position(Vector3(9999,0,9999))
 
 
 func destroy_w_children(root_node: Node) -> void:
@@ -262,10 +262,10 @@ func get_type_names(e_type, subtype) -> String:
 		return "unknown (probably player tho)"
 
 
-func get_aim_position(space_state: PhysicsDirectSpaceState) -> Vector3:
+func get_aim_position(space_state: PhysicsDirectSpaceState3D) -> Vector3:
 	var ray_length = 1000
 	var mouse_pos = get_viewport().get_mouse_position()
-	var camera = get_viewport().get_camera()
+	var camera = get_viewport().get_camera_3d()
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	
@@ -348,12 +348,12 @@ func get_key_code(input_name: String, type: int, is_movement: bool = false) -> i
 	var key_code: int
 	match type:
 		InputTypes.KEYBOARD:
-			for input in InputMap.get_action_list(input_name):
+			for input in InputMap.action_get_events(input_name):
 				if input is InputEventKey:
-					if is_movement && (input.scancode == KEY_DOWN || input.scancode == KEY_UP || input.scancode == KEY_LEFT || input.scancode == KEY_RIGHT):
+					if is_movement && (input.keycode == KEY_DOWN || input.keycode == KEY_UP || input.keycode == KEY_LEFT || input.keycode == KEY_RIGHT):
 						continue
 					
-					key_code = input.scancode
+					key_code = input.keycode
 					break
 	
 	return key_code
@@ -387,7 +387,7 @@ func safe_to_use(node, show: bool = false) -> bool:
 
 
 func steam_cloud_write(file_name: String, data):
-	var byte_data: PoolByteArray = var2bytes(data)
+	var byte_data: PackedByteArray = var_to_bytes(data)
 	var data_size: int = byte_data.size()
 	Steam.fileWrite(file_name, byte_data, data_size)
 
@@ -396,8 +396,8 @@ func steam_cloud_read(file_name: String):
 	if Steam.fileExists(file_name):
 		var data_size: int = Steam.getFileSize(file_name)
 		var data_dict: Dictionary = Steam.fileRead(file_name, data_size)
-		var byte_data: PoolByteArray =  data_dict["buf"]
-		var data = bytes2var(byte_data)
+		var byte_data: PackedByteArray =  data_dict["buf"]
+		var data = bytes_to_var(byte_data)
 		return data
 	else:
 		printerr("Tried to read a file that does not exist!: ", file_name)

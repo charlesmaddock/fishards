@@ -1,9 +1,9 @@
-tool
+@tool
 extends Button
 
-export(Texture) var image
+@export var image: Texture2D
 
-onready var sprite: Sprite = $Sprite
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready():
 	sprite.texture = image

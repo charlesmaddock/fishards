@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
 
-onready var camera: Camera = Globals.camera
-onready var _ui: Control = $UI
+@onready var camera: Camera3D = Globals.camera
+@onready var _ui: Control = $UI
 
 
 var change_to_UI_on_ready: String = ""
@@ -13,7 +13,7 @@ func _ready():
 		var camera_transform = get_node("CameraTransform")
 		var fishard_island_transform = get_node("FishardIslandCameraTransform")
 		#Globals.fishard_ui_transform = fishard_island_transform
-		camera.set_translation(Globals.prev_camera_pos)
+		camera.set_position(Globals.prev_camera_pos)
 		camera.rotation = camera_transform.rotation
 	
 	Globals.set_ui_interaction_mode(Globals.UIInteractionModes.UI)
@@ -33,7 +33,7 @@ func _ready():
 
 func _process(delta: float):
 	if Util.safe_to_use(camera) == true:
-		camera.set_translation(camera.global_transform.origin.linear_interpolate(Globals.camera_lerp_to, delta * 5))
-		camera.set_rotation_degrees(camera.rotation_degrees.linear_interpolate(Globals.camera_lerp_to_rot, delta * 7))
+		camera.set_position(camera.global_transform.origin.lerp(Globals.camera_lerp_to, delta * 5))
+		camera.set_rotation_degrees(camera.rotation_degrees.lerp(Globals.camera_lerp_to_rot, delta * 7))
 		Globals.prev_camera_pos = camera.global_transform.origin
 

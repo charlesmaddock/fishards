@@ -4,7 +4,7 @@
 
 [sub_resource type="PlaneMesh" id=1]
 
-[node name="WaterPlane" type="MeshInstance"]
-transform = Transform( 1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -0.0997238, 0 )
+[node name="WaterPlane" type="MeshInstance3D"]
+transform = Transform3D( 1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -0.0997238, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )

@@ -1,9 +1,9 @@
-extends Spatial
+extends Node3D
 
 
-onready var IceCube = $IceCube
-onready var SnowPile = $Snowpile
-onready var SnowFlakes = $SnowFlakes
+@onready var IceCube = $IceCube
+@onready var SnowPile = $Snowpile
+@onready var SnowFlakes = $SnowFlakes
 
 
 func _ready():

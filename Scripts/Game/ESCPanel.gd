@@ -1,11 +1,11 @@
 extends Node
 
 
-onready var _color_rect = $ColorRect
-onready var containerPanel = $ColorRect/Panel
-onready var UI = $ColorRect/UI
-onready var elementSelectPanel = $ColorRect/Panel/MarginContainer/VBoxContainer/Panel
-onready var noElementSelectPanel = $ColorRect/Panel/MarginContainer/VBoxContainer/NoElementsPanel
+@onready var _color_rect = $ColorRect
+@onready var containerPanel = $ColorRect/Panel
+@onready var UI = $ColorRect/UI
+@onready var elementSelectPanel = $ColorRect/Panel/MarginContainer/VBoxContainer/Panel
+@onready var noElementSelectPanel = $ColorRect/Panel/MarginContainer/VBoxContainer/NoElementsPanel
 
 
 
@@ -16,7 +16,7 @@ func _ready():
 	elementSelectPanel.set_visible(is_default_element_mode)
 	noElementSelectPanel.set_visible(!is_default_element_mode)
 	
-	containerPanel.rect_size.y = containerPanel.get_minimum_size().y
+	containerPanel.size.y = containerPanel.get_minimum_size().y
 
 
 func _input(event):

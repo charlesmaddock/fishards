@@ -3,13 +3,13 @@ class_name ChangeSpeedOnCollide
 var COMPONENT_TYPE: int = Globals.ComponentTypes.ChangeSpeedOnCollide
 
 
-export(bool) var affect_teammates = false
-export(bool) var affect_creator = false
-export(float) var speed_modifier = 1.0
-export(String) var modifier_name
-export(float) var duration = -1 # If it is -1 it will last forever
-export(float) var repeat_time = -1 # If it is -1 it wont repeat
-export(bool) var freeze_on_collide = false
+@export var affect_teammates: bool = false
+@export var affect_creator: bool = false
+@export var speed_modifier: float = 1.0
+@export var modifier_name: String
+@export var duration: float = -1 # If it is -1 it will last forever
+@export var repeat_time: float = -1 # If it is -1 it wont repeat
+@export var freeze_on_collide: bool = false
 
 
 var entity_ids_in_area: Array = []
@@ -20,11 +20,11 @@ var _not_freezable_entites = [{"type": Globals.EntityTypes.PLAYER, "subtype": Gl
 
 
 func _ready():
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collided")
-	parent_entity.get_area().connect("area_exited", self, "_on_entity_left_area")
-	parent_entity.connect("destroyed", self, "_on_destroyed")
-	Lobby.connect("player_killed", self, "_on_player_killed")
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collided"))
+	parent_entity.get_area().connect("area_exited", Callable(self, "_on_entity_left_area"))
+	parent_entity.connect("destroyed", Callable(self, "_on_destroyed"))
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
 	
 	if repeat_time != -1:
 		$Repeat.wait_time = repeat_time
@@ -80,7 +80,7 @@ func _on_entity_destroyed(entity_id: int) -> void:
 		entity_ids_in_area.remove(remove_at)
 
 
-func _on_entity_collided(area: Area) -> void:
+func _on_entity_collided(area: Area3D) -> void:
 	var hit_entity = Util.get_entity_from_area(area)
 	if hit_entity != null:
 		if hit_entity.can_move == false:
@@ -124,7 +124,7 @@ func _on_player_killed(dead_player_id: int, _killer_id: int, _with_spell: int) -
 			_remove_speed_modifier(id)
 
 
-func _on_entity_left_area(area: Area):
+func _on_entity_left_area(area: Area3D):
 	var hit_entity = Util.get_entity_from_area(area)
 	if hit_entity != null:
 		_remove_speed_modifier(hit_entity.get_id())

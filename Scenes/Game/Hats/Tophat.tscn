@@ -7,16 +7,16 @@
 
 [sub_resource type="CylinderMesh" id=1]
 
-[node name="Tophat" type="Spatial"]
+[node name="Tophat" type="Node3D"]
 script = ExtResource( 3 )
 hat_type = 4
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 4 )
 material/0 = ExtResource( 2 )
 material/1 = ExtResource( 1 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 0.406868, 0, 0, 0, 0.0256455, 0, 0, 0, 0.406868, -0.00501539, 0.0248117, -0.00929707 )
+[node name="MeshInstance2" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.406868, 0, 0, 0, 0.0256455, 0, 0, 0, 0.406868, -0.00501539, 0.0248117, -0.00929707 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )

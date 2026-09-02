@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/fireballHit.wav-8bd82083170e2c3703bdb7259b183033.sample"
+type="AudioStreamWAV"
+uid="uid://c2mpml4xm547r"
+path="res://.godot/imported/fireballHit.wav-8bd82083170e2c3703bdb7259b183033.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/fireballHit.wav"
-dest_files=[ "res://.import/fireballHit.wav-8bd82083170e2c3703bdb7259b183033.sample" ]
+dest_files=["res://.godot/imported/fireballHit.wav-8bd82083170e2c3703bdb7259b183033.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

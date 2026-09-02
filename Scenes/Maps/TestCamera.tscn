@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends Camera
+script/source = "extends Camera3D
 
-export(float) var speed: float = 0.5
+@export var speed: float = 0.5
 
 func _process(delta):
 	if Input.is_action_pressed(\"ui_down\"):
@@ -16,8 +16,8 @@ func _process(delta):
 		transform.origin.x += speed 
 "
 
-[node name="Camera" type="Camera"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, -19.671, 45, 45.232 )
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, -19.671, 45, 45.232 )
 fov = 15.3
 size = 55.61
 far = 124.4

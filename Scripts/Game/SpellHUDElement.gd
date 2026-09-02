@@ -1,12 +1,12 @@
 extends Control
 
 
-export(bool) var is_left
+@export var is_left: bool
 
 
-onready var elementTexture = $"ElementTexture"
-onready var elementTextureRect = $"ElementTexture/ElementTextureRect1"
-onready var spellHUDElementAnimator = $"SpellHUDElementAnimator"
+@onready var elementTexture = $"ElementTexture"
+@onready var elementTextureRect = $"ElementTexture/ElementTextureRect1"
+@onready var spellHUDElementAnimator = $"SpellHUDElementAnimator"
 
 
 func set_default() -> void:
@@ -22,7 +22,7 @@ func set_element(element: int, new_spell_created: bool) -> void:
 	
 	if element != Globals.Elements.NONE:
 		spellHUDElementAnimator.play("Select")
-		yield(get_tree().create_timer(spellHUDElementAnimator.get_current_animation_length()), "timeout")
+		await get_tree().create_timer(spellHUDElementAnimator.get_current_animation_length()).timeout
 		var anim = spellHUDElementAnimator.get_current_animation()
 		if anim != "CombineLeft" && anim != "CombineRight":
 			spellHUDElementAnimator.play("Hover")

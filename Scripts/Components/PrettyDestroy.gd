@@ -3,21 +3,21 @@ class_name PrettyDestroy
 var COMPONENT_TYPE: int = Globals.ComponentTypes.PrettyDestroy
 
 
-export(float) var time_until_destroy = 1
+@export var time_until_destroy: float = 1
 
 
-onready var _timer: Timer = $Timer
-onready var _on_destroyed_buffer: bool = false
+@onready var _timer: Timer = $Timer
+@onready var _on_destroyed_buffer: bool = false
 
 
-export(Array, NodePath) var destroy_particles_array
-export(Array, NodePath) var collide_particles_array
-export(Array, NodePath) var destroy_node_array
-export(Array, NodePath) var stop_particle_node_array
-export(bool) var destroy_area_directly = true
-export(NodePath) var on_destroy_animator = null
-export(String) var on_destroy_animation_name = ""
-export(bool) var set_all_particles_to_one_shots = true
+@export var destroy_particles_array # (Array, NodePath)
+@export var collide_particles_array # (Array, NodePath)
+@export var destroy_node_array # (Array, NodePath)
+@export var stop_particle_node_array # (Array, NodePath)
+@export var destroy_area_directly: bool = true
+@export var on_destroy_animator: NodePath = null
+@export var on_destroy_animation_name: String = ""
+@export var set_all_particles_to_one_shots: bool = true
 
 
 func _ready():
@@ -34,7 +34,7 @@ func pretty_destroy(of_old_age: bool) -> void:
 	
 	if _on_destroyed_buffer == false:
 		_timer.set_wait_time(time_until_destroy)
-		_timer.connect("timeout", self, "_on_timer_timeout")
+		_timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 		_timer.start()
 		_on_destroyed_buffer = true
 		

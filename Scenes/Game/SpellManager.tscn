@@ -43,7 +43,7 @@ func check_cast_spell() -> void:
 		spam_cooldown_timer = 0
 		
 		var offset: float = -PI * 0.5
-		var screen_pos: Vector2 = get_viewport().get_camera().unproject_position(client.get_player().get_global_transform().origin)
+		var screen_pos: Vector2 = get_viewport().get_camera_3d().unproject_position(client.get_player().get_global_transform().origin)
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		var cast_direction: Vector2 = screen_pos.direction_to(mouse_pos)
 		

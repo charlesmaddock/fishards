@@ -1,9 +1,9 @@
-extends Spatial
+extends Node3D
 class_name ParticleParent
 
 var particle_children: Array = []
 
-export(bool) var emit_on_ready = true
+@export var emit_on_ready: bool = true
 
 func _ready():
 	for child in get_children():

@@ -1,4 +1,4 @@
-[gd_resource type="ParticlesMaterial" format=2]
+[gd_resource type="ParticleProcessMaterial" format=2]
 
 [resource]
 emission_shape = 2

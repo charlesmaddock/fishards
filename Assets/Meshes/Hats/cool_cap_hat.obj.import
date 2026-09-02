@@ -1,20 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh"
+uid="uid://h7o0gd87xi7w"
+path="res://.godot/imported/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh"
 
 [deps]
 
-files=[ "res://.import/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh" ]
+files=["res://.godot/imported/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh"]
 
 source_file="res://Assets/Meshes/Hats/cool_cap_hat.obj"
-dest_files=[ "res://.import/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh", "res://.import/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh" ]
+dest_files=["res://.godot/imported/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh", "res://.godot/imported/cool_cap_hat.obj-7cf6cd3aa116bfa7895e5352a4a9b58d.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -4,21 +4,21 @@
 [ext_resource path="res://Assets/Meshes/ice_rock_2.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Scenes/Materials/Map/transparent_ice.tres" type="Material" id=3]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 1.99023
 height = 2.78802
 
-[node name="ice_rock_2" type="Spatial"]
+[node name="ice_rock_2" type="Node3D"]
 
-[node name="ice_rock_2" type="MeshInstance" parent="."]
+[node name="ice_rock_2" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 1 )
 material/1 = ExtResource( 3 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168871, -0.350196 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168871, -0.350196 )
 shape = SubResource( 1 )

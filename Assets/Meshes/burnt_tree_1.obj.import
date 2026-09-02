@@ -1,20 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh"
+uid="uid://b4epwdpqd8vbr"
+path="res://.godot/imported/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh"
 
 [deps]
 
-files=[ "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh" ]
+files=["res://.godot/imported/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh"]
 
 source_file="res://Assets/Meshes/burnt_tree_1.obj"
-dest_files=[ "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh", "res://.import/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh" ]
+dest_files=["res://.godot/imported/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh", "res://.godot/imported/burnt_tree_1.obj-93ca015893f0ee801f7ef52368548c48.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

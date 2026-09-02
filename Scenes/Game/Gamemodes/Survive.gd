@@ -6,24 +6,24 @@ var _is_first_round: bool = true
 var winner_entity_id: int = 0
 
 
-onready var gamemode: Gamemode = get_parent()
+@onready var gamemode: Gamemode = get_parent()
 var time: float = 8.0
 var _wave: float = 0
 var levels: Array
-onready var timer_node = $Timer
+@onready var timer_node = $Timer
 
-export(Curve) var difficulty_curve
+@export var difficulty_curve: Curve
 
 
 func _ready():
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	gamemode.connect("round_over", self, "_on_round_over")
-	gamemode.connect("round_started", self, "_on_round_started")
-	Lobby.connect("gooey_god_dead", self, "_on_gooey_god_dead")
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	gamemode.connect("round_over", Callable(self, "_on_round_over"))
+	gamemode.connect("round_started", Callable(self, "_on_round_started"))
+	Lobby.connect("gooey_god_dead", Callable(self, "_on_gooey_god_dead"))
 	
 	levels = Util.generate_temp_bot_levels(difficulty_curve, float(Lobby.get_all_lobby_player_info().size()), false)
 	new_round(1)
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	gamemode.set_respawn_time(6)
 
 
@@ -63,14 +63,14 @@ func _on_player_killed(killed_id, killer_id, killed_with_spell):
 	if gamemode.current_game_state == GamemodeValues.GameStates.GAME:
 		# Update amount of enemies
 		var team: Dictionary =  Lobby.get_team_info_from_player_id(killed_id)
-		if team.empty() == false:
+		if team.is_empty() == false:
 			if team.name == "Red Team":
 				_alive_enemy_players -= 1
 				if _alive_enemy_players == 0:
 					if Lobby.is_host == true:
 						PacketSender.broadcast_new_wave(_wave + 1)
 				
-				yield(get_tree().create_timer(0.5), "timeout")
+				await get_tree().create_timer(0.5).timeout
 				PacketSender.host_broadcast_destroy_entity(killed_id)
 
 
@@ -95,7 +95,7 @@ func _on_timer_timeout() -> void:
 	_alive_enemy_players = levels[_wave - 1]["bots"].size()
 	if players_node != null:
 		for bot_type in levels[_wave - 1]["bots"]:
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 			players_node.host_spawn_temp_bot("Wizishes", bot_type)
 	
 	#print("_alive_enemy_players: ", _alive_enemy_players)

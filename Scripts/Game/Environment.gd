@@ -2,37 +2,37 @@ extends Node
 class_name EnvironmentNode
 
 
-export(PackedScene) var big_rock_1_scene: PackedScene
-export(PackedScene) var big_rock_2_scene: PackedScene 
-export(PackedScene) var palm_tree_scene: PackedScene 
-export(PackedScene) var meteor_up_scene: PackedScene 
-export(PackedScene) var big_splash: PackedScene
-export(PackedScene) var small_splash: PackedScene
-export(PackedScene) var dead_tree: PackedScene
-export(PackedScene) var leaf_tree: PackedScene
-export(PackedScene) var turret_scene: PackedScene
-export(PackedScene) var speed_powerup_scene: PackedScene
-export(PackedScene) var health_powerup_scene: PackedScene
-export(PackedScene) var clone_powerup_scene: PackedScene
-export(PackedScene) var rapidfire_powerup_scene: PackedScene
-export(PackedScene) var water_rock_1: PackedScene
-export(PackedScene) var water_rock_2: PackedScene
-export(PackedScene) var water_rock_3: PackedScene
-export(PackedScene) var water_rock_4: PackedScene
-export(PackedScene) var water_rock_5: PackedScene
-export(PackedScene) var water_rock_6: PackedScene
-export(PackedScene) var rock_1: PackedScene
-export(PackedScene) var rock_2: PackedScene
-export(PackedScene) var rock_3: PackedScene
-export(PackedScene) var rock_4: PackedScene
-export(PackedScene) var rock_5: PackedScene
-export(PackedScene) var rock_6: PackedScene
-export(PackedScene) var burnt_tree_1: PackedScene
-export(PackedScene) var gooey_golden_fishard: PackedScene
-export(PackedScene) var invisibility_ball: PackedScene
-export(PackedScene) var dummy_scene: PackedScene
-export(PackedScene) var strong_dummy_scene: PackedScene
-export(PackedScene) var fish_ball_scene: PackedScene
+@export var big_rock_1_scene: PackedScene
+@export var big_rock_2_scene: PackedScene 
+@export var palm_tree_scene: PackedScene 
+@export var meteor_up_scene: PackedScene 
+@export var big_splash: PackedScene
+@export var small_splash: PackedScene
+@export var dead_tree: PackedScene
+@export var leaf_tree: PackedScene
+@export var turret_scene: PackedScene
+@export var speed_powerup_scene: PackedScene
+@export var health_powerup_scene: PackedScene
+@export var clone_powerup_scene: PackedScene
+@export var rapidfire_powerup_scene: PackedScene
+@export var water_rock_1: PackedScene
+@export var water_rock_2: PackedScene
+@export var water_rock_3: PackedScene
+@export var water_rock_4: PackedScene
+@export var water_rock_5: PackedScene
+@export var water_rock_6: PackedScene
+@export var rock_1: PackedScene
+@export var rock_2: PackedScene
+@export var rock_3: PackedScene
+@export var rock_4: PackedScene
+@export var rock_5: PackedScene
+@export var rock_6: PackedScene
+@export var burnt_tree_1: PackedScene
+@export var gooey_golden_fishard: PackedScene
+@export var invisibility_ball: PackedScene
+@export var dummy_scene: PackedScene
+@export var strong_dummy_scene: PackedScene
+@export var fish_ball_scene: PackedScene
 
 
 var environment_ids: Array
@@ -108,7 +108,7 @@ func add_environment(env_info: Dictionary, id: int = -1, parent_id: int = -1) ->
 		id = Util.generate_id()
 	
 	if environment_scene != null:
-		environment_entity = environment_scene.instance()
+		environment_entity = environment_scene.instantiate()
 		environment_entity.init_entity(id, false, Lobby.is_host, Globals.EntityTypes.ENVIRONMENT, env_info.type, env_info.pos, parent_id)
 		environment_entity.set_rot(env_info.rot)
 		environment_ids.append(id)

@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Shaders/waterfall_foam.shader" type="Shader" id=1]
+[ext_resource path="res://Assets/Shaders/waterfall_foam.gdshader" type="Shader" id=1]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.0118577, 0.62253 )
+offsets = PackedFloat32Array( 0.0118577, 0.62253 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 
 [resource]

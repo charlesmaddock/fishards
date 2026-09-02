@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/element pickup.wav-a10afb8b82524869f5571510d9ecc7e7.sample"
+type="AudioStreamWAV"
+uid="uid://li8aquyhn74t"
+path="res://.godot/imported/element pickup.wav-a10afb8b82524869f5571510d9ecc7e7.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/element pickup.wav"
-dest_files=[ "res://.import/element pickup.wav-a10afb8b82524869f5571510d9ecc7e7.sample" ]
+dest_files=["res://.godot/imported/element pickup.wav-a10afb8b82524869f5571510d9ecc7e7.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

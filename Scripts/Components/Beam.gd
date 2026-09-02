@@ -1,11 +1,11 @@
 extends SpatialComponent
 
 
-export(NodePath) var beam_effect_path
-export(float) var beam_length = 12
-export(float) var offset_z = -1.6; # Visual adjustment
-export(bool) var repeat_length_check = false
-export(bool) var pass_through_hurtables = false
+@export var beam_effect_path: NodePath
+@export var beam_length: float = 12
+@export var offset_z: float = -1.6; # Visual adjustment
+@export var repeat_length_check: bool = false
+@export var pass_through_hurtables: bool = false
 
 
 var beam_effect
@@ -13,14 +13,14 @@ var entities_to_damage: Array
 var _effect_played: bool = true
 
 
-onready var ray1: RayCast = $RayCast
-onready var ray2: RayCast = $RayCast2
+@onready var ray1: RayCast3D = $RayCast3D
+@onready var ray2: RayCast3D = $RayCast2
 
 
 func _ready():
 	#global_transform.origin.z = offset_back;
-	ray1.cast_to = Vector3(-0.1, -0.4, beam_length)
-	ray2.cast_to = Vector3(0.1, -0.4, beam_length)
+	ray1.target_position = Vector3(-0.1, -0.4, beam_length)
+	ray2.target_position = Vector3(0.1, -0.4, beam_length)
 	
 	# Just remove hurtable mask
 	if pass_through_hurtables == true:
@@ -67,7 +67,7 @@ func check_collision(ray) -> bool:
 					beam_stopped = true
 			else:
 				beam_stopped = true
-		elif collision_hit is StaticBody:
+		elif collision_hit is StaticBody3D:
 			beam_stopped = true
 		else:
 			ray.add_exception(collision_hit)
@@ -87,8 +87,8 @@ func check_collision(ray) -> bool:
 
 
 func set_beam_length(collision_length: float) -> void:
-	var area: Area = parent_entity.get_area()
-	var shape: CollisionShape = area.get_child(0)
+	var area: Area3D = parent_entity.get_area()
+	var shape: CollisionShape3D = area.get_child(0)
 	
 	# Fix size of area
 	shape.transform.origin = Vector3.ZERO + (Vector3.FORWARD * collision_length / 2)

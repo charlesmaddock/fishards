@@ -3,16 +3,16 @@
 [ext_resource path="res://Assets/Meshes/golden_gooey_god.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Materials/CelShaded/highland_rock.tres" type="Material" id=3]
-[ext_resource path="res://Assets/Shaders/cel.shader" type="Shader" id=4]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Shaders/explosion_particle.shader" type="Shader" id=6]
+[ext_resource path="res://Assets/Shaders/cel.gdshader" type="Shader" id=4]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Shaders/explosion_particle.gdshader" type="Shader" id=6]
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Components/EntityInfoPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Components/Health.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Components/StillSolid.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/Game/GooeyGod.gd" type="Script" id=14]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 1.91921
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -22,7 +22,7 @@ shader_param/shade_color = Color( 0.627451, 0.345098, 0.266667, 1 )
 shader_param/shade_threshold = -0.235
 shader_param/use_attenuation = false
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 flags_unshaded = true
 
 [sub_resource type="Animation" id=4]
@@ -35,8 +35,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
@@ -45,14 +45,14 @@ tracks/0/keys = {
 resource_name = "destroy"
 length = 4.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("CSGBox2:translation")
+tracks/0/path = NodePath("CSGBox2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0.313035, 0 ), Vector3( 0, -6.68158, 0 ) ]
 }
@@ -63,17 +63,17 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( -12.16, 0, 0 ) ]
 }
 
 [sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.448718, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.884615, 0.884615, 0.884615, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.448718, 1 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.884615, 0.884615, 0.884615, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=7]
+[sub_resource type="GradientTexture2D" id=7]
 gradient = SubResource( 6 )
 
 [sub_resource type="Curve" id=8]
@@ -82,7 +82,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0396039, 0.984091 ), 0.070
 [sub_resource type="CurveTexture" id=9]
 curve = SubResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticleProcessMaterial" id=10]
 emission_shape = 2
 emission_box_extents = Vector3( 1.2, 0.5, 1.2 )
 gravity = Vector3( 0, 0, 0 )
@@ -94,10 +94,10 @@ scale_curve = SubResource( 9 )
 color_ramp = SubResource( 7 )
 
 [sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0, 0.0843537, 0.666667 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.136054, 0.136054, 0.136054, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.0843537, 0.666667 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.136054, 0.136054, 0.136054, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=12]
+[sub_resource type="GradientTexture2D" id=12]
 gradient = SubResource( 11 )
 
 [sub_resource type="ShaderMaterial" id=13]
@@ -122,33 +122,33 @@ shader_param/shape_tex = ExtResource( 5 )
 [sub_resource type="SphereMesh" id=16]
 material = SubResource( 15 )
 
-[node name="GoldenGooeyFishard" type="Spatial"]
+[node name="GoldenGooeyFishard" type="Node3D"]
 script = ExtResource( 7 )
 manually_set_entity_type = 1
 subtype_name = "GOOEY_GOD_STATUE"
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 1.01523, 0, 0, 0, 1.04171, 0, 0, 0, 1.01523, 0.056808, 1.73761, -0.0127506 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D( 1.01523, 0, 0, 0, 1.04171, 0, 0, 0, 1.01523, 0.056808, 1.73761, -0.0127506 )
 shape = SubResource( 1 )
 
-[node name="CSGBox2" type="CSGCylinder" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.313035, 0 )
+[node name="CSGBox2" type="CSGCylinder3D" parent="."]
+transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.313035, 0 )
 height = 0.536
 sides = 20
 material = ExtResource( 3 )
 
-[node name="golden_gooey_god" type="MeshInstance" parent="CSGBox2"]
-transform = Transform( 0.16603, 0, -0.397707, 0, 0.430972, 0, 0.397707, 0, 0.16603, 0.0265725, 0.538773, -0.0136695 )
+[node name="golden_gooey_god" type="MeshInstance3D" parent="CSGBox2"]
+transform = Transform3D( 0.16603, 0, -0.397707, 0, 0.430972, 0, 0.397707, 0, 0.16603, 0.0265725, 0.538773, -0.0136695 )
 mesh = ExtResource( 1 )
 material/0 = SubResource( 2 )
 material/1 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CSGBox2"]
-autoplay = "spin-loop"
+autoplay = "spin"
 anims/spin-loop = SubResource( 4 )
 
 [node name="EntityInfoPanel" parent="." instance=ExtResource( 11 )]
@@ -173,11 +173,11 @@ set_all_particles_to_one_shots = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/destroy = SubResource( 5 )
 
-[node name="Explosion" type="Spatial" parent="."]
-transform = Transform( 0.684346, 0, 0, 0, 0.684346, 0, 0, 0, 0.684346, 0, 0, 0 )
+[node name="Explosion" type="Node3D" parent="."]
+transform = Transform3D( 0.684346, 0, 0, 0, 0.684346, 0, 0, 0, 0.684346, 0, 0, 0 )
 
 [node name="Particles" type="Particles" parent="Explosion"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.20278, 0 )
+transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.20278, 0 )
 amount = 12
 lifetime = 0.6
 explosiveness = 0.54
@@ -185,7 +185,7 @@ process_material = SubResource( 10 )
 draw_pass_1 = SubResource( 14 )
 
 [node name="Particles2" type="Particles" parent="Explosion"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.20278, 0 )
+transform = Transform3D( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.20278, 0 )
 amount = 12
 lifetime = 0.7
 process_material = SubResource( 10 )

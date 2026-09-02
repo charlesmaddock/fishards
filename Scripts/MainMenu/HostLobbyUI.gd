@@ -1,8 +1,8 @@
 extends MainMenuUIChild
 
-onready var lobbySetName: LineEdit = $"Control/Container/HBox/Name/LineEdit"
-onready var lobbyType: OptionButton = $"Control/Container/HBox/Type/OptionButton"
-onready var roomSettings: Control = $"Control/Container/RoomSettingsControl"
+@onready var lobbySetName: LineEdit = $"Control/Container/HBox/Name/LineEdit"
+@onready var lobbyType: OptionButton = $"Control/Container/HBox/Type/OptionButton"
+@onready var roomSettings: Control = $"Control/Container/RoomSettingsControl"
 
 
 func init_UI():

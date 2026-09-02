@@ -13,7 +13,7 @@ func init_popup(title: String, desc: String):
 func _ready():
 	get_node("InfoPopup/Panel/Margin/VBox/Title").text = _title
 	get_node("InfoPopup/Panel/Margin/VBox/Desc").text = _desc
-	get_node("InfoPopup/Panel").rect_size.y = get_node("InfoPopup/Panel").get_minimum_size().y
+	get_node("InfoPopup/Panel").size.y = get_node("InfoPopup/Panel").get_minimum_size().y
 
 
 func _on_Button_pressed():

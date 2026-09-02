@@ -1,11 +1,11 @@
 extends Control
 
 
-onready var displayPlayers: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/DisplayPlayersContainer
-onready var vbox: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer
-onready var margin = $PanelContainer/MarginContainer
-onready var panel = $PanelContainer
-onready var pingLabel: Label = $PanelContainer/MarginContainer/VBoxContainer/Title/ping
+@onready var displayPlayers: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/DisplayPlayersContainer
+@onready var vbox: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer
+@onready var margin = $PanelContainer/MarginContainer
+@onready var panel = $PanelContainer
+@onready var pingLabel: Label = $PanelContainer/MarginContainer/VBoxContainer/Title/ping
 
 
 var displayPlayerScene: PackedScene = preload("res://Scenes/MainMenu/DisplayPlayer.tscn")
@@ -13,18 +13,18 @@ var _player_scores: Array
 
 
 func _ready():
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	AchievementHandler.connect("round_won", self, "_on_round_won")
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
-	Lobby.connect("ping_updated", self, "_on_ping_updated")
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	AchievementHandler.connect("round_won", Callable(self, "_on_round_won"))
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
+	Lobby.connect("ping_updated", Callable(self, "_on_ping_updated"))
 	set_visible(false)
 	for i in 20:
-		var display_player = displayPlayerScene.instance()
+		var display_player = displayPlayerScene.instantiate()
 		displayPlayers.add_child(display_player)
 	
 	if Lobby.is_host:
-		Lobby.connect("broadcast_leaderboard_req", self, "_on_broadcast_leaderboard_req")
-		Lobby.connect("teams_set", self, "_on_teams_set")
+		Lobby.connect("broadcast_leaderboard_req", Callable(self, "_on_broadcast_leaderboard_req"))
+		Lobby.connect("teams_set", Callable(self, "_on_teams_set"))
 	else:
 		PacketSender.call_deferred("request_leaderboard")
 
@@ -39,7 +39,7 @@ func _on_ping_updated(ping, ping_avg) -> void:
 
 
 func _on_player_killed(_killed_id: int, _killer_id: int, _with_spell: int) -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	host_refresh_leaderboard()
 
 
@@ -48,17 +48,17 @@ func _on_round_won(_is_winner) -> void:
 
 
 func _on_lobby_members_updated() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	host_refresh_leaderboard()
 
 
 func _on_broadcast_leaderboard_req() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	host_refresh_leaderboard()
 
 
 func _on_teams_set() -> void:
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	host_refresh_leaderboard()
 
 
@@ -80,7 +80,7 @@ func host_refresh_leaderboard() -> void:
 			for player_id in team_info["member_scores"]:
 				player_scores.append({"id": player_id, "score": team_info["member_scores"][player_id], "rounds_won": RoomSettings.get_amount_of_rounds_won(player_id)})
 		
-		player_scores.sort_custom(RoomSettings.score_sorter, "sort")
+		player_scores.sort_custom(Callable(RoomSettings.score_sorter, "sort"))
 		player_scores.invert()
 		
 		PacketSender.broadcast_updated_leaderboard(player_scores)
@@ -117,8 +117,8 @@ func render_player_scores(player_scores) -> void:
 
 
 func shrink_size():
-	displayPlayers.rect_size.y = displayPlayers.get_minimum_size().y
-	vbox.rect_size.y = vbox.get_minimum_size().y
-	margin.rect_size.y = margin.get_minimum_size().y
-	panel.rect_size.y = panel.get_minimum_size().y
+	displayPlayers.size.y = displayPlayers.get_minimum_size().y
+	vbox.size.y = vbox.get_minimum_size().y
+	margin.size.y = margin.get_minimum_size().y
+	panel.size.y = panel.get_minimum_size().y
 	

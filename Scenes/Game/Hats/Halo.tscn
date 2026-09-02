@@ -4,10 +4,10 @@
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Meshes/Hats/halo.obj" type="ArrayMesh" id=3]
 
-[node name="Halo" type="Spatial"]
+[node name="Halo" type="Node3D"]
 script = ExtResource( 2 )
 hat_type = 21
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 3 )
 material/0 = ExtResource( 1 )

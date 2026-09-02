@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/zap.wav-7d529036b413e9bc9139c4b76652b504.sample"
+type="AudioStreamWAV"
+uid="uid://bwe28k0a7efca"
+path="res://.godot/imported/zap.wav-7d529036b413e9bc9139c4b76652b504.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/zap.wav"
-dest_files=[ "res://.import/zap.wav-7d529036b413e9bc9139c4b76652b504.sample" ]
+dest_files=["res://.godot/imported/zap.wav-7d529036b413e9bc9139c4b76652b504.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

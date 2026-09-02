@@ -5,21 +5,21 @@
 [ext_resource path="res://Scenes/Materials/Palette/22.tres" type="Material" id=3]
 [ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=5]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 radius = 0.441037
 
 [sub_resource type="Animation" id=2]
 resource_name = "Appear"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Plus:translation")
+tracks/0/path = NodePath("Plus:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 0.757858, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4 ),
+"transitions": PackedFloat32Array( 0.757858, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -2, 0 ), Vector3( 0, 0.4, 0 ), Vector3( 0, 0, 0 ) ]
 }
@@ -30,8 +30,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ) ]
 }
@@ -46,20 +46,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Plus:translation")
+tracks/1/path = NodePath("Plus:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 1, 0 ) ]
 }
@@ -75,28 +75,28 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[node name="HealthPowerUp" type="Spatial"]
+[node name="HealthPowerUp" type="Node3D"]
 script = ExtResource( 1 )
 manually_set_entity_type = 1
 subtype_name = "HEALTH_POWERUP"
 age_limit_seconds = 16.0
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77251, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77251, 0 )
 shape = SubResource( 1 )
 
 [node name="PowerUp" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249785, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249785, 0 )
 
 [node name="PrettyDestroy" parent="." instance=ExtResource( 5 )]
 stop_particle_node_array = [ NodePath("../PowerUp/Particles") ]
@@ -108,18 +108,18 @@ autoplay = "Appear"
 anims/Appear = SubResource( 2 )
 anims/Disappear = SubResource( 3 )
 
-[node name="Plus" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4879, 0 )
+[node name="Plus" type="Node3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4879, 0 )
 
-[node name="Plus" type="CSGBox" parent="Plus"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22838, 0 )
+[node name="Plus" type="CSGBox3D" parent="Plus"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22838, 0 )
 width = 1.1
 height = 0.4
 depth = 0.32
 material = ExtResource( 3 )
 
-[node name="Plus2" type="CSGBox" parent="Plus"]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.22838, 0 )
+[node name="Plus2" type="CSGBox3D" parent="Plus"]
+transform = Transform3D( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.22838, 0 )
 width = 1.1
 height = 0.4
 depth = 0.32

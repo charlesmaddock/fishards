@@ -49,7 +49,7 @@
 code = "shader_type canvas_item;
 
 uniform bool tint;
-uniform vec4 tint_color: hint_color;
+uniform vec4 tint_color: source_color;
 uniform vec2 ripple_pos = vec2(0.5,0.5);
 uniform float force = 0.0;
 uniform bool greyscale = false;
@@ -94,16 +94,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.02, -0.005, 0.0 ]
 }
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape3D" id=4]
 extents = Vector3( 1000, 0.1, 1000 )
 
-[node name="Room" type="Spatial"]
+[node name="Room" type="Node3D"]
 script = ExtResource( 27 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -123,11 +123,11 @@ __meta__ = {
 anims/ripple = SubResource( 3 )
 
 [node name="ShaderPreCompiler" parent="." instance=ExtResource( 36 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0 )
 
-[node name="Entities" type="Spatial" parent="."]
+[node name="Entities" type="Node3D" parent="."]
 
-[node name="DestroyedEntities" type="Spatial" parent="."]
+[node name="DestroyedEntities" type="Node3D" parent="."]
 
 [node name="Client" parent="." instance=ExtResource( 3 )]
 
@@ -137,7 +137,7 @@ anchor_right = 1.00081
 
 [node name="Gamemode" parent="." instance=ExtResource( 6 )]
 
-[node name="Players" type="Spatial" parent="."]
+[node name="Players" type="Node3D" parent="."]
 script = ExtResource( 2 )
 player_scene = ExtResource( 25 )
 fishard_bot_scene = ExtResource( 1 )
@@ -189,12 +189,12 @@ one_shot = true
 
 [node name="BlueWorld" parent="." instance=ExtResource( 30 )]
 
-[node name="AimPlane" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+[node name="AimPlane" type="Area3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 collision_layer = 512
 collision_mask = 512
 
-[node name="CollisionShape" type="CollisionShape" parent="AimPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AimPlane"]
 shape = SubResource( 4 )
 
 [connection signal="timeout" from="RespawnAllBugFixTimer" to="." method="_on_RespawnAllBugFixTimer_timeout"]

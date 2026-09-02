@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/meteorHit.wav-a21e732e4a91b9c359d45c475c9fe94e.sample"
+type="AudioStreamWAV"
+uid="uid://20mymhi2j2vx"
+path="res://.godot/imported/meteorHit.wav-a21e732e4a91b9c359d45c475c9fe94e.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/meteorHit.wav"
-dest_files=[ "res://.import/meteorHit.wav-a21e732e4a91b9c359d45c475c9fe94e.sample" ]
+dest_files=["res://.godot/imported/meteorHit.wav-a21e732e4a91b9c359d45c475c9fe94e.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

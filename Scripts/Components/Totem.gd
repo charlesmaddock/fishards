@@ -1,10 +1,10 @@
 extends Component
 
 
-onready var totemAnimationPlayer: AnimationPlayer = $totem/AnimationPlayer
-onready var rocks: MeshInstance = $totem/Armature/Skeleton/Plane
-onready var muzzle: MeshInstance = $totem/Armature/Skeleton/Sphere001
-export(NodePath) var transform_animator
+@onready var totemAnimationPlayer: AnimationPlayer = $totem/AnimationPlayer
+@onready var rocks: MeshInstance3D = $totem/Armature/Skeleton3D/Plane
+@onready var muzzle: MeshInstance3D = $totem/Armature/Skeleton3D/Sphere001
+@export var transform_animator: NodePath
 
 
 var _only_upgrade: bool = false
@@ -20,8 +20,8 @@ func get_team_name() -> String:
 
 
 func _ready():
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
-	parent_entity.connect("destroyed", self, "_on_self_destroyed")
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
+	parent_entity.connect("destroyed", Callable(self, "_on_self_destroyed"))
 	_spell_caster = parent_entity.get_component_of_type(Globals.ComponentTypes.SpellCaster)
 	rocks.visible = false
 	muzzle.visible = false
@@ -46,16 +46,16 @@ func _on_landed():
 	rocks.visible = true
 	muzzle.visible = true
 	_has_landed = true
-	totemAnimationPlayer.connect("animation_finished", self, "idle")
+	totemAnimationPlayer.connect("animation_finished", Callable(self, "idle"))
 	parent_entity.disable_collider(false)
 	
 	var creator = get_creator_entity()
 	var team = Lobby.get_team_info_from_player_id(parent_entity.get_creator_id())
-	if creator != null && team.empty() == false:
+	if creator != null && team.is_empty() == false:
 		_creator_team_name = team.name
 		_creator_pos_offset = parent_entity.get_pos() - creator.get_pos() 
-		creator.connect("cast_spell", self, "_on_creator_cast_spell")
-		creator.connect("released_spell", self, "_on_released_spell")
+		creator.connect("cast_spell", Callable(self, "_on_creator_cast_spell"))
+		creator.connect("released_spell", Callable(self, "_on_released_spell"))
 
 
 func _on_creator_cast_spell(active_spell: int, cast_pos: Vector3) -> void:
@@ -76,7 +76,7 @@ func _on_creator_cast_spell(active_spell: int, cast_pos: Vector3) -> void:
 			get_node(transform_animator).play("diveDown")
 			var tree = get_tree()
 			if tree != null:
-				yield(tree.create_timer(0.5), "timeout")
+				await tree.create_timer(0.5).timeout
 				if get_node(transform_animator) != null:
 					get_node(transform_animator).play("diveUp")
 
@@ -112,4 +112,4 @@ func get_creator_entity() -> Entity:
 
 
 func idle(_name: String) -> void:
-	totemAnimationPlayer.play("idle-loop")
+	totemAnimationPlayer.play("idle")

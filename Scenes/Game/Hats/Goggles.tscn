@@ -4,16 +4,16 @@
 [ext_resource path="res://Assets/Meshes/Hats/engineering_goggles.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Scenes/Materials/Palette/26.tres" type="Material" id=4]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.913725, 0.905882, 0.427451, 1 )
 
-[node name="Goggles" type="Spatial"]
+[node name="Goggles" type="Node3D"]
 script = ExtResource( 2 )
 hat_type = 12
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 3 )
 material/0 = SubResource( 1 )
 material/1 = ExtResource( 4 )

@@ -1,12 +1,12 @@
-extends Spatial
+extends Node3D
 
 
-onready var animationPlayer = $AnimationPlayer
-onready var enterArea: Area = $EnterArea
-onready var wallContainer: Spatial = $WallContainer
+@onready var animationPlayer = $AnimationPlayer
+@onready var enterArea: Area3D = $EnterArea
+@onready var wallContainer: Node3D = $WallContainer
 
 
-export(bool) var on_enter_area_raise: bool
+@export var on_enter_area_raise: bool
 
 
 var raised: bool 
@@ -16,7 +16,7 @@ signal enter_area_entered()
 
 
 func _ready():
-	enterArea.connect("area_entered", self, "_on_enter_area_entered")
+	enterArea.connect("area_entered", Callable(self, "_on_enter_area_entered"))
 	
 	if on_enter_area_raise == true:
 		raised = false

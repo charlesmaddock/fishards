@@ -1,9 +1,9 @@
 extends Control
 
 
-onready var title = $Panel/VBoxContainer/tip
-onready var text = $Panel/VBoxContainer/text
-onready var animationPlayer = $AnimationPlayer
+@onready var title = $Panel/VBoxContainer/tip
+@onready var text = $Panel/VBoxContainer/text
+@onready var animationPlayer = $AnimationPlayer
 
 
 var shown_once: bool = false
@@ -27,7 +27,7 @@ func show_tip(is_hold_down: bool = false) -> void:
 			var print_this: String = "Press "
 			for num in RoomSettings.get_element_amount():
 				var key_code = Util.get_key_code("element_" + str(num + 1), Util.InputTypes.KEYBOARD)
-				print_this += OS.get_scancode_string(key_code)
+				print_this += OS.get_keycode_string(key_code)
 				if num < RoomSettings.get_element_amount() - 2:
 					print_this += ", "
 				elif num == RoomSettings.get_element_amount() - 2:

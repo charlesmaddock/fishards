@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
 
-export(Array, NodePath) var on_play_particle_effects
+@export var on_play_particle_effects # (Array, NodePath)
 
 
 func _ready():

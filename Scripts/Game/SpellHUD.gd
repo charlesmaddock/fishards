@@ -1,24 +1,24 @@
 extends Control
 
 # Slots 
-onready var spellHUDElement1: Control = $SpellHUDElement1
-onready var spellHUDElement2: Control = $SpellHUDElement2
-onready var spell_slot: TextureRect = $SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect/SpellTextureRect
+@onready var spellHUDElement1: Control = $SpellHUDElement1
+@onready var spellHUDElement2: Control = $SpellHUDElement2
+@onready var spell_slot: TextureRect = $SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect/SpellTextureRect
 
 # Cooldown
-onready var _spell_charge_label: Label = $SpellCharges/Label
-onready var _spell_charge_container: Control = $SpellCharges
+@onready var _spell_charge_label: Label = $SpellCharges/Label
+@onready var _spell_charge_container: Control = $SpellCharges
 
 # Cooldown without spell HUD
-onready var cooldown2_slider: TextureProgress = $SpellIconHudVBox/CenterAlign0/Cooldown2/CooldownSlider
-onready var cooldown_slider: TextureProgress = $SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect/SpellTextureRect/CoolDownSlider
-onready var cooldown2: TextureRect = $SpellIconHudVBox/CenterAlign0/Cooldown2
+@onready var cooldown2_slider: TextureProgressBar = $SpellIconHudVBox/CenterAlign0/Cooldown2/CooldownSlider
+@onready var cooldown_slider: TextureProgressBar = $SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect/SpellTextureRect/CoolDownSlider
+@onready var cooldown2: TextureRect = $SpellIconHudVBox/CenterAlign0/Cooldown2
 
-onready var spellHolderRect: TextureRect = $"SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect"
-onready var spellHolderAnimator: AnimationPlayer = $"SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderAnimator"
+@onready var spellHolderRect: TextureRect = $"SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderRect"
+@onready var spellHolderAnimator: AnimationPlayer = $"SpellIconHudVBox/CenterAlign1/SpellHolderContainer/SpellHolderAnimator"
 
-onready var spellCooldownPreviewContainer: GridContainer = $SpellIconHudVBox/CenterAlign2/SpellCooldownPreviewContainer
-export(PackedScene) var spellCooldownPreview
+@onready var spellCooldownPreviewContainer: GridContainer = $SpellIconHudVBox/CenterAlign2/SpellCooldownPreviewContainer
+@export var spellCooldownPreview: PackedScene
 
 var _cooldown: float = 0  
 var _cooldown_max: float = 0
@@ -26,19 +26,19 @@ var spell_cooldown_previews: Dictionary
 
 
 func _ready():
-	UserSettings.connect("user_settings_updated", self, "on_settings_updated")
+	UserSettings.connect("user_settings_updated", Callable(self, "on_settings_updated"))
 	_spell_charge_label.get_parent().visible = false
 	
 	for spell_type in Globals.SpellTypes.values():
 		var icon = Globals.get_spell_icon(spell_type)
 		if spell_type != Globals.SpellTypes.NONE && icon != Globals.empty_spell_icon:
-			var preview = spellCooldownPreview.instance()
+			var preview = spellCooldownPreview.instantiate()
 			preview.texture = icon
 			preview.set_visible(false)
 			spell_cooldown_previews[spell_type] = preview
 			spellCooldownPreviewContainer.add_child(preview)
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	on_settings_updated()
 
 

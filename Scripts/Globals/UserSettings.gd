@@ -8,7 +8,7 @@ signal user_settings_updated()
 signal spell_discovered(spell_type)
 
 
-onready var _default_user_settings: Dictionary = {
+@onready var _default_user_settings: Dictionary = {
 	"volumes": {
 		"Master": 100,
 		"Music": 100,
@@ -24,7 +24,7 @@ onready var _default_user_settings: Dictionary = {
 		"ui_left": Util.get_key_code("ui_left", Util.InputTypes.KEYBOARD, true),
 		"ui_up": Util.get_key_code("ui_up", Util.InputTypes.KEYBOARD, true),
 		"ui_down": Util.get_key_code("ui_down", Util.InputTypes.KEYBOARD, true),
-		"cast_spell": BUTTON_LEFT,
+		"cast_spell": MOUSE_BUTTON_LEFT,
 		"reset_elements": Util.get_key_code("reset_elements", Util.InputTypes.KEYBOARD),
 		"toggle_leaderboard": Util.get_key_code("toggle_leaderboard", Util.InputTypes.KEYBOARD),
 		"open_chat": Util.get_key_code("open_chat", Util.InputTypes.KEYBOARD)
@@ -51,14 +51,14 @@ onready var _default_user_settings: Dictionary = {
 
 func _ready():
 	load_settings()
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
 	
 	check_first_time_playing()
 
 
 func check_first_time_playing() -> void:
 	if settings_dict["firstTimePlaying"] == true || Globals.get_app_mode() == Globals.AppModes.DEVELOPMENT:
-		var popup = load("res://Scenes/MainMenu/Util/TutorialPopUp.tscn").instance()
+		var popup = load("res://Scenes/MainMenu/Util/TutorialPopUp.tscn").instantiate()
 		add_child(popup)
 		settings_dict["firstTimePlaying"] = false
 		save_settings()
@@ -201,7 +201,7 @@ func reset_to_default() -> void:
 	new_settings_dict["has_cast_spell"] = settings_dict["has_cast_spell"]
 	new_settings_dict["has_held_down_spell"] = settings_dict["has_held_down_spell"]
 	settings_dict = new_settings_dict
-	InputMap.load_from_globals()
+	InputMap.load_from_project_settings()
 	save_settings()
 	load_settings()
 
@@ -217,8 +217,8 @@ func set_bus_volume(bus_name: String, volume: float) -> void:
 
 
 func set_key_bind(name: String, keycode: int, is_mouse: bool, is_movement: bool = false) -> void:
-	var actionlist = InputMap.get_action_list(name)
-	if !actionlist.empty():
+	var actionlist = InputMap.action_get_events(name)
+	if !actionlist.is_empty():
 		if is_movement == false:
 			for action in actionlist:
 				if is_mouse == true && action is InputEventMouseButton:
@@ -230,7 +230,7 @@ func set_key_bind(name: String, keycode: int, is_mouse: bool, is_movement: bool 
 		else:
 			for action in actionlist:
 				if action is InputEventKey:
-					if is_movement && (action.scancode == KEY_DOWN || action.scancode == KEY_UP || action.scancode == KEY_LEFT || action.scancode == KEY_RIGHT):
+					if is_movement && (action.keycode == KEY_DOWN || action.keycode == KEY_UP || action.keycode == KEY_LEFT || action.keycode == KEY_RIGHT):
 						continue
 					InputMap.action_erase_event(name, action)
 				
@@ -239,7 +239,7 @@ func set_key_bind(name: String, keycode: int, is_mouse: bool, is_movement: bool 
 	
 	if is_mouse == false:
 		var new_key = InputEventKey.new()
-		new_key.set_scancode(keycode)
+		new_key.set_keycode(keycode)
 		InputMap.action_add_event(name, new_key)
 	else:
 		var new_key = InputEventMouseButton.new()
@@ -251,20 +251,20 @@ func set_key_bind(name: String, keycode: int, is_mouse: bool, is_movement: bool 
 
 # Not used but may be useful in the future
 func set_aspect_ratio(aspect_ratio: Vector2) -> void:
-	var pixel_width: float = ProjectSettings.get_setting("display/window/size/width")
+	var pixel_width: float = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var pixel_height: float = pixel_width * (aspect_ratio.y/ aspect_ratio.x)
 	
-	var window_width: float = ProjectSettings.get_setting("display/window/size/test_width")
+	var window_width: float = ProjectSettings.get_setting("display/window/size/window_width_override")
 	var window_height: float = window_width * (aspect_ratio.y / aspect_ratio.x)
 	
 	get_tree().get_root().set_size(Vector2(pixel_width, pixel_height))
-	OS.set_window_size(Vector2(window_width, window_height))
+	get_window().set_size(Vector2(window_width, window_height))
 	
 	settings_dict["aspect_ratio"] = aspect_ratio
 
 
 func toggle_fullscreen(value: bool) -> void:
-	OS.set_window_fullscreen(value)
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
 	settings_dict["fullscreen"] = value
 
 

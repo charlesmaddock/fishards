@@ -4,17 +4,17 @@ var COMPONENT_TYPE: int = Globals.ComponentTypes.PowerUp
 
 
 enum power_types { HEALTH, RAPID_FIRE, SPEED, CLONE }
-export(power_types) var power_type: int
+@export var power_type: power_types
 
 
-onready var particles = $Particles
+@onready var particles = $Particles
 
 
 func _ready():
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collided")
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collided"))
 
 
-func _on_entity_collided(area: Area):
+func _on_entity_collided(area: Area3D):
 	var hit_entity: Entity = Util.get_entity_from_area(area)
 
 	if hit_entity != null && Lobby.is_host:
@@ -30,7 +30,7 @@ func _on_entity_collided(area: Area):
 			var players_node: Players = Util.get_players_node()
 			var my_team = Lobby.get_team_info_from_player_id(hit_entity.get_id())
 			var player = hit_entity.get_component_of_type(Globals.ComponentTypes.Player)
-			if my_team.empty() == false && player != null && players_node != null && Lobby.player_is_in_temp_bot(hit_entity.get_id()) == false:
+			if my_team.is_empty() == false && player != null && players_node != null && Lobby.player_is_in_temp_bot(hit_entity.get_id()) == false:
 				var spawn_point = hit_entity.get_pos() + Vector3((Util.rand.randf() - 0.5) * 4, 0, (Util.rand.randf() - 0.5) * 4)
 				players_node.host_spawn_temp_bot(my_team.name, Globals.PlayerTypes.MEDIUM_BOT, spawn_point, player)
 				

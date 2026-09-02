@@ -1,38 +1,38 @@
-extends Spatial
+extends Node3D
 
 
-onready var instructionsLabel = $Objective/Margin/VBox/Instructions
-onready var objectiveContainer = $Objective
-onready var objectiveAnim = $Objective/AnimationPlayer
-onready var howToPlayPopup = $HowToPlayPopup/Backdrop
-onready var howToPlayFirstPart = $HowToPlayPopup/Backdrop/Panel/FirstPart
-onready var howToPlaySecondPart = $HowToPlayPopup/Backdrop/Panel/SecondPart
-onready var howToPlayThirdPart = $HowToPlayPopup/Backdrop/Panel/ThirdPart
-onready var dialog_timer: Timer = $Timer
-onready var sensei_animator: AnimationPlayer = $SenseiAnimator
-onready var levelTimer: Timer = $LevelTimer
-onready var arrow = $Arrow
-onready var arrowPoof = $Arrow/Poof
-onready var spellHUDTip = $spellHUDTip
-onready var comboTipContainer = $Objective/Margin/VBox/ComboTipContainer
-onready var spellTipLabel = $Objective/Margin/VBox/SpellTip/Label
+@onready var instructionsLabel = $Objective/Margin/VBox/Instructions
+@onready var objectiveContainer = $Objective
+@onready var objectiveAnim = $Objective/AnimationPlayer
+@onready var howToPlayPopup = $HowToPlayPopup/Backdrop
+@onready var howToPlayFirstPart = $HowToPlayPopup/Backdrop/Panel/FirstPart
+@onready var howToPlaySecondPart = $HowToPlayPopup/Backdrop/Panel/SecondPart
+@onready var howToPlayThirdPart = $HowToPlayPopup/Backdrop/Panel/ThirdPart
+@onready var dialog_timer: Timer = $Timer
+@onready var sensei_animator: AnimationPlayer = $SenseiAnimator
+@onready var levelTimer: Timer = $LevelTimer
+@onready var arrow = $Arrow
+@onready var arrowPoof = $Arrow/Poof
+@onready var spellHUDTip = $spellHUDTip
+@onready var comboTipContainer = $Objective/Margin/VBox/ComboTipContainer
+@onready var spellTipLabel = $Objective/Margin/VBox/SpellTip/Label
 
-export(Curve) var difficulty_curve
+@export var difficulty_curve: Curve
 
-export(NodePath) var spawn_area
-export(NodePath) var spawn_point_2
-export(NodePath) var spawn_point_3
+@export var spawn_area: NodePath
+@export var spawn_point_2: NodePath
+@export var spawn_point_3: NodePath
 
-export(NodePath) var dummy_pos_2
-export(NodePath) var dummy_pos_3
-export(NodePath) var training_dummy_pos
+@export var dummy_pos_2: NodePath
+@export var dummy_pos_3: NodePath
+@export var training_dummy_pos: NodePath
 
-export(NodePath) var island_2_animator
-export(NodePath) var island_3_animator
+@export var island_2_animator: NodePath
+@export var island_3_animator: NodePath
 
-export(NodePath) var island_4_player_pos
-export(Array, NodePath) var island_4_spawn_shapes
-export(NodePath) var spawn_area_4_spatial
+@export var island_4_player_pos: NodePath
+@export var island_4_spawn_shapes # (Array, NodePath)
+@export var spawn_area_4_spatial: NodePath
 
 
 var dialog_index: int = 0
@@ -72,7 +72,7 @@ var angry_sounds = {"index": 0, "sounds": [MusicAndSfxHandler.sounds.SENSEI_ANGR
 var neutral_sounds = {"index": 0, "sounds": [MusicAndSfxHandler.sounds.SENSEI_NEUTRAL1, MusicAndSfxHandler.sounds.SENSEI_NEUTRAL2, MusicAndSfxHandler.sounds.SENSEI_NEUTRAL3, MusicAndSfxHandler.sounds.SENSEI_NEUTRAL4, MusicAndSfxHandler.sounds.SENSEI_NEUTRAL5, MusicAndSfxHandler.sounds.SENSEI_NEUTRAL6]}
 
 
-onready var dialog: Array = [
+@onready var dialog: Array = [
 	{
 		"text": "Welcome " + SteamValues.STEAM_USERNAME + " to my Dojo!",
 		"time_until_next_message": 0.1,
@@ -202,9 +202,9 @@ var levels = [
 
 
 func how_to_play_popup(time) -> void:
-	yield(get_tree().create_timer(4), "timeout")
+	await get_tree().create_timer(4).timeout
 	howToPlayPopup.set_visible(true)
-	yield(self, "how_to_play_closed")
+	await self.how_to_play_closed
 	dialog_timer.start(time)
 
 
@@ -213,8 +213,8 @@ func wait_for_elmt_select(time) -> void:
 	
 	#spellHUDTip.set_visible(true)
 	show_objective(print_this, [], 1)
-	yield(self, "elements_pressed")
-	yield(get_tree().create_timer(1), "timeout")
+	await self.elements_pressed
+	await get_tree().create_timer(1).timeout
 	dialog_timer.start(time)
 	hide_objective()
 
@@ -223,7 +223,7 @@ func get_element_keys() -> String:
 	var element_keys: String = ""
 	for num in RoomSettings.get_element_amount():
 		var key_code = Util.get_key_code("element_" + str(num + 1), Util.InputTypes.KEYBOARD)
-		element_keys += OS.get_scancode_string(key_code)
+		element_keys += OS.get_keycode_string(key_code)
 		if num < RoomSettings.get_element_amount() - 1:
 			element_keys += ", "
 	
@@ -232,7 +232,7 @@ func get_element_keys() -> String:
 
 func wait_for_cast(time) -> void:
 	show_objective("Hold down the left mouse button to cast a spell.", [], 1.5)
-	yield(self, "cast_spell_pressed")
+	await self.cast_spell_pressed
 	dialog_timer.start(time)
 	#spellHUDTip.set_visible(false)
 	hide_objective()
@@ -250,12 +250,12 @@ func kill_first(time) -> void:
 	show_objective("Destroy the dummy.", spell_tip)
 	
 	while used_spells.size() < 3:
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		var id: int = spawn_dojo_dummy()
 		var room_node = Util.get_room_node()
 		if room_node != null:
 			var dummy = room_node.get_entity(id)
-			yield(dummy, "no_health")
+			await dummy.no_health
 			room_node = Util.get_room_node()
 			if room_node != null:
 				var my_client: Entity = room_node.get_entity(SteamValues.STEAM_ID)
@@ -293,12 +293,12 @@ func spawn_dojo_dummy() -> int:
 
 
 func second_island(time) -> void:
-	yield(get_tree().create_timer(3), "timeout")
+	await get_tree().create_timer(3).timeout
 	sensei_animator.play("first_travel")
 	arrow.set_visible(true)
 	arrowPoof.emitting = true
 	get_node(island_2_animator).play("rise")
-	yield(self, "island_2_reached")
+	await self.island_2_reached
 	avoid_barrier_challenge = true
 	get_node(spawn_area).get_child(0).transform.origin = get_node(spawn_point_2).global_transform.origin
 	dialog_timer.start(time)
@@ -318,7 +318,7 @@ func kill_second(time) -> void:
 	var room_node = Util.get_room_node()
 	if room_node != null:
 		var dummy = room_node.get_entity(id)
-		yield(dummy, "no_health")
+		await dummy.no_health
 		avoid_barrier_challenge = false
 	
 	dialog_timer.start(time)
@@ -328,10 +328,10 @@ func kill_second(time) -> void:
 func third_island(time) -> void:
 	sensei_animator.play("second_travel")
 	get_node(island_3_animator).play("rise")
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	sensei_message("Hmm, looks like the bridge has collapsed. Use a mobility spell to get to the other side - try earth + earth or earth + arcane", neutral_sounds)
 	parkour_challenge = true
-	yield(self, "island_3_reached")
+	await self.island_3_reached
 	parkour_challenge = false
 	get_node(spawn_area).get_child(0).transform.origin = get_node(spawn_point_3).global_transform.origin
 	dialog_timer.start(time)
@@ -345,7 +345,7 @@ func round_up(time) -> void:
 	]
 	show_objective("Move the dummy to the red circle.", spell_tip)
 	create_round_up_dummy()
-	yield(self, "dummy_entered")
+	await self.dummy_entered
 	dialog_timer.start(time)
 	hide_objective()
 
@@ -359,7 +359,7 @@ func create_round_up_dummy() -> void:
 
 
 func create_training_dummy() -> void:
-	yield(get_tree().create_timer(0.6), "timeout")
+	await get_tree().create_timer(0.6).timeout
 	var pos = get_node(training_dummy_pos).global_transform.origin
 	var dummy_info: Dictionary = Globals.EnvironmentInfo(Globals.EnvironmentTypes.STRONG_DUMMY, 0, pos)
 	var id: int = Util.generate_id()
@@ -377,7 +377,7 @@ func forth_island(time) -> void:
 			my_client.get_component_of_type(Globals.ComponentTypes.Health).set_invincible(true)
 			my_client.set_trapped_w_duration(7.5, true)
 		
-	yield(self, "island_4_reached")
+	await self.island_4_reached
 	arrive_at_fourth_island()
 	change_spawn_to_island_4()
 	dialog_timer.start(time)
@@ -403,7 +403,7 @@ func change_spawn_to_island_4() -> void:
 
 func wait_for_esc(time) -> void:
 	show_objective("Press ESC, drag the arrows and press update.")
-	yield(self, "updated_elements")
+	await self.updated_elements
 	dialog_timer.start(time)
 	hide_objective()
 
@@ -426,14 +426,14 @@ func _ready():
 	if room != null:
 		gamemode_node = room.gamemode
 	
-	Lobby.connect("lobby_chat", self, "_on_lobby_chat")
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
+	Lobby.connect("lobby_chat", Callable(self, "_on_lobby_chat"))
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
 	
 	if RoomSettings.get_rounds_gamemode() == GamemodeValues.Gamemodes.Training:
 		start_training()
 	else:
-		yield(get_tree().create_timer(2), "timeout")
+		await get_tree().create_timer(2).timeout
 		next_dialog()
 
 
@@ -443,13 +443,13 @@ func start_training() -> void:
 	change_spawn_to_island_4()
 	sensei_animator.play("third_travel")
 	sensei_animator.set_speed_scale(10)
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	sensei_message("Welcome to Training Island!", greeting_sounds)
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	if _dummy_mode == true:
 		return 
 	sensei_message("Type '/dummy' by pressing 'T' to toggle training against dummies.", neutral_sounds)
-	yield(get_tree().create_timer(3.5), "timeout")
+	await get_tree().create_timer(3.5).timeout
 	if _dummy_mode == true:
 		return 
 	sensei_message("Try to survive as long as possible, good luck!", neutral_sounds)
@@ -462,7 +462,7 @@ func _process(delta):
 		if room_node != null:
 			var my_client = room_node.get_entity(SteamValues.STEAM_ID)
 			if my_client != null:
-				my_client.set_position(my_client.global_transform.origin.linear_interpolate(get_node(island_4_player_pos).global_transform.origin, delta * 3))
+				my_client.set_position(my_client.global_transform.origin.lerp(get_node(island_4_player_pos).global_transform.origin, delta * 3))
 				if my_client.get_pos().distance_to(get_node(island_4_player_pos).global_transform.origin) < 0.2:
 					_lerp_to_island_4_pos = false
 					my_client.set_position(get_node(island_4_player_pos).global_transform.origin, true)
@@ -472,7 +472,7 @@ func _process(delta):
 		if room_node != null:
 			var my_client = room_node.get_entity(SteamValues.STEAM_ID)
 			if my_client != null:
-				my_client.set_position(my_client.global_transform.origin.linear_interpolate(get_node("Sensei").global_transform.origin, delta * 2))
+				my_client.set_position(my_client.global_transform.origin.lerp(get_node("Sensei").global_transform.origin, delta * 2))
 
 
 func _on_dummy_1_death() -> void:
@@ -518,13 +518,13 @@ func _on_player_killed(killed_id, killer_id, killed_with_spell):
 	
 	# Update amount of enemies
 	var team: Dictionary = Lobby.get_team_info_from_player_id(killed_id)
-	if team.empty() == false:
+	if team.is_empty() == false:
 		if team.name == "Red Team":
 			_alive_enemy_players -= 1
 			if _alive_enemy_players <= 0:
 				_new_round()
 			
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 			PacketSender.host_broadcast_destroy_entity(killed_id)
 
 
@@ -540,10 +540,10 @@ func restart_training_endless() -> void:
 	gamemode_node.reset_difficulty()
 	clear_temp_bots()
 	sensei_message(message, happy_sounds)
-	yield(get_tree().create_timer(4), "timeout")
+	await get_tree().create_timer(4).timeout
 	
 	sensei_message("Restarting the challenge, get ready...", neutral_sounds)
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	start_final_challenge(0)
 
 
@@ -551,7 +551,7 @@ func restart_tutorial_challenge() -> void:
 	sensei_message("You failed, restarting level " + str(_level) + "...", angry_sounds)
 	clear_temp_bots()
 	gamemode_node.reset_difficulty()
-	yield(get_tree().create_timer(3), "timeout")
+	await get_tree().create_timer(3).timeout
 	_level -= 1
 	# Delete any bots that spawned whilst we were waiting
 	clear_temp_bots()
@@ -598,11 +598,11 @@ func _new_round() -> void:
 				gamemode_node.call_deferred("show_text_center_screen", "Tutorial complete!", 4)
 				
 				sensei_message("Congratulations! You won all the levels.", happy_sounds)
-				yield(get_tree().create_timer(5), "timeout")
+				await get_tree().create_timer(5).timeout
 				sensei_message("You are ready to play against real players now!", neutral_sounds)
-				yield(get_tree().create_timer(4), "timeout")
+				await get_tree().create_timer(4).timeout
 				sensei_message("I'm sending you back to the main menu now, bye bye!", neutral_sounds)
-				yield(get_tree().create_timer(3), "timeout")
+				await get_tree().create_timer(3).timeout
 				Lobby.leave_lobby()
 
 
@@ -641,29 +641,29 @@ func sensei_message(message: String, sounds_dict: Dictionary) -> void:
 
 func show_objective(text: String, spell_tips: Array = [], time_until_show: float = 3.0) -> void:
 	objective_shown = true
-	yield(get_tree().create_timer(time_until_show), "timeout")
+	await get_tree().create_timer(time_until_show).timeout
 	if objective_shown == true:
 		for child in comboTipContainer.get_children():
 			child.queue_free()
 		
 		objectiveAnim.play("show")
-		if spell_tips.empty() == false:
+		if spell_tips.is_empty() == false:
 			spellTipLabel.set_visible(true)
 			comboTipContainer.set_visible(true)
 			for spell_tip in spell_tips:
-				var combo_tip = comboContainer.instance()
+				var combo_tip = comboContainer.instantiate()
 				comboTipContainer.add_child(combo_tip)
 				combo_tip.set_values(spell_tip["element1"], spell_tip["element2"], spell_tip["spell"])
 		else:
 			spellTipLabel.set_visible(false)
 			comboTipContainer.set_visible(false)
 		
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		MusicAndSfxHandler.play_sound(MusicAndSfxHandler.sounds.ELEMENT_PICKUP)
 		objectiveContainer.set_visible(true)
 		instructionsLabel.text = text
-		yield(get_tree(), "idle_frame")
-		objectiveContainer.rect_size = objectiveContainer.get_minimum_size()
+		await get_tree().idle_frame
+		objectiveContainer.size = objectiveContainer.get_minimum_size()
 
 
 func hide_objective() -> void:

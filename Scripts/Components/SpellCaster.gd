@@ -37,13 +37,13 @@ var _prev_cast_spell_input_successful: bool
 var _changed_stance_before_reset_els_timeout: bool
 var _stance_before_reset: int
 
-onready var _rock_dash_timer: Timer = $RockDashTimer
+@onready var _rock_dash_timer: Timer = $RockDashTimer
 var _is_rock_dashing: bool = false
 
 # Transform into spell stuff
-export(NodePath) var default_entity_model_path: NodePath
-export(NodePath) var transform_container_path: NodePath
-onready var _transform_container: Spatial
+@export var default_entity_model_path: NodePath
+@export var transform_container_path: NodePath
+@onready var _transform_container: Node3D
 var _default_entity_model
 var is_transformed: bool
 
@@ -53,14 +53,14 @@ var _health_component: Health
 
 var _invisibility_time: float = 2.0
 
-onready var diveCastTimer: Timer = $DiveCastTimer
-onready var transformDurationTimer: Timer = $TransformDurationTimer
-onready var spellCastTimer: Timer = $SpellCastTimer
-onready var elementTip: Control = $ElementTip
-onready var holdDownTip: Control = $HoldDownTip
-onready var notCastSpellTimer: Timer = $NotCastSpellTimer
-onready var resetElementsTimer: Timer = $ResetElementsTimer
-onready var oneElementOnlyTimer: Timer = $OneElementOnlyTimer
+@onready var diveCastTimer: Timer = $DiveCastTimer
+@onready var transformDurationTimer: Timer = $TransformDurationTimer
+@onready var spellCastTimer: Timer = $SpellCastTimer
+@onready var elementTip: Control = $ElementTip
+@onready var holdDownTip: Control = $HoldDownTip
+@onready var notCastSpellTimer: Timer = $NotCastSpellTimer
+@onready var resetElementsTimer: Timer = $ResetElementsTimer
+@onready var oneElementOnlyTimer: Timer = $OneElementOnlyTimer
 
 
 func init_spell_caster(elements: Array) -> void:
@@ -79,8 +79,8 @@ func _ready():
 	restart_cooldowns()
 	
 	spellHUD = get_node("SpellHUD")
-	Lobby.connect("destroy_entity", self, "_on_child_spell_destroyed")
-	notCastSpellTimer.connect("timeout", self, "_on_not_cast_spell_timeout")
+	Lobby.connect("destroy_entity", Callable(self, "_on_child_spell_destroyed"))
+	notCastSpellTimer.connect("timeout", Callable(self, "_on_not_cast_spell_timeout"))
 	
 	if parent_entity.is_my_client == false:
 		if Util.safe_to_use(get_node("SpellMarker")):
@@ -102,10 +102,10 @@ func _ready():
 	_player_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Player)
 	_health_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Health)
 	
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
-	parent_entity.connect("took_damage", self, "_on_took_damage")
-	parent_entity.connect("no_health", self, "_on_no_health")
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collided")
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
+	parent_entity.connect("took_damage", Callable(self, "_on_took_damage"))
+	parent_entity.connect("no_health", Callable(self, "_on_no_health"))
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collided"))
 	
 	update_player_speed_from_active_spell(is_transformed)
 
@@ -240,7 +240,7 @@ func try_request_cast_spell(cast_pos: Vector3 = Vector3.DOWN, team_name: String 
 		
 		# If we haven't specified the spells pos, use the mouse to generate the pos:
 		if cast_pos == Vector3.DOWN:
-			cast_pos = Util.get_aim_position(parent_entity.get_world().get_direct_space_state())
+			cast_pos = Util.get_aim_position(parent_entity.get_world_3d().get_direct_space_state())
 			var cast_direction3d = get_spell_spawn_pos().direction_to(cast_pos)
 			cast_direction = Vector2(cast_direction3d.x, cast_direction3d.z)
 			
@@ -318,7 +318,7 @@ func host_activate_dive(pos: Vector3) -> void:
 func activate_rock_dash(dir: Vector2) -> void:
 	_is_rock_dashing = true
 	_health_component.set_invincible(true)
-	parent_entity.add_force(Vector3(dir.x, 0, dir.y) * Globals.ROCK_DASH_FORCE)
+	parent_entity.apply_force(Vector3(dir.x, 0, dir.y) * Globals.ROCK_DASH_FORCE)
 	_rock_dash_timer.start()
 	request_cast_spell_direction(dir, "", Globals.SpellTypes.DASH)
 	
@@ -336,7 +336,7 @@ func _on_rockdash_timer_over() -> void:
 		deactivate_rock_dash()
 
 
-func _on_entity_collided(area: Area) -> void:
+func _on_entity_collided(area: Area3D) -> void:
 	var hit_entity: Entity = Util.get_entity_from_area(area)
 	
 	if hit_entity != null:
@@ -352,7 +352,7 @@ func _on_entity_collided(area: Area) -> void:
 func deactivate_rock_dash() -> void:
 	_health_component.set_invincible(false)
 	_is_rock_dashing = false
-	parent_entity.add_force(parent_entity.get_force() * -0.75)
+	parent_entity.apply_force(parent_entity.get_force() * -0.75)
 	PacketSender.trigger_player_animation(parent_entity, Globals.PlayerAnimations.END_ROCK_DASH)
 
 
@@ -425,7 +425,7 @@ func transform_into(transform_into: int, move_speed_change: float = 1.0, duratio
 			if room_node.environment != null:
 				var env_scene = room_node.environment.get_scene_from_type(transform_into)
 				if env_scene != null:
-					var env = env_scene.instance()
+					var env = env_scene.instantiate()
 					env.can_move = true;
 					env.broadcast_transform = true
 					
@@ -437,7 +437,7 @@ func transform_into(transform_into: int, move_speed_change: float = 1.0, duratio
 						env.get_area().monitoring = false
 					
 					for env_child in env.get_children():
-						if env_child is StaticBody:
+						if env_child is StaticBody3D:
 							env_child.disabled = true
 
 
@@ -682,7 +682,7 @@ func check_show_hold_down_tip() -> void:
 		
 		if _times_cast_one_fireball >= 5:
 			holdDownTip.show_tip(true)
-			yield(get_tree().create_timer(12), "timeout")
+			await get_tree().create_timer(12).timeout
 			holdDownTip.tip_not_necessary()
 
 
@@ -839,8 +839,8 @@ func _on_DiveCastTimer_timeout():
 	PacketSender.trigger_player_animation(parent_entity, Globals.PlayerAnimations.DIVE_UP)
 	parent_entity.set_position(_dive_pos)
 	PacketSender.update_entity_pos_directly(parent_entity.get_id(), _dive_pos)
-	yield(get_tree(), "physics_frame")
-	yield(get_tree(), "physics_frame")
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	# If the dive was canceled by a push or grab dont create the second splash and stun
 	if _dive_pos.distance_squared_to(parent_entity.get_pos()) < 2:
 		var dir = Vector2(between.x, between.z).normalized()

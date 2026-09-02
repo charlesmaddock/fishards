@@ -1,9 +1,9 @@
-extends Spatial
+extends Node3D
 
 
-onready var dash1: MeshInstance = $dash1
-onready var dash2: MeshInstance = $dash2
-onready var explosion: Particles = $Explosion
+@onready var dash1: MeshInstance3D = $dash1
+@onready var dash2: MeshInstance3D = $dash2
+@onready var explosion: Particles = $Explosion
 
 
 func hit():

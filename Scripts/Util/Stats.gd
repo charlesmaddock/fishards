@@ -1,7 +1,7 @@
 extends Control
 
-onready var fpsLabel: Label = $PanelContainer/VBoxContainer/FPSLabel
-onready var memLabel: Label = $PanelContainer/VBoxContainer/MemLabel
+@onready var fpsLabel: Label = $PanelContainer/VBoxContainer/FPSLabel
+@onready var memLabel: Label = $PanelContainer/VBoxContainer/MemLabel
 var _process_iteration: int
 
 

@@ -3,7 +3,7 @@ class_name Rotation
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Rotation
 
 
-export(float) var rotSpeed: float = 0.025 # I assume this refers to standard value?
+@export var rotSpeed: float = 0.025 # I assume this refers to standard value?
 
 
 func _process(delta):

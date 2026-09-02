@@ -6,11 +6,11 @@
 [ext_resource path="res://Scenes/Materials/Palette/9.tres" type="Material" id=4]
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
 
-[node name="DisguiseMask" type="Spatial"]
+[node name="DisguiseMask" type="Node3D"]
 script = ExtResource( 5 )
 hat_type = 24
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 4 )
 material/1 = ExtResource( 2 )

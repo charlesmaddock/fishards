@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.shader" type="Shader" id=1]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Shaders/polar_coordinate_particle.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -14,9 +14,9 @@ shader_param/polar_scale = 2
 shader_param/noise_tex = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
+colors = PackedColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
@@ -25,7 +25,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 
 [sub_resource type="CurveTexture" id=5]
 curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticleProcessMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 0.3
 flag_disable_z = true
@@ -41,7 +41,7 @@ color_ramp = SubResource( 3 )
 [sub_resource type="QuadMesh" id=7]
 
 [node name="Perimiter" type="Particles"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 material_override = SubResource( 1 )
 emitting = false
 amount = 3

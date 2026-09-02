@@ -5,13 +5,13 @@ signal new_bind(value)
 var active: bool = false
 
 func _ready():
-	connect("pressed", self, "_on_pressed")
+	connect("pressed", Callable(self, "_on_pressed"))
 
 
 func _input(ev):
 	if ev is InputEventKey && active:
-		text = OS.get_scancode_string(ev.scancode)
-		emit_signal("new_bind", ev.scancode, false)
+		text = OS.get_keycode_string(ev.keycode)
+		emit_signal("new_bind", ev.keycode, false)
 		active = false
 	if ev is InputEventMouseButton && active:
 		text = get_mouse_button_text(ev.button_index)
@@ -21,11 +21,11 @@ func _input(ev):
 
 func get_mouse_button_text(index: int) -> String:
 	match index:
-		BUTTON_LEFT:
+		MOUSE_BUTTON_LEFT:
 			return "LMB"
-		BUTTON_RIGHT:
+		MOUSE_BUTTON_RIGHT:
 			return "RMB"
-		BUTTON_MIDDLE: 
+		MOUSE_BUTTON_MIDDLE: 
 			return"MMB"
 		_:
 			return "OMB"

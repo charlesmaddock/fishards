@@ -1,18 +1,18 @@
-extends ViewportContainer
+extends SubViewportContainer
 
-onready var file_name: LineEdit = $Save/LineEdit
+@onready var file_name: LineEdit = $Save/LineEdit
 
-onready var animationPlayer: AnimationPlayer = $Viewport/AnimationPlayer
-onready var position: Spatial = $Viewport/Position
-onready var viewport: Viewport = $Viewport
-onready var label: Label = $Save/Label
+@onready var animationPlayer: AnimationPlayer = $SubViewport/AnimationPlayer
+@onready var position: Node3D = $SubViewport/Position
+@onready var viewport: SubViewport = $SubViewport
+@onready var label: Label = $Save/Label
 
 var img: Image
 var dir_path: String =  "user://generated_icons/"
 
 
 func capture_img():
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	if !dir.dir_exists(dir_path):
 		dir.make_dir(dir_path)
 	

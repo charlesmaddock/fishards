@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Shaders/new_foam.shader" type="Shader" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/Shaders/new_foam.gdshader" type="Shader" id=2]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.613027, 0.758621, 0.918263, 0.987229 )
-colors = PoolColorArray( 0.069495, 0.069495, 0.069495, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.965972, 0.965972, 0.965972, 1 )
+offsets = PackedFloat32Array( 0.613027, 0.758621, 0.918263, 0.987229 )
+colors = PackedColorArray( 0.069495, 0.069495, 0.069495, 1, 0.39793, 0.39793, 0.39793, 1, 0.480469, 0.480469, 0.480469, 1, 0.965972, 0.965972, 0.965972, 1 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 
 [resource]

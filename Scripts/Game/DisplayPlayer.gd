@@ -23,7 +23,7 @@ func display(player_info: Dictionary, show_team_color: bool, score: int = -1, ro
 	get_node("vbox/Name/HBoxContainer/RankContainer").set_visible(player_info["rank"] != -1)
 	
 	var rank_color = get_node("vbox/Name/HBoxContainer/RankContainer").display_rank(player_info["rank"])
-	get_node("vbox/Name/HBoxContainer/Label").set("custom_colors/font_color", rank_color)
+	get_node("vbox/Name/HBoxContainer/Label").set("theme_override_colors/font_color", rank_color)
 	
 	var is_client = player_info["plyr_type"] == Globals.PlayerTypes.CLIENT
 	var isnt_me = player_info["id"] != SteamValues.STEAM_ID

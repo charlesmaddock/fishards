@@ -4,16 +4,16 @@
 [ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Game/Spells/FreezeOrb.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Textures/Particle/wobbly_smoke_particle.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=7]
-[ext_resource path="res://Assets/Textures/Sprites/pebbles.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Textures/Particle/wobbly_smoke_particle.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=7]
+[ext_resource path="res://Assets/Textures/Sprites/pebbles.png" type="Texture2D" id=8]
 [ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Components/ChangeSpeedOnCollide.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Sounds/ice field shoot.wav" type="AudioStream" id=12]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 radius = 0.619718
 
 [sub_resource type="SphereMesh" id=2]
@@ -22,7 +22,7 @@ radius = 0.619718
 code = "shader_type spatial;
 render_mode unshaded, cull_front;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform sampler2D noise_tex;
 uniform vec2 noise_scale = vec2(1.0,1.0);
 uniform float noise_speed = 1.0;
@@ -48,10 +48,10 @@ void vertex() {
 }"
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.261029, 0.834559, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.0808824, 0.0808824, 0.0808824, 1, 0.679688, 0.667969, 0.667969, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.261029, 0.834559, 1 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.0808824, 0.0808824, 0.0808824, 1, 0.679688, 0.667969, 0.667969, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=5]
+[sub_resource type="GradientTexture2D" id=5]
 gradient = SubResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=6]
@@ -71,7 +71,7 @@ rings = 16
 code = "shader_type spatial;
 render_mode unshaded;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform sampler2D noise_tex;
 uniform vec2 noise_scale = vec2(1.0,1.0);
 uniform float noise_speed = 1.0;
@@ -97,10 +97,10 @@ void vertex() {
 }"
 
 [sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.269531, 0.269531, 0.269531, 1 )
+offsets = PackedFloat32Array( 0 )
+colors = PackedColorArray( 0.269531, 0.269531, 0.269531, 1 )
 
-[sub_resource type="GradientTexture" id=10]
+[sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=11]
@@ -123,7 +123,7 @@ shader_param/gradient_color = true
 shader_param/random_between_colors = false
 shader_param/alpha_texture = ExtResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticleProcessMaterial" id=13]
 emission_shape = 1
 emission_sphere_radius = 0.6
 gravity = Vector3( 0, -1, 0 )
@@ -149,7 +149,7 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="CurveTexture" id=17]
 curve = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticleProcessMaterial" id=18]
 emission_shape = 1
 emission_sphere_radius = 0.1
 gravity = Vector3( 0, -1, 0 )
@@ -161,7 +161,7 @@ scale_curve = SubResource( 17 )
 code = "shader_type spatial;
 render_mode unshaded;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform sampler2D noise_tex; 
 uniform vec2 noise_scale = vec2(1.0);
 uniform float cutout = 0.5;
@@ -186,10 +186,10 @@ shader_param/cutout = 0.5
 shader_param/noise_tex = ExtResource( 5 )
 
 [sub_resource type="Gradient" id=21]
-offsets = PoolRealArray( 0, 0.424, 0.756, 1 )
-colors = PoolColorArray( 0.435294, 1, 1, 0, 0, 1, 1, 0, 0.498039, 1, 1, 0.603922, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.424, 0.756, 1 )
+colors = PackedColorArray( 0.435294, 1, 1, 0, 0, 1, 1, 0, 0.498039, 1, 1, 0.603922, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=22]
+[sub_resource type="GradientTexture2D" id=22]
 gradient = SubResource( 21 )
 
 [sub_resource type="Curve" id=23]
@@ -198,7 +198,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 1.4, 0, 0, Vector2( 0.45302, 1 ), 0.0, 0.0, 0, 0
 [sub_resource type="CurveTexture" id=24]
 curve = SubResource( 23 )
 
-[sub_resource type="ParticlesMaterial" id=25]
+[sub_resource type="ParticleProcessMaterial" id=25]
 gravity = Vector3( 0, 0, 0 )
 scale = 2.2
 scale_curve = SubResource( 24 )
@@ -206,27 +206,27 @@ color_ramp = SubResource( 22 )
 
 [sub_resource type="SphereMesh" id=26]
 
-[node name="FreezeOrb" type="Spatial"]
+[node name="FreezeOrb" type="Node3D"]
 script = ExtResource( 3 )
 subtype_name = "FREEZE_ORB"
 age_limit_seconds = 1.4
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource( 1 )
 
 [node name="Projectile" parent="." instance=ExtResource( 1 )]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1.14389e-15, 2.61691e-08, 0.59868, 0.59868, -2.61691e-08, 0, 2.61691e-08, 0.59868, -2.61691e-08, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1.14389e-15, 2.61691e-08, 0.59868, 0.59868, -2.61691e-08, 0, 2.61691e-08, 0.59868, -2.61691e-08, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 6 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 7.29461e-16, 1.66881e-08, 0.38178, 0.38178, -1.66881e-08, 0, 1.66881e-08, 0.38178, -1.66881e-08, 0, 0, 0 )
+[node name="MeshInstance2" type="MeshInstance3D" parent="."]
+transform = Transform3D( 7.29461e-16, 1.66881e-08, 0.38178, 0.38178, -1.66881e-08, 0, 1.66881e-08, 0.38178, -1.66881e-08, 0, 0, 0 )
 mesh = SubResource( 7 )
 material/0 = SubResource( 11 )
 
@@ -245,11 +245,11 @@ draw_pass_1 = SubResource( 14 )
 
 [node name="PrettyDestroy" parent="." instance=ExtResource( 9 )]
 destroy_particles_array = [ NodePath("../Explosion") ]
-destroy_node_array = [ NodePath("../MeshInstance"), NodePath("../MeshInstance2") ]
+destroy_node_array = [ NodePath("../MeshInstance3D"), NodePath("../MeshInstance2") ]
 stop_particle_node_array = [ NodePath("../Snow"), NodePath("../Trail") ]
 
 [node name="Explosion" type="Particles" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.33661, 0 )
+transform = Transform3D( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.33661, 0 )
 material_override = SubResource( 20 )
 emitting = false
 amount = 1
@@ -269,7 +269,7 @@ freeze_on_collide = true
 [node name="Sounds" parent="." instance=ExtResource( 11 )]
 on_create_stream = ExtResource( 12 )
 
-[node name="FreezeOrb" type="Spatial" parent="."]
+[node name="FreezeOrb" type="Node3D" parent="."]
 script = ExtResource( 4 )
 
 [node name="Damage" parent="." instance=ExtResource( 2 )]

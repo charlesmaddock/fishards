@@ -3,12 +3,12 @@
 [ext_resource path="res://Scripts/Components/SpellCaster.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=2]
 [ext_resource path="res://Scenes/Materials/Palette/10.tres" type="Material" id=3]
-[ext_resource path="res://Assets/Images/UI/Game/target.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/Game/target.png" type="Texture2D" id=4]
 [ext_resource path="res://Scripts/Game/SpellMarker.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Game/SpellHUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Game/ElementTip.gd" type="Script" id=7]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_unshaded = true
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.36
@@ -20,14 +20,14 @@ resource_name = "hide"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel:rect_position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.05, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 70 ) ]
 }
@@ -37,14 +37,14 @@ resource_name = "show"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel:rect_position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.25, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 70 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
@@ -54,14 +54,14 @@ resource_name = "hide"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel:rect_position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.05, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 70 ) ]
 }
@@ -71,14 +71,14 @@ resource_name = "show"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Panel:rect_position")
+tracks/0/path = NodePath("Panel:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.25, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 70 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
@@ -87,7 +87,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="DiveCastTimer" type="Timer" parent="."]
-pause_mode = 2
+process_mode = 3
 wait_time = 0.5
 one_shot = true
 
@@ -98,20 +98,20 @@ one_shot = true
 wait_time = 0.3
 
 [node name="SpellMarker" type="Sprite3D" parent="."]
-transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+transform = Transform3D( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
 material_override = SubResource( 1 )
 axis = 1
 texture = ExtResource( 4 )
 script = ExtResource( 5 )
 
-[node name="Upgrade" type="CSGPolygon" parent="SpellMarker"]
-transform = Transform( -0.143236, 0.139583, 0, -0.418749, -0.429708, 0, 0, 0, 0.2, 0, 5, 0.046 )
-polygon = PoolVector2Array( -0.108362, -0.126055, 0, 1, 0.495259, 0.516792, 1, 0 )
+[node name="Upgrade" type="CSGPolygon3D" parent="SpellMarker"]
+transform = Transform3D( -0.143236, 0.139583, 0, -0.418749, -0.429708, 0, 0, 0, 0.2, 0, 5, 0.046 )
+polygon = PackedVector2Array( -0.108362, -0.126055, 0, 1, 0.495259, 0.516792, 1, 0 )
 depth = 0.4
 material = ExtResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="SpellMarker/Upgrade"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.711, 0.678, -0.207381 )
+[node name="CSGBox3D" type="CSGBox3D" parent="SpellMarker/Upgrade"]
+transform = Transform3D( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.711, 0.678, -0.207381 )
 width = 0.689056
 height = 0.960832
 depth = 0.38
@@ -127,10 +127,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -159.0
-margin_top = -48.0
-margin_right = -29.0
-margin_bottom = -8.0
+offset_left = -159.0
+offset_top = -48.0
+offset_right = -29.0
+offset_bottom = -8.0
 theme = ExtResource( 2 )
 script = ExtResource( 7 )
 __meta__ = {
@@ -144,30 +144,30 @@ anims/show = SubResource( 3 )
 [node name="Panel" type="PanelContainer" parent="ElementTip"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 70.0
-margin_bottom = 70.0
+offset_top = 70.0
+offset_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ElementTip/Panel"]
-margin_left = 3.0
-margin_right = 130.0
-margin_bottom = 34.0
-custom_constants/separation = -2
+offset_left = 3.0
+offset_right = 130.0
+offset_bottom = 34.0
+theme_override_constants/separation = -2
 
 [node name="tip" type="Label" parent="ElementTip/Panel/VBoxContainer"]
-margin_right = 127.0
-margin_bottom = 13.0
-custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+offset_right = 127.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 text = "How to play:"
 
 [node name="text" type="Label" parent="ElementTip/Panel/VBoxContainer"]
-margin_top = 11.0
-margin_right = 127.0
-margin_bottom = 24.0
-custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
-custom_constants/line_spacing = -4
+offset_top = 11.0
+offset_right = 127.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+theme_override_constants/line_spacing = -4
 autowrap = true
 
 [node name="HoldDownTip" type="Control" parent="."]
@@ -175,10 +175,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -159.0
-margin_top = -48.0
-margin_right = -29.0
-margin_bottom = -8.0
+offset_left = -159.0
+offset_top = -48.0
+offset_right = -29.0
+offset_bottom = -8.0
 theme = ExtResource( 2 )
 script = ExtResource( 7 )
 __meta__ = {
@@ -192,29 +192,29 @@ anims/show = SubResource( 5 )
 [node name="Panel" type="PanelContainer" parent="HoldDownTip"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 3.8147e-06
+offset_bottom = 3.8147e-06
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HoldDownTip/Panel"]
-margin_left = 3.0
-margin_right = 130.0
-margin_bottom = 34.0
-custom_constants/separation = -2
+offset_left = 3.0
+offset_right = 130.0
+offset_bottom = 34.0
+theme_override_constants/separation = -2
 
 [node name="tip" type="Label" parent="HoldDownTip/Panel/VBoxContainer"]
-margin_right = 127.0
-margin_bottom = 13.0
-custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+offset_right = 127.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 text = "Pro tip:"
 
 [node name="text" type="Label" parent="HoldDownTip/Panel/VBoxContainer"]
-margin_top = 11.0
-margin_right = 127.0
-margin_bottom = 24.0
-custom_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
-custom_constants/line_spacing = -4
+offset_top = 11.0
+offset_right = 127.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color( 0.305882, 0.305882, 0.305882, 1 )
+theme_override_constants/line_spacing = -4
 autowrap = true
 
 [node name="NotCastSpellTimer" type="Timer" parent="."]

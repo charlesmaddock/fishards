@@ -1,11 +1,11 @@
 extends ColorRect
 
 
-onready var timer = $Timer
-onready var title = $Control/Title
-onready var button = $Control/VBoxContainer/Button
-onready var elementSelectPanel = $Control/VBoxContainer/ElementSelectPanel
-export(NodePath) var gamemodeNodePath
+@onready var timer = $Timer
+@onready var title = $Control/Title
+@onready var button = $Control/VBoxContainer/Button
+@onready var elementSelectPanel = $Control/VBoxContainer/ElementSelectPanel
+@export var gamemodeNodePath: NodePath
 
 
 var _gamemode_node = null
@@ -13,7 +13,7 @@ var _respawn_allowed: bool
 
 
 func _ready():
-	Lobby.connect("player_respawn", self, "_on_respawn_player")
+	Lobby.connect("player_respawn", Callable(self, "_on_respawn_player"))
 	
 	_gamemode_node = get_node(gamemodeNodePath)
 	var is_default_element_mode = RoomSettings.get_element_mode() == Globals.ElementModes.DEFAULT
