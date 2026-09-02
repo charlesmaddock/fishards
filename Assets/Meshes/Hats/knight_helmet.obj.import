@@ -16,4 +16,5 @@ dest_files=[ "res://.import/knight_helmet.obj-1f717e80598f87d73c28b005b4eea17e.m
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

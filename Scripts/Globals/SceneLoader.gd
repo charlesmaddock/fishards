@@ -90,7 +90,7 @@ func host_generate_next_rounds_info(settings: Dictionary, map_ref: String, gamem
 	get_tree().change_scene(Globals.ROOM_SCENE)
 	yield(get_tree().create_timer(1), "timeout")
 	
-	var room_node: Room = Util.get_room_node()
+	var room_node: FishardsRoom = Util.get_room_node()
 	if room_node != null:
 		var map_node_res = load(map_ref)
 		if map_node_res != null:
@@ -139,7 +139,7 @@ func p2p_start_loading_game(map_ref: String, gamemode_ref: String, all_environme
 		
 		# If we press cancel whilst yielding until room_node_ready we can get strange bugs,
 		# therefore we check if the room exists
-		var room_node: Room = Util.get_room_node()
+		var room_node: FishardsRoom = Util.get_room_node()
 		if Util.safe_to_use(room_node):
 			status_print("4")
 			
@@ -242,7 +242,7 @@ func handle_set_done_loading(sender_id: int) -> void:
 			printerr("Room node was null whilst trying to set done loading.")
 
 
-func load_initial_environment(room_node: Room, inital_env_to_load_dict: Dictionary) -> void:
+func load_initial_environment(room_node: FishardsRoom, inital_env_to_load_dict: Dictionary) -> void:
 	if Lobby.is_host == false:
 		status_print("Loading initial environment from received env dict!")
 		for env_id in inital_env_to_load_dict:
@@ -256,7 +256,7 @@ func load_initial_environment(room_node: Room, inital_env_to_load_dict: Dictiona
 		status_print("HOST: Host has already loaded initial environment.")
 
 
-func load_initial_players(room_node: Room, inital_players_to_load_dict: Dictionary) -> void:
+func load_initial_players(room_node: FishardsRoom, inital_players_to_load_dict: Dictionary) -> void:
 	# Load the new players
 	for player_id in inital_players_to_load_dict:
 		var player_info = inital_players_to_load_dict[player_id]

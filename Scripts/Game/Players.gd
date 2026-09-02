@@ -1,6 +1,8 @@
 extends Spatial
 class_name Players
 
+const WADDLE_SCENE = preload("res://Waddlemancy/Characters/Waddle.tscn")
+
 export(PackedScene) var player_scene: PackedScene
 export(PackedScene) var fishard_bot_scene: PackedScene
 export(PackedScene) var dead_player_scene: PackedScene
@@ -299,6 +301,21 @@ func on_player_cast_spell(caster_entity: Entity, spell_type: int) -> void:
 		printerr("Couldn't find the player who cast this spell: ", caster_entity.name)
 
 
+
+func _attach_waddle_visual(player_entity: Entity, id: int) -> void:
+	var waddle_visual = WADDLE_SCENE.instance()
+	waddle_visual.name = "WaddleVisual_" + str(id)
+
+	player_entity.add_child(waddle_visual)
+
+	# Waddle.tscn is built with its feet at approximately Y = 0,
+	# so attach its root directly to the Fishards player entity.
+	waddle_visual.transform.origin = Vector3.ZERO
+	waddle_visual.scale = Vector3(1, 1, 1)
+
+	print("[WADDLEMANCY]: Attached Waddle visual to player id ", id)
+
+
 func spawn_player(id: int, player_info: Dictionary) -> void:
 	var is_clients_player = id == SteamValues.STEAM_ID;
 	var player_entity: Entity
@@ -334,6 +351,7 @@ func spawn_player(id: int, player_info: Dictionary) -> void:
 	player_ids.append(id)
 	add_living_player_id(id)
 	get_parent().add_entity(id, player_entity)
+	_attach_waddle_visual(player_entity, id)
 	
 	Lobby.add_player_to_team(GamemodeValues.get_current_rounds_teammode(), player_info)
 	RoomSettings.host_add_player_to_leaderboard(id)

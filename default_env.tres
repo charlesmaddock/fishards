@@ -5,3 +5,5 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+adjustment_brightness = 1.03
+adjustment_contrast = 1.05

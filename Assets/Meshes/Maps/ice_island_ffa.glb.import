@@ -2,13 +2,11 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/ice_island_ffa.glb-0cacea2040bb113eb87622ff8d2ff500.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Meshes/Maps/ice_island_ffa.glb"
-dest_files=[ "res://.import/ice_island_ffa.glb-0cacea2040bb113eb87622ff8d2ff500.scn" ]
-
 [params]
 
 nodes/root_type="Spatial"
@@ -20,6 +18,7 @@ nodes/use_legacy_names=true
 materials/location=1
 materials/storage=1
 materials/keep_on_reimport=true
+meshes/octahedral_compression=true
 meshes/compress=true
 meshes/ensure_tangents=true
 meshes/storage=0

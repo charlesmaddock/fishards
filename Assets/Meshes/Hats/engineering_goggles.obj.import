@@ -16,4 +16,5 @@ dest_files=[ "res://.import/engineering_goggles.obj-0b1fd309ea6b2d500177acf32e69
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

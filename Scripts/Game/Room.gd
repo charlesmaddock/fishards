@@ -1,5 +1,5 @@
 extends Spatial
-class_name Room
+class_name FishardsRoom
 
 
 onready var client: Node = $Client

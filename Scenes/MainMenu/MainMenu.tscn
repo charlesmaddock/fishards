@@ -6174,8 +6174,8 @@ margin_left = -177.85
 margin_top = -99.1654
 margin_right = -97.8501
 margin_bottom = -85.1654
-custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.415686, 0.372549, 0.372549, 1 )
+custom_fonts/font = ExtResource( 33 )
 text = "Developers"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6211,8 +6211,8 @@ margin_left = -177.718
 margin_top = -11.4251
 margin_right = -82.7185
 margin_bottom = 2.57494
-custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.415686, 0.372549, 0.372549, 1 )
+custom_fonts/font = ExtResource( 33 )
 text = "Future plans"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6246,8 +6246,8 @@ margin_left = 16.2225
 margin_top = -99.5495
 margin_right = 137.223
 margin_bottom = -85.5495
-custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.415686, 0.372549, 0.372549, 1 )
+custom_fonts/font = ExtResource( 33 )
 text = "Join our discord!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6291,8 +6291,8 @@ margin_left = 16.0
 margin_top = 49.0
 margin_right = 174.0
 margin_bottom = 63.0
-custom_fonts/font = ExtResource( 33 )
 custom_colors/font_color = Color( 0.415686, 0.372549, 0.372549, 1 )
+custom_fonts/font = ExtResource( 33 )
 text = "Hang out with sensei?"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -6505,9 +6505,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.482353, 0.607843, 0.666667, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 anims/fade = SubResource( 43 )

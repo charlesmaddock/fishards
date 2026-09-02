@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Scripts/Components/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sounds/death.wav" type="AudioStream" id=2]
@@ -455,16 +455,6 @@ tracks/0/keys = {
 "values": [ Vector3( 0, -1.1, 0 ), Vector3( 0, 0.2, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=90]
-albedo_color = Color( 0.15, 0.55, 0.95, 1 )
-
-[sub_resource type="CapsuleMesh" id=91]
-material = SubResource( 90 )
-radius = 0.45
-mid_height = 0.9
-radial_segments = 16
-rings = 8
-
 [node name="Player" type="Spatial"]
 script = ExtResource( 1 )
 _renderers = [ NodePath("ParentedSpellContainer"), NodePath("fish_wizard"), NodePath("FreezeIndicator") ]
@@ -524,11 +514,6 @@ one_shot = true
 
 [node name="fish_wizard" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0 )
-
-[node name="OfflinePlayerPlaceholder" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.55, 0 )
-mesh = SubResource( 91 )
-
 
 [node name="FreezeIndicator" type="Spatial" parent="."]
 script = ExtResource( 16 )
