@@ -1,6 +1,7 @@
 @tool
 extends Node3D
-class_name Entity, "res://Assets/Textures/Sprites/Node Icons/entityIcon.png"
+class_name Entity
+"res://Assets/Textures/Sprites/Node Icons/entityIcon.png"
 
 
 var _id: int
@@ -199,7 +200,7 @@ func set_position_directly(pos: Vector3) -> void:
 	_lerp_time = 1
 	_time_between_prev_and_target_pos = 1
 	_target_position = pos
-	set_position(pos, true)
+	_set_position(pos, true)
 
 
 func untrap() -> void:
@@ -224,7 +225,7 @@ func set_trapped_w_duration(trap_time: float, ice_freeze: bool = false) -> void:
 
 
 func lock_rotation_w_duration(time: float) -> void:
-	 _lock_rotation_for = time
+	_lock_rotation_for = time
 
 
 func set_rot(new_rotation: float, ignore_lock: bool = true) -> void:
@@ -235,7 +236,7 @@ func set_rot(new_rotation: float, ignore_lock: bool = true) -> void:
 
 # Recommended way of positioning entities
 # Actually sets the postion of the entire entity.
-func set_position(new_position: Vector3, force: bool = false) -> void:
+func _set_position(new_position: Vector3, force: bool = false) -> void:
 	if local_transform_update == true || force == true:
 		if _kinematic_body != null:
 			# Force kinematics so to be on the ground
@@ -377,13 +378,36 @@ func _check_inside_solid() -> void:
 		var area = get_area()
 		if Util.safe_to_use(area) == true:
 			if area.get_child(0).disabled == false:
-				var result = get_world_3d().get_direct_space_state().intersect_ray(global_transform.origin + Vector3.UP * 10, global_transform.origin + Vector3.DOWN * 10, [area, get_kinematic(), get_static_body()], pow(2, Globals.ColBits.SOLID))
+				
+				# 1. Setup ray coordinates using Godot 4 global_position
+				var ray_from = global_position + Vector3.UP * 10
+				var ray_to = global_position + Vector3.DOWN * 10
+				
+				# 2. Create the Godot 4 Query Object
+				var query = PhysicsRayQueryParameters3D.create(ray_from, ray_to)
+				
+				# 3. Apply the collision bitmask
+				query.collision_mask = 1 << Globals.ColBits.SOLID
+				
+				# 4. Apply exclusions using RIDs (.get_rid())
+				query.exclude = [
+					area.get_rid(),
+					get_kinematic().get_rid(),
+					get_static_body().get_rid()
+				]
+				
+				# 5. Run the updated raycast intersection
+				var result = get_world_3d().get_direct_space_state().intersect_ray(query)
+				
 				if result.get("collider") != null:
 					var collided_entity = result.get("collider").get_parent()
 					if Util.safe_to_use(collided_entity) == true:
-						var dir: Vector3 = global_transform.origin - collided_entity.global_transform.origin
+						# Updated from global_transform.origin to global_position
+						var dir: Vector3 = global_position - collided_entity.global_position
 						dir.y = 0
-						set_position(global_transform.origin + (dir.normalized() * 0.3), true)
+						
+						# Using the non-conflicting position function we fixed earlier
+						_set_position(global_position + (dir.normalized() * 0.3), true)
 
 
 func _check_trapped_over(delta: float) -> void:
@@ -564,7 +588,12 @@ func _get_configuration_warnings():
 	var collisionShape = get_collision_shape()
 	var collisionPolygon = get_collision_polygon()
 	
-	if(collisionShape == null && collisionPolygon == null):
+	if (collisionShape == null && collisionPolygon == null):
 		warning = "This entity doesn't have a 'Area3D' node with a 'CollisionShape3D' or a 'CollisionPolygon3D'. Please add one."
 	
-	return warning
+	# If a warning was found, wrap it in brackets to make it a PackedStringArray.
+	# Otherwise, return an empty array.
+	if warning != "":
+		return [warning]
+	else:
+		return PackedStringArray()

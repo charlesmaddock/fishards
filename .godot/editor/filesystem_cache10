@@ -1,8 +1,8 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1788357754
+::res://::1788433488
 default_bus_layout.tres::AudioBusLayout::-1::1788357588::0::1::::<><><>0<>0<><>::
 default_env - Copy.tres::Environment::-1::1788357588::0::1::::<><><>0<>0<><>::
-default_env.tres::Environment::-1::1788357588::0::1::::<><><>0<>0<><>::
+default_env.tres::Environment::5379633278232283309::1788358452::0::1::::<><><>0<>0<><>::
 fishards_ico_icon.ico::OtherFile::-1::1788357288::0::1::::<><><>0<>0<><>::
 fishards_logo_2.ico::OtherFile::-1::1788357288::0::1::::<><><>0<>0<><>::
 fishards_logo_2.png::CompressedTexture2D::2855892626696094225::1788357288::1788357771::1::::<><><>0<>0<>6c4253e3333fb80ebb9d08c6044a57ac<>res://.godot/imported/fishards_logo_2.png-ee2f0fee9cacf0535eb72a138f876f4f.ctex::
@@ -12,7 +12,7 @@ old_icon.png::CompressedTexture2D::308196705312408427::1788357288::1788357772::1
 README.md::TextFile::-1::1788357287::0::1::::<><><>0<>0<><>::
 steam_appid.txt::TextFile::-1::1788357288::0::1::::<><><>0<>0<><>::
 ::res://Assets/::1788357352
-::res://Assets/Fonts/::1788357352
+::res://Assets/Fonts/::1788357769
 ChunkyMonkey (2).ttf::FontFile::7204675220784795822::1788357285::1788357769::1::::<><><>0<>0<>f70332fbd8fba5a7d71e1439914d0fe3<>res://.godot/imported/ChunkyMonkey (2).ttf-53554499997b5865d6a205ec7998b8b6.fontdata::
 fishardsmedium.ttf::FontFile::4414539350150698955::1788357285::1788357769::1::::<><><>0<>0<>0d67e7e575b854d078982f0aaba0974d<>res://.godot/imported/fishardsmedium.ttf-b543026305b389ae401bbec50b5d79b3.fontdata::
 fishards_big_font.ttf::FontFile::4502280948036399690::1788357285::1788357769::1::::<><><>0<>0<>3a65d056153d18af52faa55dc49c6b0f<>res://.godot/imported/fishards_big_font.ttf-b7fcc31786d094a709b0f746d1257beb.fontdata::
@@ -29,12 +29,12 @@ crosshair_light.png::CompressedTexture2D::1889121151265818851::1788357285::17883
 drag.png::CompressedTexture2D::2016887636278942523::1788357285::1788357760::1::::<><><>0<>0<>44a10e3e190760465870eca9c87cb4e5<>res://.godot/imported/drag.png-894e3ec1158ed7cbcca00876a3b9c35f.ctex::
 fish_cursor2.png::CompressedTexture2D::4564655114682979571::1788357285::1788357760::1::::<><><>0<>0<>54ae8fa942573ead33064c6cda391824<>res://.godot/imported/fish_cursor2.png-f9a698bb7260da0d5081e70e42c36274.ctex::
 ::res://Assets/Images/UI/::1788357352
-::res://Assets/Images/UI/ColorIcons/::1788357421
+::res://Assets/Images/UI/ColorIcons/::1788357772
 1.png::CompressedTexture2D::2634207918079767171::1788357285::1788357772::1::::<><><>0<>0<>315a9a33f23fdd1f207d4a1e9256aea7<>res://.godot/imported/1.png-3b1952a60d28a4a7470cc47236353e3d.ctex::
-::res://Assets/Images/UI/EntityComponentPanel/::1788357421
+::res://Assets/Images/UI/EntityComponentPanel/::1788357772
 health_bar_background.png::CompressedTexture2D::5692440618762726406::1788357285::1788357772::1::::<><><>0<>0<>c69c6a386be1e5b66561b75c083f33f0<>res://.godot/imported/health_bar_background.png-5991f8de89bff7380862505075891840.ctex::
 hp.png::CompressedTexture2D::3709239293420470536::1788357285::1788357772::1::::<><><>0<>0<>9b8844b1e4abe2e6b118a231667bfb9a<>res://.godot/imported/hp.png-a2b06fa5a91696bdd23fc047253859a6.ctex::
-::res://Assets/Images/UI/Game/::1788357421
+::res://Assets/Images/UI/Game/::1788357771
 cooldown_bar.png::CompressedTexture2D::7564578230549818308::1788357286::1788357771::1::::<><><>0<>0<>f00f0df98e8df3c1c4e636b20a8474bb<>res://.godot/imported/cooldown_bar.png-8c4a6e214a6dae5648b85a919e220393.ctex::
 cooldown_fill.png::CompressedTexture2D::1720119196065433084::1788357286::1788357771::1::::<><><>0<>0<>485ba9f23ca35311776a91ca12eb0a9c<>res://.godot/imported/cooldown_fill.png-516cf24304302a2ca9a465413cbf6f6d.ctex::
 fish_icon.png::CompressedTexture2D::435755844042142699::1788357286::1788357771::1::::<><><>0<>0<>ba01c87f933fd9090269c463006b4e16<>res://.godot/imported/fish_icon.png-88f832593f4322134491860b370eb94d.ctex::
@@ -45,19 +45,19 @@ spell_holder_2.png::CompressedTexture2D::8719895741965629453::1788357286::178835
 spell_slot.png::CompressedTexture2D::7545562234122812411::1788357286::1788357771::1::::<><><>0<>0<>7c0d5b1961cc114ede5d6cbacb7ec8fe<>res://.godot/imported/spell_slot.png-6eda63c7d73fe5bc60a415167fc22cdc.ctex::
 target.png::CompressedTexture2D::4598599874392216419::1788357286::1788357771::1::::<><><>0<>0<>64cb74bdcf2e10bbeeb7f68b8c9ae275<>res://.godot/imported/target.png-94f68eacfed9f93e3f11c10ab8558fc2.ctex::
 timer_icon.png::CompressedTexture2D::1944541639137175324::1788357286::1788357771::1::::<><><>0<>0<>8cc5d82f8a21b6f6d7d4de014e08eb71<>res://.godot/imported/timer_icon.png-eaa651017e5f8a346a384aaa1c07be36.ctex::
-::res://Assets/Images/UI/Game/ElementIcons/::1788357757
+::res://Assets/Images/UI/Game/ElementIcons/::1788357772
 arcane.png::CompressedTexture2D::5486359456409243598::1788357285::1788357757::1::::<><><>0<>0<>c0e23ec4234905e18e34916fc69e0d63<>res://.godot/imported/arcane.png-72e03b0916cd97c96035d0ff64ee1495.ctex::
 earth.png::CompressedTexture2D::2031309008441692762::1788357285::1788357757::1::::<><><>0<>0<>5610976cf11964c1b8da37bd2a25aa94<>res://.godot/imported/earth.png-70f61ece97d01056f81dca2d461e4edd.ctex::
 empty.png::CompressedTexture2D::2255909582102872460::1788357285::1788357772::1::::<><><>0<>0<>c59be04567db868805ed0ada1ea36b26<>res://.godot/imported/empty.png-6d58ce985dada500d9ea9a12d25173d7.ctex::
 fire.png::CompressedTexture2D::2017896262032431742::1788357285::1788357757::1::::<><><>0<>0<>7f98bb0406f53ae0d6f25d5e239e0b7d<>res://.godot/imported/fire.png-a66d0af5a2e49b0739ff50bb96b50b4f.ctex::
 goo.png::CompressedTexture2D::2560266381009358567::1788357285::1788357757::1::::<><><>0<>0<>a7425c576f88866ab3fd8e182190e4a5<>res://.godot/imported/goo.png-7198933d5b4695228f5d54307f7149a7.ctex::
 water.png::CompressedTexture2D::4035494015924113936::1788357285::1788357757::1::::<><><>0<>0<>886c5f399d6f4bcd9d3e16f7f0f6abd6<>res://.godot/imported/water.png-2f4804ec679850652a5f259353044fd2.ctex::
-::res://Assets/Images/UI/Game/RankIcons/::1788357421
+::res://Assets/Images/UI/Game/RankIcons/::1788357772
 bronze.png::CompressedTexture2D::7894973769854694682::1788357285::1788357772::1::::<><><>0<>0<>35aac878b0990767583aabe9b2c67237<>res://.godot/imported/bronze.png-275141aa94188ec999b980881cfe2fb8.ctex::
 diamond.png::CompressedTexture2D::4169119201489420296::1788357285::1788357772::1::::<><><>0<>0<>c400de646361cf41fe01ea6c539f0a0b<>res://.godot/imported/diamond.png-292b3918d90b942d9d18d8ab742659ff.ctex::
 gold.png::CompressedTexture2D::2174844775238741898::1788357285::1788357772::1::::<><><>0<>0<>4189ce3c39e57fcc97206dd823fbea4c<>res://.godot/imported/gold.png-09195072acf5e01c0c6b118f3427fd73.ctex::
 silver.png::CompressedTexture2D::8076532103974939394::1788357285::1788357772::1::::<><><>0<>0<>f4fd79b22e079bab014b066f5aaf62b4<>res://.godot/imported/silver.png-284d49dcd4af092451ee1ee05cde9093.ctex::
-::res://Assets/Images/UI/Game/SpellIcons/::1788357757
+::res://Assets/Images/UI/Game/SpellIcons/::1788357772
 arcane_wall.png::CompressedTexture2D::5620677918505592288::1788357285::1788357772::1::::<><><>0<>0<>e934f7395a8450b0f4bf8cd563ed5718<>res://.godot/imported/arcane_wall.png-f4f0dc5c3837e6a930a39a7814064086.ctex::
 arcane_wal_smalll.png::CompressedTexture2D::8311970149863604445::1788357285::1788357757::1::::<><><>0<>0<>84edfa225adaeb434281d1846f6cc087<>res://.godot/imported/arcane_wal_smalll.png-b51a79eeed31579948f104fdb215e242.ctex::
 blank_small.png::CompressedTexture2D::2694003093273231509::1788357285::1788357772::1::::<><><>0<>0<>b6aa24fece327f2ad6dca0dbe3a758c7<>res://.godot/imported/blank_small.png-afe7994690179c1c96614a6d9fc9da82.ctex::
@@ -96,7 +96,7 @@ transform.png::CompressedTexture2D::457623057710863509::1788357286::1788357772::
 water.png::CompressedTexture2D::5945590976245809131::1788357286::1788357772::1::::<><><>0<>0<>2d957fd4ea0d4f42df66b349c6f6cda6<>res://.godot/imported/water.png-43da0aacfc28964cb3a96dedd2fe1afe.ctex::
 wildfire.png::CompressedTexture2D::5134312335202941037::1788357286::1788357771::1::::<><><>0<>0<>e9354ee173e4cfb8a55f596b36ad1f49<>res://.godot/imported/wildfire.png-f5d3b62970011e19588e2e4eb44dfd09.ctex::
 wildfire_small.png::CompressedTexture2D::5191730069541430714::1788357286::1788357757::1::::<><><>0<>0<>abdb8c9c009a1694404053ad2f77efed<>res://.godot/imported/wildfire_small.png-965d8043a125be2bf55eba594edef02d.ctex::
-::res://Assets/Images/UI/GeneratedIcons/::1788357758
+::res://Assets/Images/UI/GeneratedIcons/::1788357772
 angry_brows.png::CompressedTexture2D::3027241908366890536::1788357286::1788357771::1::::<><><>0<>0<>2995e67bbedac5e39951660dcaa695cb<>res://.godot/imported/angry_brows.png-6a64a150f1b9b407a25937690ff63568.ctex::
 beanie.png::CompressedTexture2D::448969989433393922::1788357286::1788357771::1::::<><><>0<>0<>b447e24edb389d520dcbb94700365e1a<>res://.godot/imported/beanie.png-fff458842751dd483f00c1176d863ec7.ctex::
 cannon.png::CompressedTexture2D::8689334657200303079::1788357286::1788357771::1::::<><><>0<>0<>10629d19b0963527d5f030f4dce1b6cf<>res://.godot/imported/cannon.png-1f32dab160f2672ad65d98f8e5c6a2da.ctex::
@@ -130,7 +130,7 @@ viking.png::CompressedTexture2D::8393742774799483812::1788357286::1788357772::1:
 wallHat.png::CompressedTexture2D::368133172679346815::1788357286::1788357772::1::::<><><>0<>0<>94af8e6e1602f71761a002f33934dcfa<>res://.godot/imported/wallHat.png-6a272e3772f9859a7e7e38a807c01a1c.ctex::
 windHat.png::CompressedTexture2D::2596957158029887318::1788357286::1788357772::1::::<><><>0<>0<>5bfb02998d05f43a7c8b4ba8734fdf43<>res://.godot/imported/windHat.png-6df58d352c62b6b013614208d46e64a0.ctex::
 winterhat.png::CompressedTexture2D::3300054968325707136::1788357286::1788357772::1::::<><><>0<>0<>1f7bfc4c17322a328d436a764aeb23fe<>res://.godot/imported/winterhat.png-8b1e1a628e96d787625c18262e75767d.ctex::
-::res://Assets/Images/UI/MainMenu/::1788357422
+::res://Assets/Images/UI/MainMenu/::1788357772
 back_button.png::CompressedTexture2D::3316112501213149761::1788357286::1788357772::1::::<><><>0<>0<>e879b388a92a18ddbac1be01428a47b6<>res://.godot/imported/back_button.png-79a314bb99892d80af0626d18fb8f2bf.ctex::
 blank_button.png::CompressedTexture2D::7514868032240647351::1788357286::1788357772::1::::<><><>0<>0<>85fb6efb8908596c8f01cd7ec87a8d0a<>res://.godot/imported/blank_button.png-fb1984eeb0cf928d4ae3896c371c2485.ctex::
 connectionerror.png::CompressedTexture2D::6641831008650492118::1788357286::1788357772::1::::<><><>0<>0<>3b5f152d12fa2d80c8b48bff3cdd627d<>res://.godot/imported/connectionerror.png-843ad22d24f70eb76dafbab78ff3edbf.ctex::
@@ -151,10 +151,10 @@ rooms_text.png::CompressedTexture2D::6353521722937949914::1788357286::1788357770
 settings_button.png::CompressedTexture2D::4478873413404444721::1788357286::1788357771::1::::<><><>0<>0<>756de8859183263a72c94ced76d12300<>res://.godot/imported/settings_button.png-f87f2937aafbcc67141b2da81366ddc3.ctex::
 small_arrow_down.png::CompressedTexture2D::6496135951602514653::1788357286::1788357770::1::::<><><>0<>0<>74775a62102cfba0d3f60e7cb6bdcf16<>res://.godot/imported/small_arrow_down.png-5c7fea0355e277b3417318199b3adbe4.ctex::
 splash.png::CompressedTexture2D::628354178135817275::1788357286::1788357771::1::::<><><>0<>0<>8d1b92873bfe559ed81e4e339315921a<>res://.godot/imported/splash.png-6867a8722a6d05105b1ba55d616d8d98.ctex::
-::res://Assets/Images/UI/tutorial/::1788357422
+::res://Assets/Images/UI/tutorial/::1788357771
 nospell.png::CompressedTexture2D::1927076454095343994::1788357286::1788357771::1::::<><><>0<>0<>e12589ce80761f6c1ac90ec55421eb44<>res://.godot/imported/nospell.png-89e4dfbdc38337fb9dc5bb2641c3c3b4.ctex::
 spell.png::CompressedTexture2D::1326485642302058765::1788357286::1788357771::1::::<><><>0<>0<>a5f2ed67d5798ea19586b1166b2a1a3b<>res://.godot/imported/spell.png-6893c3d9f11a6808f41372c562010327.ctex::
-::res://Assets/Meshes/::1788357422
+::res://Assets/Meshes/::1788357810
 beehive.glb::PackedScene::7769229911008006708::1788357286::1788357806::1::::<><><>0<>0<>e419844f667a5464b49c28d9912b67f3<>res://.godot/imported/beehive.glb-5e1967ed6dd42a0728d8089542a69664.scn::
 big_rock.glb::PackedScene::8842903606973155116::1788357286::1788357806::1::::<><><>0<>0<>c0c74b0252f853e5765cdf5d25f17965<>res://.godot/imported/big_rock.glb-f712e1b508f78e728e21e67d3925bb8e.scn::
 big_rock_2.glb::PackedScene::253272499905879106::1788357286::1788357805::1::::<><><>0<>0<>b3f718772b1c7f66959f9be0610c1cec<>res://.godot/imported/big_rock_2.glb-63a6b06cb12a899bf44e1845366b0835.scn::
@@ -226,7 +226,7 @@ waterfall_cliff.glb::PackedScene::8758951595718434994::1788357286::1788357807::1
 White.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
 withered_bush.obj::Mesh::6377340768034347829::1788357286::1788357778::1::::<><><>0<>0<>5ce6b46d731c53968b4977c9200beb0e<>res://.godot/imported/withered_bush.obj-b5b162c1fe34b9c62e1adc4e5cce7f8b.mesh<*>res://.godot/imported/withered_bush.obj-b5b162c1fe34b9c62e1adc4e5cce7f8b.mesh::
 Wood.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
-::res://Assets/Meshes/Hats/::1788357422
+::res://Assets/Meshes/Hats/::1788357777
 angry_brows.obj::Mesh::2295312906992940817::1788357286::1788357776::1::::<><><>0<>0<>30a587e364d8e0924c415ced6e61610a<>res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh<*>res://.godot/imported/angry_brows.obj-28f0c753df689efda8dd49196b56c16c.mesh::
 beanie.obj::Mesh::1406129632573520684::1788357286::1788357776::1::::<><><>0<>0<>2374b696b45b3516a08017f346af989e<>res://.godot/imported/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh<*>res://.godot/imported/beanie.obj-b594ebd2f7aeb3ed71e7d992a6ea6170.mesh::
 canon.obj::Mesh::2118258188682311397::1788357286::1788357776::1::::<><><>0<>0<>91ad4b055d660191ccede4f85cc53f59<>res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh<*>res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh::
@@ -254,7 +254,7 @@ sunglasses.obj::Mesh::4900344805976493046::1788357286::1788357774::1::::<><><>0<
 top_hat.obj::Mesh::1844448310437646181::1788357286::1788357774::1::::<><><>0<>0<>24590e6c2dab8b2a85531324bd5184be<>res://.godot/imported/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh<*>res://.godot/imported/top_hat.obj-a40145faaf83525f41b6e7e27a74250c.mesh::
 viking_hat.obj::Mesh::7701586117868596478::1788357286::1788357774::1::::<><><>0<>0<>a37b807aeaab0fd959e541f70813c18d<>res://.godot/imported/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh<*>res://.godot/imported/viking_hat.obj-253c6f324d2d1074c190ba299b48061d.mesh::
 winter_hat.obj::Mesh::5981494135829809995::1788357286::1788357774::1::::<><><>0<>0<>2081177ff68cda117009655bf84a92bd<>res://.godot/imported/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh<*>res://.godot/imported/winter_hat.obj-dcd428a8a90fe18389d645ec68387a11.mesh::
-::res://Assets/Meshes/HighlandAssets/::1788357422
+::res://Assets/Meshes/HighlandAssets/::1788357811
 grass_spot_1.glb::PackedScene::1909577649764483157::1788357286::1788357810::1::::<><><>0<>0<>9795d027afc8c5fc4be8750b0450512e<>res://.godot/imported/grass_spot_1.glb-cd0b7bd1b406aabf7030bfbae08c4368.scn::
 grass_spot_2.glb::PackedScene::7353745350743071605::1788357286::1788357810::1::::<><><>0<>0<>c3c621366e41b1419678e02515bd008c<>res://.godot/imported/grass_spot_2.glb-5cb26de0654780097fb17fcbfe048768.scn::
 grass_spot_3.glb::PackedScene::1392285997210649457::1788357286::1788357811::1::::<><><>0<>0<>f532b7d961e685011202e1a8d9ad4297<>res://.godot/imported/grass_spot_3.glb-df2cca7b11acc3cacc7619343eb6a630.scn::
@@ -278,7 +278,7 @@ Material_008.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><
 Material_009.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
 Material_010.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
 Material_012.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
-::res://Assets/Meshes/Maps/::1788357422
+::res://Assets/Meshes/Maps/::1788357802
 ice_ctf_medium.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Scenes/Materials/Map/ice_ground.tres<>res://Assets/Meshes/Maps/ice_island_ctf.glb<>res://Scenes/Materials/CelShaded/icy_rock.tres
 ice_island_1.glb::PackedScene::2562919739111720532::1788357286::1788357796::1::::<><><>0<>0<>4feacb908d6aead6d081f521e4a4e4fd<>res://.godot/imported/ice_island_1.glb-acee52112b82576b8966b42a33e08556.scn::
 ice_island_ctf.glb::PackedScene::2326601582054843488::1788357286::1788357796::1::::<><><>0<>0<>c38bcb25ef5257ac7066063fe5fb092c<>res://.godot/imported/ice_island_ctf.glb-847a5f570a4e9d738f5a93c4e4288180.scn::
@@ -320,7 +320,7 @@ SVGMat_007.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>:
 SVGMat_008.material::StandardMaterial3D::-1::1788357286::0::1::::<><><>0<>0<><>::
 tropic_island_tiny.glb::PackedScene::7329259536591834341::1788357286::1788357802::1::::<><><>0<>0<>167b897121e32b0f1c35076a09a5f7e1<>res://.godot/imported/tropic_island_tiny.glb-453082f073f14dec561fc7c61793db13.scn::
 water_rocks.glb::PackedScene::1528840258392691630::1788357286::1788357802::1::::<><><>0<>0<>a20d0b49850d874d889863cb418bd74a<>res://.godot/imported/water_rocks.glb-f258bcf4179c382cd6933ab572655914.scn::
-::res://Assets/Meshes/Maps/TropicIslandParts/::1788357422
+::res://Assets/Meshes/Maps/TropicIslandParts/::1788357776
 1.obj::Mesh::4709171206152406866::1788357286::1788357774::1::::<><><>0<>0<>713235af727b115bef21fda7f53f1859<>res://.godot/imported/1.obj-38ff87af45e792f2cd735021180a4a7e.mesh<*>res://.godot/imported/1.obj-38ff87af45e792f2cd735021180a4a7e.mesh::
 2.obj::Mesh::7792872100145059473::1788357286::1788357774::1::::<><><>0<>0<>6b7d6f4c86119aac2c260df35803afbf<>res://.godot/imported/2.obj-72e742ac8afee0bfde2d3b545f688ea7.mesh<*>res://.godot/imported/2.obj-72e742ac8afee0bfde2d3b545f688ea7.mesh::
 3.obj::Mesh::7263627956110472769::1788357286::1788357775::1::::<><><>0<>0<>60e9f8a4e83c45b00da62708599a6116<>res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh<*>res://.godot/imported/3.obj-c7329afb088845c975f07f4771bd3d5e.mesh::
@@ -328,7 +328,7 @@ water_rocks.glb::PackedScene::1528840258392691630::1788357286::1788357802::1::::
 5.obj::Mesh::1353442448504604899::1788357286::1788357775::1::::<><><>0<>0<>4a381a9d9bae7465e697fc713b91d7b9<>res://.godot/imported/5.obj-fbf99741d63b77cb4e0558c9c18713dc.mesh<*>res://.godot/imported/5.obj-fbf99741d63b77cb4e0558c9c18713dc.mesh::
 6.obj::Mesh::2151847501054138720::1788357286::1788357775::1::::<><><>0<>0<>28fc61245ce6e8104ef42fc0cf01f662<>res://.godot/imported/6.obj-04ec84ad29a92624495d3972a6c66de3.mesh<*>res://.godot/imported/6.obj-04ec84ad29a92624495d3972a6c66de3.mesh::
 7.obj::Mesh::1255337361112310728::1788357286::1788357776::1::::<><><>0<>0<>239606f88ef7eb13671891c642d3ed0a<>res://.godot/imported/7.obj-3c76d9172bc1938348516a097080c399.mesh<*>res://.godot/imported/7.obj-3c76d9172bc1938348516a097080c399.mesh::
-::res://Assets/Meshes/MiscEnvironment/::1788357422
+::res://Assets/Meshes/MiscEnvironment/::1788357806
 Bones.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/bones.obj<>res://Assets/Shaders/cel.gdshader
 coconuts_1.glb::PackedScene::1849999111669703327::1788357286::1788357782::1::::<><><>0<>0<>03ef1b8454958022090a8ab71be41d5c<>res://.godot/imported/coconuts_1.glb-81ffcee228a82d5a31af927b99064957.scn::
 dojo.obj::Mesh::5489549873063416118::1788357286::1788357775::1::::<><><>0<>0<>5c52b6940b1beafcddf8a43b4195846f<>res://.godot/imported/dojo.obj-8d9b8871d0e3b05ff5bc690cbd016c37.mesh<*>res://.godot/imported/dojo.obj-8d9b8871d0e3b05ff5bc690cbd016c37.mesh::
@@ -347,7 +347,7 @@ snow_rock_1.obj::Mesh::2383843478278075098::1788357286::1788357775::1::::<><><>0
 snow_rock_2.obj::Mesh::5518654156481746170::1788357286::1788357775::1::::<><><>0<>0<>3a94142eb98555e27a5b5dc14354fc41<>res://.godot/imported/snow_rock_2.obj-91588207a19b452d460bef86cbdc80e4.mesh<*>res://.godot/imported/snow_rock_2.obj-91588207a19b452d460bef86cbdc80e4.mesh::
 TropicalBridge.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/tropical_bridge.obj<>res://Scenes/Materials/CelShaded/light_tree.tres
 TropicalBridgeWhole.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/tropical_bridge_whole.obj<>res://Scenes/Materials/CelShaded/light_tree.tres<>res://Scenes/Materials/Palette/7.tres
-::res://Assets/Meshes/ModelScenes/::1788357422
+::res://Assets/Meshes/ModelScenes/::1788357807
 beehive_model.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/beehive.glb<>res://Scenes/Materials/CelShaded/beehive_color.tres<>res://Scenes/Materials/CelShaded/tree_color.tres
 coconuts_1.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/MiscEnvironment/coconuts_1.glb<>res://Assets/Shaders/cel.gdshader
 crab.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Meshes/crab.glb<>res://Scenes/Materials/Palette/14.tres<>res://Scenes/Materials/Palette/15.tres
@@ -397,7 +397,7 @@ water_rock_4.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Sc
 water_rock_5.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Scenes/Materials/Map/rock_foam.tres<>res://Scenes/Materials/CelShaded/rock.tres<>res://Assets/Meshes/Maps/Material.material
 water_rock_6.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Scenes/Materials/Map/rock_foam.tres<>res://Scenes/Materials/CelShaded/rock.tres<>res://Assets/Meshes/Maps/Material.material
 white_grass.tscn::PackedScene::-1::1788357610::0::1::::<><><>0<>0<><>::res://Assets/Textures/Particle/stalacmite.png
-::res://Assets/Meshes/VFX/::1788357422
+::res://Assets/Meshes/VFX/::1788357808
 adjustable_beam.tres::ArrayMesh::-1::1788357609::0::1::::<><><>0<>0<><>::res://Assets/Shaders/adjustable_beam.gdshader
 beam.tres::ArrayMesh::-1::1788357609::0::1::::<><><>0<>0<><>::
 beam_mesh_adjustable.glb::PackedScene::8640301553022788534::1788357286::1788357805::1::::<><><>0<>0<>242401d7e9792bdbf6ffba220e90ac04<>res://.godot/imported/beam_mesh_adjustable.glb-4520de4845436b9440023cfbcce8310e.scn::
@@ -433,7 +433,7 @@ MainTheme(OntoLand).mp3::AudioStreamMP3::5071950394716365662::1788357286::178835
 Tropic1(TheLostWall).mp3::AudioStreamMP3::4959177551190748358::1788357286::1788357758::1::::<><><>0<>0<>3d988c34ff2d2a48e7cfdb48cc454878<>res://.godot/imported/Tropic1(TheLostWall).mp3-a46242395e333daee5c8b8cd2b2d21e0.mp3str::
 ::res://Assets/Resources/::1788357352
 player_animation_tree.tres::AnimationNodeBlendTree::-1::1788357609::0::1::::<><><>0<>0<><>::
-::res://Assets/Shaders/::1788357609
+::res://Assets/Shaders/::1788357762
 adjustable_beam.gdshader::Shader::3333544347464277883::1788357609::0::1::::<><><>0<>0<><>::
 arcane_wall.gdshader::Shader::4347289841358870063::1788357609::0::1::::<><><>0<>0<><>::
 beam.gdshader::Shader::1838147565101091816::1788357609::0::1::::<><><>0<>0<><>::
@@ -464,7 +464,7 @@ waterfall_foam.gdshader::Shader::6807983816801025249::1788357609::0::1::::<><><>
 waterfall_impact_foam.gdshader::Shader::6296744530899341261::1788357609::0::1::::<><><>0<>0<><>::
 waterfall_splash.gdshader::Shader::8322448290987582100::1788357609::0::1::::<><><>0<>0<><>::
 waterfall_water.gdshader::Shader::1580162984140953202::1788357609::0::1::::<><><>0<>0<><>::
-::res://Assets/Sounds/::1788357759
+::res://Assets/Sounds/::1788357773
 arcaneBounce.wav::AudioStreamWAV::6930542547215085613::1788357287::1788357773::1::::<><><>0<>0<>9c037db7127b79f0d0aa6e1407246606<>res://.godot/imported/arcaneBounce.wav-b584f8efd4733913d792ecf7fb20e9af.sample::
 arcaneMake.wav::AudioStreamWAV::8787541009496994699::1788357287::1788357773::1::::<><><>0<>0<>4cc386f9992c25b05c3546975eb80b57<>res://.godot/imported/arcaneMake.wav-61d32c1bd14573aea9500b23b984f6e8.sample::
 area heal.wav::AudioStreamWAV::5527621318525170537::1788357287::1788357773::1::::<><><>0<>0<>6bbf36ff98ad5a900206ad9587eb3e23<>res://.godot/imported/area heal.wav-2a26669943cd656ef25a3882ddf8fea1.sample::
@@ -534,9 +534,9 @@ neutral3.wav::AudioStreamWAV::2445485156304997791::1788357287::1788357759::1::::
 neutral4.wav::AudioStreamWAV::7178682337516981563::1788357287::1788357759::1::::<><><>0<>0<>7f526ed85c91646eb017e2b7097b7e95<>res://.godot/imported/neutral4.wav-404357f7feb207f9da6f15bcacd45187.sample::
 neutral5.wav::AudioStreamWAV::2968246815254700071::1788357287::1788357759::1::::<><><>0<>0<>dbf073981bf4cb84b939b43950324ed4<>res://.godot/imported/neutral5.wav-74bb0ba4ddb3a5fa6c9728a09f824edd.sample::
 neutral6.wav::AudioStreamWAV::7297973613757177015::1788357287::1788357759::1::::<><><>0<>0<>33021d14183d4201c14601d14ee04a96<>res://.godot/imported/neutral6.wav-99190081dd6ab70beafe0e1a4c095e31.sample::
-::res://Assets/Textures/::1788357422
+::res://Assets/Textures/::1788357771
 grass.png::CompressedTexture2D::8384393696644641815::1788357287::1788357771::1::::<><><>0<>0<>a2ed0a1e517a946ed4e5689821c2afc8<>res://.godot/imported/grass.png-bd8693609e2236b94b5eb6d9741bc1d7.s3tc.ctex::
-::res://Assets/Textures/Particle/::1788357422
+::res://Assets/Textures/Particle/::1788357849
 blood_puddle2.png::CompressedTexture2D::2482406594242415209::1788357287::1788357771::1::::<><><>0<>0<>18467d8d333d8d250cd44e0db4dcc9de<>res://.godot/imported/blood_puddle2.png-49d8e0eb9f7facff60889e1bfad78a62.s3tc.ctex::
 blood_puddle.png::CompressedTexture2D::2283206747122360852::1788357287::1788357770::1::::<><><>0<>0<>f4c0247c2cb9845c04381acefc48e8f0<>res://.godot/imported/blood_puddle.png-a3a2908ed7092e23ef1652a43c2e74e0.s3tc.ctex::
 bone_particle.png::CompressedTexture2D::7317543286942611569::1788357287::1788357770::1::::<><><>0<>0<>a4c65510e269986ef14799a1d8106912<>res://.godot/imported/bone_particle.png-f9dff05431911b8e13d63168ab3e7df2.s3tc.ctex::
@@ -555,7 +555,7 @@ splash_particle.png::CompressedTexture2D::8357657082902702708::1788357287::17883
 stalacmite.png::CompressedTexture2D::6184624758983036054::1788357287::1788357770::1::::<><><>0<>0<>0c66fc2034393646d600a8bf3f97d14e<>res://.godot/imported/stalacmite.png-232d848be17572377bd7bc60a2ded30d.s3tc.ctex::
 star_particle.png::CompressedTexture2D::181292025032645470::1788357287::1788357770::1::::<><><>0<>0<>ef664caba688010cdd8fef3490d42f5e<>res://.godot/imported/star_particle.png-0078cfd11d35504663d7536a9e3256ef.s3tc.ctex::
 wobbly_smoke_particle.png::CompressedTexture2D::1687604117802870919::1788357287::1788357770::1::::<><><>0<>0<>68d66d507a4571d162ba51dfae61dd4e<>res://.godot/imported/wobbly_smoke_particle.png-a89f1c4643bb2065e3be5d17010ac863.s3tc.ctex::
-::res://Assets/Textures/ShaderResources/::1788357422
+::res://Assets/Textures/ShaderResources/::1788357878
 fireball_shape_texture.png::CompressedTexture2D::4977938607739885928::1788357287::1788357770::1::::<><><>0<>0<>2feb76440c40a6b3d3c416dbcb994d67<>res://.godot/imported/fireball_shape_texture.png-2a1bb8e069f04b8904696aca30114227.ctex::
 gradient.tres::Gradient::-1::1788357609::0::1::::<><><>0<>0<><>::
 lava_texture_2.png::CompressedTexture2D::4310597040585161565::1788357287::1788357878::1::::<><><>0<>0<>89195941d7d035a209a5221d796f78ff<>res://.godot/imported/lava_texture_2.png-04d6281493b8afea696f56c0be920d84.s3tc.ctex::
@@ -563,7 +563,7 @@ regular_noise.png::CompressedTexture2D::4580104892089469095::1788357287::1788357
 smooth_corner_rect.png::CompressedTexture2D::7159429613000309151::1788357287::1788357875::1::::<><><>0<>0<>6a237032584a33f7f90aabcf237b88aa<>res://.godot/imported/smooth_corner_rect.png-65c43be9ab77f5f891e848479dedd05a.s3tc.ctex::
 spiky_texture.png::CompressedTexture2D::7378532013882731369::1788357287::1788357771::1::::<><><>0<>0<>431064d48f3973c91728d6f3d03dea94<>res://.godot/imported/spiky_texture.png-fd48c4f019829158456a0bcfca62a5a6.s3tc.ctex::
 swiss_cheese_noise.tga::CompressedTexture2D::9136923293037391352::1788357287::1788357771::1::::<><><>0<>0<>df9f1445f5ffc99c5db03e7f027d1b68<>res://.godot/imported/swiss_cheese_noise.tga-0220365a2235c908211d0447b480877e.ctex::
-::res://Assets/Textures/Sprites/::1788357757
+::res://Assets/Textures/Sprites/::1788357771
 elementSelector.png::CompressedTexture2D::3304345255689422776::1788357287::1788357771::1::::<><><>0<>0<>182595cbf33164a9f893f9f1b33afb46<>res://.godot/imported/elementSelector.png-10dc115af329335a7a26233b10cbf914.ctex::
 leaf_texture.png::CompressedTexture2D::4166442368767367125::1788357287::1788357771::1::::<><><>0<>0<>45194f10ca76c036943ae52eec999ad5<>res://.godot/imported/leaf_texture.png-9e4659e3056c9daa228ef9466b0b3ccc.s3tc.ctex::
 loadingSprites.png::CompressedTexture2D::5745073530401339407::1788357287::1788357757::1::::<><><>0<>0<>99d6338e56881359a2fbede5344b4fdd<>res://.godot/imported/loadingSprites.png-ec8a74278174eac1e19bcc918f93c434.ctex::
@@ -573,19 +573,19 @@ pebbles.png::CompressedTexture2D::7645339034910453775::1788357287::1788357771::1
 shadow.png::CompressedTexture2D::6892909661242111169::1788357287::1788357771::1::::<><><>0<>0<>6a131f200aaaa45bd9b73c9d00572901<>res://.godot/imported/shadow.png-94eaeff4d120d40fa079b36fa66aee7e.s3tc.ctex::
 smallcircle.png::CompressedTexture2D::7122591615960613435::1788357287::1788357771::1::::<><><>0<>0<>7cf87260446f17a926c6f7748c0e36ba<>res://.godot/imported/smallcircle.png-59743edd09c0f9222641faa32967c5d3.ctex::
 spell_icon_holder.png::CompressedTexture2D::7117898465346261280::1788357287::1788357771::1::::<><><>0<>0<>1c8f38d8a1493e660116ad0faf8589c7<>res://.godot/imported/spell_icon_holder.png-05a552b9352341a650809718b8718712.ctex::
-::res://Assets/Textures/Sprites/Element Icons/::1788357422
+::res://Assets/Textures/Sprites/Element Icons/::1788357771
 arcane_element.png::CompressedTexture2D::4258039161881638727::1788357287::1788357771::1::::<><><>0<>0<>72014def85617c9debeb0e426b4f7bf6<>res://.godot/imported/arcane_element.png-ac67790539d8f52cfc65b860a6759577.ctex::
 earth_element.png::CompressedTexture2D::6632621844584460752::1788357287::1788357771::1::::<><><>0<>0<>7cfadf349c2fd72d5724e51065e8c865<>res://.godot/imported/earth_element.png-5ecf313b1c2d4734a5d83674bf311a93.ctex::
 elements.png::CompressedTexture2D::3279587545167874535::1788357287::1788357771::1::::<><><>0<>0<>6bc5644d0014fb67269a243a91fbd4b4<>res://.godot/imported/elements.png-a21d86ce3f70fd222a25555e404c423f.ctex::
 empty_element.png::CompressedTexture2D::2189971094941057052::1788357287::1788357771::1::::<><><>0<>0<>4339e5bb34f647330586c57db89e9b93<>res://.godot/imported/empty_element.png-9dbd30839c50eb5f188014d1eb45df16.ctex::
 fire_element.png::CompressedTexture2D::4337644559892717484::1788357287::1788357771::1::::<><><>0<>0<>dd6241afbfd57afc993a23c17c887857<>res://.godot/imported/fire_element.png-e9dfd64a593351670f3895dd7519f6c1.ctex::
 water_element.png::CompressedTexture2D::7746130344605789786::1788357287::1788357771::1::::<><><>0<>0<>c0fc8981300c7cd0906bd798b0c55b80<>res://.godot/imported/water_element.png-9cf5937c99b2d4f958d303b597bca20e.ctex::
-::res://Assets/Textures/Sprites/Node Icons/::1788357422
+::res://Assets/Textures/Sprites/Node Icons/::1788357771
 componentIcon.png::CompressedTexture2D::7149630791417467047::1788357287::1788357771::1::::<><><>0<>0<>96669cb592bd0c85dcacb541eabd6423<>res://.godot/imported/componentIcon.png-09b77a4e175a65171dd0cba57a06d6ae.ctex::
 entityIcon.png::CompressedTexture2D::7914720071027554977::1788357287::1788357771::1::::<><><>0<>0<>eea54cc1687d8320565c7eb019fd5e48<>res://.godot/imported/entityIcon.png-9b10b7d39715d402a78e5cd1789763cd.ctex::
-::res://Assets/Theme/::1788357422
-fishards_theme.tres::Theme::-1::1788357609::0::1::::<><><>0<>0<><>::res://Assets/Fonts/pixel_small.tres<>res://Assets/Theme/Resources/simple_stone_styleboxflat.tres<>res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres<>res://Assets/Theme/Resources/light_stone_styleboxflat.tres<>res://Assets/Theme/Resources/blank_stylebox.tres
-::res://Assets/Theme/Resources/::1788357422
+::res://Assets/Theme/::1788358095
+fishards_theme.tres::Theme::321476797658981292::1788358095::0::1::::<><><>0<>0<><>::res://Assets/Fonts/pixel_small.tres<>res://Assets/Theme/Resources/simple_stone_styleboxflat.tres<>res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres<>res://Assets/Theme/Resources/light_stone_styleboxflat.tres<>res://Assets/Theme/Resources/blank_stylebox.tres
+::res://Assets/Theme/Resources/::1788357771
 blank_stylebox.tres::StyleBoxFlat::-1::1788357609::0::1::::<><><>0<>0<><>::
 circle_checkbox.png::CompressedTexture2D::7671054919499293599::1788357287::1788357771::1::::<><><>0<>0<>e6c15ebcf5146628086de5b6a5457257<>res://.godot/imported/circle_checkbox.png-3045323ba779398a8535f8503c0dcebb.ctex::
 circle_checkbox_checked.png::CompressedTexture2D::3867847371641684559::1788357287::1788357771::1::::<><><>0<>0<>ab49c112407f1ac8afafa5093fc4284c<>res://.godot/imported/circle_checkbox_checked.png-e5f7c4a4a81f97313f7474a33a7f9aaf.ctex::
@@ -599,7 +599,7 @@ small_arrow.png::CompressedTexture2D::471594581103108309::1788357287::1788357771
 square_checkbox.png::CompressedTexture2D::4542671250396243194::1788357287::1788357771::1::::<><><>0<>0<>af7d39c04c2a72c7339e91f1b95b50e8<>res://.godot/imported/square_checkbox.png-bb894b43923b47378997d3dc3088602f.ctex::
 square_checkbox_checked.png::CompressedTexture2D::9067472431045630895::1788357287::1788357771::1::::<><><>0<>0<>d039f22939b5ced6e9de5d7f8a1a4ff9<>res://.godot/imported/square_checkbox_checked.png-fcaf88f00738c3f93ea00837a0e2b0e9.ctex::
 transparent_dark_rounded.tres::StyleBoxFlat::-1::1788357609::0::1::::<><><>0<>0<><>::
-::res://Gamemode Icons/::1788357422
+::res://Gamemode Icons/::1788357771
 FFA.png::CompressedTexture2D::5167246596864226483::1788357287::1788357771::1::::<><><>0<>0<>21ae97d58ba099d2fb9eaaf8e7112373<>res://.godot/imported/FFA.png-8bdc3fe4c4431ff1d006cbaef8f45b52.ctex::
 FishBall.png::CompressedTexture2D::8615009844370862456::1788357287::1788357771::1::::<><><>0<>0<>c5700f83ad80174588da7d5a041ebfe0<>res://.godot/imported/FishBall.png-5928f7ace859b7cfc3e2192e4fc260a6.ctex::
 LFS.png::CompressedTexture2D::8833564324487251118::1788357287::1788357771::1::::<><><>0<>0<>3a4c1833d377d187825e78b226a36f7a<>res://.godot/imported/LFS.png-88c036469ad9dae0882fe88b2332cebb.ctex::
@@ -635,7 +635,7 @@ SpellCaster.tscn::PackedScene::-1::1788357609::0::1::::<><><>0<>0<><>::res://Scr
 SpellRecoil.tscn::PackedScene::-1::1788357609::0::1::::<><><>0<>0<><>::res://Scripts/Components/SpellRecoil.gd
 StillSolid.tscn::PackedScene::-1::1788357609::0::1::::<><><>0<>0<><>::res://Scripts/Components/StillSolid.gd
 TrapOnCollide.tscn::PackedScene::-1::1788357609::0::1::::<><><>0<>0<><>::res://Scripts/Components/TrapOnCollide.gd
-::res://Scenes/Components/ComponentChildren/::1788357352
+::res://Scenes/Components/ComponentChildren/::1788357762
 RespawnTimer.gd::GDScript::75241097111587743::1788357609::0::1::::<>Timer<><>0<>0<><>::
 ::res://Scenes/Entities/::1788357352
 ::res://Scenes/Entities/Creatures/::1788357422
@@ -703,7 +703,7 @@ RockDash.tscn::PackedScene::-1::1788357605::0::1::::<><><>0<>0<><>::res://Script
 RockDashBoulder.tscn::PackedScene::-1::1788357605::0::1::::<><><>0<>0<><>::res://Scenes/Components/ParentToCreator.tscn<>res://Scripts/Entity.gd<>res://Scenes/Entities/Spells/RockDash.tscn<>res://Scripts/Components/Knockback.gd<>res://Scripts/Components/Damage.gd<>res://Scenes/Components/PrettyDestroy.tscn<>res://Scenes/ParticleEffects/SimpleExplosion.tscn<>res://Scenes/ParticleEffects/SimpleTrail.tscn<>res://Assets/Textures/Particle/smoke_particle.png<>res://Assets/Shaders/particle.gdshader<>res://Scripts/Components/RockDash.gd
 Totem.tscn::PackedScene::-1::1788357605::0::1::::<><><>0<>0<><>::res://Scenes/Components/EntityInfoPanel.tscn<>res://Scripts/Entity.gd<>res://Assets/Meshes/ModelScenes/totem.tscn<>res://Scenes/Components/Health.tscn<>res://Scenes/Components/PrettyDestroy.tscn<>res://Scenes/Components/SpellCaster.tscn<>res://Assets/Sounds/splash1.wav<>res://Scenes/Components/Sounds.tscn<>res://Scripts/Components/Totem.gd<>res://Assets/Sounds/turret land.wav<>res://Assets/Textures/Particle/splash_particle.png<>res://Scenes/Game/Sound.tscn<>res://Assets/Shaders/particle.gdshader<>res://Scripts/Util/EmitOnStartParticles.gd
 Wildfire.tscn::PackedScene::-1::1788357605::0::1::::<><><>0<>0<><>::res://Assets/Shaders/particle.gdshader<>res://Scenes/Components/PrettyDestroy.tscn<>res://Scripts/Entity.gd<>res://Scenes/Components/Damage.tscn<>res://Assets/Textures/Particle/smoke_particle.png<>res://Scenes/ParticleEffects/fireblast_particle_mesh2.tres<>res://Scenes/Materials/Fx/wildfire.tres<>res://Scenes/Components/ParentToCreator.tscn<>res://Assets/Sounds/wildfire.wav<>res://Scenes/Game/Sound.tscn<>res://Scripts/Game/Spells/Wildfire.gd
-::res://Scenes/Game/::1788357352
+::res://Scenes/Game/::1788357763
 Chat.tscn::PackedScene::-1::1788357599::0::1::::<><><>0<>0<><>::res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres<>res://Scripts/Game/Chat.gd<>res://Assets/Theme/fishards_theme.tres
 CircleAnticipation.tscn::PackedScene::-1::1788357599::0::1::::<><><>0<>0<><>::res://Assets/Textures/ShaderResources/regular_noise.png
 CircleShadow.tscn::PackedScene::-1::1788357599::0::1::::<><><>0<>0<><>::
@@ -736,7 +736,7 @@ Tutorial.tscn::PackedScene::-1::1788357601::0::1::::<><><>0<>0<><>::res://Assets
 WaterPlane.tscn::PackedScene::-1::1788357601::0::1::::<><><>0<>0<><>::res://Scenes/Materials/Palette/14.tres
 Winners.tscn::PackedScene::-1::1788357602::0::1::::<><><>0<>0<><>::res://Scenes/Entities/Creatures/FishWizardModel.tscn<>res://Assets/Theme/fishards_theme.tres
 WinnersDisplay.tscn::PackedScene::-1::1788357604::0::1::::<><><>0<>0<><>::res://Assets/Theme/fishards_theme.tres<>res://Scenes/Materials/CelShaded/lava_rock.tres<>res://Assets/Meshes/Body.material<>res://Assets/Fonts/pixel_large.tres<>res://Scripts/Game/WinnersDisplay.gd<>res://Assets/Meshes/Legs.material<>res://Assets/Meshes/Eyes.material<>res://Scenes/Materials/Palette/15.tres<>res://Scenes/Materials/Palette/1.tres<>res://Scenes/Materials/Palette/10.tres<>res://Scenes/Materials/Palette/16.tres<>res://Assets/Meshes/Lips.material<>res://Scenes/Materials/Palette/8.tres<>res://Assets/Meshes/Mouth.material<>res://Assets/Fonts/pixel_medium.tres<>res://Scenes/Game/ExcitingPanel.gd
-::res://Scenes/Game/Gamemodes/::1788357352
+::res://Scenes/Game/Gamemodes/::1788357763
 FishBall.gd::GDScript::8851988630167355167::1788357605::0::1::::<>Node<><>0<>0<><>::
 FishBall.tscn::PackedScene::-1::1788357605::0::1::::<><><>0<>0<><>::res://Scenes/Game/Gamemodes/FishBall.gd
 FreeForAll.gd::GDScript::3735149586959544308::1788357605::0::1::::<>Node<><>0<>0<><>::
@@ -805,7 +805,7 @@ RoomSettings.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://As
 Teams.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://Assets/Fonts/pixel_medium.tres<>res://Assets/Theme/fishards_theme.tres<>res://Scripts/MainMenu/TeamsUI.gd<>res://Scenes/MainMenu/DisplayPlayer.tscn
 textStat.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://Assets/Fonts/pixel_medium.tres
 ThemeTest.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://Assets/Theme/Resources/blank_stylebox.tres<>res://Assets/Fonts/pixel_medium.tres<>res://Assets/Theme/Resources/simple_stone_styleboxflat.tres<>res://Assets/Theme/fishards_theme.tres
-::res://Scenes/MainMenu/MainMenuUIChildren/::1788357353
+::res://Scenes/MainMenu/MainMenuUIChildren/::1788357764
 ControlsUI.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://Assets/Fonts/pixel_medium.tres<>res://Assets/Fonts/pixel_large.tres<>res://Scripts/MainMenu/ControlsUI.gd<>res://Assets/Theme/fishards_theme.tres<>res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_4px_margin.tres<>res://Assets/Images/UI/Game/ElementIcons/arcane.png<>res://Assets/Images/UI/Game/ElementIcons/fire.png<>res://Assets/Images/UI/Game/ElementIcons/goo.png<>res://Assets/Images/UI/Game/ElementIcons/earth.png<>res://Assets/Images/UI/Game/ElementIcons/water.png<>res://Assets/Shaders/circle.gdshader<>res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_for_buttons.tres
 CustomizeUI.gd::GDScript::7069908882520225375::1788357598::0::1::::<>MainMenuUIChild<><>0<>0<><>::
 CustomizeUI.tscn::PackedScene::-1::1788357598::0::1::::<><><>0<>0<><>::res://Assets/Theme/fishards_theme.tres<>res://Scenes/MainMenu/MainMenuUIChildren/CustomizeUI.gd<>res://Assets/Fonts/pixel_medium.tres<>res://Scenes/MainMenu/MainMenuUIChildren/simple_stone_for_buttons.tres<>res://Scenes/MainMenu/CosmeticsSidePanel.tscn<>res://Scenes/MainMenu/Util/PopupGridContainer.tscn<>res://Scenes/MainMenu/MainMenuUIChildren/SpellBookUI.tscn<>res://Assets/Theme/Resources/hollow_stone_styleboxflat.tres<>res://Assets/Theme/Resources/blank_stylebox.tres<>res://Scripts/MainMenu/StatsSidePanel.gd<>res://Scenes/MainMenu/RankContainer.tscn<>res://Scenes/MainMenu/textStat.tscn<>res://Scenes/MainMenu/NewNotice.tscn<>res://Scenes/MainMenu/ColorSelectButton.tscn<>res://Scenes/MainMenu/ElementsDisplay.tscn<>res://Scenes/MainMenu/Util/MenuButtonV2.tscn<>res://Assets/Fonts/pixel_large.tres
@@ -899,7 +899,7 @@ waterfall_impact_foam.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<>
 waterfall_splash.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/waterfall_splash.gdshader
 waterfall_water.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/waterfall_water.gdshader
 wildfire.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/fireblast.gdshader<>res://Assets/Textures/ShaderResources/regular_noise.png<>res://Assets/Textures/ShaderResources/smooth_corner_rect.png
-::res://Scenes/Materials/Map/::1788357353
+::res://Scenes/Materials/Map/::1788358095
 default_foam.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Textures/ShaderResources/regular_noise.png<>res://Assets/Shaders/new_foam.gdshader
 ice_ground.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/cel.gdshader
 ice_sheets.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/cel.gdshader
@@ -907,7 +907,7 @@ ice_water.tres::StandardMaterial3D::-1::1788357592::0::1::::<><><>0<>0<><>::
 lava_ground.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/toon.gdshader
 lava_rock.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/cel.gdshader
 lava_rocks.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/cel.gdshader
-rock_foam.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Shaders/new_foam.gdshader<>res://Assets/Textures/ShaderResources/regular_noise.png
+rock_foam.tres::ShaderMaterial::2969292660636624801::1788358095::0::1::::<><><>0<>0<><>::uid://du7ailhhg5v3u::::res://Assets/Shaders/new_foam.gdshader<>uid://b6ivwneglumv4::::res://Assets/Textures/ShaderResources/regular_noise.png
 small_foam.tres::ShaderMaterial::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Textures/ShaderResources/regular_noise.png<>res://Assets/Shaders/new_foam.gdshader
 transparent_ice.tres::StandardMaterial3D::-1::1788357592::0::1::::<><><>0<>0<><>::
 tropic_island_dark.tres::StandardMaterial3D::-1::1788357592::0::1::::<><><>0<>0<><>::
@@ -981,17 +981,17 @@ Test.tscn::PackedScene::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Sha
 WildfireEffect.tscn::PackedScene::-1::1788357592::0::1::::<><><>0<>0<><>::res://Scenes/Materials/Fx/wildfire.tres<>res://Scenes/ParticleEffects/fireblast_particle_mesh2.tres<>res://Assets/Textures/Particle/smoke_particle.png<>res://Assets/Shaders/particle.gdshader<>res://Scenes/ParticleEffects/fireblast_particle_mesh.tres
 ::res://Scenes/ParticleEffects/Environment/::1788357353
 Pebbles.tscn::PackedScene::-1::1788357592::0::1::::<><><>0<>0<><>::res://Assets/Textures/Particle/pebbles_particle.png<>res://Assets/Textures/Sprites/pebbles.png<>res://Assets/Shaders/particle.gdshader
-::res://Scripts/::1788357352
-Entity.gd::GDScript::2208680697885239962::1788357588::0::1::::Entity<>Node3D<><>0<>1<><>::
+::res://Scripts/::1788432696
+Entity.gd::GDScript::2208680697885239962::1788432696::0::1::::Entity<>Node3D<><>0<>1<><>::
 EntityKinematic.gd::GDScript::2657656642911572620::1788357588::0::1::::<>CharacterBody3D<><>0<>0<><>::
 KinematicEntity.gd::GDScript::5109283184126784850::1788357588::0::1::::<>Entity<><>0<>0<><>::
-::res://Scripts/Classes/::1788357352
+::res://Scripts/Classes/::1788357765
 Hat.gd::GDScript::4477561831290348529::1788357589::0::1::::Hat<>Node3D<><>0<>0<><>::
-::res://Scripts/Components/::1788357352
+::res://Scripts/Components/::1788432696
 ArcaneWall.gd::GDScript::7948257143438040394::1788357589::0::1::::<>Component<><>0<>0<><>::
 Beam.gd::GDScript::7614618367432201501::1788357589::0::1::::<>SpatialComponent<><>0<>0<><>::
 ChangeSpeedOnCollide.gd::GDScript::4476535743972341241::1788357589::0::1::::ChangeSpeedOnCollide<>Component<><>0<>0<><>::
-Component.gd::GDScript::4774154968487000366::1788357589::0::1::::Component<>Node<><>0<>0<><>::
+Component.gd::GDScript::4774154968487000366::1788432696::0::1::::Component<>Node<><>0<>0<><>::
 Crab.gd::GDScript::5576688817677208506::1788357589::0::1::::Crab<>Component<><>0<>0<><>::
 Damage.gd::GDScript::6865480934590358787::1788357589::0::1::::Damage<>Component<><>0<>0<><>::
 EntityInfoPanel.gd::GDScript::5920025439047013662::1788357589::0::1::::EntityInfoPanel<>Component<><>0<>0<><>::
@@ -1019,7 +1019,7 @@ StillSolid.gd::GDScript::5157548073144392165::1788357589::0::1::::StillSolid<>Co
 Totem.gd::GDScript::128726625745116178::1788357589::0::1::::<>Component<><>0<>0<><>::
 TrapOnCollide.gd::GDScript::9222306745035941178::1788357589::0::1::::TrapOnCollide<>Component<><>0<>0<><>::
 Turret.gd::GDScript::5117300711186461513::1788357589::0::1::::Turret<>Component<><>0<>0<><>::
-::res://Scripts/Game/::1788357422
+::res://Scripts/Game/::1788357766
 Chat.gd::GDScript::1745563749247897190::1788357589::0::1::::<>Panel<><>0<>0<><>::
 Client.gd::GDScript::4996432127465614157::1788357589::0::1::::<>Node<><>0<>0<><>::
 DeathPopup.gd::GDScript::7563706522046127742::1788357589::0::1::::<>ColorRect<><>0<>0<><>::
@@ -1048,7 +1048,7 @@ SpellHUD.gd::GDScript::8221260670319524036::1788357589::0::1::::<>Control<><>0<>
 SpellHUDElement.gd::GDScript::5941912442075440456::1788357589::0::1::::<>Control<><>0<>0<><>::
 SpellMarker.gd::GDScript::6439014365556038050::1788357589::0::1::::<>Sprite3D<><>0<>0<><>::
 WinnersDisplay.gd::GDScript::6037324304306042068::1788357589::0::1::::<>Control<><>0<>0<><>::
-::res://Scripts/Game/Spells/::1788357353
+::res://Scripts/Game/Spells/::1788357766
 DeathEffect.gd::GDScript::8156136847683573893::1788357589::0::1::::<>Node3D<><>0<>0<><>::
 FireblastEffect.gd::GDScript::4046566109001294696::1788357589::0::1::::<>Node3D<><>0<>0<><>::
 FireExplosion.gd::GDScript::7298142878121526548::1788357589::0::1::::<>Node3D<><>0<>0<><>::
@@ -1057,12 +1057,12 @@ GrabEffect.gd::GDScript::1766806007546638587::1788357589::0::1::::Grab<>Componen
 RockDash.gd::GDScript::4805916138023627260::1788357589::0::1::::<>Node3D<><>0<>0<><>::
 Spells.gd::GDScript::8348688512659053199::1788357589::0::1::::<>Node<><>0<>0<><>::
 Wildfire.gd::GDScript::956104194829464238::1788357589::0::1::::<>Node3D<><>0<>0<><>::
-::res://Scripts/Globals/::1788357422
+::res://Scripts/Globals/::1788359624
 AchievementHandler.gd::GDScript::4669899824340583739::1788357588::0::1::::<>Node<><>0<>0<><>::
 CursorHandler.gd::GDScript::8620957028975188390::1788357588::0::1::::<>Node<><>0<>0<><>::
 GamemodeValues.gd::GDScript::7182434118756161618::1788357589::0::1::::<>Node<><>0<>0<><>::
 Globals.gd::GDScript::1974162126406947052::1788357589::0::1::::<>Node<><>0<>0<><>::
-Lobby.gd::GDScript::303269325671648542::1788357589::0::1::::<>Node<><>0<>0<><>::
+Lobby.gd::GDScript::303269325671648542::1788359624::0::1::::<>Node<><>0<>0<><>::
 MusicAndSFXHandler.gd::GDScript::3090771337600485673::1788357589::0::1::::<>Node<><>0<>0<><>::
 PacketHandler.gd::GDScript::6058229257486539973::1788357589::0::1::::<>Node<><>0<>0<><>::
 PacketSender.gd::GDScript::5703509773925682335::1788357589::0::1::::<>Node<><>0<>0<><>::
@@ -1072,7 +1072,7 @@ SteamStub.gd::GDScript::1342245590353833672::1788357589::0::1::::<>Node<><>0<>0<
 SteamValues.gd::GDScript::2285812469546863152::1788357589::0::1::::<>Node<><>0<>0<><>::
 UserSettings.gd::GDScript::715055145081789100::1788357589::0::1::::<>Node<><>0<>0<><>::
 Util.gd::GDScript::8110904735173953558::1788357589::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/MainMenu/::1788357352
+::res://Scripts/MainMenu/::1788357767
 Button.gd::GDScript::8936819500233493603::1788357588::0::1::::<>Button<><>0<>1<><>::
 ComboContainer.gd::GDScript::3524522804424491378::1788357588::0::1::::<>Control<><>0<>0<><>::
 ControlsUI.gd::GDScript::1366463922922367625::1788357588::0::1::::<>MainMenuUIChild<><>0<>0<><>::
@@ -1106,7 +1106,7 @@ SpellDescription.gd::GDScript::314072877496453473::1788357588::0::1::::<>VBoxCon
 StatsSidePanel.gd::GDScript::3600213744185381956::1788357588::0::1::::<>Control<><>0<>0<><>::
 TeamsUI.gd::GDScript::7546341036797171557::1788357588::0::1::::<>Panel<><>0<>0<><>::
 UI.gd::GDScript::7255156171680055128::1788357588::0::1::::<>Control<><>0<>0<><>::
-::res://Scripts/Util/::1788357352
+::res://Scripts/Util/::1788357767
 AdjustableBeam.gd::GDScript::7262916880811824161::1788357588::0::1::::<>ParticleParent<><>0<>0<><>::
 ColorDependsOnBackgroundLabel.gd::GDScript::8916007948612849912::1788357588::0::1::::<>Label<><>0<>0<><>::
 EmitOnStartParticles.gd::GDScript::1253881080528105258::1788357588::0::1::::<>Particles<><>0<>0<><>::
@@ -1116,11 +1116,12 @@ ProfanityFilter.gd::GDScript::5355252819802722299::1788357588::0::1::::<>Node<><
 ResourceQueue.gd::GDScript::3414304854654744489::1788357588::0::1::::<>RefCounted<><>0<>0<><>::
 ShaderPreCompiler.gd::GDScript::6559018953468266129::1788357588::0::1::::<>Node3D<><>0<>0<><>::
 Stats.gd::GDScript::6474468101644298654::1788357588::0::1::::<>Control<><>0<>0<><>::
-::res://Waddlemancy/::1788357447
+::res://Waddlemancy/::1788358452
+Test.tscn::PackedScene::4511875716197009488::1788358452::0::1::::<><><>0<>0<><>::
 ::res://Waddlemancy/Characters/::1788357447
 NewWaddleModel.tscn::PackedScene::-1::1788357588::0::1::::<><><>0<>0<><>::res://Waddlemancy/Characters/Models/NewWaddle.glb
 Waddle.tscn::PackedScene::-1::1788357588::0::1::::<><><>0<>0<><>::res://Waddlemancy/Characters/Models/Material_002.material<>res://Waddlemancy/Characters/NewWaddleModel.tscn
-::res://Waddlemancy/Characters/Models/::1788357447
+::res://Waddlemancy/Characters/Models/::1788357822
 Material_001.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><>::
 Material_002.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><>::
 Material_003.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><>::
@@ -1130,8 +1131,8 @@ Material_006.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><
 Material_007.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><>::
 Material_008.material::StandardMaterial3D::-1::1788357422::0::1::::<><><>0<>0<><>::
 NewWaddle.glb::PackedScene::6039253326203286526::1788357422::1788357795::1::::<><><>0<>0<>bf9eb15245afad2cfdd24b21447cb07e<>res://.godot/imported/NewWaddle.glb-b518b04aa6938350bd848482bddea442.scn::uid://volu6fumsdki::::res://Waddlemancy/Characters/Models/NewWaddle_Material.png<>uid://w17nlayy80ex::::res://Waddlemancy/Characters/Models/NewWaddle_Material_1.png<>uid://cdms7ro0im4n0::::res://Waddlemancy/Characters/Models/NewWaddle_Material_2.png
-OldWaddle.tscn::PackedScene::-1::1788357588::0::1::::<><><>0<>0<><>::
 NewWaddle_Material.png::CompressedTexture2D::1503572244627378296::1788357794::1788357822::1::::<><><>0<>0<>c70eaeeccf3a7b32175c596c45f94796<>res://.godot/imported/NewWaddle_Material.png-ecc18efa029cf446440ff541d7038feb.s3tc.ctex::
 NewWaddle_Material_1.png::CompressedTexture2D::1599795119612257035::1788357794::1788357822::1::::<><><>0<>0<>23088415494d9702170d7e93fe371d9c<>res://.godot/imported/NewWaddle_Material_1.png-accf8c97c22fb0b4338b3ab6a30e0e07.s3tc.ctex::
 NewWaddle_Material_2.png::CompressedTexture2D::5009331398295065799::1788357795::1788357822::1::::<><><>0<>0<>bda26e32e99f0398dd58cc3f0f812ba3<>res://.godot/imported/NewWaddle_Material_2.png-0961c20acab8acbcd5d4f9a5ec9f37a4.s3tc.ctex::
+OldWaddle.tscn::PackedScene::-1::1788357588::0::1::::<><><>0<>0<><>::
 WaddleBroken.tscn::PackedScene::-1::1788357588::0::1::::<><><>0<>0<><>::res://Waddlemancy/Characters/Models/Material_001.material<>res://Waddlemancy/Characters/Models/Material_007.material<>res://Waddlemancy/Characters/Models/Material_006.material<>res://Waddlemancy/Characters/Models/Material_002.material<>res://Waddlemancy/Characters/Models/Material_004.material<>res://Waddlemancy/Characters/Models/Material_008.material<>res://Waddlemancy/Characters/Models/Material_003.material<>res://Waddlemancy/Characters/Models/Material_005.material

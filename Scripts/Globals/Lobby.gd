@@ -140,16 +140,16 @@ func player_is_in_temp_bot(id: int) -> bool:
 
 func remove_player_from_lobby(player_info: Dictionary) -> void:
 	if client_members.find(player_info) != -1:
-		client_members.remove(client_members.find(player_info))
+		client_members.remove_at(client_members.find(player_info))
 		var close_p2p_res: bool = Steam.closeP2PSessionWithUser(player_info["id"])
 		if close_p2p_res == false:
 			Util.log_print("Lobby", "[Host]: Failed to close p2p session with " + player_info["name"])
 		else:
 			Util.log_print("Lobby", "[Host]: Closed p2p with " + player_info["name"])
 	elif _bot_members.find(player_info) != -1:
-		_bot_members.remove(_bot_members.find(player_info))
+		_bot_members.remove_at(_bot_members.find(player_info))
 	elif _temp_bot_members.find(player_info) != -1:
-		_temp_bot_members.remove(_temp_bot_members.find(player_info))
+		_temp_bot_members.remove_at(_temp_bot_members.find(player_info))
 	
 	Util.log_print("Lobby", "[Host]: Removed " + player_info["name"] + " from lobby")
 	SceneLoader.remove_loaded_player(player_info["id"])
