@@ -1,11 +1,11 @@
 extends Node
 
-export(Array, Material) var palette_array
+@export var palette_array # (Array, Material)
 
-export(Array, Material) var skin_colors
-export(Array, Material) var legs_colors
-export(Array, Material) var mouth_colors
-export(Array, Material) var eyes_colors
+@export var skin_colors # (Array, Material)
+@export var legs_colors # (Array, Material)
+@export var mouth_colors # (Array, Material)
+@export var eyes_colors # (Array, Material)
 
 signal hat_set(hat)
 
@@ -43,14 +43,14 @@ enum HatTypes {
 	DISGUISE,
 }
 
-onready var hat_icons: Dictionary = {
+@onready var hat_icons: Dictionary = {
 	HatTypes.NONE: preload("res://Assets/Images/UI/GeneratedIcons/test.png"),
 	HatTypes.TEST: preload("res://Assets/Images/UI/GeneratedIcons/test.png"),
 }
 
 
 var my_skin: Dictionary
-onready var hurt_skin: Dictionary = {
+@onready var hurt_skin: Dictionary = {
 	"mouth": palette_array.find(6),
 	"eyes": palette_array.find(6),
 	"skin": palette_array.find(6),
@@ -112,33 +112,33 @@ func create_bot_skin(player_type: int, clone_from: Player) -> Dictionary:
 
 
 # Just a fun lil thing I did to celebrate fixing seg fault, we can remove :D
-func apply_damage_skin(entity: Entity, prev_skin: Dictionary, fishard_model: Spatial) -> void:
+func apply_damage_skin(entity: Entity, prev_skin: Dictionary, fishard_model: Node3D) -> void:
 	apply_skin_to_fishard(entity, hurt_skin, fishard_model)
 
 
-func apply_skin_to_fishard(entity: Entity, apply_skin: Dictionary, fishard_model: Spatial, team_name: String = "") -> Dictionary:
+func apply_skin_to_fishard(entity: Entity, apply_skin: Dictionary, fishard_model: Node3D, team_name: String = "") -> Dictionary:
 	var new_skin = apply_skin.duplicate()
 	var ignore_team_color = false
 	if entity != null:
 		ignore_team_color = entity.get_subtype() != Globals.PlayerTypes.CLIENT && entity.get_subtype() != Globals.PlayerTypes.EASY_BOT && entity.get_subtype() != Globals.PlayerTypes.MEDIUM_BOT && entity.get_subtype() != Globals.PlayerTypes.HARD_BOT
 		
 	if apply_skin.has("mouth"):
-		fishard_model.set_surface_material(0, palette_array[apply_skin["mouth"]])
+		fishard_model.set_surface_override_material(0, palette_array[apply_skin["mouth"]])
 	if apply_skin.has("eyes"):
-		fishard_model.set_surface_material(1, palette_array[apply_skin["eyes"]])
+		fishard_model.set_surface_override_material(1, palette_array[apply_skin["eyes"]])
 	if apply_skin.has("legs"):
-		fishard_model.set_surface_material(3, palette_array[apply_skin["legs"]])
+		fishard_model.set_surface_override_material(3, palette_array[apply_skin["legs"]])
 	if apply_skin.has("inside"):
-		fishard_model.set_surface_material(4, palette_array[apply_skin["inside"]])
+		fishard_model.set_surface_override_material(4, palette_array[apply_skin["inside"]])
 	
 	if team_name == "Red Team" && ignore_team_color == false:
-		fishard_model.set_surface_material(2, palette_array[25])
+		fishard_model.set_surface_override_material(2, palette_array[25])
 		new_skin["skin"] = 25
 	elif team_name == "Blue Team" && ignore_team_color == false:
-		fishard_model.set_surface_material(2, palette_array[14])
+		fishard_model.set_surface_override_material(2, palette_array[14])
 		new_skin["skin"] = 14
 	elif apply_skin.has("skin"):
-		fishard_model.set_surface_material(2, palette_array[apply_skin["skin"]])
+		fishard_model.set_surface_override_material(2, palette_array[apply_skin["skin"]])
 	
 	return new_skin
 
@@ -194,7 +194,7 @@ func randomize_skin() -> Dictionary:
 	return my_skin
 
 
-func fancy_pants(fishard_model: Spatial) -> void:
+func fancy_pants(fishard_model: Node3D) -> void:
 	my_skin["legs"] = palette_array.find(palette_array[Util.rand.randi_range(0, palette_array.size()-1)])
 	_save_customizations()
 	apply_skin_to_fishard(null, my_skin, fishard_model)

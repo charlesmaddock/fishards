@@ -12,23 +12,23 @@
 [node name="ice_island_ctf" instance=ExtResource( 6 )]
 
 [node name="Curve027" parent="." index="0"]
-transform = Transform( -0.781427, 0, -3.04299e-07, 0, 0.63163, 0, 3.04299e-07, 0, -0.781427, 0, 0, 0 )
+transform = Transform3D( -0.781427, 0, -3.04299e-07, 0, 0.63163, 0, 3.04299e-07, 0, -0.781427, 0, 0, 0 )
 material/0 = ExtResource( 4 )
 
 [node name="Curve009" parent="." index="1"]
-transform = Transform( -0.781427, 0, -3.04299e-07, 0, 0.63163, 0, 3.04299e-07, 0, -0.781427, 0, 0, 0 )
+transform = Transform3D( -0.781427, 0, -3.04299e-07, 0, 0.63163, 0, 3.04299e-07, 0, -0.781427, 0, 0, 0 )
 material/0 = ExtResource( 3 )
 
-[node name="DirectionalLight" parent="." index="2" instance=ExtResource( 7 )]
+[node name="DirectionalLight3D" parent="." index="2" instance=ExtResource( 7 )]
 
 [node name="WaterPlane" parent="." index="3" instance=ExtResource( 1 )]
-transform = Transform( -224.394, 0, 3.38826e-05, 0, 1.12197, 0, -3.38826e-05, 0, -224.394, 0, -0.754757, 0 )
+transform = Transform3D( -224.394, 0, 3.38826e-05, 0, 1.12197, 0, -3.38826e-05, 0, -224.394, 0, -0.754757, 0 )
 material/0 = ExtResource( 5 )
 
-[node name="Camera" parent="." index="4" instance=ExtResource( 2 )]
+[node name="Camera3D" parent="." index="4" instance=ExtResource( 2 )]
 
 [node name="fish_wizard" parent="." index="5" instance=ExtResource( 8 )]
-transform = Transform( -0.860724, 0, -0.509071, 0, 1, 0, 0.509071, 0, -0.860724, 15.2792, 0.6707, 0 )
+transform = Transform3D( -0.860724, 0, -0.509071, 0, 1, 0, 0.509071, 0, -0.860724, 15.2792, 0.6707, 0 )
 
 [node name="fish_wizard2" parent="." index="6" instance=ExtResource( 8 )]
-transform = Transform( -0.27018, 0, 0.96281, 0, 1, 0, -0.96281, 0, -0.27018, 18.1103, 0.6707, -9.44362 )
+transform = Transform3D( -0.27018, 0, 0.96281, 0, 1, 0, -0.96281, 0, -0.27018, 18.1103, 0.6707, -9.44362 )

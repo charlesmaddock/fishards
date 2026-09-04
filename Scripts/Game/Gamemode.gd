@@ -25,38 +25,38 @@ var _gamemode_child: Node
 var _difficulty_health_mod: float = 1
 var _count_down_time: int = -1
 
-onready var gamemodeControlParent: Node = $GamemodeControl
-onready var gameStateTimer: Timer = $GameStateTimer
-onready var allRoundsOverTimer: Timer = $AllRoundsOverTimer
-onready var roundOverTimer: Timer = $RoundOverTimer
-onready var elementSwitchTimer: Timer = $ElementSwitchTimer
+@onready var gamemodeControlParent: Node = $GamemodeControl
+@onready var gameStateTimer: Timer = $GameStateTimer
+@onready var allRoundsOverTimer: Timer = $AllRoundsOverTimer
+@onready var roundOverTimer: Timer = $RoundOverTimer
+@onready var elementSwitchTimer: Timer = $ElementSwitchTimer
 
-onready var winnersDisplay: Control = $GamemodeControl/WinnersDisplay
-onready var gameOverPanel = $GamemodeControl/GameOverPanel
-onready var leaderBoard = $GamemodeControl/Leaderboard
-onready var mapShrinker = $MapShrinker
+@onready var winnersDisplay: Control = $GamemodeControl/WinnersDisplay
+@onready var gameOverPanel = $GamemodeControl/GameOverPanel
+@onready var leaderBoard = $GamemodeControl/Leaderboard
+@onready var mapShrinker = $MapShrinker
 
-onready var deathPanel: Control = $GamemodeControl/DeathPanel
-onready var deathPanelText: Label = $GamemodeControl/DeathPanel/Margin/VBox/Text
-onready var deathPanelTitle: Label = $GamemodeControl/DeathPanel/Margin/VBox/Title
-onready var deathPopup: ColorRect = $GamemodeControl/DeathPopup
-onready var spectateTip: Control = $GamemodeControl/SpectateTip
+@onready var deathPanel: Control = $GamemodeControl/DeathPanel
+@onready var deathPanelText: Label = $GamemodeControl/DeathPanel/Margin/VBox/Text
+@onready var deathPanelTitle: Label = $GamemodeControl/DeathPanel/Margin/VBox/Title
+@onready var deathPopup: ColorRect = $GamemodeControl/DeathPopup
+@onready var spectateTip: Control = $GamemodeControl/SpectateTip
 
-onready var gameStartingScreen: Control = $GamemodeControl/GameStartingScreen
-onready var gameStartingScreenTimerText: Label = $GamemodeControl/GameStartingScreen/Panel/Countdown
-onready var gamemodeText: Label = $GamemodeControl/GameStartingScreen/Panel/GamemodeText
-onready var currentRoundText: Label = $GamemodeControl/GameStartingScreen/Panel/Round
-onready var centerScreenTimer: Timer = $CenterScreenTimer
+@onready var gameStartingScreen: Control = $GamemodeControl/GameStartingScreen
+@onready var gameStartingScreenTimerText: Label = $GamemodeControl/GameStartingScreen/Panel/Countdown
+@onready var gamemodeText: Label = $GamemodeControl/GameStartingScreen/Panel/GamemodeText
+@onready var currentRoundText: Label = $GamemodeControl/GameStartingScreen/Panel/Round
+@onready var centerScreenTimer: Timer = $CenterScreenTimer
 
-onready var inGameScreen: Control = $GamemodeControl/InGameScreen
-onready var inGameScreenLabel: Label = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Text
-onready var inGameIcon: TextureRect = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon/TextureRect
-onready var inGameIconShadow: TextureRect = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon/TextureRect2
-onready var inGameAnimator: AnimationPlayer = $GamemodeControl/InGameScreen/InGameScreenIconContainer/IngameIconAnimation
-onready var timer_icon: Texture = load("res://Assets/Images/UI/Game/timer_icon.png")
-onready var fish_icon: Texture = load("res://Assets/Images/UI/Game/fish_icon.png")
+@onready var inGameScreen: Control = $GamemodeControl/InGameScreen
+@onready var inGameScreenLabel: Label = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Text
+@onready var inGameIcon: TextureRect = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon/TextureRect
+@onready var inGameIconShadow: TextureRect = $GamemodeControl/InGameScreen/InGameScreenIconContainer/Icon/TextureRect2
+@onready var inGameAnimator: AnimationPlayer = $GamemodeControl/InGameScreen/InGameScreenIconContainer/IngameIconAnimation
+@onready var timer_icon: Texture2D = load("res://Assets/Images/UI/Game/timer_icon.png")
+@onready var fish_icon: Texture2D = load("res://Assets/Images/UI/Game/fish_icon.png")
 
-onready var killLog: VBoxContainer = $GamemodeControl/KillLog
+@onready var killLog: VBoxContainer = $GamemodeControl/KillLog
 var kill_log_item_scene = preload("res://Scenes/Game/KillLogItem.tscn")
 
 
@@ -91,9 +91,9 @@ func start_gamemode(gamemode_child: Node) -> void:
 
 
 func _ready():
-	Lobby.connect("room_settings_updated", self, "_on_room_settings_update")
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	Lobby.connect("force_next_round", self, "_on_force_next_round")
+	Lobby.connect("room_settings_updated", Callable(self, "_on_room_settings_update"))
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	Lobby.connect("force_next_round", Callable(self, "_on_force_next_round"))
 	
 	gameStartingScreen.visible = false
 	spectateTip.visible = false
@@ -249,10 +249,10 @@ func get_amount_of_players_left(in_team: Dictionary = {}) -> int:
 		
 		if RoomSettings.get_rounds_gamemode() == GamemodeValues.Gamemodes.Survive:
 			var team_info = Lobby.get_team_w_name("Red Team")
-			if team_info.empty() == false:
+			if team_info.is_empty() == false:
 				return team_info["member_scores"].size()
 		
-		if in_team.empty() == true:
+		if in_team.is_empty() == true:
 			for living_player_id in living_players_ids:
 				living_player_components.append(players_node.get_player_component(living_player_id, "get_amount_of_players_left 1"))
 		else:
@@ -318,7 +318,7 @@ func p2p_change_game_state(state: int, time_until_next_state: float) -> void:
 				players_node.trap_all_players_for(get_game_state_time(GamemodeValues.GameStates.STARTING))
 			
 			set_game_state_timer(time_until_next_state)
-			yield(get_tree(), "idle_frame")
+			await get_tree().idle_frame
 			update_amount_of_alive_players()
 			
 			if RoomSettings.get_element_mode() == Globals.ElementModes.RANDOM:
@@ -423,8 +423,8 @@ func update_round_timer_label() -> void:
 			inGameScreenLabel.text = str(int(get_state_time_left()))
 			if round_almost_over == false && get_state_time_left() < 20:
 				round_almost_over = true
-				inGameScreenLabel.set("custom_colors/font_color", Color.red)
-				inGameIcon.set_modulate(Color.red) 
+				inGameScreenLabel.set("theme_override_colors/font_color", Color.RED)
+				inGameIcon.set_modulate(Color.RED) 
 				inGameAnimator.play("warning")
 
 
@@ -560,7 +560,7 @@ func check_switch_spectate(switch_left: bool = false) -> void:
 		var spectatable_players: Array # Array of player IDs
 		if GamemodeValues.get_current_rounds_spectate_mode() == GamemodeValues.SpectateMode.OWN_TEAM:
 			var my_team = Lobby.get_team_info_from_player_id(SteamValues.STEAM_ID)
-			if my_team.empty() == false:
+			if my_team.is_empty() == false:
 				var my_teams_player_ids = my_team["member_scores"].keys()
 				for player_id in my_teams_player_ids:
 					if players_node.is_alive(player_id) == true:
@@ -579,7 +579,7 @@ func check_switch_spectate(switch_left: bool = false) -> void:
 			if _spectate_index >= spectatable_players.size():
 				_spectate_index = 0
 
-		if _spectate_index >= 0 && spectatable_players.empty() == false:
+		if _spectate_index >= 0 && spectatable_players.is_empty() == false:
 			Globals.set_camera_following(players_node.get_player_entity(spectatable_players[_spectate_index]))
 
 
@@ -594,7 +594,7 @@ func _on_player_killed(killed_id, killer_id, killed_with_spell):
 	
 	if killer_name != "" && killed_name != "" && killed_with_spell != Globals.SpellTypes.NONE:
 		killLog.set_visible(true)
-		var kill_log_item = kill_log_item_scene.instance()
+		var kill_log_item = kill_log_item_scene.instantiate()
 		kill_log_item.set_values(killer_name, killed_name, killed_with_spell)
 		killLog.add_child(kill_log_item)
 

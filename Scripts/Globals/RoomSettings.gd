@@ -6,7 +6,7 @@ var print_room_setting_updates: bool = false
 
 
 func _ready():
-	Lobby.connect("player_killed", self, "_on_player_killed")
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
 
 
 func _on_player_killed(_killed_id: int, killer_id: int, _with_spell: int) -> void:
@@ -284,7 +284,7 @@ func find_players_w_highest_score(all_rounds_leaderboard: Array) -> Array:
 			most_rounds_won = leaderboard_obj.score
 		elif leaderboard_obj.score == most_rounds_won:
 			most_round_winner_objs.append(leaderboard_obj)
-			most_round_winner_objs.sort_custom(kill_sorter, "sort")
+			most_round_winner_objs.sort_custom(Callable(kill_sorter, "sort"))
 			most_round_winner_objs.invert()
 	return most_round_winner_objs
 

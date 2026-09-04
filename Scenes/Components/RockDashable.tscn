@@ -13,25 +13,25 @@ const _knockback_component_scene = preload(\"res://Scenes/Components/Knockback.t
 
 
 var _damage_component: Damage
-export(float) var _damage: int = 15
+@export var _damage: float = 15
 var _knockback_component: Knockback
-export(float) var _knockback: float = 1
+@export var _knockback: float = 1
 var _health_component: Health
 
 
-onready var _rock_dash_anim = $RockDash 
-onready var _rock_dash_area = $RockDashArea 
+@onready var _rock_dash_anim = $RockDash 
+@onready var _rock_dash_area = $RockDashArea 
 var _is_rock_dashing: bool = false
 
 
 func _ready():
 	_rock_dash_area.collision_mask = Globals.ColBits.HURTABLE + Globals.ColBits.KNOCKBACKABLE  + Globals.ColBits.SOLID
-	_rock_dash_area.connect(\"area_entered\", self, \"_on_entity_collided\")
+	_rock_dash_area.connect(\"area_entered\", Callable(self, \"_on_entity_collided\"))
 	
 	# Get or create a damage and knockback component for rock dash
 	_damage_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Damage)
 	if _damage_component == null:
-		_damage_component = _damage_component_scene.instance()
+		_damage_component = _damage_component_scene.instantiate()
 		_damage_component.set_name(\"Rock Dash Damage\")
 		_damage_component.damage = _damage
 		_damage_component.set_enabled(false)
@@ -45,7 +45,7 @@ func _ready():
 	
 	_knockback_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Knockback)
 	if _knockback_component == null:
-		_knockback_component = _knockback_component_scene.instance()
+		_knockback_component = _knockback_component_scene.instantiate()
 		_knockback_component.set_name(\"Rock Dash Knockback\")
 		_knockback_component.strength = _knockback
 		_knockback_component.parent_entity = parent_entity
@@ -58,7 +58,7 @@ func _ready():
 	_health_component = parent_entity.get_component_of_type(Globals.ComponentTypes.Health)
 
 
-func _on_entity_collided(area: Area) -> void:
+func _on_entity_collided(area: Area3D) -> void:
 	var hit_entity: Entity = Util.get_entity_from_area(area)
 	if hit_entity != null && _is_rock_dashing == true && _rock_dash_anim != null:
 		_rock_dash_anim.hit()
@@ -80,7 +80,7 @@ func activate_rock_dash(dir: Vector2) -> void:
 	PacketSender.trigger_player_animation(parent_entity.get_id(), Globals.PlayerAnimations.START_ROCK_DASH, parent_entity.get_move_dir_v2())
 	_knockback_component.set_can_knockback(true)
 	
-	yield(get_tree().create_timer(0.4), \"timeout\")
+	await get_tree().create_timer(0.4).timeout
 	
 	if _is_rock_dashing == true:
 		deactivate_rock_dash()
@@ -88,10 +88,10 @@ func activate_rock_dash(dir: Vector2) -> void:
 
 func deactivate_rock_dash() -> void:
 	# Let other functions that listen to _on_collide work first
-	yield(get_tree(), \"idle_frame\")
+	await get_tree().idle_frame
 	_health_component.set_invincible(false)
 	_is_rock_dashing = false
-	parent_entity.add_force(parent_entity.get_force() * -0.75)
+	parent_entity.apply_force(parent_entity.get_force() * -0.75)
 	
 	PacketSender.trigger_player_animation(parent_entity.get_id(), Globals.PlayerAnimations.END_ROCK_DASH, parent_entity.get_move_dir_v2())
 	
@@ -107,20 +107,20 @@ func handle_rock_dash_effect(animation_nr: int):
 			_rock_dash_anim.stop()
 "
 
-[sub_resource type="CylinderShape" id=2]
+[sub_resource type="CylinderShape3D" id=2]
 radius = 0.738225
 
-[node name="RockDashable" type="Spatial"]
+[node name="RockDashable" type="Node3D"]
 script = SubResource( 1 )
 _damage = 20.0
 _knockback = 10.0
 
-[node name="RockDashArea" type="Area" parent="."]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 1, 0.5 )
+[node name="RockDashArea" type="Area3D" parent="."]
+transform = Transform3D( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 1, 0.5 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RockDashArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 3.25842e-08 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RockDashArea"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 3.25842e-08 )
 shape = SubResource( 2 )
 
 [node name="RockDash" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -0.401328 )
+transform = Transform3D( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -0.401328 )

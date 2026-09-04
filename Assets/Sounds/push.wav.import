@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/push.wav-b321644109f634f63313e479ec2e4e41.sample"
+type="AudioStreamWAV"
+uid="uid://s54cdntwmkot"
+path="res://.godot/imported/push.wav-b321644109f634f63313e479ec2e4e41.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/push.wav"
-dest_files=[ "res://.import/push.wav-b321644109f634f63313e479ec2e4e41.sample" ]
+dest_files=["res://.godot/imported/push.wav-b321644109f634f63313e479ec2e4e41.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

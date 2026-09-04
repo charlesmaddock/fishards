@@ -5,32 +5,32 @@
 [ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=3]
 
 [node name="Chat" type="Panel"]
-margin_left = 232.0
-margin_top = 56.0
-margin_right = 448.0
-margin_bottom = 256.0
+offset_left = 232.0
+offset_top = 56.0
+offset_right = 448.0
+offset_bottom = 256.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
 theme = ExtResource( 3 )
-custom_styles/panel = ExtResource( 1 )
+theme_override_styles/panel = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_top = 204.0
-margin_right = 184.0
-margin_bottom = 224.0
+offset_top = 204.0
+offset_right = 184.0
+offset_bottom = 224.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SendChatMsg" type="Button" parent="LineEdit"]
-margin_left = 189.0
-margin_right = 216.0
-margin_bottom = 20.0
+offset_left = 189.0
+offset_right = 216.0
+offset_bottom = 20.0
 text = "SEND"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,10 +40,10 @@ __meta__ = {
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = 2.0
-margin_right = -3.0
-margin_bottom = -2.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = -2.0
 mouse_filter = 1
 size_flags_horizontal = 0
 scroll_horizontal_enabled = false
@@ -52,13 +52,13 @@ __meta__ = {
 }
 
 [node name="ChatContainer" type="VBoxContainer" parent="ScrollContainer"]
-margin_left = 2.0
-margin_top = 1.0
-margin_right = 208.0
-margin_bottom = 1.0
-rect_clip_content = true
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 208.0
+offset_bottom = 1.0
+clip_contents = true
 size_flags_horizontal = 3
-custom_constants/separation = 0
+theme_override_constants/separation = 0
 alignment = 2
 
 [node name="InGameMessages" type="VBoxContainer" parent="."]
@@ -66,9 +66,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-rect_pivot_offset = Vector2( -0.507233, 189.126 )
-rect_clip_content = true
-custom_constants/separation = 0
+pivot_offset = Vector2( -0.507233, 189.126 )
+clip_contents = true
+theme_override_constants/separation = 0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false

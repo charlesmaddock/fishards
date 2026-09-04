@@ -1,13 +1,13 @@
-extends MeshInstance
+extends MeshInstance3D
 
 
 var x_rot: float
 
 
 func _ready():
-	get_parent().connect("took_damage", self, "_on_took_damage")
-	yield(get_tree(), "idle_frame")
-	get_parent().get_kinematic().set_collision_mask_bit(Globals.ColBits.BARRIER, true)
+	get_parent().connect("took_damage", Callable(self, "_on_took_damage"))
+	await get_tree().idle_frame
+	get_parent().get_kinematic().set_collision_mask_value(Globals.ColBits.BARRIER, true)
 
 
 func _process(delta):
@@ -37,4 +37,4 @@ func _on_took_damage(damage, damager_entity) -> void:
 		res /= 2
 	
 	res.y = 0
-	parent_entity.add_force(res)
+	parent_entity.apply_force(res)

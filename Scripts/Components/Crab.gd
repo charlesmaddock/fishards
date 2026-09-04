@@ -3,13 +3,13 @@ class_name Crab
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Crab
 
 
-export(float) var speed = 14
-export(float) var seconds_to_damage_after = 2
-export(float) var egg_poop_magnitude = 10
-export(NodePath) var _egg_node: NodePath
-export(NodePath) var _explosion_egg_particles: NodePath
-export(NodePath) var _crab_node: NodePath
-export(NodePath) var _crab_animator: NodePath
+@export var speed: float = 14
+@export var seconds_to_damage_after: float = 2
+@export var egg_poop_magnitude: float = 10
+@export var _egg_node: NodePath
+@export var _explosion_egg_particles: NodePath
+@export var _crab_node: NodePath
+@export var _crab_animator: NodePath
 const max_search_range = 9999
 
 
@@ -18,8 +18,8 @@ var _closest_player: Entity = null
 
 
 func _ready():
-	parent_entity.connect("dealt_damage", self, "_on_crab_dealt_damage")
-	parent_entity.connect("landed", self, "_on_egg_landed")
+	parent_entity.connect("dealt_damage", Callable(self, "_on_crab_dealt_damage"))
+	parent_entity.connect("landed", Callable(self, "_on_egg_landed"))
 	get_node(_crab_node).visible = false
 	parent_entity.broadcast_transform = false
 
@@ -47,7 +47,7 @@ func _physics_process(delta) -> void:
 func _on_egg_landed() -> void:
 	get_node(_egg_node).visible = false
 	get_node(_crab_node).visible = true
-	get_node(_crab_animator).play("run-loop")
+	get_node(_crab_animator).play("run")
 	get_node(_explosion_egg_particles).emitting = true
 	
 	var damage_component: Damage = parent_entity.get_component_of_type(Globals.ComponentTypes.Damage)

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/turret hover.wav-00e0d581401aece3cbd031af317f32d9.sample"
+type="AudioStreamWAV"
+uid="uid://cy8yxylve7tev"
+path="res://.godot/imported/turret hover.wav-00e0d581401aece3cbd031af317f32d9.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/turret hover.wav"
-dest_files=[ "res://.import/turret hover.wav-00e0d581401aece3cbd031af317f32d9.sample" ]
+dest_files=["res://.godot/imported/turret hover.wav-00e0d581401aece3cbd031af317f32d9.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

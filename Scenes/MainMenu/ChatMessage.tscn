@@ -6,12 +6,12 @@
 script/source = "extends Control
 
 
-export(Array, Color) var name_colors
+@export var name_colors # (Array, Color)
 
 
-onready var message_label: RichTextLabel = $Message
-onready var message_backdrop = $Message/Panel
-onready var disappearTimer = $DisappearTimer
+@onready var message_label: RichTextLabel = $Message
+@onready var message_backdrop = $Message/Panel
+@onready var disappearTimer = $DisappearTimer
 
 
 var _message: String = \"\"
@@ -26,7 +26,7 @@ func _ready():
 	if _message == \"\":
 		queue_free()
 	
-	message_label.bbcode_text = _message
+	message_label.text = _message
 	
 	# Messages in game have a backdrop
 	if _hide_after_life_span_over == false:
@@ -53,7 +53,7 @@ func _on_DisappearTimer_timeout():
 
 [node name="ChatMessage" type="HBoxContainer"]
 anchor_right = 1.0
-margin_bottom = 48.0
+offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource( 1 )
@@ -64,13 +64,13 @@ __meta__ = {
 name_colors = [ Color( 0.466667, 0.0862745, 0.0862745, 1 ), Color( 0.901961, 0.470588, 0.960784, 1 ), Color( 0.698039, 0.160784, 0.968627, 1 ), Color( 0.0745098, 0.141176, 0.862745, 1 ), Color( 0.737255, 0.945098, 0.466667, 1 ), Color( 0.941176, 0.745098, 0.537255, 1 ), Color( 0.396078, 0.886275, 0.921569, 1 ), Color( 0, 0.384314, 0.980392, 1 ) ]
 
 [node name="Message" type="RichTextLabel" parent="."]
-margin_right = 640.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 120, 0 )
+offset_right = 640.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 bbcode_enabled = true
-bbcode_text = "[color=blue]blue[/color]: hello"
+text = "[color=blue]blue[/color]: hello"
 text = "blue: hello"
 fit_content_height = true
 scroll_active = false
@@ -80,10 +80,10 @@ modulate = Color( 0.262745, 0.262745, 0.262745, 0.392157 )
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
-margin_top = 2.0
-margin_right = 2.0
-margin_bottom = 2.0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

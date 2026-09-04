@@ -1,26 +1,26 @@
 extends MainMenuUIChild
 
 
-export(NodePath) var fishard_model_path
-export(NodePath) var fish_mesh_path
-export(PackedScene) var color_select_button_scene: PackedScene
+@export var fishard_model_path: NodePath
+@export var fish_mesh_path: NodePath
+@export var color_select_button_scene: PackedScene
 
-onready var sidePanel: Control = $SidePanel
-onready var colors: Label = $SidePanel/Colors
-onready var spells: Control = $SidePanel/Spells
-onready var cosmetics: Control = $SidePanel/Cosmetics
-onready var stats: Control = $SidePanel/StatsSidePanel
+@onready var sidePanel: Control = $SidePanel
+@onready var colors: Label = $SidePanel/Colors
+@onready var spells: Control = $SidePanel/Spells
+@onready var cosmetics: Control = $SidePanel/Cosmetics
+@onready var stats: Control = $SidePanel/StatsSidePanel
 
-onready var tabs: VBoxContainer = $YourFishard/Tabs
-onready var colorsToggle: CheckBox = $YourFishard/Tabs/ColorsToggle
-onready var spellsToggle: CheckBox = $YourFishard/Tabs/SpellsToggle
-onready var cosmeticsToggle: CheckBox = $YourFishard/Tabs/CosmeticsToggle
-onready var statsToggle: CheckBox = $YourFishard/Tabs/StatsToggle
+@onready var tabs: VBoxContainer = $YourFishard/TabBar
+@onready var colorsToggle: CheckBox = $YourFishard/TabBar/ColorsToggle
+@onready var spellsToggle: CheckBox = $YourFishard/TabBar/SpellsToggle
+@onready var cosmeticsToggle: CheckBox = $YourFishard/TabBar/CosmeticsToggle
+@onready var statsToggle: CheckBox = $YourFishard/TabBar/StatsToggle
 
 
 #onready var name_label: Label = $Fishard/NAME
-var _fishard_model: Spatial
-var _fishard_mesh: Spatial
+var _fishard_model: Node3D
+var _fishard_mesh: Node3D
 
 func _ready():
 	#name_label.text = SteamValues.STEAM_USERNAME
@@ -29,7 +29,7 @@ func _ready():
 	_fishard_mesh = get_node(fish_mesh_path)
 	var fishard_skin = CustomizePlayer.get_my_skin()
 	
-	CustomizePlayer.connect("hat_set", self, "_on_hat_set")
+	CustomizePlayer.connect("hat_set", Callable(self, "_on_hat_set"))
 	
 	CustomizePlayer.apply_skin_to_fishard(null, fishard_skin, _fishard_mesh)
 	_generate_icons("skin", CustomizePlayer.skin_colors, "SidePanel/Colors/Panel/VBoxContainer/Body")
@@ -46,7 +46,7 @@ func init_UI():
 
 func hide_all_side_panels():
 	for child in tabs.get_children():
-		child.pressed = false
+		child.button_pressed = false
 	
 	for child in sidePanel.get_children():
 		child.visible = false
@@ -69,9 +69,9 @@ func _on_color_selected():
 
 func _generate_icons(key: String, color_array: Array, popup_panel_button_path: String) -> void:
 	for material in color_array:
-		var color_select_button = color_select_button_scene.instance()
+		var color_select_button = color_select_button_scene.instantiate()
 		color_select_button.set_values(material, key)
-		color_select_button.connect("on_selected", self, "_on_color_selected")
+		color_select_button.connect("on_selected", Callable(self, "_on_color_selected"))
 		get_node(popup_panel_button_path).add_color_button(color_select_button)
 
 
@@ -85,23 +85,23 @@ func _on_SpellBook_pressed():
 
 func _on_Spells_pressed():
 	hide_all_side_panels()
-	spellsToggle.pressed = true
+	spellsToggle.button_pressed = true
 	spells.visible = true
 
 
 func _on_Colors_pressed():
 	hide_all_side_panels()
-	colorsToggle.pressed = true
+	colorsToggle.button_pressed = true
 	colors.visible = true
 
 
 func _on_CosmeticsToggle_pressed():
 	hide_all_side_panels()
-	cosmeticsToggle.pressed = true
+	cosmeticsToggle.button_pressed = true
 	cosmetics.visible = true
 
 
 func _on_StatsToggle_pressed():
 	hide_all_side_panels()
-	statsToggle.pressed = true
+	statsToggle.button_pressed = true
 	stats.visible = true

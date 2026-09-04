@@ -3,15 +3,15 @@ class_name ParentTo_creator
 var COMPONENT_TYPE: int = Globals.ComponentTypes.ParentToCreator
 
 
-export(float) var z_offset: float = 1.5
-export(float) var y_offset: float = 0
+@export var z_offset: float = 1.5
+@export var y_offset: float = 0
 var follow_parent: bool = true
 
 
 func _ready():
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	Lobby.connect("player_immobilized", self, "_on_player_immobilized")
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	Lobby.connect("player_immobilized", Callable(self, "_on_player_immobilized"))
 	
 	var room_node = Util.get_room_node()
 	if room_node != null:

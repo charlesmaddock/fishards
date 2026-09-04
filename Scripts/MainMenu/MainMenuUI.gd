@@ -1,12 +1,12 @@
 extends MainMenuUIChild
 
 
-onready var fishard_button = $Buttons/VBoxContainer/MyFish
-onready var controls_button: Button = $Buttons/VBoxContainer/Controls
-onready var demo_panel: Panel = $Logo/DemoPanel
-onready var indev_panel: Panel = $Logo/InDevPanel
-onready var quitDivider: Control = $Buttons/VBoxContainer/Divider
-onready var quitAndWishlistContainer: Control = $Buttons/VBoxContainer/QuitAndWishlistContainer
+@onready var fishard_button = $Buttons/VBoxContainer/MyFish
+@onready var controls_button: Button = $Buttons/VBoxContainer/Controls
+@onready var demo_panel: Panel = $Logo/DemoPanel
+@onready var indev_panel: Panel = $Logo/InDevPanel
+@onready var quitDivider: Control = $Buttons/VBoxContainer/Divider
+@onready var quitAndWishlistContainer: Control = $Buttons/VBoxContainer/QuitAndWishlistContainer
 
 func _ready():
 	demo_panel.visible = false

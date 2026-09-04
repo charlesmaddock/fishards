@@ -8,11 +8,11 @@
 [node name="ice_island_ffa" instance=ExtResource( 5 )]
 
 [node name="island" parent="." index="0"]
-transform = Transform( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0, 0 )
+transform = Transform3D( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0, 0 )
 material/0 = ExtResource( 6 )
 
 [node name="ice_rocks" parent="." index="1"]
-transform = Transform( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0.307846, 0 )
+transform = Transform3D( 0.829739, 0, 0, 0, 1, 0, 0, 0, 0.829739, 0, 0.307846, 0 )
 material/0 = ExtResource( 2 )
 
-[node name="DirectionalLight" parent="." index="2" instance=ExtResource( 4 )]
+[node name="DirectionalLight3D" parent="." index="2" instance=ExtResource( 4 )]

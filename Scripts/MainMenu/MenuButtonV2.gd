@@ -1,16 +1,16 @@
-tool
+@tool
 extends Button
 
-export(Color) var font_color: Color
-export(Color) var font_highlight_color: Color
-export(String) var button_text: String
+@export var font_color: Color
+@export var font_highlight_color: Color
+@export var button_text: String
 
 
-onready var label = $Label
+@onready var label = $Label
 
 
 func _ready():
-	label.set("custom_colors/font_color", font_color)
+	label.set("theme_override_colors/font_color", font_color)
 	label.text = button_text
 
 
@@ -29,12 +29,12 @@ func set_disabled(val: bool) -> void:
 func _on_Button_mouse_entered():
 	if disabled == false:
 		MusicAndSfxHandler.play_sound(MusicAndSfxHandler.sounds.HOVER)
-		label.set("custom_colors/font_color", font_highlight_color)
+		label.set("theme_override_colors/font_color", font_highlight_color)
 
 
 func _on_Button_mouse_exited():
 	if label != null:
-		label.set("custom_colors/font_color", font_color)
+		label.set("theme_override_colors/font_color", font_color)
 
 
 func _on_SKIN_mouse_entered():

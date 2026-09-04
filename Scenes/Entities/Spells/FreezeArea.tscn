@@ -3,14 +3,14 @@
 [ext_resource path="res://Scenes/Components/Damage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Components/ChangeSpeedOnCollide.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=5]
-[ext_resource path="res://Assets/Textures/Particle/pebbles_particle.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=5]
+[ext_resource path="res://Assets/Textures/Particle/pebbles_particle.png" type="Texture2D" id=6]
 [ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Sounds/ice field create.wav" type="AudioStream" id=9]
 [ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=10]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 10.1883
 height = 2.45585
 
@@ -31,7 +31,7 @@ _data = [ Vector2( 0.0033557, 0.662951 ), 0.0, 0.0, 0, 0, Vector2( 0.35906, 1 ),
 [sub_resource type="CurveTexture" id=4]
 curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 emission_shape = 2
 emission_box_extents = Vector3( 2, 1, 2 )
 gravity = Vector3( 0, -1, 0 )
@@ -46,10 +46,10 @@ scale_curve = SubResource( 4 )
 [sub_resource type="QuadMesh" id=6]
 
 [sub_resource type="GDScript" id=7]
-script/source = "extends Spatial
+script/source = "extends Node3D
 
 
-export(NodePath) var damage_component_path
+@export var damage_component_path: NodePath
 
 
 func _on_DamageAreaDestroyTimer_timeout():
@@ -65,15 +65,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.13, 0.23, 0.4, 0.49, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.13, 0.23, 0.4, 0.49, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
 }
 
 [sub_resource type="CylinderMesh" id=9]
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="StandardMaterial3D" id=10]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 1, 1, 1, 0.258824 )
@@ -84,7 +84,7 @@ albedo_color = Color( 1, 1, 1, 0.258824 )
 code = "shader_type spatial;
 render_mode unshaded;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform sampler2D noise_tex;
 uniform float noise_1_scale = 0.5;
 uniform float noise_2_scale = 1.0;
@@ -161,13 +161,13 @@ shader_param/torus_shape_radius = 0.466
 shader_param/noise_tex = ExtResource( 4 )
 
 [sub_resource type="Gradient" id=16]
-offsets = PoolRealArray( 0.028, 0.276, 0.632, 1 )
-colors = PoolColorArray( 1, 1, 0.992157, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PackedFloat32Array( 0.028, 0.276, 0.632, 1 )
+colors = PackedColorArray( 1, 1, 0.992157, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=17]
+[sub_resource type="GradientTexture2D" id=17]
 gradient = SubResource( 16 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticleProcessMaterial" id=18]
 flag_rotate_y = true
 gravity = Vector3( 0, 0, 0 )
 angular_velocity = 5.0
@@ -178,22 +178,22 @@ size = Vector2( 4, 4 )
 
 [sub_resource type="SphereMesh" id=20]
 
-[sub_resource type="SpatialMaterial" id=21]
+[sub_resource type="StandardMaterial3D" id=21]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 1, 1, 1, 0.176471 )
 
-[node name="FreezeArea" type="Spatial"]
+[node name="FreezeArea" type="Node3D"]
 script = ExtResource( 3 )
 subtype_name = "FREEZE_AREA"
 age_limit_seconds = 1.0
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 0.310969, 0, 0, 0, 0.310969, 0, 0, 0, 0.310969, 0, -1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D( 0.310969, 0, 0, 0, 0.310969, 0, 0, 0, 0.310969, 0, -1, 0 )
 shape = SubResource( 1 )
 
 [node name="ChangeSpeedOnCollide" parent="." instance=ExtResource( 2 )]
@@ -208,13 +208,13 @@ damage = 30
 damage_depends_on_dist_from_centre = true
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -0.622383, 0 )
+transform = Transform3D( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -0.622383, 0 )
 material_override = SubResource( 2 )
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 6 )
 
-[node name="Effect" type="Spatial" parent="."]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.5, 0 )
+[node name="Effect" type="Node3D" parent="."]
+transform = Transform3D( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.5, 0 )
 script = SubResource( 7 )
 damage_component_path = NodePath("../Damage")
 
@@ -222,19 +222,19 @@ damage_component_path = NodePath("../Damage")
 autoplay = "size_up"
 anims/size_up = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Effect"]
-transform = Transform( 2.99208, 0, 0, 0, 0.618579, 0, 0, 0, 2.99208, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Effect"]
+transform = Transform3D( 2.99208, 0, 0, 0, 0.618579, 0, 0, 0, 2.99208, 0, 0, 0 )
 visible = false
 mesh = SubResource( 9 )
 material/0 = SubResource( 10 )
 
-[node name="Ground" type="MeshInstance" parent="Effect"]
-transform = Transform( 6.41733, 0, 0, 0, -2.8051e-07, 6.41733, 0, -6.41733, -2.8051e-07, 0, 0.170839, 0 )
+[node name="Ground" type="MeshInstance3D" parent="Effect"]
+transform = Transform3D( 6.41733, 0, 0, 0, -2.8051e-07, 6.41733, 0, -6.41733, -2.8051e-07, 0, 0.170839, 0 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 13 )
 
 [node name="Spin" type="Particles" parent="Effect"]
-transform = Transform( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -1.16235, 0 )
+transform = Transform3D( 1.28347, 0, 0, 0, 1.28347, 0, 0, 0, 1.28347, 0, -1.16235, 0 )
 visible = false
 material_override = SubResource( 15 )
 amount = 3
@@ -246,8 +246,8 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="Sphere" type="MeshInstance" parent="Effect"]
-transform = Transform( 2.64407, 0, 0, 0, 2.64407, 0, 0, 0, 2.64407, 0, 0, 0 )
+[node name="Sphere" type="MeshInstance3D" parent="Effect"]
+transform = Transform3D( 2.64407, 0, 0, 0, 2.64407, 0, 0, 0, 2.64407, 0, 0, 0 )
 mesh = SubResource( 20 )
 material/0 = SubResource( 21 )
 

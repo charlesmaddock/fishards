@@ -1,25 +1,25 @@
-extends Spatial
-class_name Room
+extends Node3D
+class_name FishardsRoom
 
 
-onready var client: Node = $Client
-onready var players: Players = $Players
-onready var environment: Node = $Environment
-onready var spells: Node = $Spells
-onready var gamemode: Node = $Gamemode
-onready var entities: Node = $Entities
-onready var destroyed_entities: Node = $DestroyedEntities
-onready var post_process_texture: ColorRect = $CanvasLayer/PostProcess
-onready var post_process_animator: AnimationPlayer = $CanvasLayer/PostProcessAnimations
+@onready var client: Node = $Client
+@onready var players: Players = $Players
+@onready var environment: Node = $Environment
+@onready var spells: Node = $Spells
+@onready var gamemode: Node = $Gamemode
+@onready var entities: Node = $Entities
+@onready var destroyed_entities: Node = $DestroyedEntities
+@onready var post_process_texture: ColorRect = $CanvasLayer/PostProcess
+@onready var post_process_animator: AnimationPlayer = $CanvasLayer/PostProcessAnimations
 
 
-onready var respawnAllBugFixTimer: Timer = $RespawnAllBugFixTimer
+@onready var respawnAllBugFixTimer: Timer = $RespawnAllBugFixTimer
 var _respawn_dead_only: bool
 var entities_dict: Dictionary = {}
 
 
 func _ready():
-	PacketHandler.connect("handle_room_packet", self, "_on_handle_room_packet")
+	PacketHandler.connect("handle_room_packet", Callable(self, "_on_handle_room_packet"))
 
 
 func _on_handle_room_packet(sender_id: int, data: Dictionary):
@@ -356,7 +356,7 @@ func validate_cast_directional_spell(sender_id: int, player_id: int, spell_type:
 			var spell_id: int = Util.generate_id(Globals.EntityTypes.SPELL, spell_type)
 			var player_team: Dictionary = Lobby.get_team_info_from_player_id(player_id)
 			var team_name: String = ""
-			if player_team.empty() == false:
+			if player_team.is_empty() == false:
 				team_name = player_team["name"] 
 			
 			if Globals.SpellCooldowns[spell_type]["hold_down"] == true:
@@ -381,7 +381,7 @@ func validate_cast_positional_spell(sender_id: int, player_id: int, spell_type: 
 			var player_team: Dictionary = Lobby.get_team_info_from_player_id(player_id)
 			var team_name: String = ""
 			var direction: Vector2 = Vector2(player_pos.x, player_pos.z).direction_to(Vector2(spell_pos.x, spell_pos.z))
-			if player_team.empty() == false:
+			if player_team.is_empty() == false:
 				team_name = player_team["name"] 
 			
 			player_entity.emit_signal("cast_spell", spell_type, spell_pos)
@@ -435,7 +435,7 @@ func validate_deactivate_arcane_wall(sender_id: int, id: int, spawn_wall: bool):
 			
 			var player_team: Dictionary = Lobby.get_team_info_from_player_id(id)
 			var team_name: String = ""
-			if player_team.empty() == false:
+			if player_team.is_empty() == false:
 				team_name = player_team["name"] 
 			
 			PacketSender.spawn_spell(id, team_name, Util.generate_id(Globals.EntityTypes.SPELL, Globals.SpellTypes.ARCANE_WALL_PLACED), Globals.SpellTypes.ARCANE_WALL_PLACED, player_entity.global_transform.origin + offset, dir)
@@ -605,9 +605,9 @@ func get_gooey_god() -> Entity:
 
 func play_post_process_ripple(pos: Vector3):
 	var screen_pos: Vector2 = Globals.camera.unproject_position(pos)
-	screen_pos /= Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
+	screen_pos /= Vector2(ProjectSettings.get("display/window/size/viewport_width"), ProjectSettings.get("display/window/size/viewport_height"))
 	
 	screen_pos = Vector2(screen_pos.x, 1.0 - screen_pos.y)
 	
-	post_process_texture.get_material().set_shader_param("ripple_pos", screen_pos)
+	post_process_texture.get_material().set_shader_parameter("ripple_pos", screen_pos)
 	post_process_animator.play("ripple")

@@ -1,14 +1,14 @@
 extends Control
 
 
-onready var fish1 = $Panel/ViewportContainer/Viewport/Scene/Winners2/fish1/Armature/Skeleton/Fish
-onready var fish2 = $Panel/ViewportContainer/Viewport/Scene/Winners2/fish2/Armature/Skeleton/Fish
-onready var fish3 = $Panel/ViewportContainer/Viewport/Scene/Winners2/fish3/Armature/Skeleton/Fish
-onready var fishName1 = $Panel/winnerPlacesUI/winnerName1
-onready var fishName2 = $Panel/winnerPlacesUI/winnerName2
-onready var fishName3 = $Panel/winnerPlacesUI/winnerName3
-onready var title = $Panel/Title
-onready var desc = $Panel/Desc
+@onready var fish1 = $Panel/SubViewportContainer/SubViewport/Scene/Winners2/fish1/Armature/Skeleton3D/Fish
+@onready var fish2 = $Panel/SubViewportContainer/SubViewport/Scene/Winners2/fish2/Armature/Skeleton3D/Fish
+@onready var fish3 = $Panel/SubViewportContainer/SubViewport/Scene/Winners2/fish3/Armature/Skeleton3D/Fish
+@onready var fishName1 = $Panel/winnerPlacesUI/winnerName1
+@onready var fishName2 = $Panel/winnerPlacesUI/winnerName2
+@onready var fishName3 = $Panel/winnerPlacesUI/winnerName3
+@onready var title = $Panel/Title
+@onready var desc = $Panel/Desc
 
 
 func _ready():

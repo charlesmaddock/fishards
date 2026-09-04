@@ -50,15 +50,15 @@ material/0 = ExtResource( 11 )
 [node name="pillars003" parent="." index="10"]
 material/0 = ExtResource( 6 )
 
-[node name="DirectionalLight" parent="." index="11" instance=ExtResource( 5 )]
+[node name="DirectionalLight3D" parent="." index="11" instance=ExtResource( 5 )]
 
-[node name="Camera" parent="." index="12" instance=ExtResource( 2 )]
+[node name="Camera3D" parent="." index="12" instance=ExtResource( 2 )]
 
 [node name="lava_crater" parent="." index="13" instance=ExtResource( 8 )]
-transform = Transform( 0.471584, 0, -0.601239, 0, 0.76412, 0, 0.601239, 0, 0.471584, -6.43415, 0.073029, 6.20675 )
+transform = Transform3D( 0.471584, 0, -0.601239, 0, 0.76412, 0, 0.601239, 0, 0.471584, -6.43415, 0.073029, 6.20675 )
 
 [node name="lava_crater2" parent="." index="14" instance=ExtResource( 8 )]
-transform = Transform( 0.789943, 0, -0.193327, 0, 0.813256, 0, 0.193327, 0, 0.789943, -17.5315, 0.058804, 15.7796 )
+transform = Transform3D( 0.789943, 0, -0.193327, 0, 0.813256, 0, 0.193327, 0, 0.789943, -17.5315, 0.058804, 15.7796 )
 
 [node name="dead_fish_bone" parent="." index="15" instance=ExtResource( 10 )]
-transform = Transform( 0.531969, 0, -0.370072, 0, 0.648031, 0, 0.370072, 0, 0.531969, -3.82896, 0.468447, 8.95774 )
+transform = Transform3D( 0.531969, 0, -0.370072, 0, 0.648031, 0, 0.370072, 0, 0.531969, -3.82896, 0.468447, 8.95774 )

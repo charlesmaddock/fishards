@@ -1,19 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh"
+uid="uid://c3bdi23mban6r"
+path="res://.godot/imported/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh"
 
 [deps]
 
-files=[ "res://.import/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh" ]
+files=["res://.godot/imported/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh"]
 
 source_file="res://Assets/Meshes/Hats/scuba_hat.obj"
-dest_files=[ "res://.import/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh", "res://.import/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh" ]
+dest_files=["res://.godot/imported/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh", "res://.godot/imported/scuba_hat.obj-fbcef1aa1418903de4e550cb7afbb7d1.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

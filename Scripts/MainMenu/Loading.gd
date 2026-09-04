@@ -1,9 +1,9 @@
 extends Control
 
 
-onready var text: Label = $Label
-export(String) var loading_text: String = ""
-export(Color) var loading_text_color: Color
+@onready var text: Label = $Label
+@export var loading_text: String = ""
+@export var loading_text_color: Color
 var counter: int
 
 

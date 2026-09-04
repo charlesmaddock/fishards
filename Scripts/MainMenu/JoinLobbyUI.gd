@@ -1,10 +1,10 @@
 extends MainMenuUIChild
 
 
-onready var roomButtonContainer: VBoxContainer = $Panel/ScrollContainer/VBoxContainer
-onready var statusLabel: Label = $Status/StatusLabel
-onready var buttons: Control = $Status/Buttons
-onready var distances: OptionButton = $Panel2/distances
+@onready var roomButtonContainer: VBoxContainer = $Panel/ScrollContainer/VBoxContainer
+@onready var statusLabel: Label = $Status/StatusLabel
+@onready var buttons: Control = $Status/Buttons
+@onready var distances: OptionButton = $Panel2/distances
 
 
 var found_lobbies: Array = []
@@ -13,7 +13,7 @@ signal received_lobbies()
 
 
 func _ready():
-	Steam.connect("lobby_match_list", self, "_on_Lobby_Match_List")
+	Steam.connect("lobby_match_list", Callable(self, "_on_Lobby_Match_List"))
 
 
 func init_UI():
@@ -26,7 +26,7 @@ func start_ping_search() -> void:
 	currently_searching = SteamValues.SearchDistance.CLOSE
 	Steam.addRequestLobbyListDistanceFilter(currently_searching)
 	Steam.requestLobbyList()
-	yield(self, "received_lobbies")
+	await self.received_lobbies
 	if _is_open() == false:
 		refresh()
 		return
@@ -34,7 +34,7 @@ func start_ping_search() -> void:
 	currently_searching = SteamValues.SearchDistance.FAR
 	Steam.addRequestLobbyListDistanceFilter(currently_searching)
 	Steam.requestLobbyList()
-	yield(self, "received_lobbies")
+	await self.received_lobbies
 	if _is_open() == false:
 		refresh()
 		return
@@ -80,9 +80,9 @@ func _on_Lobby_Match_List(lobbies):
 				var player_suffix: String = " Player" if lobby_members == 1 else " Players"
 				LOBBY_BUTTON.set_text(str(lobby_name) + " - " + str(lobby_members) + player_suffix + " - ping: " + connection_text)
 				LOBBY_BUTTON.set_name("lobby_"+str(fishard_lobby_id))
-				LOBBY_BUTTON.rect_min_size = Vector2(256, 0)
-				LOBBY_BUTTON.set_text_align(Button.ALIGN_LEFT)
-				LOBBY_BUTTON.connect("pressed", Lobby, "initial_steam_join_lobby", [fishard_lobby_id, -1])
+				LOBBY_BUTTON.custom_minimum_size = Vector2(256, 0)
+				LOBBY_BUTTON.set_text_alignment(Button.ALIGN_LEFT)
+				LOBBY_BUTTON.connect("pressed", Callable(Lobby, "initial_steam_join_lobby").bind(fishard_lobby_id, -1))
 				
 				roomButtonContainer.add_child(LOBBY_BUTTON)
 		

@@ -11,7 +11,7 @@ var drag = preload("res://Assets/Images/Cursors/drag.png")
 
 func set_cross_hair() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	if OS.window_size.x <= 1920:
+	if get_window().size.x <= 1920:
 		var colored = cross_hair_light if GamemodeValues.current_map_type == GamemodeValues.Maps.Lava else cross_hair_dark
 		Input.set_custom_mouse_cursor(colored, Input.CURSOR_ARROW, Vector2(13, 13))
 	else:

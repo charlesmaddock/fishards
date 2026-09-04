@@ -1,5 +1,6 @@
 extends Node
-class_name Component, "res://Assets/Textures/Sprites/Node Icons/componentIcon.png"
+class_name Component
+"res://Assets/Textures/Sprites/Node Icons/componentIcon.png"
 
 """
 Base node for all components that can be attached to a entity

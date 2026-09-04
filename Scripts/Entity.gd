@@ -1,17 +1,18 @@
-tool
-extends Spatial
-class_name Entity, "res://Assets/Textures/Sprites/Node Icons/entityIcon.png"
+@tool
+extends Node3D
+class_name Entity
+"res://Assets/Textures/Sprites/Node Icons/entityIcon.png"
 
 
 var _id: int
 var _creator_id: int = -1
 var local_transform_update: bool = false
 var is_my_client: bool = false
-var entity_area: Area = null
+var entity_area: Area3D = null
 var _default_hurtable_mask_colbit: bool
 var _default_knockbackable_mask_colbit: bool
 var is_grabbed: bool = false
-export(bool) var disable_collider_on_ready: bool = false 
+@export var disable_collider_on_ready: bool = false 
 
 
 # Simple check to see if collision mask and layers have been set when we for
@@ -19,20 +20,20 @@ export(bool) var disable_collider_on_ready: bool = false
 var _entity_area_setup_done: bool = false
 
 
-export(int) var manually_set_entity_type: int = -1
-export(String) var subtype_name: String = ""
+@export var manually_set_entity_type: int = -1
+@export var subtype_name: String = ""
 var _entity_type: int = Globals.EntityTypes.UNDEFINED
 var _subtype: int = -1
 
 
-export(bool) var can_move: bool = true 
+@export var can_move: bool = true 
 var broadcast_transform: bool = true
 var _lock_rotation_for: float = 0.0
 var _lock_direction_for: float = 0.0
 
 
 # If age_limit is -1 it will live forever
-export var age_limit_seconds: float = -1 
+@export var age_limit_seconds: float = -1 
 var _age: float = 0
 var _is_destroyed: bool = false
 
@@ -45,7 +46,7 @@ var _prev_pos: Vector3
 var _is_trapped: bool = false 
 var _trapped_for: float
 var _trapped_time: float
-var _kinematic_body: KinematicBody = null
+var _kinematic_body: CharacterBody3D = null
 
 
 # All clients except the player who sent the target value will lerp towards these
@@ -132,7 +133,7 @@ func get_force() -> Vector3:
 	return _force
 
 
-func get_area() -> Area:
+func get_area() -> Area3D:
 	if _entity_area_setup_done == false:
 		_entity_area_setup()
 	
@@ -141,17 +142,17 @@ func get_area() -> Area:
 	
 	var children = get_children()
 	for child in children:
-		if child is Area:
+		if child is Area3D:
 			return child
 	
 	printerr("This entity doesn't have an area: ", get_type_names())
 	return null
 
 
-func get_static_body() -> StaticBody:
+func get_static_body() -> StaticBody3D:
 	var children = get_children()
 	for child in children:
-		if child is StaticBody:
+		if child is StaticBody3D:
 			return child
 	
 	return null
@@ -163,7 +164,7 @@ func get_creator_id() -> int:
 	return _creator_id
 
 
-func get_kinematic() -> KinematicBody:
+func get_kinematic() -> CharacterBody3D:
 	return _kinematic_body
 
 
@@ -199,7 +200,7 @@ func set_position_directly(pos: Vector3) -> void:
 	_lerp_time = 1
 	_time_between_prev_and_target_pos = 1
 	_target_position = pos
-	set_position(pos, true)
+	_set_position(pos, true)
 
 
 func untrap() -> void:
@@ -224,7 +225,7 @@ func set_trapped_w_duration(trap_time: float, ice_freeze: bool = false) -> void:
 
 
 func lock_rotation_w_duration(time: float) -> void:
-	 _lock_rotation_for = time
+	_lock_rotation_for = time
 
 
 func set_rot(new_rotation: float, ignore_lock: bool = true) -> void:
@@ -235,7 +236,7 @@ func set_rot(new_rotation: float, ignore_lock: bool = true) -> void:
 
 # Recommended way of positioning entities
 # Actually sets the postion of the entire entity.
-func set_position(new_position: Vector3, force: bool = false) -> void:
+func _set_position(new_position: Vector3, force: bool = false) -> void:
 	if local_transform_update == true || force == true:
 		if _kinematic_body != null:
 			# Force kinematics so to be on the ground
@@ -249,7 +250,7 @@ func set_position(new_position: Vector3, force: bool = false) -> void:
 		printerr("Tried to set position of ", get_type_names(), " that isn't controlled locally, this may result in positions in the host and others clients being unsyncronised.")
 
 
-func add_force(dir: Vector3) -> void:
+func apply_force(dir: Vector3) -> void:
 	_force += dir
 	
 	if _force.length_squared() > Globals.MAX_FORCE * Globals.MAX_FORCE: 
@@ -273,7 +274,7 @@ func set_age_limit(val: float) -> void:
 	age_limit_seconds = val
 
 
-func set_kinematic_body(kinematic_body: KinematicBody) -> void:
+func set_kinematic_body(kinematic_body: CharacterBody3D) -> void:
 	_kinematic_body = kinematic_body
 	kinematic_body.transform.origin = transform.origin
 	transform.origin = Vector3.ZERO
@@ -290,13 +291,13 @@ func disable_collider(val: bool) -> void:
 		if _kinematic_body != null:
 			_kinematic_body.get_child(0).disabled = val
 		
-		var static_body: StaticBody = get_static_body()
+		var static_body: StaticBody3D = get_static_body()
 		if static_body != null:
 			static_body.get_child(0).disabled = val
 
 
 func _exit_tree():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		self.queue_free()
 
 
@@ -340,18 +341,20 @@ func _process(delta):
 		_lerp_time += delta
 		if local_transform_update == true:
 			if _kinematic_body != null && Lobby.is_host:
-				_kinematic_body.move_and_slide((_direction + _force))
+				_kinematic_body.set_velocity((_direction + _force))
+				_kinematic_body.move_and_slide()
+				_kinematic_body.velocity
 				_kinematic_body.global_transform.origin.y = 0
 				global_transform.origin = _kinematic_body.global_transform.origin
 			else:
-				global_transform.origin = _prev_pos.linear_interpolate(_target_position, clamp(_lerp_time / _time_between_prev_and_target_pos, 0, 1))
+				global_transform.origin = _prev_pos.lerp(_target_position, clamp(_lerp_time / _time_between_prev_and_target_pos, 0, 1))
 		else:
-			global_transform.origin = _prev_pos.linear_interpolate(_target_position, clamp(_lerp_time / _time_between_prev_and_target_pos, 0, 1))
+			global_transform.origin = _prev_pos.lerp(_target_position, clamp(_lerp_time / _time_between_prev_and_target_pos, 0, 1))
 
 
 func _physics_process(delta: float) -> void:
 	# Don't _physics_process() this node in the editor, only in game
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		_lock_rotation_for -= delta
 		_lock_direction_for -= delta
 		
@@ -375,13 +378,36 @@ func _check_inside_solid() -> void:
 		var area = get_area()
 		if Util.safe_to_use(area) == true:
 			if area.get_child(0).disabled == false:
-				var result = get_world().get_direct_space_state().intersect_ray(global_transform.origin + Vector3.UP * 10, global_transform.origin + Vector3.DOWN * 10, [area, get_kinematic(), get_static_body()], pow(2, Globals.ColBits.SOLID))
+				
+				# 1. Setup ray coordinates using Godot 4 global_position
+				var ray_from = global_position + Vector3.UP * 10
+				var ray_to = global_position + Vector3.DOWN * 10
+				
+				# 2. Create the Godot 4 Query Object
+				var query = PhysicsRayQueryParameters3D.create(ray_from, ray_to)
+				
+				# 3. Apply the collision bitmask
+				query.collision_mask = 1 << Globals.ColBits.SOLID
+				
+				# 4. Apply exclusions using RIDs (.get_rid())
+				query.exclude = [
+					area.get_rid(),
+					get_kinematic().get_rid(),
+					get_static_body().get_rid()
+				]
+				
+				# 5. Run the updated raycast intersection
+				var result = get_world_3d().get_direct_space_state().intersect_ray(query)
+				
 				if result.get("collider") != null:
 					var collided_entity = result.get("collider").get_parent()
 					if Util.safe_to_use(collided_entity) == true:
-						var dir: Vector3 = global_transform.origin - collided_entity.global_transform.origin
+						# Updated from global_transform.origin to global_position
+						var dir: Vector3 = global_position - collided_entity.global_position
 						dir.y = 0
-						set_position(global_transform.origin + (dir.normalized() * 0.3), true)
+						
+						# Using the non-conflicting position function we fixed earlier
+						_set_position(global_position + (dir.normalized() * 0.3), true)
 
 
 func _check_trapped_over(delta: float) -> void:
@@ -426,7 +452,7 @@ Entity Utility Functions
 
 func destroy(of_old_age: bool = false) -> void:
 	# Don't destroy() this node in the editor, only in game
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if _is_destroyed == false:
 			emit_signal("destroyed", _id)
 			
@@ -460,24 +486,24 @@ func get_component_of_type(component_type: int) -> Node:
 
 
 # Acts as a getter and a check if an entity has a collision shape
-func get_collision_shape() -> CollisionShape:
+func get_collision_shape() -> CollisionShape3D:
 	var area = get_area()
 	if area != null:
 		var childs_children = area.get_children()
 		for childs_child in childs_children:
-			if(childs_child is CollisionShape):
+			if(childs_child is CollisionShape3D):
 				return childs_child
 	
 	return null
 
 
 # Acts as a getter and a check if an entity has a collision polygon
-func get_collision_polygon() -> CollisionPolygon:
+func get_collision_polygon() -> CollisionPolygon3D:
 	var area = get_area()
 	if area != null:
 		var childs_children = area.get_children()
 		for childs_child in childs_children:
-			if(childs_child is CollisionPolygon):
+			if(childs_child is CollisionPolygon3D):
 				return childs_child
 	
 	return null
@@ -488,11 +514,11 @@ func _entity_area_setup() -> void:
 	if _entity_area_setup_done == false:
 		_entity_area_setup_done = true
 		
-		var new_area: Area
+		var new_area: Area3D
 		
 		# First find the area
 		for child in get_children():
-			if child is Area:
+			if child is Area3D:
 				new_area = child
 				break
 		
@@ -507,8 +533,8 @@ func _entity_area_setup() -> void:
 		
 		# Set the collision bitmap depending on entity values and components
 		if _entity_type == Globals.EntityTypes.SPELL && (_subtype == Globals.SpellTypes.ARCANE_WALL || _subtype == Globals.SpellTypes.ARCANE_WALL_PLACED):
-			new_area.set_collision_mask_bit(Globals.ColBits.BLOCK_DAMAGE, true)
-			new_area.set_collision_layer_bit(Globals.ColBits.BLOCK_DAMAGE, true)
+			new_area.set_collision_mask_value(Globals.ColBits.BLOCK_DAMAGE, true)
+			new_area.set_collision_layer_value(Globals.ColBits.BLOCK_DAMAGE, true)
 		
 		var has_health = get_component_of_type(Globals.ComponentTypes.Health) != null
 		
@@ -516,39 +542,39 @@ func _entity_area_setup() -> void:
 			if child.get("COMPONENT_TYPE") != null:
 				match child.COMPONENT_TYPE:
 					Globals.ComponentTypes.Health:
-						new_area.set_collision_layer_bit(Globals.ColBits.HURTABLE, true)
-						new_area.set_collision_layer_bit(Globals.ColBits.INSTAKILL, true)
+						new_area.set_collision_layer_value(Globals.ColBits.HURTABLE, true)
+						new_area.set_collision_layer_value(Globals.ColBits.INSTAKILL, true)
 					Globals.ComponentTypes.Damage, Globals.ComponentTypes.Heal:
-						new_area.set_collision_mask_bit(Globals.ColBits.HURTABLE, true)
+						new_area.set_collision_mask_value(Globals.ColBits.HURTABLE, true)
 					Globals.ComponentTypes.Knockback:
-						new_area.set_collision_mask_bit(Globals.ColBits.KNOCKBACKABLE, true)
+						new_area.set_collision_mask_value(Globals.ColBits.KNOCKBACKABLE, true)
 					Globals.ComponentTypes.StillSolid:
-						new_area.set_collision_layer_bit(Globals.ColBits.SOLID, true)
-						new_area.set_collision_mask_bit(Globals.ColBits.SOLID, true)
+						new_area.set_collision_layer_value(Globals.ColBits.SOLID, true)
+						new_area.set_collision_mask_value(Globals.ColBits.SOLID, true)
 						if has_health == false:
-							new_area.set_collision_mask_bit(Globals.ColBits.BLOCK_DAMAGE, true)
-							new_area.set_collision_layer_bit(Globals.ColBits.BLOCK_DAMAGE, true)
+							new_area.set_collision_mask_value(Globals.ColBits.BLOCK_DAMAGE, true)
+							new_area.set_collision_layer_value(Globals.ColBits.BLOCK_DAMAGE, true)
 					Globals.ComponentTypes.Kinematic:
-						new_area.set_collision_layer_bit(Globals.ColBits.KNOCKBACKABLE, true)
-						new_area.set_collision_mask_bit(Globals.ColBits.SOLID, true)
+						new_area.set_collision_layer_value(Globals.ColBits.KNOCKBACKABLE, true)
+						new_area.set_collision_mask_value(Globals.ColBits.SOLID, true)
 					Globals.ComponentTypes.Projectile:
-						new_area.set_collision_mask_bit(Globals.ColBits.SOLID, true)
-						new_area.set_collision_layer_bit(Globals.ColBits.PROJECTILE, true)
+						new_area.set_collision_mask_value(Globals.ColBits.SOLID, true)
+						new_area.set_collision_layer_value(Globals.ColBits.PROJECTILE, true)
 					Globals.ComponentTypes.Grab:
-						new_area.set_collision_mask_bit(Globals.ColBits.SOLID, true)
+						new_area.set_collision_mask_value(Globals.ColBits.SOLID, true)
 					Globals.ComponentTypes.ReflectProjectiles:
-						new_area.set_collision_mask_bit(Globals.ColBits.PROJECTILE, true)
+						new_area.set_collision_mask_value(Globals.ColBits.PROJECTILE, true)
 					Globals.ComponentTypes.Player:
-						new_area.set_collision_layer_bit(Globals.ColBits.PLAYER, true)
+						new_area.set_collision_layer_value(Globals.ColBits.PLAYER, true)
 					Globals.ComponentTypes.TrapOnCollide:
-						new_area.set_collision_mask_bit(Globals.ColBits.PLAYER, true)
+						new_area.set_collision_mask_value(Globals.ColBits.PLAYER, true)
 					Globals.ComponentTypes.PowerUp:
-						new_area.set_collision_mask_bit(Globals.ColBits.PLAYER, true)
+						new_area.set_collision_mask_value(Globals.ColBits.PLAYER, true)
 					Globals.ComponentTypes.ChangeSpeedOnCollide:
-						new_area.set_collision_mask_bit(Globals.ColBits.PLAYER, true)
+						new_area.set_collision_mask_value(Globals.ColBits.PLAYER, true)
 		
-		_default_hurtable_mask_colbit = new_area.get_collision_mask_bit(Globals.ColBits.HURTABLE)
-		_default_knockbackable_mask_colbit = new_area.get_collision_mask_bit(Globals.ColBits.KNOCKBACKABLE)
+		_default_hurtable_mask_colbit = new_area.get_collision_mask_value(Globals.ColBits.HURTABLE)
+		_default_knockbackable_mask_colbit = new_area.get_collision_mask_value(Globals.ColBits.KNOCKBACKABLE)
 		entity_area = new_area
 		disable_collider(disable_collider_on_ready)
 
@@ -557,12 +583,17 @@ func get_type_names() -> String:
 	return Util.get_type_names(_entity_type, _subtype)
 
 
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	var warning: String = ""
 	var collisionShape = get_collision_shape()
 	var collisionPolygon = get_collision_polygon()
 	
-	if(collisionShape == null && collisionPolygon == null):
-		warning = "This entity doesn't have a 'Area' node with a 'CollisionShape' or a 'CollisionPolygon'. Please add one."
+	if (collisionShape == null && collisionPolygon == null):
+		warning = "This entity doesn't have a 'Area3D' node with a 'CollisionShape3D' or a 'CollisionPolygon3D'. Please add one."
 	
-	return warning
+	# If a warning was found, wrap it in brackets to make it a PackedStringArray.
+	# Otherwise, return an empty array.
+	if warning != "":
+		return [warning]
+	else:
+		return PackedStringArray()

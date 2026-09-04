@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Images/UI/ColorIcons/1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/UI/ColorIcons/1.png" type="Texture2D" id=1]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -12,10 +12,10 @@ signal on_selected()
 
 
 func set_values(material: Material, key: String) -> void:
-	get_node(\"Sprite\").modulate = material.albedo_color
+	get_node(\"Sprite2D\").modulate = material.albedo_color
 	_material = material
 	_key = key
-	connect(\"pressed\", self, \"_on_pressed\")
+	connect(\"pressed\", Callable(self, \"_on_pressed\"))
 
 
 func _on_pressed() -> void:
@@ -25,14 +25,14 @@ func _on_pressed() -> void:
 
 [node name="ColorSelectButton" type="Button"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 19.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 19, 19 )
+offset_right = 19.0
+offset_bottom = 19.0
+custom_minimum_size = Vector2( 19, 19 )
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 8, 8 )
 texture = ExtResource( 1 )

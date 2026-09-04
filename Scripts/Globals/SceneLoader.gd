@@ -1,16 +1,16 @@
 extends CanvasLayer
 
 
-onready var _fade_animation: AnimationPlayer = $"Fade Animation"
-onready var _color_rect: ColorRect = $ColorRect
-onready var _loading_sprite: Control = $ColorRect/loading/LoadingSprite
-onready var _progress: Label = $ColorRect/loading/Label
-onready var gamemodeTips: VBoxContainer = $ColorRect/gamemodeTips
-onready var roundCount: Label = $ColorRect/gamemodeTips/round
-onready var title: Label = $ColorRect/gamemodeTips/title
-onready var desc: Label = $ColorRect/gamemodeTips/desc
-onready var slowPlayerTimer: Timer = $SlowPlayerTimer
-onready var cancelLoading: Button = $ColorRect/loading/Button
+@onready var _fade_animation: AnimationPlayer = $"Fade Animation"
+@onready var _color_rect: ColorRect = $ColorRect
+@onready var _loading_sprite: Control = $ColorRect/loading/LoadingSprite
+@onready var _progress: Label = $ColorRect/loading/Label
+@onready var gamemodeTips: VBoxContainer = $ColorRect/gamemodeTips
+@onready var roundCount: Label = $ColorRect/gamemodeTips/round
+@onready var title: Label = $ColorRect/gamemodeTips/title
+@onready var desc: Label = $ColorRect/gamemodeTips/desc
+@onready var slowPlayerTimer: Timer = $SlowPlayerTimer
+@onready var cancelLoading: Button = $ColorRect/loading/Button
 
 
 signal room_node_ready
@@ -83,18 +83,18 @@ func check_quit_loading() -> bool:
 func host_generate_next_rounds_info(settings: Dictionary, map_ref: String, gamemode_ref: String) -> void:
 	PacketSender.broadcast_loading_screen()
 	disable_cancel_loading(true)
-	yield(get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2), "timeout")
+	await get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2).timeout
 	
 	# Load the game scene
 	set_progress("Generating the map...")
-	get_tree().change_scene(Globals.ROOM_SCENE)
-	yield(get_tree().create_timer(1), "timeout")
+	get_tree().change_scene_to_file(Globals.ROOM_SCENE)
+	await get_tree().create_timer(1).timeout
 	
-	var room_node: Room = Util.get_room_node()
+	var room_node: FishardsRoom = Util.get_room_node()
 	if room_node != null:
 		var map_node_res = load(map_ref)
 		if map_node_res != null:
-			var map_node = map_node_res.instance()
+			var map_node = map_node_res.instantiate()
 			room_node.environment.set_map_node(map_node)
 			RoomSettings.edit_settings({"map": map_ref}, false)
 			
@@ -120,7 +120,7 @@ func p2p_start_loading_game(map_ref: String, gamemode_ref: String, all_environme
 		
 		if Lobby.is_host == false:
 			show_loading_screen(true)
-			yield(get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2), "timeout")
+			await get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2).timeout
 		
 		status_print("1")
 		disable_cancel_loading(true)
@@ -132,21 +132,21 @@ func p2p_start_loading_game(map_ref: String, gamemode_ref: String, all_environme
 		# Load the game scene, host has already done this in host_generate_next_rounds_info
 		if Lobby.is_host == false:
 			set_progress("Loading game logic...")
-			get_tree().change_scene(Globals.ROOM_SCENE)
-			yield(get_tree(), "idle_frame")
+			get_tree().change_scene_to_file(Globals.ROOM_SCENE)
+			await get_tree().idle_frame
 		
 		status_print("3")
 		
 		# If we press cancel whilst yielding until room_node_ready we can get strange bugs,
 		# therefore we check if the room exists
-		var room_node: Room = Util.get_room_node()
+		var room_node: FishardsRoom = Util.get_room_node()
 		if Util.safe_to_use(room_node):
 			status_print("4")
 			
 			# Begin loading the map scene if we aren't the host, since the host already did this in host_generate_next_rounds_info()
 			if Lobby.is_host == false:
 				set_progress("Loading the map...")
-				var map_node = load(map_ref).instance()
+				var map_node = load(map_ref).instantiate()
 				room_node.environment.set_map_node(map_node)
 			
 			MusicAndSfxHandler.set_upcoming_soundtrack_map_path(map_ref)
@@ -156,7 +156,7 @@ func p2p_start_loading_game(map_ref: String, gamemode_ref: String, all_environme
 			
 			# Then we load the gamemode
 			set_progress("Loading the gamemode logic...")
-			var gamemode_child_node = load(gamemode_ref).instance()
+			var gamemode_child_node = load(gamemode_ref).instantiate()
 			room_node.gamemode.start_gamemode(gamemode_child_node)
 			
 			# All scenes are loaded, next step is to wait for players and env in process()
@@ -197,7 +197,7 @@ func p2p_host_handle_player_has_loaded_scenes(sender_id: int) -> void:
 		
 		# If the game is loading for the host and everyone is in the loaded players array, load everyone into the game at the same time
 		if _loading_game == true && _loaded_players.size() == Lobby.client_members.size():
-			yield(get_tree().create_timer(1), "timeout")
+			await get_tree().create_timer(1).timeout
 			print("Handle Client Join Step Final: Since everyone has loaded, start the round for everyone")
 			for loaded_player_id in _loaded_players:
 				PacketSender.set_done_loading(loaded_player_id)
@@ -242,7 +242,7 @@ func handle_set_done_loading(sender_id: int) -> void:
 			printerr("Room node was null whilst trying to set done loading.")
 
 
-func load_initial_environment(room_node: Room, inital_env_to_load_dict: Dictionary) -> void:
+func load_initial_environment(room_node: FishardsRoom, inital_env_to_load_dict: Dictionary) -> void:
 	if Lobby.is_host == false:
 		status_print("Loading initial environment from received env dict!")
 		for env_id in inital_env_to_load_dict:
@@ -256,7 +256,7 @@ func load_initial_environment(room_node: Room, inital_env_to_load_dict: Dictiona
 		status_print("HOST: Host has already loaded initial environment.")
 
 
-func load_initial_players(room_node: Room, inital_players_to_load_dict: Dictionary) -> void:
+func load_initial_players(room_node: FishardsRoom, inital_players_to_load_dict: Dictionary) -> void:
 	# Load the new players
 	for player_id in inital_players_to_load_dict:
 		var player_info = inital_players_to_load_dict[player_id]
@@ -284,7 +284,7 @@ func show_loading_screen(show_gamemode_tips: bool) -> void:
 		MusicAndSfxHandler.stop_current_track()
 		
 		# Show information about the gamemode that is about to start
-		if RoomSettings.settings.empty() == false:
+		if RoomSettings.settings.is_empty() == false:
 			gamemodeTips.visible = show_gamemode_tips
 			var rounds_gamemode: int = RoomSettings.get_rounds_gamemode()
 			if RoomSettings.get_round_text() != "1/1":
@@ -301,17 +301,17 @@ func close_loading_screen() -> void:
 	_fade_animation.play_backwards("Fade")
 	
 	# Don't hide until animation has played
-	yield(get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2), "timeout")
+	await get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2).timeout
 	_color_rect.visible = false
 
 
 func all_rounds_over(sender_id: int) -> void:
 	if sender_id == Lobby.host_id:
 		show_loading_screen(false)
-		yield(get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2), "timeout")
+		await get_tree().create_timer(_fade_animation.get_current_animation_length() + 0.2).timeout
 		
 		Lobby.all_rounds_over()
-		yield(get_tree().create_timer(_fade_animation.get_current_animation_length() + 1), "timeout")
+		await get_tree().create_timer(_fade_animation.get_current_animation_length() + 1).timeout
 		close_loading_screen()
 
 

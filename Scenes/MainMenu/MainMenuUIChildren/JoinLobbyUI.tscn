@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="FontFile" id=1]
+[ext_resource path="res://Assets/Fonts/pixel_large.tres" type="FontFile" id=2]
 [ext_resource path="res://Scripts/MainMenu/JoinLobbyUI.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=4]
-[ext_resource path="res://Assets/Images/UI/MainMenu/back_button.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/UI/MainMenu/back_button.png" type="Texture2D" id=5]
 [ext_resource path="res://Scenes/MainMenu/Util/MenuButton.tscn" type="PackedScene" id=6]
 
 [node name="JoinLobbyUI" type="Control"]
@@ -12,10 +12,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -319.808
-margin_top = -179.808
-margin_right = 320.192
-margin_bottom = 180.192
+offset_left = -319.808
+offset_top = -179.808
+offset_right = 320.192
+offset_bottom = 180.192
 theme = ExtResource( 4 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -27,15 +27,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -136.192
-margin_top = -148.192
-margin_right = -57.192
-margin_bottom = -129.192
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
-custom_colors/font_color_shadow = Color( 0.376471, 0.352941, 0.337255, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 2
+offset_left = -136.192
+offset_top = -148.192
+offset_right = -57.192
+offset_bottom = -129.192
+theme_override_fonts/font = ExtResource( 2 )
+theme_override_colors/font_color = Color( 0.784314, 0.74902, 0.721569, 1 )
+theme_override_colors/font_shadow_color = Color( 0.376471, 0.352941, 0.337255, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
 text = "rooms"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,19 +46,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -135.0
-margin_top = -124.0
-margin_right = 135.0
-margin_bottom = 124.0
+offset_left = -135.0
+offset_top = -124.0
+offset_right = 135.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 267.0
-margin_bottom = 241.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 267.0
+offset_bottom = 241.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 scroll_horizontal_enabled = false
@@ -67,20 +67,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
-margin_left = 2.0
-margin_top = 1.0
-margin_right = 2.0
-margin_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 alignment = 1
 
 [node name="Status" type="Control" parent="."]
-margin_left = 191.0
-margin_top = 61.0
-margin_right = 443.0
-margin_bottom = 161.0
-rect_min_size = Vector2( 252, 100 )
+offset_left = 191.0
+offset_top = 61.0
+offset_right = 443.0
+offset_bottom = 161.0
+custom_minimum_size = Vector2( 252, 100 )
 mouse_filter = 2
 
 [node name="StatusLabel" type="Label" parent="Status"]
@@ -88,11 +88,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.4119
-margin_top = -26.0
-margin_right = 83.5881
-margin_bottom = 22.0
-custom_constants/line_spacing = -4
+offset_left = -75.4119
+offset_top = -26.0
+offset_right = 83.5881
+offset_bottom = 22.0
+theme_override_constants/line_spacing = -4
 text = "Loading..."
 align = 1
 valign = 2
@@ -106,10 +106,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -40.2239
-margin_top = -10.5
-margin_right = 52.7761
-margin_bottom = 30.5
+offset_left = -40.2239
+offset_top = -10.5
+offset_right = 52.7761
+offset_bottom = 30.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,10 +119,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -81.688
-margin_top = 16.1718
-margin_right = -4.68803
-margin_bottom = 35.1718
+offset_left = -81.688
+offset_top = 16.1718
+offset_right = -4.68803
+offset_bottom = 35.1718
 text = "Start training"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,10 +133,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 0.345356
-margin_top = 16.1718
-margin_right = 77.3453
-margin_bottom = 35.1718
+offset_left = 0.345356
+offset_top = 16.1718
+offset_right = 77.3453
+offset_bottom = 35.1718
 text = "Host a lobby"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -147,11 +147,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -81.4998
-margin_top = 46.8282
-margin_right = 77.5002
-margin_bottom = 68.8282
-custom_constants/line_spacing = -4
+offset_left = -81.4998
+offset_top = 46.8282
+offset_right = 77.5002
+offset_bottom = 68.8282
+theme_override_constants/line_spacing = -4
 text = "Find people to play with in the Fishards Discord!"
 align = 1
 valign = 2
@@ -165,10 +165,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -81.4998
-margin_top = 73.8294
-margin_right = 77.4998
-margin_bottom = 92.8294
+offset_left = -81.4998
+offset_top = 73.8294
+offset_right = 77.4998
+offset_bottom = 92.8294
 text = "Open my browser and join it now!"
 
 [node name="Button" parent="." instance=ExtResource( 6 )]
@@ -176,10 +176,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -5.65399
-margin_top = 127.869
-margin_right = 134.346
-margin_bottom = 154.869
+offset_left = -5.65399
+offset_top = 127.869
+offset_right = 134.346
+offset_bottom = 154.869
 image = ExtResource( 5 )
 
 [node name="Refresh" type="Button" parent="."]
@@ -187,11 +187,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 139.0
-margin_top = -124.0
-margin_right = 275.0
-margin_bottom = -100.0
-custom_fonts/font = ExtResource( 1 )
+offset_left = 139.0
+offset_top = -124.0
+offset_right = 275.0
+offset_bottom = -100.0
+theme_override_fonts/font = ExtResource( 1 )
 text = "Refresh Lobbies"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -202,10 +202,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 139.0
-margin_top = -96.0
-margin_right = 275.0
-margin_bottom = -39.0
+offset_left = 139.0
+offset_top = -96.0
+offset_right = 275.0
+offset_bottom = -39.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -213,10 +213,10 @@ __meta__ = {
 [node name="Tip" type="Label" parent="Note"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_bottom = -11.0
-custom_colors/font_color = Color( 0.427451, 0.427451, 0.427451, 1 )
-custom_constants/line_spacing = -4
+offset_left = 4.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color( 0.427451, 0.427451, 0.427451, 1 )
+theme_override_constants/line_spacing = -4
 text = "Full lobbies aren't shown.
 
 If you cannot find the room you are looking for try joining it through Steam."
@@ -231,28 +231,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 139.0
-margin_top = -95.0
-margin_right = 275.0
-margin_bottom = -71.0
+offset_left = 139.0
+offset_top = -95.0
+offset_right = 275.0
+offset_bottom = -71.0
 
 [node name="title" type="Label" parent="Panel2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 8.6389
-margin_bottom = 8.6389
+offset_top = 8.6389
+offset_bottom = 8.6389
 theme = ExtResource( 4 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.34902, 0.34902, 0.34902, 1 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_colors/font_color = Color( 0.34902, 0.34902, 0.34902, 1 )
 text = "Search distance:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="distances" type="OptionButton" parent="Panel2"]
-margin_top = 24.0
-margin_right = 136.0
-margin_bottom = 48.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 48.0
 text = "Close"
 items = [ "Close", null, false, 0, null, "Far", null, false, 2, null, "World wide", null, false, 3, null ]
 selected = 0
@@ -262,10 +262,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -68.0
-margin_top = 35.0
-margin_right = 68.0
-margin_bottom = 63.0
+offset_left = -68.0
+offset_top = 35.0
+offset_right = 68.0
+offset_bottom = 63.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -273,9 +273,9 @@ __meta__ = {
 [node name="Tip" type="Label" parent="Panel2/Tip"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-custom_colors/font_color = Color( 0.427451, 0.427451, 0.427451, 1 )
-custom_constants/line_spacing = -4
+offset_left = 4.0
+theme_override_colors/font_color = Color( 0.427451, 0.427451, 0.427451, 1 )
+theme_override_constants/line_spacing = -4
 text = "Note: Lobbies that are far away from you will lag."
 autowrap = true
 __meta__ = {

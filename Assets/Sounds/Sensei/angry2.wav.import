@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/angry2.wav-0a6d8a31ad01060b8d1e0c97b4a97a8b.sample"
+type="AudioStreamWAV"
+uid="uid://ddb8dhg3hk763"
+path="res://.godot/imported/angry2.wav-0a6d8a31ad01060b8d1e0c97b4a97a8b.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/Sensei/angry2.wav"
-dest_files=[ "res://.import/angry2.wav-0a6d8a31ad01060b8d1e0c97b4a97a8b.sample" ]
+dest_files=["res://.godot/imported/angry2.wav-0a6d8a31ad01060b8d1e0c97b4a97a8b.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

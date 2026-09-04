@@ -3,22 +3,22 @@ class_name Meteor
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Meteor
 
 
-export(NodePath) var fire_explosion_path
-export(NodePath) var meteor_impact_animator_path
-export(NodePath) var meteor_path
-export(NodePath) var meteor_trail_path
-export(NodePath) var damage_component_path
-export(NodePath) var knockback_component_path
-export(NodePath) var cracks_animator_path
-export(NodePath) var perimiter_path
+@export var fire_explosion_path: NodePath
+@export var meteor_impact_animator_path: NodePath
+@export var meteor_path: NodePath
+@export var meteor_trail_path: NodePath
+@export var damage_component_path: NodePath
+@export var knockback_component_path: NodePath
+@export var cracks_animator_path: NodePath
+@export var perimiter_path: NodePath
 
 
-onready var _timer: Timer = $disappear_timer
+@onready var _timer: Timer = $disappear_timer
 var time_to_disappear: bool = false
 
 
 func _ready():
-	parent_entity.connect("landed", self, "_on_has_landed")
+	parent_entity.connect("landed", Callable(self, "_on_has_landed"))
 	
 
 func _on_has_landed() -> void:

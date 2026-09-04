@@ -8,11 +8,11 @@
 [ext_resource path="res://Scenes/Components/PrettyDestroy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/ParticleEffects/SimpleExplosion.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/ParticleEffects/SimpleTrail.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=10]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=10]
 [ext_resource path="res://Scripts/Components/RockDash.gd" type="Script" id=11]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 radius = 0.794173
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -29,17 +29,17 @@ shader_param/alpha_texture = ExtResource( 9 )
 [sub_resource type="Animation" id=3]
 length = 1.4
 
-[node name="RockDashBoulder" type="Spatial"]
+[node name="RockDashBoulder" type="Node3D"]
 script = ExtResource( 2 )
 can_move = false
 age_limit_seconds = 0.35
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206775, -1.64111 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206775, -1.64111 )
 shape = SubResource( 1 )
 
 [node name="Damage" type="Node" parent="."]
@@ -53,12 +53,12 @@ directional = true
 knockback_teammates = false
 
 [node name="Trail" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.376314, -1.6307 )
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.376314, -1.6307 )
 material_override = SubResource( 2 )
 amount = 15
 
 [node name="Explosion" parent="." instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, -1.62989 )
+transform = Transform3D( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, -1.62989 )
 amount = 15
 
 [node name="PrettyDestroy" parent="." instance=ExtResource( 6 )]
@@ -76,7 +76,7 @@ anims/parabola = SubResource( 3 )
 script = ExtResource( 11 )
 
 [node name="RockDash2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1.78101e-07, 0, 1.09318, 0, 1.09318, 0, -1.09318, 0, -1.78101e-07, 0, -0.421248, -1.79269 )
+transform = Transform3D( -1.78101e-07, 0, 1.09318, 0, 1.09318, 0, -1.09318, 0, -1.78101e-07, 0, -0.421248, -1.79269 )
 
 [connection signal="rock_dash_hit" from="RockDash" to="RockDash2" method="_on_RockDash_rock_dash_hit"]
 

@@ -4,21 +4,21 @@
 [ext_resource path="res://Scenes/Components/Rotation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=5]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 0.9
 height = 0.1
 
-[node name="SpellMarker" type="Spatial"]
+[node name="SpellMarker" type="Node3D"]
 script = ExtResource( 5 )
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource( 1 )
 
-[node name="SpellMarker" type="Spatial" parent="."]
+[node name="SpellMarker" type="Node3D" parent="."]
 script = ExtResource( 2 )
 
 [node name="Rotation" parent="." instance=ExtResource( 4 )]

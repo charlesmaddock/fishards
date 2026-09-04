@@ -1,11 +1,11 @@
 extends MainMenuUIChild
 
 
-onready var notConnectedPanel = $NotConnected
+@onready var notConnectedPanel = $NotConnected
 
 
 func _ready():
-	SteamValues.connect("attempted_to_connect", self, "_on_attempted_to_connect")
+	SteamValues.connect("attempted_to_connect", Callable(self, "_on_attempted_to_connect"))
 	if Globals.get_app_mode() != Globals.AppModes.DEMO:
 		$Logo/Panel.visible = false
 

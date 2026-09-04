@@ -1,19 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh"
+uid="uid://5gdnx0blp01f"
+path="res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh"
 
 [deps]
 
-files=[ "res://.import/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh" ]
+files=["res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh"]
 
 source_file="res://Assets/Meshes/Hats/canon.obj"
-dest_files=[ "res://.import/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh", "res://.import/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh" ]
+dest_files=["res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh", "res://.godot/imported/canon.obj-a4f541ba7c1ff98315cb5ed0421fcd1b.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

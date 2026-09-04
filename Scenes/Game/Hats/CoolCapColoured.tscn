@@ -3,56 +3,56 @@
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Meshes/Hats/colored_cap_hat.obj" type="ArrayMesh" id=10]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.819608, 0.435294, 0.67451, 1 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.917647, 0.894118, 0.87451, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id=3]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.803922, 0.223529, 0.34902, 1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="StandardMaterial3D" id=4]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.917647, 0.894118, 0.87451, 1 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="StandardMaterial3D" id=5]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.807843, 0.372549, 0.254902, 1 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="StandardMaterial3D" id=6]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.913725, 0.905882, 0.427451, 1 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="StandardMaterial3D" id=7]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.501961, 0.67451, 0.482353, 1 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="StandardMaterial3D" id=8]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.368627, 0.47451, 0.6, 1 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="StandardMaterial3D" id=9]
 flags_unshaded = true
 params_cull_mode = 2
 albedo_color = Color( 0.372549, 0.309804, 0.517647, 1 )
 
-[node name="CoolCapColoured" type="Spatial"]
+[node name="CoolCapColoured" type="Node3D"]
 script = ExtResource( 3 )
 hat_type = 7
 
-[node name="colored_cap_hat" type="MeshInstance" parent="."]
+[node name="colored_cap_hat" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 10 )
 material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )

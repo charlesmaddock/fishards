@@ -65,13 +65,13 @@ signal ping_updated(ping, ping_avg)
 
 
 func _ready():
-	var join_req_res = Steam.connect("join_requested", self, "initial_steam_join_lobby")
-	var join_res = Steam.connect("lobby_joined", self, "_on_lobby_joined")
-	var p2p_req_res = Steam.connect("p2p_session_request", self, "_on_P2P_session_request")
-	var p2p_fail_res = Steam.connect("p2p_session_connect_fail", self, "_on_P2P_session_connect_fail")
-	var lbby_crt_res = Steam.connect("lobby_created", self, "_on_lobby_created")
-	var chat_upt_res = Steam.connect("lobby_chat_update", self, "_on_lobby_chat_update")
-	var get_lobbies_res = Steam.connect("lobby_match_list", self, "_on_get_lobby_match_list")
+	var join_req_res = Steam.connect("join_requested", Callable(self, "initial_steam_join_lobby"))
+	var join_res = Steam.connect("lobby_joined", Callable(self, "_on_lobby_joined"))
+	var p2p_req_res = Steam.connect("p2p_session_request", Callable(self, "_on_P2P_session_request"))
+	var p2p_fail_res = Steam.connect("p2p_session_connect_fail", Callable(self, "_on_P2P_session_connect_fail"))
+	var lbby_crt_res = Steam.connect("lobby_created", Callable(self, "_on_lobby_created"))
+	var chat_upt_res = Steam.connect("lobby_chat_update", Callable(self, "_on_lobby_chat_update"))
+	var get_lobbies_res = Steam.connect("lobby_match_list", Callable(self, "_on_get_lobby_match_list"))
 	
 	if join_res != OK || join_req_res != OK || lbby_crt_res != OK || p2p_req_res != OK || chat_upt_res != OK || p2p_fail_res != OK || get_lobbies_res != OK:
 		printerr("Error occured in one of gd's signals")
@@ -140,16 +140,16 @@ func player_is_in_temp_bot(id: int) -> bool:
 
 func remove_player_from_lobby(player_info: Dictionary) -> void:
 	if client_members.find(player_info) != -1:
-		client_members.remove(client_members.find(player_info))
+		client_members.remove_at(client_members.find(player_info))
 		var close_p2p_res: bool = Steam.closeP2PSessionWithUser(player_info["id"])
 		if close_p2p_res == false:
 			Util.log_print("Lobby", "[Host]: Failed to close p2p session with " + player_info["name"])
 		else:
 			Util.log_print("Lobby", "[Host]: Closed p2p with " + player_info["name"])
 	elif _bot_members.find(player_info) != -1:
-		_bot_members.remove(_bot_members.find(player_info))
+		_bot_members.remove_at(_bot_members.find(player_info))
 	elif _temp_bot_members.find(player_info) != -1:
-		_temp_bot_members.remove(_temp_bot_members.find(player_info))
+		_temp_bot_members.remove_at(_temp_bot_members.find(player_info))
 	
 	Util.log_print("Lobby", "[Host]: Removed " + player_info["name"] + " from lobby")
 	SceneLoader.remove_loaded_player(player_info["id"])
@@ -330,8 +330,8 @@ func open_loading_lobby_scene() -> void:
 		# Main menu scene needed to show loading lobby scene
 		if current_scene.name != "MainMenuScene":
 			Util.log_print("Lobby", "Not main menu, switching to main menu scene?")
-			scene_tree.change_scene(Globals.MAIN_MENU_SCENE)
-			yield(get_tree(), "idle_frame")
+			scene_tree.change_scene_to_file(Globals.MAIN_MENU_SCENE)
+			await get_tree().idle_frame
 			
 			var main_menu_scene = get_tree().get_current_scene()
 			if main_menu_scene.change_to_UI_on_ready != "LoadingLobbyUI": 
@@ -512,12 +512,12 @@ func p2p_handle_join_lobby_fail(sender_id: int) -> void:
 func _open_lobby_scene(wait_time: float) -> void:
 	# Go back to the main menu with wait_time period without messages
 	Globals.in_game = false
-	yield(get_tree().create_timer(wait_time), "timeout")
+	await get_tree().create_timer(wait_time).timeout
 	
 	if get_tree().get_root().has_node("MainMenuScene") == false:
-		var scene_response = get_tree().change_scene(Globals.MAIN_MENU_SCENE)
+		var scene_response = get_tree().change_scene_to_file(Globals.MAIN_MENU_SCENE)
 		if scene_response != OK: printerr("Error changing scene to main menu: " + str(scene_response))
-		yield(Globals, "main_menu_ready")
+		await Globals.main_menu_ready
 	
 	var UI_node: Control = get_tree().get_root().get_node("MainMenuScene/UI")
 	if UI_node != null:
@@ -695,7 +695,7 @@ func kick_player(id: int) -> void:
 			PacketSender.kick_player(id, "The host kicked you.")
 	
 	# If player still hasn't left, remove them manually
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	for player_info in client_members:
 		if player_info["id"] == id:
 			remove_player_from_lobby(player_info)
@@ -732,10 +732,10 @@ func leave_lobby(from: String = "") -> void:
 	Util.log_print("Lobby", "Switching to main menu from leave_lobby().")
 	
 	SceneLoader.show_loading_screen(false)
-	yield(get_tree().create_timer(SceneLoader._fade_animation.get_current_animation_length() + 0.2), "timeout")
+	await get_tree().create_timer(SceneLoader._fade_animation.get_current_animation_length() + 0.2).timeout
 	SceneLoader.set_done_loading()
 	
-	get_tree().change_scene(Globals.MAIN_MENU_SCENE)
+	get_tree().change_scene_to_file(Globals.MAIN_MENU_SCENE)
 	emit_signal("main_menu_loaded")
 
 
@@ -939,4 +939,3 @@ func TeamInfo(name: String, solo: bool, first_member_id: int) -> Dictionary:
 		"score": 0,
 		"place": 0,
 	}
-

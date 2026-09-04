@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
 
-onready var fireblast_effect: Particles = $Particles
+@onready var fireblast_effect: Particles = $Particles
 
 
 func _ready():

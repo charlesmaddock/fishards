@@ -1,19 +1,19 @@
 extends MainMenuUIChild
 
-onready var loadingStatus: Label = $Loading/Status
-onready var passwordPopup: Control = $PasswordPopup
-onready var passwordText: Label = $PasswordPopup/Label
-onready var passwordEdit: LineEdit = $PasswordPopup/LineEdit
-onready var wrongPasswordTip: Label = $PasswordPopup/WrongPasswordTip
+@onready var loadingStatus: Label = $Loading/Status
+@onready var passwordPopup: Control = $PasswordPopup
+@onready var passwordText: Label = $PasswordPopup/Label
+@onready var passwordEdit: LineEdit = $PasswordPopup/LineEdit
+@onready var wrongPasswordTip: Label = $PasswordPopup/WrongPasswordTip
 
-onready var loadingControl: Control = $Loading
-onready var failedResponse: Control = $FailedResponse
-onready var failedResponseText: Label = $FailedResponse/Label
+@onready var loadingControl: Control = $Loading
+@onready var failedResponse: Control = $FailedResponse
+@onready var failedResponseText: Label = $FailedResponse/Label
 
 
 func _ready():
-	Lobby.connect("update_loading_status", self, "_set_loading_status")
-	Lobby.connect("was_not_accepted_into_lobby", self, "_on_not_accepted_into_lobby")
+	Lobby.connect("update_loading_status", Callable(self, "_set_loading_status"))
+	Lobby.connect("was_not_accepted_into_lobby", Callable(self, "_on_not_accepted_into_lobby"))
 	_show_loading()
 	
 	if Lobby.password_required && !Lobby.is_host:

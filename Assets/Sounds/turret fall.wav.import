@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/turret fall.wav-d926cba0ade86b3d4884bde96a6efb4a.sample"
+type="AudioStreamWAV"
+uid="uid://cn88tvpyr122w"
+path="res://.godot/imported/turret fall.wav-d926cba0ade86b3d4884bde96a6efb4a.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/turret fall.wav"
-dest_files=[ "res://.import/turret fall.wav-d926cba0ade86b3d4884bde96a6efb4a.sample" ]
+dest_files=["res://.godot/imported/turret fall.wav-d926cba0ade86b3d4884bde96a6efb4a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/wildfire.wav-1618453c6b6a1c63343265a907b4c431.sample"
+type="AudioStreamWAV"
+uid="uid://dm2lnmi8bs3o7"
+path="res://.godot/imported/wildfire.wav-1618453c6b6a1c63343265a907b4c431.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/wildfire.wav"
-dest_files=[ "res://.import/wildfire.wav-1618453c6b6a1c63343265a907b4c431.sample" ]
+dest_files=["res://.godot/imported/wildfire.wav-1618453c6b6a1c63343265a907b4c431.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

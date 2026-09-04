@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
-[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Particle/splash_particle.png" type="Texture2D" id=2]
 [ext_resource path="res://Scenes/Game/Sound.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Sounds/splash1.wav" type="AudioStream" id=4]
 
@@ -11,7 +11,7 @@ _data = [ Vector2( 0, 0.980969 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.68092, 0.0
 [sub_resource type="CurveTexture" id=2]
 curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticleProcessMaterial" id=3]
 lifetime_randomness = 1.0
 spread = 90.0
 gravity = Vector3( 0, -10, 0 )
@@ -40,7 +40,7 @@ shader_param/alpha_texture = ExtResource( 2 )
 material = SubResource( 4 )
 
 [node name="SmallSplash" type="Particles"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
+transform = Transform3D( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.3, 0 )
 emitting = false
 amount = 30
 lifetime = 0.82
@@ -53,5 +53,5 @@ draw_pass_1 = SubResource( 5 )
 
 [node name="Sound" parent="." instance=ExtResource( 3 )]
 stream = ExtResource( 4 )
-unit_db = -5.0
+volume_db = -5.0
 autoplay = true

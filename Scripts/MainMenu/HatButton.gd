@@ -1,15 +1,15 @@
 extends Control
 
-export(preload("res://Scripts/MainMenu/CustomizePlayer.gd").HatTypes) var hat
-export(Texture) var icon: Texture
+@export(preload("res://Scripts/MainMenu/CustomizePlayer.gd").HatTypes) var hat
+@export var icon: Texture2D
 
 
-onready var questionMark: TextureRect = $HatButton/QuestionMark
-onready var hatButton: Button = $HatButton
-onready var textContainer: VBoxContainer = $HatButton/Control
-onready var title: Label = $HatButton/Control/title
-onready var desc: Label = $HatButton/Control/desc
-onready var new: Panel = $NewNotice
+@onready var questionMark: TextureRect = $HatButton/QuestionMark
+@onready var hatButton: Button = $HatButton
+@onready var textContainer: VBoxContainer = $HatButton/Control
+@onready var title: Label = $HatButton/Control/title
+@onready var desc: Label = $HatButton/Control/desc
+@onready var new: Panel = $NewNotice
 
 
 var discovered: bool = false
@@ -18,7 +18,7 @@ var discovered: bool = false
 func _ready():
 	hatButton.material = hatButton.material.duplicate()
 	hatButton.icon = icon
-	hatButton.material.set_shader_param("icon_tex", hatButton.icon)
+	hatButton.material.set_shader_parameter("icon_tex", hatButton.icon)
 	
 	new.set_visible(false)
 	set_discovered(discovered, "Loading...", "Loading...")
@@ -49,7 +49,7 @@ func set_discovered(value: bool, title_text: String, desc_text: String):
 	discovered = value
 	hatButton.disabled = !value
 	questionMark.visible = !value
-	hatButton.material.set_shader_param("discovered", value)
+	hatButton.material.set_shader_parameter("discovered", value)
 
 
 func _on_HatButton_pressed():
@@ -60,9 +60,9 @@ func _on_HatButton_pressed():
 
 func _on_HatButton_mouse_entered():
 	if discovered == true:
-		textContainer.rect_position += Vector2.UP * 2
+		textContainer.position += Vector2.UP * 2
 
 
 func _on_HatButton_mouse_exited():
 	if discovered == true:
-		textContainer.rect_position -= Vector2.UP * 2
+		textContainer.position -= Vector2.UP * 2

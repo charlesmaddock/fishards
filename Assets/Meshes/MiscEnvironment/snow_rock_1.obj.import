@@ -1,19 +1,25 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh"
+uid="uid://870s3gxl8buw"
+path="res://.godot/imported/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh"
 
 [deps]
 
-files=[ "res://.import/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh" ]
+files=["res://.godot/imported/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh"]
 
 source_file="res://Assets/Meshes/MiscEnvironment/snow_rock_1.obj"
-dest_files=[ "res://.import/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh", "res://.import/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh" ]
+dest_files=["res://.godot/imported/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh", "res://.godot/imported/snow_rock_1.obj-470ccd7e50017e6eb180e7bf2c18e1ab.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

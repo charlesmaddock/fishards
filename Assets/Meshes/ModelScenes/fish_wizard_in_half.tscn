@@ -5,13 +5,13 @@
 [ext_resource path="res://Scenes/Materials/Palette/10.tres" type="Material" id=4]
 [ext_resource path="res://Scenes/Materials/Palette/8.tres" type="Material" id=5]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 flags_unshaded = true
 albedo_color = Color( 0.368627, 0.47451, 0.6, 1 )
 
 [node name="fish_wizard_in_half" instance=ExtResource( 1 )]
 
-[node name="Fish" parent="Armature/Skeleton" index="0"]
+[node name="Fish" parent="Armature/Skeleton3D" index="0"]
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 4 )
 material/2 = ExtResource( 5 )

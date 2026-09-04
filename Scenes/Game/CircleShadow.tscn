@@ -3,7 +3,7 @@
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 
 void fragment(){
 	float circle = step(0.5, 1.0 - distance(vec2(0.5), UV));
@@ -17,8 +17,8 @@ shader_param/color = Color( 0.498039, 0.4, 0.364706, 0.184314 )
 
 [sub_resource type="QuadMesh" id=3]
 
-[node name="Shadow" type="MeshInstance"]
-transform = Transform( 0.871617, 0, 0, 0, -3.80996e-08, 0.871617, 0, -0.871617, -3.80996e-08, 0, 0.0407839, 0 )
+[node name="Shadow" type="MeshInstance3D"]
+transform = Transform3D( 0.871617, 0, 0, 0, -3.80996e-08, 0.871617, 0, -0.871617, -3.80996e-08, 0, 0.0407839, 0 )
 material_override = SubResource( 2 )
 mesh = SubResource( 3 )
 material/0 = null

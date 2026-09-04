@@ -8,9 +8,9 @@ const death_collision_layer: int = 16
 var _update_iteration: int
 
 
-export(int) var max_health = 100
-export(bool) var despawn_on_no_health = true
-export(int) var _regen_amount = 2
+@export var max_health: int = 100
+@export var despawn_on_no_health: bool = true
+@export var _regen_amount: int = 2
 
 
 var _health: int = -9999
@@ -20,8 +20,8 @@ var _invincible: bool = false
 var _inc_health_timer: float
 
 
-onready var recent_damager_reset: Timer = $RecentDamagerReset
-onready var healSound: AudioStreamPlayer3D = $Sound
+@onready var recent_damager_reset: Timer = $RecentDamagerReset
+@onready var healSound: AudioStreamPlayer3D = $Sound
 
 
 func _ready():
@@ -31,9 +31,9 @@ func _ready():
 	
 	_health = max_health
 	
-	parent_entity.connect("took_damage", self, "_on_took_damage")
-	parent_entity.connect("add_health", self, "_on_add_health")
-	parent_entity.connect("update_max_health", self, "_on_update_max_health")
+	parent_entity.connect("took_damage", Callable(self, "_on_took_damage"))
+	parent_entity.connect("add_health", Callable(self, "_on_add_health"))
+	parent_entity.connect("update_max_health", Callable(self, "_on_update_max_health"))
 
 
 func increase_max_health_with(increase_with: float) -> void:
@@ -43,7 +43,7 @@ func increase_max_health_with(increase_with: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_dead() == false:
-		var space_state = parent_entity.get_world().direct_space_state
+		var space_state = parent_entity.get_world_3d().direct_space_state
 		_update_iteration += 1
 		
 		var result = space_state.intersect_ray(parent_entity.global_transform.origin + Vector3.UP * 10, parent_entity.global_transform.origin + Vector3.DOWN * 10, [parent_entity.get_kinematic(), parent_entity.get_area()], map_collision_layer + death_collision_layer)

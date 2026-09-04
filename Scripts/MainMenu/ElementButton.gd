@@ -1,17 +1,17 @@
-tool
+@tool
 extends VBoxContainer
 
-export(Globals.Elements) var element: int
-export(Texture) var element_icon
+@export var element: int # (Globals.Elements)
+@export var element_icon: Texture2D
 
 
-onready var sprite = $TextureRect
-onready var picker = $PickerContainer/Picker
-onready var label = $PickerContainer/Label
-onready var selected = $PickerContainer
-onready var greyCover = $TextureRect/greyCover
-onready var element_display = get_parent()
-onready var background = $Control/Sprite
+@onready var sprite = $TextureRect
+@onready var picker = $PickerContainer/Picker
+@onready var label = $PickerContainer/Label
+@onready var selected = $PickerContainer
+@onready var greyCover = $TextureRect/greyCover
+@onready var element_display = get_parent()
+@onready var background = $Control/Sprite2D
 
 var label_color: Color
 var _selected: bool
@@ -40,9 +40,9 @@ func set_selected(val: bool, display_only: bool, show_key: bool, color: Color, s
 		
 	else:
 		selected.modulate = label_color
-		label.modulate = Color.white
+		label.modulate = Color.WHITE
 		if sprite: # STRANGE BUG BUT IT WORKS LIKE THIS OK?
-			sprite.modulate = Color.white
+			sprite.modulate = Color.WHITE
 	
 	label.text = selected_index
 
@@ -52,7 +52,7 @@ func set_preview_picker(visible: bool):
 		if visible == true:
 			selected.modulate = label_color
 			label.modulate = Color(0,0,0,0)
-			picker.modulate = Color.white
+			picker.modulate = Color.WHITE
 			background.set_visible(true)
 		else:
 			selected.modulate = Color(0,0,0,0)

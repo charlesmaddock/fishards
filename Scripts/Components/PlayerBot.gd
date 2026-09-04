@@ -3,7 +3,7 @@ class_name PlayerBot
 var COMPONENT_TYPE: int = Globals.ComponentTypes.PlayerBot
 
 
-onready var inWaterTimer = $InWaterTimer
+@onready var inWaterTimer = $InWaterTimer
 
 
 const bot_type_values: Dictionary = {
@@ -258,8 +258,8 @@ func cast_spell(cast_point: Vector3, spell: int, ignore_cooldown: bool = false) 
 
 func circle_attack(spell: int, amount: int) -> void:
 	for i in amount:
-		yield(get_tree().create_timer(0.03), "timeout")
-		var rotation = deg2rad((float(i) / float(amount)) * 360.0)
+		await get_tree().create_timer(0.03).timeout
+		var rotation = deg_to_rad((float(i) / float(amount)) * 360.0)
 		var cast_point = Util.y_rot_to_vector_3(rotation)
 		cast_spell(parent_entity.get_pos() + cast_point.normalized() * 2, spell, true)
 		
@@ -293,15 +293,15 @@ func pushard_boss_attack(closest_enemy) -> void:
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.HEAL)
 	parent_entity.set_trapped_w_duration(0.5)
 	
-	yield(get_tree().create_timer(0.6), "timeout")
+	await get_tree().create_timer(0.6).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DASH)
 	
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	circle_attack(Globals.SpellTypes.PUSH, 5)
 	
-	yield(get_tree().create_timer(0.7), "timeout")
+	await get_tree().create_timer(0.7).timeout
 	_boss_attack_ongoing = false
 
 
@@ -309,24 +309,24 @@ func grabard_boss_attack(closest_enemy) -> void:
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.HEAL)
 	parent_entity.set_trapped_w_duration(1)
 	
-	yield(get_tree().create_timer(1.1), "timeout")
+	await get_tree().create_timer(1.1).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DIVE)
 	parent_entity.set_trapped_w_duration(0.5)
 	
-	yield(get_tree().create_timer(0.6), "timeout")
+	await get_tree().create_timer(0.6).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	circle_attack(Globals.SpellTypes.GRAB, 6)
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	circle_attack(Globals.SpellTypes.FIREBLAST, 4)
 	
-	yield(get_tree().create_timer(0.2), "timeout")
+	await get_tree().create_timer(0.2).timeout
 	circle_attack(Globals.SpellTypes.METEOR, 3)
 	
-	yield(get_tree().create_timer(0.7), "timeout")
+	await get_tree().create_timer(0.7).timeout
 	_boss_attack_ongoing = false
 
 
@@ -334,18 +334,18 @@ func iceard_boss_attack(closest_enemy) -> void:
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.INVISIBILITY)
 	parent_entity.set_trapped_w_duration(1)
 	
-	yield(get_tree().create_timer(1.1), "timeout")
+	await get_tree().create_timer(1.1).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DIVE, true)
 	
-	yield(get_tree().create_timer(0.6), "timeout")
+	await get_tree().create_timer(0.6).timeout
 	circle_attack(Globals.SpellTypes.FREEZE_ORB, 3)
 	
-	yield(get_tree().create_timer(1.2), "timeout")
+	await get_tree().create_timer(1.2).timeout
 	circle_attack(Globals.SpellTypes.FREEZE_ORB, 4)
 	
-	yield(get_tree().create_timer(1.2), "timeout")
+	await get_tree().create_timer(1.2).timeout
 	_boss_attack_ongoing = false
 
 
@@ -353,45 +353,45 @@ func megadashard_boss_attack(closest_enemy) -> void:
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.INVISIBILITY)
 	parent_entity.set_trapped_w_duration(1)
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DASH)
 	
-	yield(get_tree().create_timer(0.3), "timeout")
+	await get_tree().create_timer(0.3).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DASH)
 	
-	yield(get_tree().create_timer(0.3), "timeout")
+	await get_tree().create_timer(0.3).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DASH)
 	
-	yield(get_tree().create_timer(0.7), "timeout")
+	await get_tree().create_timer(0.7).timeout
 	_boss_attack_ongoing = false
 
 
 func squishard_boss_attack(closest_enemy) -> void:
 	circle_attack(Globals.SpellTypes.FIREBALL, 5)
 	
-	yield(get_tree().create_timer(1.1), "timeout")
+	await get_tree().create_timer(1.1).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DIVE)
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	circle_attack(Globals.SpellTypes.METEOR, 4)
 	
-	yield(get_tree().create_timer(1.2), "timeout")
+	await get_tree().create_timer(1.2).timeout
 	if closest_enemy_not_safe(closest_enemy):
 		return
 	cast_spell(closest_enemy.global_transform.origin, Globals.SpellTypes.DASH)
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	circle_attack(Globals.SpellTypes.METEOR, 4)
 	
-	yield(get_tree().create_timer(0.8), "timeout")
+	await get_tree().create_timer(0.8).timeout
 	_boss_attack_ongoing = false
 
 
@@ -461,7 +461,7 @@ func _check_pivot(delta: float):
 	if _pivot_check_counter > 0.2 && Util.safe_to_use(_player) && Util.safe_to_use(parent_entity):
 		_pivot_check_counter = 0
 		
-		var space_state = parent_entity.get_world().get_direct_space_state()
+		var space_state = parent_entity.get_world_3d().get_direct_space_state()
 		var result0 = space_state.intersect_ray(parent_entity.global_transform.origin + Vector3.UP + Vector3(1, 0, 0), Vector3(parent_entity.global_transform.origin.x + 1, parent_entity.global_transform.origin.y - 10, parent_entity.global_transform.origin.z), [], 8)
 		var result1 = space_state.intersect_ray(parent_entity.global_transform.origin + Vector3.UP + Vector3(-1, 0, 0), Vector3(parent_entity.global_transform.origin.x - 1, parent_entity.global_transform.origin.y - 10, parent_entity.global_transform.origin.z), [], 8)
 		var result2 = space_state.intersect_ray(parent_entity.global_transform.origin + Vector3.UP + Vector3(0, 0, 1), Vector3(parent_entity.global_transform.origin.x, parent_entity.global_transform.origin.y - 10, parent_entity.global_transform.origin.z + 1), [], 8)
@@ -483,7 +483,7 @@ func _check_pivot(delta: float):
 func get_land_direction() -> Vector2:
 	var above_player = parent_entity.global_transform.origin + Vector3.UP
 	var under_player = parent_entity.global_transform.origin + Vector3.DOWN * 10
-	var space_state = parent_entity.get_world().get_direct_space_state()
+	var space_state = parent_entity.get_world_3d().get_direct_space_state()
 	var check_dist = 5
 	var dir: Vector2 = Vector2.INF
 	

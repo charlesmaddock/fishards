@@ -9,8 +9,8 @@ and does damage when hit
 """
 
 
-export var speed: int = 6
-export(Array, NodePath) var play_on_spawn_particles: Array
+@export var speed: int = 6
+@export var play_on_spawn_particles: Array # (Array, NodePath)
 
 var _reflect_amount: int = 0
 var _spell_caster_team_name: String
@@ -42,7 +42,7 @@ func reflect(new_dir: Vector3, new_caster_id: int = -1):
 	parent_entity.set_creator_id(new_caster_id)
 	var new_team = Lobby.get_team_info_from_player_id(new_caster_id).duplicate(true)
 	
-	if new_team.empty() == false:
+	if new_team.is_empty() == false:
 		if new_team.name == _spell_caster_team_name:
 			_spell_caster_team_name = ""
 		else:
@@ -57,8 +57,8 @@ func init_spell(direction: Vector2, caster_team: String) -> void:
 
 
 func _ready():
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collided")
-	parent_entity.get_area().connect("body_entered", self, "_on_entity_collided")
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collided"))
+	parent_entity.get_area().connect("body_entered", Callable(self, "_on_entity_collided"))
 	parent_entity.broadcast_transform = false
 	for node_path in play_on_spawn_particles:
 		var particle_system: Particles = get_node(node_path)
@@ -86,7 +86,7 @@ func _on_entity_collided(area_or_body):
 				_collided = true
 				return
 		
-		if area_or_body is StaticBody:
+		if area_or_body is StaticBody3D:
 			_collided = true
 			PacketSender.host_broadcast_destroy_entity(parent_entity.get_id())
 

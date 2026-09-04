@@ -1,19 +1,19 @@
 extends MainMenuUIChild
 
 
-onready var spells: VBoxContainer = $Panel/ScrollContainer/Spells
+@onready var spells: VBoxContainer = $Panel/ScrollContainer/Spells
 
-onready var discovered_toggle: CheckBox = $FilterOptions/DiscoveredOnly
+@onready var discovered_toggle: CheckBox = $FilterOptions/DiscoveredOnly
 
-onready var fire_toggle: CheckBox = $FilterOptions/ElementFilter/Fire
-onready var water_toggle: CheckBox = $FilterOptions/ElementFilter/Water
-onready var earth_toggle: CheckBox = $FilterOptions/ElementFilter/Earth
-onready var arcane_toggle: CheckBox = $FilterOptions/ElementFilter/Arcane
-onready var goo_toggle: CheckBox = $FilterOptions/ElementFilter/Goo
+@onready var fire_toggle: CheckBox = $FilterOptions/ElementFilter/Fire
+@onready var water_toggle: CheckBox = $FilterOptions/ElementFilter/Water
+@onready var earth_toggle: CheckBox = $FilterOptions/ElementFilter/Earth
+@onready var arcane_toggle: CheckBox = $FilterOptions/ElementFilter/Arcane
+@onready var goo_toggle: CheckBox = $FilterOptions/ElementFilter/Goo
 
 
 func _ready():
-	UserSettings.connect("spell_discovered", self, "_on_spell_discovered")
+	UserSettings.connect("spell_discovered", Callable(self, "_on_spell_discovered"))
 
 
 func filter_elements():

@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			print("====================")
 			print("Packets per second: ", amount_of_packets / 5)
 			for type in packet_types:
-				print(packet_types[type], " packets which is ", (stepify((packet_types[type] / amount_of_packets), 0.001) * 100), "% are ", Globals.PacketTypes.keys()[type])
+				print(packet_types[type], " packets which is ", (snapped((packet_types[type] / amount_of_packets), 0.001) * 100), "% are ", Globals.PacketTypes.keys()[type])
 			print("====================")
 			
 			amount_of_packets = 0
@@ -39,7 +39,7 @@ func _read_packets(channel: int) -> void:
 	var packet_size: int = Steam.getAvailableP2PPacketSize(channel)
 	while packet_size > 0:
 		var packet: Dictionary = Steam.readP2PPacket(packet_size, channel)
-		open_packet(packet["steam_id_remote"], bytes2var(packet["data"]))
+		open_packet(packet["steam_id_remote"], bytes_to_var(packet["data"]))
 		packet_size = Steam.getAvailableP2PPacketSize(channel)
 
 
@@ -151,7 +151,7 @@ func p2p_handle_join_mid_game_request(requester_id: int) -> void:
 					print("Handle Client Join Step 3: Good, found the joining player. Host setting their spawn point: ", joining_player_info["spwnpnt"])
 					break
 		
-		if joining_player_info.empty() == false:
+		if joining_player_info.is_empty() == false:
 			# Spawn the new player for everyone except the joining player, who receives themselves in broadcast_or_send_start_loading_game
 			print("Handle Client Join Step 3: Sending the new player to everyone except the new player")
 			for player_info in Lobby.client_members:
@@ -160,7 +160,7 @@ func p2p_handle_join_mid_game_request(requester_id: int) -> void:
 			
 			# Kill the player if we are not allowing respawns
 			var gamemode_info = GamemodeValues.get_current_rounds_gamemodeinfo()
-			if gamemode_info.empty() == false:
+			if gamemode_info.is_empty() == false:
 				if gamemode_info["respawn_allowed"] == false:
 					PacketSender.broadcast_player_death(requester_id)
 			

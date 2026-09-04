@@ -1,13 +1,13 @@
 extends Node
 
 
-onready var gamemode: Gamemode = get_parent()
+@onready var gamemode: Gamemode = get_parent()
 var _my_team_won: bool
 var winner_team: String
 
 func _ready():
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	gamemode.connect("round_over", self, "_on_round_over")
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	gamemode.connect("round_over", Callable(self, "_on_round_over"))
 
 
 func _on_round_over() -> void:

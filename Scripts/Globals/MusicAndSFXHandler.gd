@@ -85,14 +85,14 @@ var sound_paths: Dictionary = {
 }
 
 
-onready var MusicPlayer: AudioStreamPlayer = $MusicPlayer
-onready var SFXPlayer: AudioStreamPlayer = $SFXPlayer
-onready var SFXPlayerBackup: AudioStreamPlayer = $SFXPlayerBackup
-onready var SFXPlayerBackup2: AudioStreamPlayer = $SFXPlayerBackup2
-onready var SFXPlayerBackup3: AudioStreamPlayer = $SFXPlayerBackup3
-onready var SFXPlayerBackup4: AudioStreamPlayer = $SFXPlayerBackup4
-onready var SFXPlayerBackup5: AudioStreamPlayer = $SFXPlayerBackup5
-onready var tween_out = get_node("Tween")
+@onready var MusicPlayer: AudioStreamPlayer = $MusicPlayer
+@onready var SFXPlayer: AudioStreamPlayer = $SFXPlayer
+@onready var SFXPlayerBackup: AudioStreamPlayer = $SFXPlayerBackup
+@onready var SFXPlayerBackup2: AudioStreamPlayer = $SFXPlayerBackup2
+@onready var SFXPlayerBackup3: AudioStreamPlayer = $SFXPlayerBackup3
+@onready var SFXPlayerBackup4: AudioStreamPlayer = $SFXPlayerBackup4
+@onready var SFXPlayerBackup5: AudioStreamPlayer = $SFXPlayerBackup5
+@onready var tween_out = get_node("Tween")
 
 
 var music_volume_db = -5

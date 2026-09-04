@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Theme/fishards_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="DynamicFont" id=2]
-[ext_resource path="res://old_icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/pixel_medium.tres" type="FontFile" id=2]
+[ext_resource path="res://old_icon.png" type="Texture2D" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -30,20 +30,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Control" parent="InfoPopup"]
+[node name="Sprite2D" type="Control" parent="InfoPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -84.0
-margin_top = -37.0
-margin_right = 84.0
-margin_bottom = 37.0
+offset_left = -84.0
+offset_top = -37.0
+offset_right = 84.0
+offset_bottom = 37.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="InfoPopup/Sprite"]
+[node name="Sprite2D" type="Sprite2D" parent="InfoPopup/Sprite2D"]
 position = Vector2( 80.5, -19.5103 )
 scale = Vector2( 0.020688, 0.020688 )
 texture = ExtResource( 3 )
@@ -53,31 +53,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -85.5
-margin_top = -48.0
-margin_right = 85.5
-margin_bottom = 25.0
+offset_left = -85.5
+offset_top = -48.0
+offset_right = 85.5
+offset_bottom = 25.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Margin" type="MarginContainer" parent="InfoPopup/Panel"]
-margin_left = 3.0
-margin_right = 171.0
-margin_bottom = 74.0
-custom_constants/margin_right = 3
-custom_constants/margin_top = 3
+offset_left = 3.0
+offset_right = 171.0
+offset_bottom = 74.0
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
 
 [node name="VBox" type="VBoxContainer" parent="InfoPopup/Panel/Margin"]
-margin_top = 3.0
-margin_right = 165.0
-margin_bottom = 74.0
+offset_top = 3.0
+offset_right = 165.0
+offset_bottom = 74.0
 
 [node name="Title" type="Label" parent="InfoPopup/Panel/Margin/VBox"]
-margin_right = 165.0
-margin_bottom = 13.0
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
+offset_right = 165.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource( 2 )
+theme_override_colors/font_color = Color( 0.4, 0.4, 0.4, 1 )
 text = "Welcome fish wizard!"
 align = 1
 valign = 2
@@ -87,26 +87,26 @@ __meta__ = {
 }
 
 [node name="Desc" type="Label" parent="InfoPopup/Panel/Margin/VBox"]
-margin_top = 17.0
-margin_right = 165.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 0, 30 )
-custom_colors/font_color = Color( 0.384314, 0.384314, 0.384314, 1 )
-custom_constants/line_spacing = -3
+offset_top = 17.0
+offset_right = 165.0
+offset_bottom = 47.0
+custom_minimum_size = Vector2( 0, 30 )
+theme_override_colors/font_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+theme_override_constants/line_spacing = -3
 text = "First time playing? If so, do you want to try the tutorial?"
 align = 1
 autowrap = true
 
 [node name="Control" type="Control" parent="InfoPopup/Panel/Margin/VBox"]
-margin_top = 51.0
-margin_right = 165.0
-margin_bottom = 71.0
-rect_min_size = Vector2( 40, 20 )
+offset_top = 51.0
+offset_right = 165.0
+offset_bottom = 71.0
+custom_minimum_size = Vector2( 40, 20 )
 
 [node name="Button2" type="Button" parent="InfoPopup/Panel/Margin/VBox/Control"]
 self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
-margin_right = 79.0
-margin_bottom = 19.0
+offset_right = 79.0
+offset_bottom = 19.0
 text = "Yes!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,9 +114,9 @@ __meta__ = {
 
 [node name="Button" type="Button" parent="InfoPopup/Panel/Margin/VBox/Control"]
 self_modulate = Color( 0.862745, 0.862745, 0.862745, 1 )
-margin_left = 83.0
-margin_right = 165.0
-margin_bottom = 19.0
+offset_left = 83.0
+offset_right = 165.0
+offset_bottom = 19.0
 text = "Nah, skip it."
 __meta__ = {
 "_edit_use_anchors_": false

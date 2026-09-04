@@ -3,20 +3,20 @@ class_name EntityInfoPanel
 var COMPONENT_TYPE: int = Globals.ComponentTypes.EntityInfoPanel
 
 
-export(float) var _margin_top = 2
-export(String) var default_name = ""
-export(NodePath) var show_panel_above_path = null
+@export var _margin_top: float = 2
+@export var default_name: String = ""
+@export var show_panel_above_path: NodePath = null
 
-onready var _name_control: Control = $"Control/Name"
-onready var _label: Label = $"Control/Name/Label"
-onready var _hp_progress: TextureProgress = $"Control/Control/TextureProgress"
-onready var _control: Control = $"Control"
-onready var _hp_background_sprite: Sprite = $"Control/Control/health_bar_background"
-onready var healthControl: Control = $Control/Control 
-onready var elementDisplay = $"Control/Elements/ElementsDisplay"
+@onready var _name_control: Control = $"Control/Name"
+@onready var _label: Label = $"Control/Name/Label"
+@onready var _hp_progress: TextureProgressBar = $"Control/Control/TextureProgressBar"
+@onready var _control: Control = $"Control"
+@onready var _hp_background_sprite: Sprite2D = $"Control/Control/health_bar_background"
+@onready var healthControl: Control = $Control/Control 
+@onready var elementDisplay = $"Control/Elements/ElementsDisplay"
 
 
-var _show_panel_above: Spatial = null
+var _show_panel_above: Node3D = null
 
 
 func get_element_display():
@@ -30,12 +30,12 @@ func set_username(username: String, team_name: String):
 			_label.text = username
 			if team_name == "Blue Team":
 				_label.modulate = Globals.BLUE_TEAM_COLOR
-				_label.self_modulate = Color.white
+				_label.self_modulate = Color.WHITE
 			elif team_name == "Red Team":
 				_label.modulate = Globals.RED_TEAM_COLOR
-				_label.self_modulate = Color.white
+				_label.self_modulate = Color.WHITE
 			else:
-				_label.modulate = Color.white
+				_label.modulate = Color.WHITE
 
 
 func hide_panel() -> void:
@@ -47,8 +47,8 @@ func show_panel() -> void:
 
 
 func _ready():
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
-	UserSettings.connect("user_settings_updated", self, "_on_user_settings_updated")
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
+	UserSettings.connect("user_settings_updated", Callable(self, "_on_user_settings_updated"))
 	_on_user_settings_updated()
 	_label.text = default_name
 	hide_panel()
@@ -75,7 +75,7 @@ func _ready():
 	
 	# Avoid ugly bug where name shows up in corner of screen
 	if Lobby.player_is_in_temp_bot(parent_entity.get_id()) || parent_entity.get_type() == Globals.EntityTypes.SPELL:
-		yield(get_tree().create_timer(0.2), "timeout")
+		await get_tree().create_timer(0.2).timeout
 		call_deferred("show_panel")
 	else:
 		show_panel()
@@ -106,8 +106,8 @@ func hide_element_display() -> void:
 
 
 func _process(_delta: float) -> void:
-	var screen_pos: Vector2 = get_viewport().get_camera().unproject_position(_show_panel_above.get_global_transform().origin + (Vector3.UP * _margin_top) + Vector3.UP * 1.2)
-	_control.rect_position = Vector2(screen_pos.x, screen_pos.y) - _control.rect_size / 2
+	var screen_pos: Vector2 = get_viewport().get_camera_3d().unproject_position(_show_panel_above.get_global_transform().origin + (Vector3.UP * _margin_top) + Vector3.UP * 1.2)
+	_control.position = Vector2(screen_pos.x, screen_pos.y) - _control.size / 2
 
 
 func update_health(health: int):

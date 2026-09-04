@@ -2,7 +2,7 @@ extends Component
 
 
 func _ready():
-	parent_entity.connect("destroyed", self , "_on_destroyed")
+	parent_entity.connect("destroyed", Callable(self, "_on_destroyed"))
 
 
 func _on_destroyed(id: int, of_old_age: bool) -> void:

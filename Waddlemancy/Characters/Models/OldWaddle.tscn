@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=2]
+
+[sub_resource type="StandardMaterial3D" id=1]
+albedo_color = Color( 0.054902, 0.0745098, 0.141176, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.72
+height = 1.75
+radial_segments = 12
+rings = 6
+
+[sub_resource type="StandardMaterial3D" id=3]
+albedo_color = Color( 0.901961, 0.870588, 0.8, 1 )
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.58
+height = 1.25
+radial_segments = 12
+rings = 6
+
+[sub_resource type="SphereMesh" id=5]
+radius = 0.18
+height = 0.36
+radial_segments = 12
+rings = 6
+
+[sub_resource type="StandardMaterial3D" id=6]
+albedo_color = Color( 0.960784, 0.960784, 0.933333, 1 )
+
+[sub_resource type="SphereMesh" id=7]
+radius = 0.08
+height = 0.16
+radial_segments = 10
+rings = 5
+
+[sub_resource type="StandardMaterial3D" id=8]
+albedo_color = Color( 0.0705882, 0.0705882, 0.0862745, 1 )
+
+[sub_resource type="PrismMesh" id=9]
+
+[sub_resource type="StandardMaterial3D" id=10]
+albedo_color = Color( 0.941176, 0.568627, 0.176471, 1 )
+
+[sub_resource type="CapsuleMesh" id=11]
+radius = 0.16
+height = 0.65
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id=12]
+radius = 0.2
+height = 0.18
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id=13]
+albedo_color = Color( 0.941176, 0.568627, 0.176471, 1 )
+
+[node name="Waddle" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1.05, 0, 0, 0, 1, 0, 0, 0, 0.85, 0, 0.85, 0 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Belly" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.859743, -0.0164594, 0.00383894, 0.0150068, 0.959708, -0.00383953, -0.0147449, 0.0170416, 0.219933, 0, 0.78, 0.48 )
+material_override = SubResource( 3 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="LeftEye" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1.15, 0, 0, 0, 0.45, -0.22, 1.18, 0.64 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="RightEye" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1.15, 0, 0, 0, 0.45, 0.22, 1.18, 0.64 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="LeftPupil" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1.2, 0, 0, 0, 0.35, -0.22, 1.18, 0.73 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="RightPupil" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1.2, 0, 0, 0, 0.35, 0.22, 1.18, 0.73 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="Beak" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0, 0.98, 0.74 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+
+[node name="LeftFlippers" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.523081, 0.309017, 0, -0.169959, 0.951057, 0, 0, 0, 0.38, -0.68, 0.78, 0 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="RightFlippers" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.523081, 0.309017, 0, -0.169959, 0.951057, 0, 0, 0, 0.38, 0.68, 0.78, 0 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="LeftFoot" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1.25, 0, 0, 0, 0.45, 0, 0, 0, 0.85, -0.26, 0.08, 0.12 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="RightFoot" type="MeshInstance3D" parent="."]
+transform = Transform3D( 1.25, 0, 0, 0, 0.45, 0, 0, 0, 0.85, 0.26, 0.08, 0.12 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )

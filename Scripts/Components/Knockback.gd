@@ -9,15 +9,15 @@ and does damage when hit
 """
 
 
-export(float) var strength = 30
-export(bool) var can_knockback_on_ready = true
-export(bool) var always_knockback_on_collide = true
-export(bool) var directional: bool = false
-export(bool) var knockback_spells: bool = false
-export(bool) var knockback_creator: bool = false
-export(bool) var knockback_teammates: bool = true
-export(bool) var launch: bool = false
-export(float) var launch_speed: float = 7.5
+@export var strength: float = 30
+@export var can_knockback_on_ready: bool = true
+@export var always_knockback_on_collide: bool = true
+@export var directional: bool = false
+@export var knockback_spells: bool = false
+@export var knockback_creator: bool = false
+@export var knockback_teammates: bool = true
+@export var launch: bool = false
+@export var launch_speed: float = 7.5
 
 var _manual_knockback_dir: Vector2 = Vector2.ZERO
 var entities_in_area: Array
@@ -37,8 +37,8 @@ func set_dont_push_player_with_id(val: int) -> void:
 	_dont_push_player_with_id = val
 
 
-func init(collision_detection_area: Area) -> void:
-	collision_detection_area.connect("area_entered", self, "_on_entity_entered_area")
+func init(collision_detection_area: Area3D) -> void:
+	collision_detection_area.connect("area_entered", Callable(self, "_on_entity_entered_area"))
 	_can_knockback = can_knockback_on_ready
 	_dont_push_player_with_id = parent_entity.get_creator_id()
 
@@ -50,7 +50,7 @@ func knockback_entity(hit_entity: Entity) -> void:
 			return
 		
 		# If we have a block inbetween us
-		var space_state = parent_entity.get_world().direct_space_state
+		var space_state = parent_entity.get_world_3d().direct_space_state
 		var result = space_state.intersect_ray(parent_entity.global_transform.origin, hit_entity.global_transform.origin, [], int(pow(2, Globals.ColBits.BLOCK_DAMAGE)), true, true)
 		
 		if result.get("collider") != null:
@@ -85,12 +85,12 @@ func knockback_entity(hit_entity: Entity) -> void:
 			force = between * strength
 		
 		force.y = 0
-		hit_entity.add_force(force)
+		hit_entity.apply_force(force)
 		#hit_entity.set_trapped_w_duration(strength / 60, false)
 		hit_entity.emit_signal("trigger_player_animation", Globals.PlayerAnimations.PUSHED, Vector2(force.normalized().x, force.normalized().z))
 
 
-func _on_entity_entered_area(area: Area):
+func _on_entity_entered_area(area: Area3D):
 	# Put Entity in dict
 	var entity: Entity = Util.get_entity_from_area(area)
 	if entity != null:

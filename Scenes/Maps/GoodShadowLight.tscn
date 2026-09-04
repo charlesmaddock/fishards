@@ -1,7 +1,7 @@
 [gd_scene format=2]
 
-[node name="DirectionalLight" type="DirectionalLight"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 8.79119, -12.0225 )
+[node name="DirectionalLight3D" type="DirectionalLight3D"]
+transform = Transform3D( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 8.79119, -12.0225 )
 shadow_color = Color( 0.215686, 0.2, 0.192157, 1 )
 shadow_bias = 0.86
 directional_shadow_mode = 1

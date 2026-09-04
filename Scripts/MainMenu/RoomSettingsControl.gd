@@ -1,22 +1,22 @@
 extends Control
 
-onready var password: LineEdit = $"LobbySettingsContainer/Password/LineEdit"
-onready var maxPlayers: Slider = $"LobbySettingsContainer/MaxPlayers/Slider"
-onready var elementMode: OptionButton = $"ElementInfoContainer/ElementMode/OptionButton"
-onready var elementAmount: Slider = $"ElementInfoContainer/ElementAmount/Slider"
-onready var roundAmount: Slider = $"RoundsContainer/RoundAmount/Slider"
-onready var botAmount: Slider = $"BotInfoContainer/BotAmount/Slider"
-onready var botDifficulty: OptionButton = $"BotInfoContainer/BotDifficulty/OptionButton"
-onready var powerupsCheckBox: CheckBox = $"AdvancedSettings/Vbox/AdvancedContainer1/Powerups/PowerupsCheckBox"
+@onready var password: LineEdit = $"LobbySettingsContainer/Password/LineEdit"
+@onready var maxPlayers: Slider = $"LobbySettingsContainer/MaxPlayers/Slider"
+@onready var elementMode: OptionButton = $"ElementInfoContainer/ElementMode/OptionButton"
+@onready var elementAmount: Slider = $"ElementInfoContainer/ElementAmount/Slider"
+@onready var roundAmount: Slider = $"RoundsContainer/RoundAmount/Slider"
+@onready var botAmount: Slider = $"BotInfoContainer/BotAmount/Slider"
+@onready var botDifficulty: OptionButton = $"BotInfoContainer/BotDifficulty/OptionButton"
+@onready var powerupsCheckBox: CheckBox = $"AdvancedSettings/Vbox/AdvancedContainer1/Powerups/PowerupsCheckBox"
 
-onready var hideAdvancedSettings: Button = $"ButtonContainer/HideAdvancedSettings"
-onready var openAdvancedSettings: Button = $"ButtonContainer/OpenAdvancedSettings"
-onready var advancedSettingsContainer: PanelContainer = $"AdvancedSettings"
+@onready var hideAdvancedSettings: Button = $"ButtonContainer/HideAdvancedSettings"
+@onready var openAdvancedSettings: Button = $"ButtonContainer/OpenAdvancedSettings"
+@onready var advancedSettingsContainer: PanelContainer = $"AdvancedSettings"
 
-onready var gamemodeGrid: GridContainer = $PanelContainer/VBox/GamemodeGrid
-onready var minigamesGrid: GridContainer = $"MiniGamePanelContainer/VBox/GamemodeGrid"
+@onready var gamemodeGrid: GridContainer = $PanelContainer/VBox/GamemodeGrid
+@onready var minigamesGrid: GridContainer = $"MiniGamePanelContainer/VBox/GamemodeGrid"
 
-onready var map: OptionButton = $"AdvancedSettings/Vbox/AdvancedContainer1/Map/OptionButton"
+@onready var map: OptionButton = $"AdvancedSettings/Vbox/AdvancedContainer1/Map/OptionButton"
 
 var _selected_gamemode: int = GamemodeValues.Gamemodes.FreeForAll
 

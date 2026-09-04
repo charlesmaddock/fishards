@@ -1,15 +1,15 @@
-tool
+@tool
 extends HBoxContainer
 
 
-export(bool) var on_spell_hud = false
-export(bool) var display_only = false
-export(bool) var show_keys = true
-export(bool) var use_clients_elements = true
-export(bool) var update_elements_with_button = false
-export(bool) var kill_on_update = true
+@export var on_spell_hud: bool = false
+@export var display_only: bool = false
+@export var show_keys: bool = true
+@export var use_clients_elements: bool = true
+@export var update_elements_with_button: bool = false
+@export var kill_on_update: bool = true
 
-export(Color) var label_color = Color.white
+@export var label_color: Color = Color.WHITE
 
 
 var _is_dragging: bool = false
@@ -26,9 +26,9 @@ func set_owner_id(id: int) -> void:
 func _ready():
 	get_node("UpdateElements").set_visible(update_elements_with_button)
 	
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
 	
-	add_constant_override("separation", 1 if display_only else 3)
+	add_theme_constant_override("separation", 1 if display_only else 3)
 	
 	if use_clients_elements == true:
 		element_owner_id = SteamValues.STEAM_ID
@@ -49,7 +49,7 @@ func _on_lobby_members_updated() -> void:
 
 
 func _process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if Input.is_action_just_pressed("click"):
 			handle_click()
 		elif Input.is_action_just_released("click"): 
@@ -119,7 +119,7 @@ func set_elements(_players_elements: Array, update_client_elements: bool, elemen
 		new_elements = new_player_elements
 	
 	# Display elements in inspector
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		new_elements = _players_elements.duplicate(true)
 	else:
 		new_elements = [Globals.Elements.FIRE, Globals.Elements.WATER, Globals.Elements.GOO]
@@ -131,10 +131,10 @@ func set_elements(_players_elements: Array, update_client_elements: bool, elemen
 				var key_code = 0
 				if show_keys == true:
 					key_code = Util.get_key_code("element_" + str(new_elements.find(child.element) + 1), Util.InputTypes.KEYBOARD)
-				child.set_selected(true, display_only, show_keys, label_color, OS.get_scancode_string(key_code))
+				child.set_selected(true, display_only, show_keys, label_color, OS.get_keycode_string(key_code))
 			elif display_only == false:
 				child.set_selected(false, display_only, show_keys, label_color)
-			elif not Engine.editor_hint:
+			elif not Engine.is_editor_hint():
 				child.visible = false
 	
 	_current_elements = new_elements
@@ -146,7 +146,7 @@ func find_closest_el_container() -> Dictionary:
 	var closest_container: VBoxContainer = null
 	for child in get_children():
 		if child is VBoxContainer:
-			var child_pos = Vector2(child.rect_global_position.x + child.rect_size.x/2, child.rect_global_position.y + child.rect_size.y/2)
+			var child_pos = Vector2(child.global_position.x + child.size.x/2, child.global_position.y + child.size.y/2)
 			var dist = child_pos.distance_to(mouse_pos)
 			if dist < closest_dist && child._selected == false:
 				closest_dist = dist

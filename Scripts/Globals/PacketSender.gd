@@ -3,7 +3,7 @@ extends Node
 
 # Special function that always works, even if client members isn't set
 func handshake(lobby_id: int) -> void:
-	var byte_data: PoolByteArray = var2bytes({"type": Globals.PacketTypes.HANDSHAKE})
+	var byte_data: PackedByteArray = var_to_bytes({"type": Globals.PacketTypes.HANDSHAKE})
 	var client_amount: int = Steam.getNumLobbyMembers(lobby_id)
 	for client_index in range(0, client_amount):
 		var client_id: int = Steam.getLobbyMemberByIndex(lobby_id, client_index)
@@ -663,7 +663,7 @@ func send_chat_message(sender_id: int, message: String):
 ##################
 func broadcast_data_except(except_id: int, packet: Dictionary, send_type: int, channel: int = Globals.Channels.LOBBY):
 	if Lobby.lobby_state != Lobby.LobbyStates.NO_LOBBY:
-		var byte_data: PoolByteArray = var2bytes(packet)
+		var byte_data: PackedByteArray = var_to_bytes(packet)
 		for player_info in Lobby.client_members:
 			if player_info["id"] != except_id:
 				if player_info["id"] == Lobby.host_id && Lobby.is_host:
@@ -676,7 +676,7 @@ func broadcast_data_except(except_id: int, packet: Dictionary, send_type: int, c
 
 func broadcast_data(packet: Dictionary, send_type: int, channel: int = Globals.Channels.LOBBY):
 	if Lobby.lobby_state != Lobby.LobbyStates.NO_LOBBY:
-		var byte_data: PoolByteArray = var2bytes(packet)
+		var byte_data: PackedByteArray = var_to_bytes(packet)
 		for player_info in Lobby.client_members:
 			# Host doesn't need to send a packet to itself, they can just update the room node directly
 			if player_info["id"] == Lobby.host_id && Lobby.is_host:
@@ -695,7 +695,7 @@ func send_to(to_player: int, packet: Dictionary, send_type: int, channel: int = 
 			PacketHandler.host_read_packet_directly(SteamValues.STEAM_ID, packet, channel)
 			return
 		
-		var byte_data: PoolByteArray = var2bytes(packet)
+		var byte_data: PackedByteArray = var_to_bytes(packet)
 		var sent: bool = Steam.sendP2PPacket(to_player, byte_data, send_type, channel)
 		if sent == false:
 			printerr("send_to(): Failed to send packet to client with id ", to_player)

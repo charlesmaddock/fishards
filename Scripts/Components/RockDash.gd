@@ -3,9 +3,9 @@ extends Component
 signal rock_dash_hit()
 
 func _ready():
-	parent_entity.get_area().connect("area_entered", self, "_on_entity_collide")
-	parent_entity.get_area().set_collision_mask_bit(Globals.ColBits.SOLID, true)
-	parent_entity.get_area().set_collision_mask_bit(Globals.ColBits.MAP, false)
+	parent_entity.get_area().connect("area_entered", Callable(self, "_on_entity_collide"))
+	parent_entity.get_area().set_collision_mask_value(Globals.ColBits.SOLID, true)
+	parent_entity.get_area().set_collision_mask_value(Globals.ColBits.MAP, false)
 	var knockback: Knockback = parent_entity.get_component_of_type(Globals.ComponentTypes.Knockback)
 	if knockback != null:
 		var dir: Vector2 = Util.y_rot_to_vector_2(parent_entity.get_global_rot())

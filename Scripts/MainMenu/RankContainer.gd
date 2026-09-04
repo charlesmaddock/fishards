@@ -1,21 +1,21 @@
 extends Control
 
 
-export(bool) var use_clients_rank
+@export var use_clients_rank: bool
 
 
-export(Color) var bronze_color 
-export(Color) var silver_color 
-export(Color) var gold_color 
-export(Color) var diamond_color 
+@export var bronze_color: Color 
+@export var silver_color: Color 
+@export var gold_color: Color 
+@export var diamond_color: Color 
 
 
-onready var rankLabel = $RankLabel
-onready var medals = $Medals
-onready var diamond = $Medals/Diamond
-onready var gold = $Medals/Gold
-onready var silver = $Medals/Silver
-onready var bronze = $Medals/Bronze
+@onready var rankLabel = $RankLabel
+@onready var medals = $Medals
+@onready var diamond = $Medals/Diamond
+@onready var gold = $Medals/Gold
+@onready var silver = $Medals/Silver
+@onready var bronze = $Medals/Bronze
 
 
 func _ready():
@@ -33,19 +33,19 @@ func display_rank(rank: int) -> Color:
 	var max_rank = AchievementHandler.get_max_rank()
 	if rank < max_rank / 3:
 		bronze.set_visible(true)
-		rankLabel.set("custom_colors/font_color", bronze_color)
+		rankLabel.set("theme_override_colors/font_color", bronze_color)
 		color = bronze_color
 	elif rank < (max_rank / 3) * 2:
 		silver.set_visible(true)
-		rankLabel.set("custom_colors/font_color", silver_color)
+		rankLabel.set("theme_override_colors/font_color", silver_color)
 		color = silver_color
 	elif rank < max_rank:
 		gold.set_visible(true)
-		rankLabel.set("custom_colors/font_color", gold_color)
+		rankLabel.set("theme_override_colors/font_color", gold_color)
 		color = gold_color
 	elif rank == max_rank:
 		diamond.set_visible(true)
-		rankLabel.set("custom_colors/font_color", diamond_color)
+		rankLabel.set("theme_override_colors/font_color", diamond_color)
 		color = diamond_color
 	
 	return color

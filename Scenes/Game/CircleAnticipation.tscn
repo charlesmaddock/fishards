@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=2]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -9,7 +9,7 @@ code = "shader_type spatial;
 render_mode unshaded;
 
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform float big_circle_radius = 0.5;
 uniform float small_circle_radius = 0.25;
 uniform float smoothing = 0.1;
@@ -58,7 +58,7 @@ shader_param/speed = 0.8
 shader_param/polar_scale = 2.0
 shader_param/noise_tex = ExtResource( 2 )
 
-[node name="CircleAnticipation" type="MeshInstance"]
-transform = Transform( 4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0 )
+[node name="CircleAnticipation" type="MeshInstance3D"]
+transform = Transform3D( 4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )

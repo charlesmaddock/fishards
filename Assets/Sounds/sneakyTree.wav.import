@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample"
+type="AudioStreamWAV"
+uid="uid://kbp1bxaddykx"
+path="res://.godot/imported/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/sneakyTree.wav"
-dest_files=[ "res://.import/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample" ]
+dest_files=["res://.godot/imported/sneakyTree.wav-57fc720b98e205c0ba6012b13c31c02a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -3,12 +3,12 @@ class_name Kinematic
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Kinematic
 
 
-onready var kinematic_body: KinematicBody = $KinematicBody
+@onready var kinematic_body: CharacterBody3D = $CharacterBody3D
 
 
 func _ready():
 	# Add the entities collision shape to our kinematic body
-	var shape: CollisionShape = parent_entity.get_collision_shape().duplicate(true)
+	var shape: CollisionShape3D = parent_entity.get_collision_shape().duplicate(true)
 	shape.disabled = parent_entity.disable_collider_on_ready
 	disable_collision(false)
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/Shaders/particle.shader" type="Shader" id=1]
-[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Shaders/particle.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Particle/smoke_particle.png" type="Texture2D" id=2]
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -21,7 +21,7 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.967391, 0 ), 0.0, 0.0, 0, 
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticleProcessMaterial" id=4]
 emission_shape = 1
 emission_sphere_radius = 0.05
 gravity = Vector3( 0, 0, 0 )
@@ -32,12 +32,12 @@ scale_curve = SubResource( 3 )
 
 [sub_resource type="QuadMesh" id=5]
 
-[node name="WindHat" type="Spatial"]
+[node name="WindHat" type="Node3D"]
 script = ExtResource( 6 )
 hat_type = 8
 
 [node name="Trail" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000504375 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000504375 )
 material_override = SubResource( 1 )
 amount = 5
 lifetime = 0.6

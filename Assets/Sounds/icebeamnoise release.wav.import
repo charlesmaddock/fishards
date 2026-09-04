@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/icebeamnoise release.wav-f6c0e040a4815315e2ce082543e7064a.sample"
+type="AudioStreamWAV"
+uid="uid://dersld0xsj2il"
+path="res://.godot/imported/icebeamnoise release.wav-f6c0e040a4815315e2ce082543e7064a.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/icebeamnoise release.wav"
-dest_files=[ "res://.import/icebeamnoise release.wav-f6c0e040a4815315e2ce082543e7064a.sample" ]
+dest_files=["res://.godot/imported/icebeamnoise release.wav-f6c0e040a4815315e2ce082543e7064a.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

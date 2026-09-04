@@ -6,10 +6,10 @@
 [ext_resource path="res://Assets/Meshes/Hats/safari_hat.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=5]
 
-[node name="SafariHat" type="Spatial"]
+[node name="SafariHat" type="Node3D"]
 script = ExtResource( 5 )
 
-[node name="safari_hat" type="MeshInstance" parent="."]
+[node name="safari_hat" type="MeshInstance3D" parent="."]
 mesh = ExtResource( 4 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 1 )

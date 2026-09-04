@@ -3,14 +3,14 @@ extends Node
 
 var leader_player_id: int = -1
 
-onready var gamemode: Gamemode = get_parent()
-onready var crown: Spatial = $Crown
+@onready var gamemode: Gamemode = get_parent()
+@onready var crown: Node3D = $Crown
 
 
 func _ready():
-	Lobby.connect("player_killed", self, "_on_player_killed")
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
-	gamemode.connect("round_over", self, "_on_round_over")
+	Lobby.connect("player_killed", Callable(self, "_on_player_killed"))
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
+	gamemode.connect("round_over", Callable(self, "_on_round_over"))
 
 
 func _process(delta):
@@ -19,9 +19,9 @@ func _process(delta):
 		if room_node != null:
 			var leader = room_node.get_entity(leader_player_id, "crown follow")
 			if leader != null:
-				crown.transform.origin = crown.transform.origin.linear_interpolate(leader.get_pos() + Vector3.UP * 2.5, delta * 4)
+				crown.transform.origin = crown.transform.origin.lerp(leader.get_pos() + Vector3.UP * 2.5, delta * 4)
 	else:
-		crown.transform.origin = crown.transform.origin.linear_interpolate(Vector3.DOWN * 3, delta * 4)
+		crown.transform.origin = crown.transform.origin.lerp(Vector3.DOWN * 3, delta * 4)
 
 
 func _on_round_over():

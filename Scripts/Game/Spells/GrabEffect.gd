@@ -3,21 +3,21 @@ class_name Grab
 var COMPONENT_TYPE: int = Globals.ComponentTypes.Grab
 
 
-onready var grabArea: Area = $GrabArea 
-onready var animationPlayer: AnimationPlayer = $AnimationPlayer 
-onready var solidHitRayDectector: RayCast = $SolidHitRayDectector 
-onready var solidHitRayDectector2: RayCast = $SolidHitRayDectector2
-export(NodePath) var grab_hit_path
+@onready var grabArea: Area3D = $GrabArea 
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer 
+@onready var solidHitRayDectector: RayCast3D = $SolidHitRayDectector 
+@onready var solidHitRayDectector2: RayCast3D = $SolidHitRayDectector2
+@export var grab_hit_path: NodePath
 var grabbed_entities_ids: Array = []
 var invert_grab: bool = false
 var original_pos: Vector3
 
 
 func _ready():
-	grabArea.connect("area_entered", self, "_on_grab_area_collided")
-	grabArea.connect("body_entered", self, "_on_grab_area_collided")
-	animationPlayer.connect("animation_finished", self, "_on_grab_anim_finished")
-	Lobby.connect("destroy_entity", self, "_on_entity_destroyed")
+	grabArea.connect("area_entered", Callable(self, "_on_grab_area_collided"))
+	grabArea.connect("body_entered", Callable(self, "_on_grab_area_collided"))
+	animationPlayer.connect("animation_finished", Callable(self, "_on_grab_anim_finished"))
+	Lobby.connect("destroy_entity", Callable(self, "_on_entity_destroyed"))
 	
 	grabArea.transform.origin = Vector3.ZERO
 	
@@ -37,14 +37,14 @@ func _process(_delta: float) -> void:
 			var grab_relative_pos: Vector3 = grabArea.global_transform.origin - parent_entity.global_transform.origin
 			var player_entity = room_node.get_entity(parent_entity.get_creator_id(), "grab effect own player")
 			if player_entity != null:
-				var inverse_position: Vector3 = player_entity.get_pos().linear_interpolate(original_pos - grab_relative_pos, _delta * 24)
+				var inverse_position: Vector3 = player_entity.get_pos().lerp(original_pos - grab_relative_pos, _delta * 24)
 				player_entity.set_position(inverse_position)
 		
 		for grabbed_entity_id in grabbed_entities_ids:
 			if grabbed_entity_id != -1:
 				var grabbed_entity = room_node.get_entity(grabbed_entity_id, "grab effect other player")
 				if grabbed_entity != null:
-					var grabbed_pos: Vector3 = grabbed_entity.get_pos().linear_interpolate(grabArea.global_transform.origin, _delta * 24)
+					var grabbed_pos: Vector3 = grabbed_entity.get_pos().lerp(grabArea.global_transform.origin, _delta * 24)
 					grabbed_pos.y = 0
 					grabbed_entity.set_position(grabbed_pos)
 
@@ -77,7 +77,7 @@ func _on_grab_area_collided(area) -> void:
 		if grabbed_entity.get_type() == Globals.EntityTypes.ENVIRONMENT && grabbed_entity.get_subtype() == Globals.EnvironmentTypes.FISH_BALL:
 			var res = parent_entity.transform.basis.z * -5
 			res.y = 0
-			grabbed_entity.add_force(res)
+			grabbed_entity.apply_force(res)
 		elif grabbed_entity.get_type() == Globals.EntityTypes.ENVIRONMENT && grabbed_entity.get_subtype() != Globals.EnvironmentTypes.DUMMY && grabbed_entity.get_subtype() != Globals.EnvironmentTypes.STRONG_DUMMY:
 			hit_solid(area)
 		elif grabbed_entity.get_type() == Globals.EntityTypes.PLAYER && grabbed_entity.get_id() != parent_entity.get_creator_id():
@@ -87,11 +87,11 @@ func _on_grab_area_collided(area) -> void:
 		elif grabbed_entity.get_type() == Globals.EntityTypes.ENVIRONMENT && grabbed_entity.get_subtype() == Globals.EnvironmentTypes.DUMMY && grabbed_entity.get_subtype() != Globals.EnvironmentTypes.STRONG_DUMMY:
 			try_add_to_grabbed(grabbed_entity)
 	
-	elif area is StaticBody:
+	elif area is StaticBody3D:
 		hit_solid(area)
 
 
-func hit_solid(hit_area: Area) -> void:
+func hit_solid(hit_area: Area3D) -> void:
 	if grabbed_entities_ids.size() == 0:
 		grabbed_entities_ids.append(-1)
 		if solidHitRayDectector.get_collider() != null:

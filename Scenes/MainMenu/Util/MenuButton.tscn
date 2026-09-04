@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/MainMenu/Button.gd" type="Script" id=1]
 
 [node name="Button" type="Button"]
-margin_right = 140.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 0, 27 )
+offset_right = 140.0
+offset_bottom = 27.0
+custom_minimum_size = Vector2( 0, 27 )
 focus_mode = 0
-enabled_focus_mode = 0
+focus_mode = 0
 flat = true
 script = ExtResource( 1 )
 __meta__ = {
@@ -15,7 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 centered = false
 hframes = 2
 

@@ -1,12 +1,12 @@
 extends Node
 
 
-onready var gamemode: Gamemode = get_parent()
+@onready var gamemode: Gamemode = get_parent()
 
 
 func _ready():
-	Lobby.connect("goal", self, "_on_goal")
-	yield(get_tree(), "idle_frame")
+	Lobby.connect("goal", Callable(self, "_on_goal"))
+	await get_tree().idle_frame
 	gamemode.set_respawn_time(6)
 
 

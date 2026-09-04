@@ -38,7 +38,7 @@ var achievements: Dictionary = {
 }
 
 
-onready var achievementHats = {
+@onready var achievementHats = {
 	achievements.ACH_COMPLETE_10_KILLS: CustomizePlayer.HatTypes.FEZ,
 	achievements.ACH_COMPLETE_50_KILLS: CustomizePlayer.HatTypes.WINTER,
 	achievements.ACH_COMPLETE_100_KILLS: CustomizePlayer.HatTypes.BEANIE,
@@ -99,7 +99,7 @@ const classes_info: Dictionary = {
 }
 
 
-onready var _default_achievement_data: Dictionary = {
+@onready var _default_achievement_data: Dictionary = {
 	"kills": 0,
 	"class_kills": {
 		classes.CLASSIC: 0,
@@ -212,10 +212,10 @@ func inc_pushes() -> void:
 
 
 func _ready():
-	connect("round_won", self, "_on_round_won")
-	Lobby.connect("player_killed", self, "_on_kill")
-	Lobby.connect("lobby_members_updated", self, "_on_lobby_members_updated")
-	Steam.connect("current_stats_received", self, "_on_steam_stats_received")
+	connect("round_won", Callable(self, "_on_round_won"))
+	Lobby.connect("player_killed", Callable(self, "_on_kill"))
+	Lobby.connect("lobby_members_updated", Callable(self, "_on_lobby_members_updated"))
+	Steam.connect("current_stats_received", Callable(self, "_on_steam_stats_received"))
 	
 	load_achievement_data()
 	

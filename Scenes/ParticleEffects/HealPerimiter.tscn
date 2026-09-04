@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Meshes/VFX/heal_vfx_perimiter.tres" type="ArrayMesh" id=1]
-[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/ShaderResources/regular_noise.png" type="Texture2D" id=2]
 
 [sub_resource type="Shader" id=19]
 code = "shader_type spatial;
 render_mode unshaded, cull_disabled;
 
-uniform vec4 color : hint_color;
+uniform vec4 color : source_color;
 uniform sampler2D noise_tex;
 uniform sampler2D gradient_tex;
 uniform vec2 noise_scale = vec2(1.0, 1.0);
@@ -27,15 +27,15 @@ void fragment(){
 	
 	ALBEDO = color.rgb;
 	ALPHA = shape;
-	ALPHA_SCISSOR = 0.01;
+	ALPHA_SCISSOR_THRESHOLD = 0.01;
 	
 }"
 
 [sub_resource type="Gradient" id=20]
-offsets = PoolRealArray( 0, 0.350649, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.623377, 0.623377, 0.623377, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.350649, 1 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.623377, 0.623377, 0.623377, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=21]
+[sub_resource type="GradientTexture2D" id=21]
 gradient = SubResource( 20 )
 
 [sub_resource type="ShaderMaterial" id=25]
@@ -53,7 +53,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.138614, 1 ), 0.0, 0.0, 0, 
 [sub_resource type="CurveTexture" id=24]
 curve = SubResource( 23 )
 
-[sub_resource type="ParticlesMaterial" id=26]
+[sub_resource type="ParticleProcessMaterial" id=26]
 gravity = Vector3( 0, 0, 0 )
 scale = 0.8
 scale_curve = SubResource( 24 )

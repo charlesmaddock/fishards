@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
 
-onready var flameSound1 = $FlameSound1
-onready var flameSound2 = $FlameSound2
+@onready var flameSound1 = $FlameSound1
+@onready var flameSound2 = $FlameSound2
 
 
 var sound_length = 0.9
@@ -12,7 +12,7 @@ var stop: bool
 
 
 func _ready():
-	get_parent().connect("destroyed", self, "_on_destroyed")
+	get_parent().connect("destroyed", Callable(self, "_on_destroyed"))
 
 
 func _on_destroyed(_id, _of_old_age):

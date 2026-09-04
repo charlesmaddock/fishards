@@ -2,20 +2,20 @@ extends SpatialComponent
 class_name ParticlePlayer, "res://Assets/Textures/Sprites/Node Icons/componentIcon.png"
 var COMPONENT_TYPE: int = Globals.ComponentTypes.ParticlePlayer
 
-onready var fireblastHurtEffect = $FireblastHurtEffect
-onready var wildfireHurtEffect = $WildfireHurtEffect
-onready var fireHurtEffect = $FireHurtEffect
-onready var waterSplashEffect = $WaterSplashEffect
-onready var lavaSplashEffect =  $LavaSplashEffect
-onready var healed = $Healed
-onready var meteorMuzzle = $MeteorMuzzle
-onready var burningEffect = $BurningEffect
-onready var dashBeamHurt = $DashBeamHurt
-onready var pushedTrail = $PushedTrail
-onready var pushedLanding = $PushedLanding
+@onready var fireblastHurtEffect = $FireblastHurtEffect
+@onready var wildfireHurtEffect = $WildfireHurtEffect
+@onready var fireHurtEffect = $FireHurtEffect
+@onready var waterSplashEffect = $WaterSplashEffect
+@onready var lavaSplashEffect =  $LavaSplashEffect
+@onready var healed = $Healed
+@onready var meteorMuzzle = $MeteorMuzzle
+@onready var burningEffect = $BurningEffect
+@onready var dashBeamHurt = $DashBeamHurt
+@onready var pushedTrail = $PushedTrail
+@onready var pushedLanding = $PushedLanding
 
 func _ready():
-	parent_entity.connect("trigger_particle_effect", self, "_on_trigger_effect")
+	parent_entity.connect("trigger_particle_effect", Callable(self, "_on_trigger_effect"))
 	
 	for child in burningEffect.get_children():
 		child.visible = false
@@ -25,7 +25,7 @@ func _on_trigger_effect(effect_nr: int, emitting: bool, y_rot: float):
 	rotation.y -= parent_entity.rotation.y
 	rotation.y += y_rot
 	
-	var effect: Spatial
+	var effect: Node3D
 	
 	match effect_nr:
 		Globals.ParticleEffects.FIREBLAST_HURT:
@@ -54,5 +54,5 @@ func _on_trigger_effect(effect_nr: int, emitting: bool, y_rot: float):
 	for particles in effect.get_children():
 		if particles is Particles:
 			particles.emitting = emitting
-		if particles is MeshInstance:
+		if particles is MeshInstance3D:
 			particles.visible = emitting

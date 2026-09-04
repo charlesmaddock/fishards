@@ -7,20 +7,20 @@
 [ext_resource path="res://Scenes/Components/Sounds.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sounds/area heal.wav" type="AudioStream" id=6]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape3D" id=1]
 radius = 2.63951
 height = 1.1106
 
-[node name="HealArea" type="Spatial"]
+[node name="HealArea" type="Node3D"]
 script = ExtResource( 2 )
 age_limit_seconds = 1.2
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 0.999992, 0.00397934, 0, -0.00397934, 0.999992, 0, 0, 0, 1, 0, -0.297394, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D( 0.999992, 0.00397934, 0, -0.00397934, 0.999992, 0, 0, 0, 1, 0, -0.297394, 0 )
 shape = SubResource( 1 )
 
 [node name="Heal" parent="." instance=ExtResource( 3 )]
@@ -28,7 +28,7 @@ heal_amount = 21
 heal_once_only = true
 
 [node name="HealAreaEffect" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0 )
 
 [node name="PrettyDestroy" parent="." instance=ExtResource( 4 )]
 stop_particle_node_array = [ NodePath("../HealAreaEffect/Sparkles") ]

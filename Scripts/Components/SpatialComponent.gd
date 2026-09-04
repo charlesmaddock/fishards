@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 class_name SpatialComponent, "res://Assets/Textures/Sprites/Node Icons/componentIcon.png"
 
@@ -11,7 +11,7 @@ var parent_entity: Entity = null
 
 
 func _ready():
-	var parent_node = get_parent_spatial()
+	var parent_node = get_parent_node_3d()
 	if parent_node is Entity:
 		parent_entity = parent_node
 	else:

@@ -1,14 +1,14 @@
-extends Spatial
+extends Node3D
 
-export(bool) var menu_fish: bool = false
+@export var menu_fish: bool = false
 
-onready var fish_mesh = $Armature/Skeleton/Fish
+@onready var fish_mesh = $Armature/Skeleton3D/Fish
 
 var selected_hat: int
 var has_set: bool = false
 
 var _hat_container_path: String
-onready var _hatContainer: Position3D = $Hat/HatContainer
+@onready var _hatContainer: Marker3D = $Hat/HatContainer
 
 
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 	elif menu_fish:
 		show_hat(CustomizePlayer.get_my_skin()["hat"])
 	
-	Util.reparent_node($Hat, $Armature/Skeleton)
+	Util.reparent_node($Hat, $Armature/Skeleton3D)
 
 
 func show_hat(hat: int, wait_until_ready: bool = false):

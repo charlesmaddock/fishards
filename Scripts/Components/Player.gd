@@ -6,9 +6,9 @@ var COMPONENT_TYPE: int = Globals.ComponentTypes.Player
 const DEFAULT_ROTATION_SPEED: float = PI * 5
 
 
-export(Array, NodePath) var _renderers: Array
-export(NodePath) var _fish_model: NodePath # The mesh
-export(NodePath) var _fish_wizard_path: NodePath # The fish_wizard node
+@export var _renderers: Array # (Array, NodePath)
+@export var _fish_model: NodePath # The mesh
+@export var _fish_wizard_path: NodePath # The fish_wizard node
 
 
 # Network variables
@@ -47,19 +47,19 @@ var _queue_dive_up: bool = false
 var _dived_down: bool = false
 
 
-onready var grabTimer: Timer = $GrabTimer
-onready var _animation_tree: AnimationTree = $AnimationTree
-onready var _animation_player: AnimationPlayer = $fish_wizard/AnimationPlayer
-onready var _swimAnimator: AnimationPlayer = $SwimAnimator
-onready var _respawnTimer: Timer = $RespawnTimer
-onready var _fish_wizard: Spatial = $fish_wizard
-onready var fireExplosion: Spatial = $FireExplosion
-onready var freezeIndicator: Spatial = $FreezeIndicator
-onready var OpModeTimer: Timer = $OpModeTimer
-onready var damageSkinTimer: Timer = $DamageSkinTimer
-onready var listener: Listener = $Listener
-onready var footstepSound: AudioStreamPlayer3D = $FootstepSound
-onready var moveToPosIndicator: CSGCylinder = $MoveToPosIndicator
+@onready var grabTimer: Timer = $GrabTimer
+@onready var _animation_tree: AnimationTree = $AnimationTree
+@onready var _animation_player: AnimationPlayer = $fish_wizard/AnimationPlayer
+@onready var _swimAnimator: AnimationPlayer = $SwimAnimator
+@onready var _respawnTimer: Timer = $RespawnTimer
+@onready var _fish_wizard: Node3D = $fish_wizard
+@onready var fireExplosion: Node3D = $FireExplosion
+@onready var freezeIndicator: Node3D = $FreezeIndicator
+@onready var OpModeTimer: Timer = $OpModeTimer
+@onready var damageSkinTimer: Timer = $DamageSkinTimer
+@onready var listener: AudioListener3D = $AudioListener3D
+@onready var footstepSound: AudioStreamPlayer3D = $FootstepSound
+@onready var moveToPosIndicator: CSGCylinder3D = $MoveToPosIndicator
 
 
 func init_player(id: int, new_username: String, skin: Dictionary, preferred_team: String, cloned_from_id: int, player_type: int, rank: int = -1) -> void:
@@ -89,9 +89,9 @@ func get_in_water() -> bool:
 
 func _ready():
 	_animation_tree.active = true
-	parent_entity.connect("no_health", self, "_on_no_health")
-	parent_entity.connect("took_damage", self, "_on_took_damage")
-	parent_entity.connect("trigger_player_animation", self, "trigger_one_shot_animation")
+	parent_entity.connect("no_health", Callable(self, "_on_no_health"))
+	parent_entity.connect("took_damage", Callable(self, "_on_took_damage"))
+	parent_entity.connect("trigger_player_animation", Callable(self, "trigger_one_shot_animation"))
 	
 	_spell_caster = parent_entity.get_component_of_type(Globals.ComponentTypes.SpellCaster)
 	_player_bot = parent_entity.get_component_of_type(Globals.ComponentTypes.PlayerBot)
@@ -113,7 +113,7 @@ func _ready():
 	# Avoid ugly spawn glitch
 	if Lobby.player_is_in_temp_bot(parent_entity.get_id()):
 		toggle_renderer(false)
-		yield(get_tree().create_timer(0.2), "timeout")
+		await get_tree().create_timer(0.2).timeout
 		call_deferred("toggle_renderer", true)
 	
 	set_process(parent_entity.is_my_client)
@@ -122,8 +122,8 @@ func _ready():
 # WARNING: process is only active for the current client
 func _process(delta):
 	# Move toward click_to_move_pos only if we hold down the mose
-	if Input.is_mouse_button_pressed(BUTTON_RIGHT) && UserSettings.get_allow_click_to_move():
-		click_to_move_pos = Util.get_aim_position(parent_entity.get_world().get_direct_space_state())
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && UserSettings.get_allow_click_to_move():
+		click_to_move_pos = Util.get_aim_position(parent_entity.get_world_3d().get_direct_space_state())
 		click_to_move_pos.y = 0
 		moveToPosIndicator.set_visible(true)
 		moveToPosIndicator.global_transform.origin = click_to_move_pos
@@ -378,7 +378,7 @@ func set_player_skin(id: int, team_name: String, cloned_from_id: int, skin: Dict
 			var team_info: Dictionary = Lobby.get_team_info_from_player_id(id)
 			if player_type == Globals.PlayerTypes.CLIENT:
 				team_name = "Blue Team"
-			elif team_info.empty() == false:
+			elif team_info.is_empty() == false:
 				team_name = "Red Team" if team_name == "Wizishes" && team_info["solo"] == false else "Blue Team"
 			else:
 				team_name = "Red Team"
@@ -474,20 +474,20 @@ func respawn() -> void:
 	# Wait a bit until we show play again for visual reasons
 	var tree = get_tree()
 	if tree != null:
-		yield(tree.create_timer(0.15), "timeout")
+		await tree.create_timer(0.15).timeout
 		if is_inside_tree() == true:
 			if _player_bot != null:
 				_player_bot.respawn_bot()
 			_animation_player.play("DiveUp")
 	
 	if tree != null:
-		yield(tree, "idle_frame")
+		await tree.idle_frame
 		if is_inside_tree() == true:
 			toggle_collider(true)
 			toggle_renderer(true) 
 	
 	if tree != null:
-		yield(tree.create_timer(0.2), "timeout")
+		await tree.create_timer(0.2).timeout
 		if is_inside_tree() == true:
 			entity_info_panel.show_panel()
 
@@ -556,7 +556,7 @@ func trigger_one_shot_animation(animation_nr: int, dir: Vector2) -> void:
 		match animation_nr:
 			Globals.PlayerAnimations.HURT:
 				_animation_tree.set("parameters/upper_body_override/active", true)
-				if get_skin().empty() == false && Util.safe_to_use(self) == true:
+				if get_skin().is_empty() == false && Util.safe_to_use(self) == true:
 					CustomizePlayer.apply_damage_skin(parent_entity, get_skin(), get_node(_fish_model))
 					damageSkinTimer.start()
 			Globals.PlayerAnimations.PUSHED:
@@ -655,7 +655,7 @@ func update_rotation(delta: float, my_input: Vector2) -> void:
 				parent_entity.set_target_rotation(move_dir.angle_to(Vector2.DOWN), 10) 
 		elif _stance == Globals.PlayerStances.AIM || _stance == Globals.PlayerStances.BOMBARD:
 			if parent_entity.is_my_client == true && _player_type == Globals.PlayerTypes.CLIENT && get_is_frozen() == false:
-				var aim_pos = Util.get_aim_position(parent_entity.get_world().get_direct_space_state())
+				var aim_pos = Util.get_aim_position(parent_entity.get_world_3d().get_direct_space_state())
 				var cast_direction3d = _spell_caster.get_spell_spawn_pos().direction_to(aim_pos)
 				var target_angle: float = Vector2(cast_direction3d.x, cast_direction3d.z).angle_to(Vector2.DOWN)
 				# Controller rotation

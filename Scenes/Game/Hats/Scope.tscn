@@ -2,20 +2,20 @@
 
 [ext_resource path="res://Scripts/Classes/Hat.gd" type="Script" id=4]
 
-[node name="KnightHelmet" type="Spatial"]
+[node name="KnightHelmet" type="Node3D"]
 script = ExtResource( 4 )
 hat_type = 22
 
-[node name="CSGCylinder" type="CSGCylinder" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 3.41216 )
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 3.41216 )
 height = 2.41521
 
-[node name="CSGCylinder" type="CSGCylinder" parent="CSGCylinder"]
-transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0 )
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0 )
 operation = 2
 radius = 0.818084
 height = 3.17536
 
-[node name="CSGCombiner" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00407, 2.0961 )
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00407, 2.0961 )
 operation = 2

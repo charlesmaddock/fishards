@@ -2,7 +2,7 @@ extends Component
 
 
 func _ready():
-	parent_entity.connect("destroyed", self, "_on_destroyed")
+	parent_entity.connect("destroyed", Callable(self, "_on_destroyed"))
 
 
 func _on_destroyed(_id, _of_old_age):
@@ -11,7 +11,7 @@ func _on_destroyed(_id, _of_old_age):
 	
 	var team_name: String = ""
 	var player_team = Lobby.get_team_info_from_player_id(creator_id)
-	if player_team.empty() == false:
+	if player_team.is_empty() == false:
 		team_name = player_team["name"]
 	
 	var spell_type = Globals.SpellTypes.FREEZE_AREA

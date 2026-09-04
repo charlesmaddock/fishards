@@ -2,7 +2,7 @@ extends Label
 
 var bright_color
 
-export(bool) var has_opacity: bool
+@export var has_opacity: bool
 
 func _ready():
 	if has_opacity == true:

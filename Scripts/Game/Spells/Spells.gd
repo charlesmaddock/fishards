@@ -1,7 +1,7 @@
 extends Node
 
 
-export(PackedScene) var land_anticipation_indicator_scene 
+@export var land_anticipation_indicator_scene: PackedScene 
 
 
 const fireball_scene = preload("res://Scenes/Entities/Spells/Fireball.tscn")
@@ -145,7 +145,7 @@ func p2p_spawn_spell(players: Players, caster_entity: Entity, creator_team: Stri
 							child.init_spell(dir, creator_team)
 						Globals.ComponentTypes.Launchable:
 							if spell_type == Globals.SpellTypes.METEOR:
-								var landing_indicator = land_anticipation_indicator_scene.instance()
+								var landing_indicator = land_anticipation_indicator_scene.instantiate()
 								add_child(landing_indicator)
 								landing_indicator.global_transform.origin = pos + (Vector3.UP * 0.2)
 								child.launch(caster_entity.get_pos(), pos, landing_indicator, Globals.METEOR_SPEED)

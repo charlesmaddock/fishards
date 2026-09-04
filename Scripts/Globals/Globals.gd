@@ -3,31 +3,31 @@ extends Node
 var _app_mode: int = AppModes.RELEASE
 
 # Spell _icons
-export var fireball_icon: Texture 
-export var meteor_icon: Texture
-export var push_icon: Texture
-export var dive_icon: Texture
-export var freeze_icon: Texture
-export var dash_icon: Texture
-export var blast_icon: Texture
-export var transform_icon: Texture
-export var crab_icon: Texture
-export var wall_icon: Texture
-export var wildfire_icon: Texture
-export var heal_icon: Texture
-export var totem_icon: Texture
-export var beam_icon: Texture
-export var grab_icon: Texture
-export var ice_ball_icon: Texture
-export var empty_spell_icon: Texture
+@export var fireball_icon: Texture2D 
+@export var meteor_icon: Texture2D
+@export var push_icon: Texture2D
+@export var dive_icon: Texture2D
+@export var freeze_icon: Texture2D
+@export var dash_icon: Texture2D
+@export var blast_icon: Texture2D
+@export var transform_icon: Texture2D
+@export var crab_icon: Texture2D
+@export var wall_icon: Texture2D
+@export var wildfire_icon: Texture2D
+@export var heal_icon: Texture2D
+@export var totem_icon: Texture2D
+@export var beam_icon: Texture2D
+@export var grab_icon: Texture2D
+@export var ice_ball_icon: Texture2D
+@export var empty_spell_icon: Texture2D
 
 # Element _icons
-export var empty_icon: Texture
-export var fire_icon: Texture
-export var water_icon: Texture
-export var earth_icon: Texture
-export var arcane_icon: Texture
-export var goo_icon: Texture
+@export var empty_icon: Texture2D
+@export var fire_icon: Texture2D
+@export var water_icon: Texture2D
+@export var earth_icon: Texture2D
+@export var arcane_icon: Texture2D
+@export var goo_icon: Texture2D
 
 # Contants TODO: Move to room settings
 const PLAYER_SPEED: float = 4.5
@@ -47,8 +47,8 @@ var FLOP_AROUND_SPEED: float = 1.4
 var AIM_SPEED: float = 1
 
 
-export(Color) var RED_TEAM_COLOR
-export(Color) var BLUE_TEAM_COLOR
+@export var RED_TEAM_COLOR: Color
+@export var BLUE_TEAM_COLOR: Color
 
 
 const ADJECTIVES = [
@@ -281,7 +281,7 @@ enum PlayerTypes {
 
 
 # Contains the spawn chances
-onready var RARE_ENV_TYPES = {
+@onready var RARE_ENV_TYPES = {
 	EnvironmentTypes.BIG_ROCK_1: 0.1,
 	EnvironmentTypes.BIG_ROCK_2: 0.25
 }
@@ -345,7 +345,7 @@ enum SpellTypes {
 }
 
 # Note: cast_time should not be more than 1 sec, might be wierd since you can cast another spell while casting
-onready var SpellCooldowns: Dictionary = {
+@onready var SpellCooldowns: Dictionary = {
 	SpellTypes.NONE: 		{"cooldown": 0, "max_charges": 0, "hold_down": false},
 	SpellTypes.FIREBALL: 	{"cooldown": 0.3, "max_charges": 1, "hold_down": false},
 	SpellTypes.PUSH: 		{"cooldown": 5, "max_charges": 1, "hold_down": false},
@@ -366,7 +366,7 @@ onready var SpellCooldowns: Dictionary = {
 }
 
 # TODO: Make the spellcaster use this
-onready var SpellCompositions: Dictionary = {
+@onready var SpellCompositions: Dictionary = {
 	SpellTypes.FIREBALL: 	[Globals.Elements.FIRE, Globals.Elements.FIRE],
 	SpellTypes.PUSH: 		[Globals.Elements.FIRE, Globals.Elements.WATER],
 	SpellTypes.METEOR:	 	[Globals.Elements.FIRE, Globals.Elements.EARTH],
@@ -473,12 +473,12 @@ var camera_lerp_to_rot: Vector3 = camera_standard_rot
 # Before scene swap for instance
 var prev_camera_pos: Vector3 = camera_zoom_out_pos
 
-onready var camera: Camera = $Camera
+@onready var camera: Camera3D = $Camera3D
 var camera_offset: Vector3 = Vector3(0, 37.8, 28.8)
 var camera_following: Entity = null
 var camera_following_id: int = 0
 
-export(PackedScene) var infoPopupScene
+@export var infoPopupScene: PackedScene
 
 
 func _ready():
@@ -491,7 +491,7 @@ func _process(delta: float) -> void:
 	if camera_following != null:
 		if Util.safe_to_use(camera_following) == true:
 			var to_position: Vector3 = camera_following.get_pos() + camera_offset
-			var lerp_pos: Vector3 = camera.global_transform.origin.linear_interpolate(to_position, delta * 16)
+			var lerp_pos: Vector3 = camera.global_transform.origin.lerp(to_position, delta * 16)
 			camera.global_transform.origin = lerp_pos
 		else:
 			camera_following = null
@@ -500,7 +500,7 @@ func _process(delta: float) -> void:
 
 # Cursed af haha
 func create_info_popup(title: String, desc: String) -> void:
-	var popup = infoPopupScene.instance()
+	var popup = infoPopupScene.instantiate()
 	popup.init_popup(title, desc)
 	add_child(popup)
 
@@ -516,7 +516,7 @@ func get_app_mode() -> int:
 	return _app_mode
 
 
-func get_spell_icon(spell: int) -> Texture:
+func get_spell_icon(spell: int) -> Texture2D:
 	var spell_icons = {
 		Globals.SpellTypes.NONE: empty_spell_icon,
 		Globals.SpellTypes.FIREBALL: fireball_icon,
@@ -543,7 +543,7 @@ func get_spell_icon(spell: int) -> Texture:
 		return empty_spell_icon
 
 
-func get_element_icon(element: int) -> Texture:
+func get_element_icon(element: int) -> Texture2D:
 	match element:
 		Globals.Elements.FIRE:
 			return fire_icon;
@@ -569,7 +569,7 @@ func set_camera_following(entity_to_follow: Entity, reset_camera_pos: Vector3 = 
 		camera_following = entity_to_follow
 		camera_following_id = entity_to_follow.get_id()
 		
-		camera = get_viewport().get_camera()
+		camera = get_viewport().get_camera_3d()
 		
 		if entity_to_follow.get_type() == EntityTypes.PLAYER:
 			var player_component = entity_to_follow.get_component_of_type(Globals.ComponentTypes.Player)
@@ -592,7 +592,7 @@ func test_size() -> void:
 		"pos": Vector3.ZERO,
 		"dir": Vector2.ZERO,
 	}
-	var byte_data: PoolByteArray = var2bytes(packet)
+	var byte_data: PackedByteArray = var_to_bytes(packet)
 	
 	var stream: StreamPeerBuffer = StreamPeerBuffer.new()
 	stream.put_u8(Globals.PacketTypes.SPAWN_SPELL)
@@ -634,8 +634,8 @@ func packet_speed_test(delta) -> void:
 				"pos": Vector3.ZERO,
 				"dir": Vector2.ZERO,
 			}
-			var byte_data: PoolByteArray = var2bytes(packet)
-			var data: Dictionary = bytes2var(byte_data)
+			var byte_data: PackedByteArray = var_to_bytes(packet)
+			var data: Dictionary = bytes_to_var(byte_data)
 		
 		for i in 3000:
 			var stream: StreamPeerBuffer = StreamPeerBuffer.new()

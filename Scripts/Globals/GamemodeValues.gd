@@ -29,7 +29,7 @@ enum TeamModes {
 }
 
 
-onready var GameModeInfo: Dictionary = {
+@onready var GameModeInfo: Dictionary = {
 	Gamemodes.FreeForAll: {
 		"title": "Free For All", 
 		"short": "FFA", 
@@ -176,7 +176,7 @@ enum Maps {
 }
 
 
-onready var map_sound_tracks: Dictionary = {
+@onready var map_sound_tracks: Dictionary = {
 	Maps.Island: [MusicAndSfxHandler.tracks.MAIN_THEME, MusicAndSfxHandler.tracks.TROPIC1],
 	Maps.Lava: [MusicAndSfxHandler.tracks.LAVA1, MusicAndSfxHandler.tracks.LAVA2],
 	Maps.Ice: [MusicAndSfxHandler.tracks.ICE1, MusicAndSfxHandler.tracks.ICE2],
@@ -323,7 +323,7 @@ func generate_current_rounds_map_ref(amount_of_players: int) -> String:
 				map_dict = available_map_dict
 	
 	# If we for some reason couldnt get a valid map into map_dict, just select an available one
-	if map_dict.empty() == true:
+	if map_dict.is_empty() == true:
 		map_dict = available_maps[Util.rand.randi_range(0, available_maps.size() - 1)]
 		map_type = map_dict.map
 		print("available_maps: ", available_maps)

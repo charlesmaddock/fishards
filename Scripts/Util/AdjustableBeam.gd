@@ -1,6 +1,6 @@
 extends ParticleParent
 
-export(NodePath) var Beam: NodePath
+@export var Beam: NodePath
 
 var beam: Particles
 var beam_meshes: Array = []
@@ -25,4 +25,4 @@ func play_beam_effect(length: float):
 func set_beam_shader_length(value):
 	# Set all shader parameters
 	for mesh in beam_meshes:
-		mesh.surface_get_material(0).set_shader_param("beam_length", value)
+		mesh.surface_get_material(0).set_shader_parameter("beam_length", value)
